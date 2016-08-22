@@ -1,0 +1,60 @@
+%nav#nav-header.navbar.navbar-default{role: "navigation"}
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{href: "javascript:void(0)"}
+        %h1
+          = @header_text
+          %small
+            = @header_small
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          - if current_user.admin?
+            %li
+              =link_to t(".home"), root_path, class: "btn-header btn-default-header tab-active"
+            %li
+              =link_to t(".user_management"), users_path, class: "btn-header btn-default-header"
+            %li.temp_hide_i
+              =link_to t(".promotions"), promotions_path, class: "btn-header btn-default-header"
+            %li
+              =link_to t(".categories"), categories_path, class: "btn-header btn-default-header"
+            %li
+              =link_to t(".list_booked"), my_activities_path, class: "btn-header btn-default-header"
+            %li
+              =link_to t(".account_settings"), edit_user_registration_path, class: "btn-header btn-default-header"
+            %li
+              = link_to t(".faqs"), faqs_path, class: "btn-header btn-default-header"
+          - else
+            - if current_user.user_type == User::USER_TYPE[:merchant]
+              %li
+                / =link_to t(".schedules"), working_schedules_path, class: "btn-header btn-default-header"
+              %li
+                =link_to t(".promotions"), promotions_path, class: "btn-header btn-default-header"
+              %li
+                =link_to t(".calendar"), calendars_path, class: "btn-header btn-default-header"
+              %li
+                =link_to t(".profile"), edit_user_registration_path, class: "btn-header btn-default-header"
+            - else
+              %li
+                =link_to t(".home"), root_path, class: "btn-header btn-default-header tab-active"
+              %li
+                =link_to t(".my_activities"), my_activities_path, class: "btn-header btn-default-header"
+              %li
+                =link_to t(".activities"), activities_path, class: "btn-header btn-default-header"
+              %li
+                =link_to t(".account_settings"), edit_user_registration_path, class: "btn-header btn-default-header"
+              %li
+                =link_to t(".history"), history_v_moneys_path, class: "btn-header btn-default-header"
+        - else
+          %li
+            = link_to t(".sign_up"), auth_account_regis_path, class: "btn btn-small"
+          %li
+            = link_to t(".sign_in"), new_user_session_path, class: "btn btn-small"
+

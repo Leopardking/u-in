@@ -1,0 +1,20 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div
+            %div.step-header
+              %div.stp-hdr.shr-hder.list-promo
+                %span= t('promotions.inactive_promotion.list_inactive')
+%br
+%section.body-holder
+  %div.container
+    = link_to t('common.back'), promotions_path, class: 'btn btn-default btn-back-inactive'
+    %div.row.inacitve-promotion
+      %div.row
+        %div
+          - @promotions.each do |promotion|
+            - if promotion.cancel_status
+              =render "inactive_promotion", promotion: promotion
+%div#deletePopUp

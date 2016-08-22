@@ -1,0 +1,20 @@
+#cancel_promotion_confirm.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title= t(".confirmation")
+      .modal-body
+        .text-center
+          %h4= t(".modal_msg_confirm", deposit: number_to_currency(deposit)).html_safe
+          %h4= t(".check_term", name: bussiness_name)
+        = form_for(HistoryVMoney.new, url: cancel_booking_my_activities_path, method: :post) do |f|
+          =f.hidden_field :user_id, value: booked.user_id
+          =f.hidden_field :booking_id, value: booked.id
+          =f.hidden_field :promotion_id, value:  booked.promotion_id
+          #btn_control.text-center
+            .row
+              .col-md-5.col-md-offset-1
+                %button.btn.btn-default.btn-full{id: "booking_on_view_day", :type => "submit","data-id" => booked.id }= t(".yes_c_t_bk")
+              .col-md-5
+                %button.btn.btn-default.btn-full{id: "no_cancel",:type => "button", "aria-hidden" => "true", "data-dismiss" => "modal"}= t(".no_s")

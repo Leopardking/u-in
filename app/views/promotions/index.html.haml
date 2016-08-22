@@ -1,0 +1,22 @@
+%br
+%section.body-holder
+  %div.container
+    %div.row.button-create-new-promotion{style: "text-align: right"}
+      %div.row
+        = link_to new_promotion_path do
+          = t(".create_new_promo")
+          %i.fa.fa-plus
+-@promotions.each do |promotion|
+  - if !promotion.cancel_status
+    =render "active_promotion", promotion: promotion
+  -else
+    =render "inactive_promotion", promotion: promotion
+
+.row.text-center#paganite_categories
+  = paginate @promotions if @promotions.present?
+
+%div#deletePopUp
+
+:javascript
+  Pages['SocialShare'].init();
+

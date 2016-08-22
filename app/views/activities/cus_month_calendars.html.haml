@@ -1,0 +1,7 @@
+.col-md-8.col-md-offset-2
+  #promotion_without
+    = render 'promotion_without_booking', promotion: @promotion
+  %br/
+  #datepicker_cus
+:javascript
+  render_calendars_cus(eval("(" + "#{@promotion.to_json.to_s.gsub("\"", "\'")}" + ")"), eval("(" + "#{@working_days.to_json.to_s.gsub("\"", "\'")}" + ")"));

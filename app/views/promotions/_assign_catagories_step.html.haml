@@ -1,0 +1,121 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.steps-promo
+            %div.step-desc
+              %p
+            %div.step-complete
+              %p
+                %span.step-inc{style: "color:rgba(153, 204, 102,1);"}
+                  4
+                of
+                %span.step-dec
+                  6
+            %div.clearfix
+          %div.step-header
+            %div.stp-hdr
+              %span
+                %label.stp-lbl
+                  =raw t(".title_step4")
+              = link_to "#", title: t(".text_image_question") do
+                = image_tag "question.svg", alt: t(".text_image_question"), class: "image-question-title-step"
+          %div.booking-wrapper{style: 'padding:20px'}
+            %div.step-description
+              %p
+                = raw t('.step4_description')
+            =form_for promotion, as: :promotion, method: method, url: url, html: { class: "promotion-form", id: form_id } do |f|
+              - image_ids = (params[:promotion].present? && params[:promotion][:image_ids].present?) ? params[:promotion][:image_ids] : promotion.image_ids
+              - image_ids.each_with_index do |img, index|
+                = hidden_field_tag "promotion[image_ids][]", img, id: "h_image_#{index + 1}"
+              = hidden_field_tag "promotion_params", promotion_params
+              = hidden_field_tag "promotion_step", promotion_step
+              = hidden_field_tag "back_button"
+              %div.categories-wrappper
+                %div.categories-holder.col-xs-12
+                  %div.categories-multiselection.col-xs-12
+                    .show_error_must_choose_a_categorie
+                    = render "categories/categories_list"
+                    %div.clearfix
+                #category_err
+                %div.req-newcategory
+                  %span.btn{style: "width:100%;margin-bottom:-15px;", "data-toggle" => "modal", "data-target" => "#ReqNewCatr"}
+                    Request a new category
+                %div.clearfix
+          .next-step.row
+            - if form_id == "edit_promotion_form"
+              = render partial: "button_for_edit_steps", :locals => { :promotion => @promotion }
+            - else
+              .col-lg-6.col-md-6.col-xs-6.btn-back
+                .btn.back_arrow
+                  %span
+                    = t("promotions.back_step")
+              .col-lg-6.col-md-6.col-xs-6.btn-continue
+                %button.btn{onClick: "$('.promotion-form').submit()"}
+                  %span
+                    = t("promotions.continue_step")
+
+%div.modal.fade#ReqNewCatr{role: "dialog"}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-body
+        %p.mdl-head
+          Suggest Category
+
+        = form_tag(categories_path, method: :post, remote: true, class: "suggestcatr-form", id: "suggestcatrForm") do |f|
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          = hidden_field_tag :suggest_category, true
+          %div.form-group{style: "width:47%;float:left;margin-right:3%"}
+            %label{for: "first-name"}
+              First Name
+              %span.req
+                *
+            =text_field_tag "category[first_name]", "", class: "form-control"
+
+          %div.form-group{style: "width:47%;float:left;margin-right:3%"}
+            %label{for: "last-name"}
+              Last Name
+              %span.req
+                *
+            =text_field_tag "category[last_name]", "", class: "form-control"
+
+          %div.form-group
+            %label{for: "company-name"}
+              Company Name
+              %span.req
+                *
+            =text_field_tag "category[company_name]", "", class: "form-control"
+
+          %div.form-group
+            %label{for: "email"}
+              Email
+              %span.req
+                *
+            =text_field_tag "category[email]", "", class: "form-control"
+
+          %div.form-group
+            %label{for: "suggest-catr"}
+              Suggest Category
+              %span.req
+                *
+            =text_field_tag "category[suggest_catr]", "", class: "form-control"
+          %div.cansav-img
+            %span.btn#cancel{:type => "button", "data-dismiss" => "modal", "data-target" => "upload_image" }
+              cancel
+            %button.btn
+              Send
+            %div.clearfix
+
+:javascript
+  var div_height = $(".catr-col").height() / ($(".categories-multiselection").height() * 0.12)
+
+  category_validation()
+
+  $("#suggestcatrForm").on("submit", function(e){
+    if(!$(this).valid()){
+      e.preventDefault()
+    }
+  })
+
+

@@ -1,0 +1,121 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.steps-promo
+            %div.step-desc
+              %p
+            %div.step-complete
+              %p
+                %span.step-inc{style: "color:rgba(153, 204, 102,1);"}
+                  = t("promotions.process_3")
+                %span
+                  = t("promotions.of")
+                %span.step-dec
+                  = t("promotions.process_6")
+            %div.clearfix
+          %div.step-header
+            %div.stp-hdr
+              %span
+                %label.stp-lbl{style: "color:rgba(153, 204, 102,1);"}
+                  =raw t(".image_video_upload")
+              = link_to "#", title: t("promotions.text_image_question") do
+                = image_tag "question.svg", alt: t("promotions.text_image_question"), class: "image-question-title-step"
+          - img_ids = params[:promotion].try(:[], :image_ids)
+          - images = (img_ids ? get_image_follow_id(img_ids) : @promotion.images).order("image_no")
+          - default_image = get_image_follow_default(images)
+          - first_image = images.first
+          - second_image = images.second
+          - third_image = images.third
+          %div.booking-wrapper{style: 'padding:20px'}
+            %div.image-head
+              %div.image-holder
+                %div.image-show
+                  %div.image-wrap
+                    - if default_image.blank?
+                      - image_url = asset_path("default_image.png")
+                    -else
+                      - image_url = default_image.image.url(:medium)
+                    %img#image_promotion_large_default{src: image_url, width: "460", height: "290", alt: "Promotion Image"}
+              =form_for @promotion, as: :promotion, method: method, url: url, html: { class: "promotion-form", id: form_id } do |f|
+                = hidden_field_tag "promotion_params", @promotion_params
+                = hidden_field_tag "promotion_step", @promotion_step
+                = hidden_field_tag "back_button"
+                - if first_image.blank?
+                  = hidden_field_tag "promotion[image_ids][]", "", id: "h_image_1"
+                - else
+                  = hidden_field_tag "promotion[image_ids][]", "#{first_image.id}", id: "h_image_1"
+                - if second_image.blank?
+                  = hidden_field_tag "promotion[image_ids][]", "", id: "h_image_2"
+                - else
+                  = hidden_field_tag "promotion[image_ids][]", "#{second_image.id}", id: "h_image_2"
+                - if third_image.blank?
+                  = hidden_field_tag "promotion[image_ids][]", "", id: "h_image_3"
+                - else
+                  = hidden_field_tag "promotion[image_ids][]", "#{third_image.id}", id: "h_image_3"
+                %div.addImg-wrap
+                  %div.add-img
+                    - if first_image.blank?
+                      = hidden_field_tag :image_1_medium, ''
+                      = image_tag("default_image.png", alt: "Responsive image","data-image" => "image-1", size: "200x125")
+                      = link_to add_image_promotions_path(image_name: "image-1", activity: "add-image", promotion_id: @promotion.id), class:"link-to-change-image image-1-href", remote: true do
+                        %span.btn.btn-hightlight-color.open-upload-modal-image-1#image_1{"data-default" => "true", "data-image" => "image-1"}
+                          = t(".add_image")
+                    - else
+                      = hidden_field_tag :image_1_medium, first_image.image.url(:medium)
+                      = image_tag(first_image.image.url(:medium), "data-image" => "image-1",size: "200x125")
+                      = link_to add_image_promotions_path(image_name: "image-1", activity: "change-image", img_id: first_image.id, promotion_id: @promotion.id), class:"link-to-change-image", remote: true do
+                        %span.btn.btn-hightlight-color.change-image-uploaded-image-1#image_1{"data-default" => "#{default_image.present? ? first_image.id == default_image.id : false}", "data-desc" => "#{first_image.description_image}" }
+                          = t(".change_image")
+                  %div.add-img
+                    - if second_image.blank?
+                      = hidden_field_tag :image_2_medium, ''
+                      = image_tag("default_image.png", alt: "Responsive image","data-image" => "image-2", size: "200x125")
+                      = link_to add_image_promotions_path(image_name: "image-2", activity: "add-image",promotion_id: @promotion.id), class:"link-to-change-image image-2-href", remote: true do
+                        %span.btn.btn-hightlight-color.open-upload-modal-image-2#image_2{"data-default" => "false", "data-image" => "image-2"}
+                          = t(".add_image")
+                    -else
+                      = hidden_field_tag :image_2_medium, second_image.image.url(:medium)
+                      = image_tag(second_image.image.url(:medium), "data-image" => "image-2",size: "200x125")
+                      = link_to add_image_promotions_path(image_name: "image-2", activity: "change-image", img_id: second_image.id,promotion_id: @promotion.id), class:"link-to-change-image", remote: true do
+                        %span.btn.btn-hightlight-color.change-image-uploaded-image-2#image_2{"data-image" => "image-2", "data-default" => "#{default_image.present? ? second_image.id == default_image.id : false}", "data-desc" => "#{second_image.description_image}" }
+                          = t(".change_image")
+                  %div.add-img
+                    - if third_image.blank?
+                      = hidden_field_tag :image_3_medium, ''
+                      = image_tag("default_image.png", alt: "Responsive image","data-image" => "image-3", size: "200x125")
+                      = link_to add_image_promotions_path(image_name: "image-3", activity: "add-image",promotion_id: @promotion.id), class:"link-to-change-image image-3-href", remote: true do
+                        %span.btn.btn-hightlight-color.open-upload-modal-image-3#image_3{"data-default" => "false", "data-image" => "image-3"}
+                          = t(".add_image")
+                    -else
+                      = hidden_field_tag :image_3_medium, third_image.image.url(:medium)
+                      = image_tag(third_image.image.url(:medium), "data-image" => "image-3",size: "200x125")
+                      = link_to add_image_promotions_path(image_name: "image-3", activity: "change-image", img_id: third_image.id,promotion_id: @promotion.id), class:"link-to-change-image", remote: true do
+                        %span.btn.btn-hightlight-color.change-image-uploaded-image-3#image_3{"data-image" => "image-3", "data-default" => "#{default_image.present? ? third_image.id == default_image.id : false}", "data-desc" => "#{third_image.description_image}" }
+                          = t(".change_image")
+                  %div.clearfix
+                  %div.vedioform
+                    %div.form-group{style: "text-align:center"}
+                      %label{for: "vedio"}
+                        = t(".youtube_or_vimeo_promotion")
+                      = f.text_field :youtube_video, value:  @promotion.youtube_video, class: "form-control", id: "vedio"
+          .next-step.row
+            - if form_id == "edit_promotion_form"
+              = render partial: "button_for_edit_steps", :locals => { :promotion => @promotion }
+            - else
+              .col-lg-6.col-md-6.col-xs-6.btn-back
+                .btn.back_arrow
+                  %span
+                    = t("promotions.back_step")
+              .col-lg-6.col-md-6.col-xs-6.btn-continue
+                %button.btn{onClick: "$('.promotion-form').submit()"}
+                  %span
+                    = t("promotions.continue_step")
+/ Render modal upload image for promotion
+#image_upload_here
+
+#show-popup-check_type_image
+  = render "shared/modal_validate_type_image"
+#show-popup-check-size-image
+  = render "shared/modal_validate_size_image"

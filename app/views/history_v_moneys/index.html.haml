@@ -1,0 +1,6 @@
+.row
+  .col-xs-10.col-md-10.col-xs-offset-1.col-md-offset-1
+    .table-responsive#table_history
+      = render "history", histories: @histories
+    .row.text-center#paganite_history
+      = paginate @histories, :remote => true

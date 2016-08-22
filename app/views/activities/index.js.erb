@@ -1,0 +1,2 @@
+$('#table_pro_for_book').html('<%= j render "activities/promotion_booking", :promotions => @promotions %>');
+$('#paganite_promotion_for_book').html('<%= j (paginate(@promotions, :remote => true).to_s) %>');

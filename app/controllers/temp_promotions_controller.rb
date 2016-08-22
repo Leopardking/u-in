@@ -1,0 +1,3 @@
+class TempPromotionsController < ApplicationController
+
+end

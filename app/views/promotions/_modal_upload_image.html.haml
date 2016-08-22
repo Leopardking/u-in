@@ -1,0 +1,44 @@
+#upload_image.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_for( image, url: upload_image_promotions_path, html: {:multipart => true},:remote => true) do |f|
+        .modal-body
+          .row
+            .col-xs-1.col-md-1.col-ms-1
+            .col-xs-10.col-md-10.col-ms-10
+              %p.text-center-element
+                = t(".upload_max_msg")
+              .row.form-horizontal
+                = hidden_field_tag :authenticity_token, form_authenticity_token
+                = hidden_field_tag :img_id, ''
+                = f.hidden_field :crop_x
+                = f.hidden_field :crop_y
+                = f.hidden_field :crop_w
+                = f.hidden_field :crop_h
+                = f.hidden_field :user_id, value: current_user.id
+                = f.hidden_field :imageable_id
+                #hidden_value_image
+                #hidden_image_no
+                %input{:type=>"hidden", :value=>"", :id=>:avatar_upload_id}
+                = image_tag("default_image.png", alt: "Responsive image", id: "image_promotion_large", class: "crop-image-promotion")
+                .row.form-group.col-sm-10.col-md-12
+                  #change-file-image.btn.btn-info
+                    = t(".btn_change_file")
+                .row.form-group.col-sm-10.col-md-12
+                  = f.check_box :image_default
+                  %label
+                    = t(".set_default_image")
+                %div.form-group.remove-margin-element
+                  = f.text_area :description_image, class: "form-control no-resize-form", rows: "3"
+                .clearfix
+                .row.text-center.btn-group-horizontal
+                  %span#image-upload-msg.temp_hide
+                    = t(".please_wait")
+            .col-xs-1.col-md-1.col-ms-1
+        .modal-footer
+          %span#turnoff-upload-image.btn.btn-default{:type => "button", "data-dismiss" => "modal", "data-target" => "upload_image" }
+            = t("common.close")
+          = f.submit t(".save"), class: "btn btn-default submit-upload-image", disabled: "disabled"
+    =  form_for Image.new, url: upload_image_step3_images_path, method: "post", :html => { id: "upload-image-promotion", class: "display-none-elemen", multipart: true }, remote: true do |mf|
+      = mf.file_field :image, class: "form-control display-none-element"
+      = mf.hidden_field :using_image, value: "promotion"

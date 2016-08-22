@@ -1,0 +1,7 @@
+%p
+  = t(".wellcome", :email => @email) #{@email}!
+%p= t(".confirm_link_msg")
+%p= link_to t(".confirm_my_acc"), confirmation_url(@resource, :confirmation_token => @resource.confirmation_token)
+%p= t(".slogan_msg")
+%p Regards,
+U-IN Team

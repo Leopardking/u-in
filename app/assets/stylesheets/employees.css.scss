@@ -1,0 +1,98 @@
+// Place all the styles related to the employees controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#schedules-page{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.schedule_image{
+	font-size: 25px;
+	color: rgba(28, 26, 26, 0.5) !important;
+}
+
+.select_schedule{
+	font-size: 25px;
+	color: rgb(96, 181, 132) !important;
+}
+
+.validation_fields{
+	display: inline-block;
+	width: 70%;
+}
+
+.employee_form_bottons{
+	text-align: right;
+	color: black !important;
+
+}
+
+.employees_save{
+	color: rgb(0, 149, 0) !important;
+}
+
+.error{
+	width: 52%;
+	text-align: center;
+}
+
+.add_employee{
+	font-size: 30px;
+	margin: 2% 15%;
+	color: rgb(144, 145, 144);
+	cursor: pointer;
+}
+
+.remove-Employee{
+	font-size: 20px;
+	margin: 2% 15%;
+	color: rgb(144, 145, 144);
+	cursor: pointer;
+}
+.add_links{
+	padding: 15px 50px;
+	font-size: 30px;
+	color: rgb(144, 145, 144);
+}
+
+.form-control[readonly], .form-control[disabled]{
+	background-color: white !important;
+}
+
+.employee_name{
+	cursor: initial !important;
+}
+
+.employee_save, .equipment_save{
+	padding: 0;
+	width:7%
+}
+
+.employee_save .fa-times, .equipment_save .fa-times{
+	color: red !important;
+}
+
+.employee_save span, .equipment_save span{
+	visibility: hidden;
+	font-size:16px;
+}
+
+.employee_first_name, .employee_last_name{
+	cursor: initial;
+	width:50%;
+	float: left;
+}
+
+.visible{
+	visibility: visible !important;
+}
+
+p.form_error{
+	font-size: 10px;
+	margin-left: 20px !important;
+	color: red;
+}

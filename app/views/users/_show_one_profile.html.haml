@@ -1,0 +1,37 @@
+- if @user.merchant_detail
+  .modal.fade{ :id => "show_profile_user" ,"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+          %h4#myModalLabel.modal-title.text-center= t("common.profile")
+        .modal-body
+          .row
+            .col-md-8.col-md-offset-2
+              .col-md-4.pull-left
+                = image_tag(@user.merchant_detail.logo.url(:thumb),size: "100x100")
+              .col-md-8
+                .row.form-group
+                  = label_tag t("devise.registrations.edit.business_name_label")
+                  = @user.merchant_detail.business_name
+                .row.form-group
+                  = label_tag t("devise.registrations.edit.street_address_label")
+                  = @user.merchant_detail.street_address
+              .form-group
+                .row
+                  .col-md-6.col-sm-6
+                    = label_tag t("devise.registrations.edit.city_label")
+                    = @user.merchant_detail.city
+                  .col-md-6.col-sm-6
+                    = label_tag t("devise.registrations.edit.state_label")
+                    = @user.merchant_detail.state
+              .form-group
+                .row
+                  .col-md-6
+                    = label_tag t("devise.registrations.edit.zipcode_label")
+                    = @user.merchant_detail.zipcode
+                  .col-md-6
+                    = label_tag t("devise.registrations.edit.phone_number_label")
+                    = @user.merchant_detail.phone_number
+        .modal-footer
+          %button.btn.btn-default{:type => "button", "data-dismiss" => "modal" }= t("common.close")

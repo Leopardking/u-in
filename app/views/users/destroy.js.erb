@@ -1,0 +1,7 @@
+$("#error_crud_here").html('<%=j render "users/notice_errors" %>');
+<%= flash[:notice] = nil %>
+$("#confirm-delete").modal('hide');
+$("body").removeClass("modal-open");
+$(".modal-backdrop").remove();
+add_validation_user();
+$.getScript("<%= users_path %>");

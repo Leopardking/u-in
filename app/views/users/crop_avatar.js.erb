@@ -1,0 +1,10 @@
+// <!-- Get infor avatar -->
+$("#user_avatar_url").val("<%= @avatar_url %>");
+$(".avatar-for-user").attr('src', '<%= @avatar_url %>');
+$("#pic_profile").val("<%= @avatar.id %>");
+// <!-- Hide and remove modal -->
+$("#crop-image-avatar").modal('hide');
+$("#crop-image-avatar, .modal-backdrop").remove();
+$.unblockUI();
+// Call again crop image
+window.Pages['CommonJs'].uploadImageAfterChange("#image_avatar", "#upload-avatar");

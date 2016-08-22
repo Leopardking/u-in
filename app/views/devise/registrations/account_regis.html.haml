@@ -1,0 +1,65 @@
+.row#wraper_register_all
+  .col-md-12.wraper_register
+    .col-md-3.margin-element-body
+    .col-md-5.container-form
+      .row
+        .col-md-12.header-box
+          .logo-header
+            =image_tag "HeaderforloginFree.png", class: "image-logo-header"
+          .logo-uin
+            = image_tag "uINlogo_white.png", class: "image-logo-uni"
+          %div.strong-login
+            %strong
+              = t("devise.registrations.index_regis.free_member_ship")
+        .col-md-12.content-form-input
+          .content-text
+            .row.import-information
+              = form_for :user, url: auth_check_email_regis_path, html: { method: "GET" , class: "row submit-account-user form-login-regis form-login-regis", id: "new_user"} do |f|
+                .col-md-12.form-group.form-input-email-address
+                  .input-group.email-field.input-info
+                    = label_tag :first_name, t("devise.registrations.index_regis.first_name")
+                    = f.text_field :first_name, class: "form-control style-input-login input-email-user", required: true
+                .col-md-12.form-group.form-input-email-address
+                  .input-group.email-field.input-info
+                    = label_tag :last_name, t("devise.registrations.index_regis.last_name")
+                    = f.text_field :last_name, class: "form-control style-input-login input-email-user", required: true
+                .col-md-12.form-group.form-input-email-address
+                  .input-group.email-field.input-info
+                    = label_tag :email, t("devise.registrations.index_regis.email")
+                    = f.email_field :email, class: "form-control style-input-login input-email-user", required: true
+                .col-md-12.form-group.form-input-email-address
+                  .input-group.email-field.input-info
+                    = label_tag :password, t("devise.registrations.index_regis.password")
+                    = f.password_field :password, class: "form-control style-input-login input-email-user", required: true
+                .col-md-12.form-group.form-input-email-address
+                  .input-group.email-field.input-info
+                    = label_tag :phone_number, t("devise.registrations.index_regis.mobile")
+                    = f.text_field :phone_number, class: "form-control style-input-login input-email-user", required: true
+                .col-md-12.button-check-email
+                  = submit_tag t("devise.sessions.index.continue"), class: "btn btn-continue btn-check-email button-login font-stype-input btn-color-highlight"
+                .col-lg-12.footer-box-noti
+                  .small-noti-box
+                    %p.text-noti.small-noti
+                      = link_to t("devise.registrations.index_regis.already_a_member").html_safe, new_user_session_path, class: "text-not-decoration text-link-high-light"
+              %span.text-or
+              .col-md-12#social-media-login
+                .row
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:facebook)}" do
+                        = image_tag "facebookIcon_normal.png", class: "size-image-social image-social-facebook hide-on-hover"
+                        = image_tag "facebookIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:instagram)}" do
+                        = image_tag "icon_instagram_normal.png", class: "size-image-social image-social-instagram hide-on-hover"
+                        = image_tag "icon_instagram_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:linkedin)}" do
+                        = image_tag "inIcon_normal.png", class: "size-image-social image-social-linkedin hide-on-hover"
+                        = image_tag "linkedinIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+    .col-md-3
+
+:javascript
+  window.Pages['HomePages'].init();

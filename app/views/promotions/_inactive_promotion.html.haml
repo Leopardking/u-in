@@ -1,0 +1,23 @@
+%section.share-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %p
+        %div.promtion-wrap.inactive-prom
+          %div.prm-dp
+            - image_url = promotion.main_image.present? ? promotion.main_image.image.url : asset_path("question.svg")
+            = image_tag(image_url, alt: "", class:"img-responsive", width: "160", height: "160")
+          %div.prm-des#inactive-prom
+            %h1.ofr-per
+              = "#{promotion.discount_percent}% OFF"
+              %span{style: 'vertical-align:super;'}
+                = link_to edit_promotion_path(promotion) do
+                  %button.btn.btn-default Edit
+                = link_to check_deletion_promotion_path(promotion), method: :get, remote: true do
+                  %button.btn.btn-default Delete
+                = render partial: "active_promotion_popup", :locals => { :promotion => promotion }
+                %input{:type=>"hidden", :value=>promotion.id,class: "inactive-promotion"}
+                  %button.btn.btn-default.btn-active{"data-toggle"=>"modal","data-target"=>"#publish-modal" + promotion.id.to_s}= promotion.active_times == 0 ? t(".publish_now") : t(".re-active")
+            %h3.prm-con= promotion.name
+            %p.prmcon-des= short_promotion_description(promotion)
+          .clearfix

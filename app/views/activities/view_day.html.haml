@@ -1,0 +1,10 @@
+#modal_view_day
+  = render 'confirm_book', promotion: @promotion, to_day: @to_day
+#table_view_day.col-md-8.col-md-offset-2
+  = render 'view_day', promotion: @promotion, to_day: @to_day, segment: @segment, booked_day: @booked_day
+#booking_confirmation_box
+  .col-md-10.col-md-offset-1
+    #booked.form-custom
+      = render 'confirm_booking', promotion: @promotion, to_day: @to_day
+
+

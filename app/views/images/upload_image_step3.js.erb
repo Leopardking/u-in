@@ -1,0 +1,9 @@
+<% image_ratio = @image.ratio %>
+$("#image_promotion_large").attr('src','<%= @image.image.url %>');
+// Fix Jcrop image size does not update follow the uploaded image size
+var height = $("#image_promotion_large").width() / <%= image_ratio %>;
+$("#image_promotion_large").css('height', height + "px");
+
+$.unblockUI()
+$("#img_id").val("<%= @image.id %>");
+window.Pages['CropImageProcess'].cropImageChange("#image_promotion_large")

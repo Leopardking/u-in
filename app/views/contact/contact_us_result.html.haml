@@ -1,0 +1,30 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.step-header
+            %div.stp-hdr
+              %label.stp-label{style: 'color:rgba(153, 204, 102, 1);margin:1em 0.8em 0;font-size:1.5em;'} Contact Us
+          %div.booking-wrapper
+            %div.msg-del
+              %h4 Your message has been delivered.
+            %div.thnku
+              %h2 Thank You
+            %div.done-holder.done-mrg-btm
+              = link_to @back_url do
+                %img{src: "/assets/done.png", alt: "done"}
+:css
+
+  .msg-del h4{
+    text-align: center;
+    opacity: 0.8;
+    margin-top: 5em;
+  }
+  .thnku h2{
+    text-align: center;
+    opacity: 0.8;
+  }
+  .done-mrg-btm{
+    margin-bottom: 20em;
+  }

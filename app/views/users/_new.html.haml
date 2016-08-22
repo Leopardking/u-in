@@ -1,0 +1,32 @@
+.modal.fade{ :id => "add_account" ,"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", "data-target" => "add_account", :type => "button"} &times;
+        %h4#myModalLabel.modal-title.text-center= t("common.add_acc")
+      .modal-body
+        #notice_here
+        .row
+          .col-xs-1.col-md-1
+          .col-xs-10.col-md-10
+            .row.form-horizontal
+              = form_for(@user, :url => new_step2_users_path(@user), :html => { :method => :post }, :remote => true) do |f|
+                .row.form-group.col-sm-10.col-md-12
+                  .col-md-5.col-xs-4.control-label= f.label :email, t(".email")
+                  .col-md-6.col-xs-8= f.email_field :email, :autofocus => true,id: "user_email_sign_up", class: "form-control"
+                .row.form-group.col-sm-10.col-md-12
+                  .col-md-5.col-xs-4.control-label= f.label :email_confirmation, t(".confirm_email")
+                  .col-md-6.col-xs-8= f.email_field :email_confirmation, class: "form-control"
+                .clearfix
+                .row.text-center
+                  .btn-group
+                    = f.radio_button :user_type, 'client'
+                    = f.label :user_type_client, t(".client")
+                    = f.radio_button :user_type, 'merchant', :checked => true
+                    = f.label :user_type_merchant, t(".merchant")
+                .row.text-center.btn-group-horizontal
+                  = button_tag t("common.cancel"), :type => 'reset', class: "btn btn-default"
+                  = f.submit t(".continue"), class: "btn btn-default"
+          .col-xs-1.col-md-1
+      .modal-footer
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal", "data-target" => "add_account" }= t("common.close")

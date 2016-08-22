@@ -1,0 +1,4 @@
+%p=raw t(".email_header")
+%p=raw t(".email_body")
+%p=raw t(".email_body_info", name: @data[:name], creater_name: "#{@data[:first_name]} #{@data[:last_name]}", created_by: @data[:email], company_name: @data[:company_name] )
+%p=raw t(".email_footer")

@@ -1,0 +1,38 @@
+.row
+  .col-md-6.col-md-offset-3.col-xs-8.col-xs-offset-2.text-center
+    .form-group.col-md-8.col-sm-8.col-xs-8.custom-placeholder
+      %label{:for => "search_name"}=t(".name")
+      %input.form-control{ type: :input, name: "search_email", id: "search_name"}
+    .col-md-3.col-sm-3.col-xs-3
+      %button.btn.btn-default{ :id => "btn_search_name", type: "button", :remote => true}= t(".search")
+%row.form-group.text-left
+  %button.btn.btn-info.m-b-medium{id: "btn_request_category", type: "button","data-target" => "#request_category", "data-toggle" => "modal"}
+    %i.fa.fa-plus
+    =t(".add_category")
+.table-responsive
+  %table.table.table-bordered.table-hover
+    %thead
+      %tr
+        %th.col-md-1.col-sm-1.col-xs-1.text-center= t(".number_no")
+        %th.col-md-3.col-sm-3.col-xs-3= t(".name")
+        %th.col-md-3.col-sm-3.col-xs-3= t(".created_by")
+        %th.col-md-3.col-sm-3.col-xs-3= t(".created_at")
+        %th.col-md-2.col-sm-2.col-xs-2= t(".action")
+    %tbody
+      - if @categories.count > 0
+        - @categories.each_with_index do |c, index|
+          - @page = params[:page].blank? ? 1 : params[:page].to_i
+          %tr
+            %td.text-center= (@page-1)*PER_PAGE+index+1
+            %td
+              =link_to  c.name, edit_category_path(c), remote: true
+            - if current_user && current_user.admin
+              %td Admin
+            - else
+              %td= User.find_by_id(c.user_id).email
+            %td= c.created_at.to_time.strftime('%B %e %Y at %l:%M %p')
+            %td
+              .col-md-12.user_pading= link_to t("common.delete"),  delete_category_path(c), remote: true, class: "btn btn-full btn-danger"
+.row.text-center#paganite_categories
+  = paginate @categories, :remote => true
+#modal_del_category

@@ -1,0 +1,34 @@
+.table-responsive
+  %table.table.table-condensed.table-custom
+    %tr
+      %td.col-a.text-center
+        - if promotion.images.find_by_image_default(true).blank?
+          = image_tag("default_image.png", alt: "No Images", class: ".img-responsive img-thumbnail h_w_110", id: "image_promotion_large_default")
+        -else
+          = image_tag(promotion.images.find_by_image_default(true).image.url(:thumb), class: ".img-responsive img-thumbnail h_w_110")
+      %td.col-b
+        .content
+          %table.no-border
+            %tr
+              %td
+                %h4
+                  = promotion.name
+          .row.no-padding
+            .col-md-12.desciption.white_space
+              #msg_congration
+            .col-md-12.desciption.white_space
+              = t(".msg_cancel_fee", merchant_name: promotion.user.merchant_detail.business_name, hours: promotion.cancellation_minimum*24)
+.col-md-12#form-book
+  = form_for(Booking.new, url: book_activities_path, method: :post) do |f|
+    =f.hidden_field :promotion_id, value: promotion.id
+    =f.hidden_field :segment_id
+    =f.hidden_field :book_date, value: to_day
+    - customer = current_user.billing_details.find_by_always_use(true)
+    - if customer.blank?
+      - flash.now[:error] = t(".no_card_include")
+    - else
+      = hidden_field_tag :customer_id, customer.customer_id
+      = hidden_field_tag :amount_use_v_money
+    %p.text-center
+      %button.btn.btn-default{id: "confirm_btn", :type => "submit","data-id" => promotion.id }= t(".confirm_book")
+      %button.btn.btn-default{id: "cancel_confirm_btn",:type => "button"}= t("common.cancel")

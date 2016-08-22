@@ -1,0 +1,15 @@
+#booking-confirm-modal.modal.fade{role: 'dialog'}
+  .modal-dialog
+    %div.modal-active
+      %div.modal-content
+        %div.modal-body
+          / Value is set through calendar.js script
+          %h2
+          %p.head
+          %p.prom
+            %p
+              %span#booking-fee-warning
+          %div.next-step1
+            %button.cancel-btn{"data-dismiss" => "modal"}
+              =t("promotions.index.cancel")
+            %button.ok-btn#submit-booking-form=t("promotions.index.ok")

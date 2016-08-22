@@ -1,0 +1,7 @@
+%p=raw t(".email_header")
+%br
+%p=raw t(".email_body", email: @email)
+%br
+%p= "\"#{@message}\""
+%br
+%p=raw t(".email_footer")

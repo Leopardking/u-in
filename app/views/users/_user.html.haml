@@ -1,0 +1,31 @@
+=link_to new_user_path, remote: true , class: "btn btn-info m-b-medium" do
+  %i.fa.fa-plus
+  = t("common.add")
+.table-responsive
+  %table.table.table-bordered.table-hover
+    %thead
+      %tr
+        %th.text-center No.
+        %th= t(".email")
+        %th= t(".user_type")
+        %th= t(".created_at")
+        %th= t(".action")
+    %tbody
+      - if @users.count > 0
+        - @users.each_with_index do |user, index|
+          - @page = params[:page].blank? ? 1 : params[:page].to_i
+          %tr{ :id => user.id}
+            %td.text-center= (@page-1)*PER_PAGE+index+1
+            %td
+              =link_to  user.email, edit_user_path(user), remote: true
+            %td= user.user_type
+            %td= user.created_at.to_time.strftime('%B %e %Y at %l:%M %p')
+            %td{:colspan => "1"}
+              -if user.user_type=='merchant'
+                .col-md-12.user_pading= link_to t("common.delete"), delete_account_user_path(user), remote: true, class: "btn btn-full btn-danger"
+              -else
+                .col-md-12.user_pading= link_to t("common.delete"), delete_account_user_path(user), remote: true, class: "btn btn-full btn-danger"
+      -else
+        %tr
+          %td{:colspan => "4"}= t(".no_record")
+  #modal_here

@@ -1,0 +1,14 @@
+.col-md-12
+  = form_for(@faq, html: { role: "form", novalidate: true }) do |f|
+    .row
+      .col-md-6
+        .form-group
+          = f.label t("faqs.new.question")
+          = f.text_area(:question, rows: 5, class: "form-control")
+      .col-md-6
+        .form-group
+          = f.label t("faqs.new.answer")
+          = f.text_area(:answer, rows: 5, class: "form-control")
+      .col-md-6.col-md-offset-10
+        = link_to t("common.cancel"), faqs_path, class: "btn btn-default"
+        = f.submit(class: "btn btn-primary", value: t("common.save"))

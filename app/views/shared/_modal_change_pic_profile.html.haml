@@ -1,0 +1,23 @@
+#crop-image-avatar.modal.fade{"aria-hidden"=> "true", "role" => "dialog", "tabindex" => "-1", "data-backdrop" =>"static", "data-keyboard" => false}
+  .modal-dialog
+    .modal-content
+      = form_for( image, url: crop_avatar_users_path, method: "post", remote: true ) do |f|
+        = f.hidden_field :crop_x
+        = f.hidden_field :crop_y
+        = f.hidden_field :crop_w
+        = f.hidden_field :crop_h
+        = hidden_field_tag "avatar_id"
+        #image-field
+        .modal-body
+          .row
+            .col-sm-12.area-image
+          .row.group-button-footer
+            .col-xs-6
+              #button-crop-avatar.btn
+                = f.submit t(".crop_avatar"), id: "crop-avatar-upload"
+            .col-xs-6
+              #cancel-modal-change-avatar.btn{:type => "button", "data-dismiss" => "modal", "data-target" => "crop-image-avatar" }
+                %span
+                  = t(".btn_cancel")
+:javascript
+  window.Pages['EditProfilePage'].showLoaddingInCropImage();

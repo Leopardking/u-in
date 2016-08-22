@@ -1,0 +1,21 @@
+<% if @error_booking %>
+  $("#BookingPromotion .error-message-booking").css("display","block").html("<%= @message %>");
+<% else %>
+  <% if @can_booking_free %>
+    $("#InputInFoCardBooking").modal("show");
+    $("#promotion_pay_id").val("<%= @promotion.id %>")
+    $("#numbers_booked").val("<%= @numbers_booked %>");
+    $("#number-free-book").html("<%= @book %>");
+    $("#BookingPromotion").modal("hide");
+  <% else %>
+    $("#InputInFoCardBooking").modal("hide");
+    $("#BookingPromotion").modal("hide");
+    $("#number_booking_promotion").html("<%= @avaiable_booking %>")
+    $("#number-free-book").html("<%= @booking_free %>");
+    $("#calendar").fullCalendar( 'refetchEvents' );
+    $("#book_free").val("<%= @booking_free %>");
+  <% end %>
+  <% if @merchant_charged %>
+    $("#number-free-book").html("<%= @booking_free %>");
+  <% end %>
+<% end %>

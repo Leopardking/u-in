@@ -1,0 +1,42 @@
+.modal.fade{ :id => "new_merchant_profile_modal" ,"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title.text-center= t("common.add_acc")
+      .modal-body
+        .row
+          .col-md-10.col-md-offset-1
+            - @user.build_merchant_detail if @user.merchant_detail.nil?
+            = form_for(@user, url: users_path(@user), html: { method: :post, :remote => true }) do |f|
+              .row
+                .col-md-8.col-md-offset-2
+                  = f.fields_for :merchant_detail do |mf|
+                    .form-group
+                      = mf.label t("devise.registrations.edit.business_name_label")
+                      = mf.text_field :business_name, class: "form-control", autofocus: true
+                    .form-group
+                      = mf.label t("devise.registrations.edit.street_address_label")
+                      = mf.text_field :street_address, class: "form-control"
+                    .form-group
+                      .row
+                        .col-md-6.col-sm-6
+                          = mf.label t("devise.registrations.edit.city_label")
+                          = mf.text_field :city, class: "form-control"
+                        .col-md-6.col-sm-6
+                          = mf.label t("devise.registrations.edit.state_label")
+                          = mf.text_field :state, class: "form-control"
+                    .form-group
+                      .row
+                        .col-md-6
+                          = mf.label t("devise.registrations.edit.zipcode_label")
+                          = mf.text_field :zipcode, class: "form-control"
+                        .col-md-6
+                          = mf.label t("devise.registrations.edit.phone_number_label")
+                          = mf.text_field :phone_number, class: "form-control"
+                  = f.fields_for :merchant_detail do |mf|
+                    = mf.file_field :logo
+                  %p.text-center
+                    = f.submit t("common.save"), class: "btn btn-default"
+      .modal-footer
+        %button.btn.btn-default{:type => "button", "data-dismiss" => "modal" }= t("common.close")

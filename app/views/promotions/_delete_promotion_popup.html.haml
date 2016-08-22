@@ -1,0 +1,22 @@
+%div.modal.fade#deletePromoPopUp{role: 'dialog'}
+  %div.modal-dialog{style: 'text-align:center'}
+    %div.modal-content
+      %div.modal-body
+        / Value is set through calendar.js script
+        %h2
+        %p.head
+        %p.prom
+          - if @has_bookings
+            You have unused bookings available in your calendar.
+            %br/
+            Are you sure you want to delete this promotion?
+            %br/
+            %p
+              Any bookings already reserved by your customers
+              will not be affected.
+          - else
+            Are you sure you want to delete this promotion?  
+        %div.next-step1
+          = link_to promotion_path(@promotion), method: :delete, class: "btn btn-default" do
+            %span YES - Delete this promotion
+          %button.btn.btn-default{"data-dismiss" => "modal"} No - Leave this promotion

@@ -1,0 +1,11 @@
+#add-email.container
+  = form_for(@user, :as => 'user', :url => add_user_email_path(@user), :html => { role: 'form'}) do |f|
+    - if @show_errors && @user.errors.any?
+      #error_explanation
+      - form_errors!(@user)
+    .form-horizontal
+      = f.label :email, t(".email")
+      .controls
+        = f.email_field :email, :autofocus => true, class: "form-control input-lg"
+    .actions
+      %p.text-center= f.submit t(".continue"), class: "btn btn-primary"

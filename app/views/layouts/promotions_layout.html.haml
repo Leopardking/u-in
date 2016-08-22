@@ -1,0 +1,151 @@
+%html
+  %head
+    %meta{charset: "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1, maximum-scale=1", :name => "viewport"}/
+    %meta{"http-equiv" => "X-UA-Compatible", :content => "IE=edge"}/
+    %title= t("application.title_app")
+    = stylesheet_link_tag "promotions_layout", media: "all"
+    = javascript_include_tag 'https://js.stripe.com/v2/'
+    = render 'layouts/js_setup'
+    = csrf_meta_tags
+    = tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY
+  %body
+    = javascript_include_tag "promotions_layout"
+    / Footer HTML code
+
+    %header.header#uinHeader
+      .header-page
+        .container
+          .row
+            .col-xs-12
+              .header-section
+                .uin-logo
+                  = link_to merchant_page_path do
+                    = image_tag "logo.svg", class: "image-u-in-logo"
+                .promotions
+                  = link_to promotions_path do
+                    = image_tag "promotion.svg", class: "image-promotion-header"
+                - if current_user
+                  .calendar
+                    = link_to calendars_path do
+                      = image_tag "calendar.svg", class: "image-calender-header"
+                  .profile
+                    = link_to edit_user_registration_path do
+                      = image_tag "profile.svg", class: "image-profile-header"
+                    = link_to "Sign out", auth_destroy_path, class: "sout"
+                - else
+                  = link_to "Sign in", auth_index_path, class: "btn btn-small btn-sign-in-header"
+                  = link_to "Sign up", auth_index_path, class: "btn btn-small btn-sign-up-header"
+                .clearfix
+      %div.container
+        - flash.each do |name, msg|
+          %br/
+          %div.row
+            %div.col-md-12
+              %div.alert.alert-dismissable{id: name}
+                = msg
+                %button.close{"data-dismiss" => "alert", "aria-hidden" => "true"}
+                  &times;
+        %div.row
+          %div.col-xs-12
+            .progress-steps#steps.temp_hide
+              .uin-steps
+                .uin-step
+                  .progress
+                    .progress-bar
+                  %a.step-dot#basic_information{href: "javascript:void(0)"}
+                    = t("promotions.process_1")
+                  %p.description-step
+                    = t("promotions.describe_step")
+                .uin-step
+                  .progress
+                    .progress-bar
+                  %a.step-dot#add_location{href: "javascript:void(0)"}
+                    = t("promotions.process_2")
+                  %p.description-step
+                    = t("promotions.location_step")
+                .uin-step
+                  .progress
+                    .progress-bar
+                  %a.step-dot#add_image{href: "javascript:void(0)"}
+                    = t("promotions.process_3")
+                  %p.description-step
+                    = t("promotions.photos_step")
+                .uin-step
+                  .progress
+                    .progress-bar
+                  %a.step-dot#assign_catagories{href: "javascript:void(0)"}
+                    = t("promotions.process_4")
+                  %p.description-step
+                    = t("promotions.categorie_step")
+                .uin-step
+                  .progress
+                    .progress-bar
+                  %a.step-dot#add_pricing{href: "javascript:void(0)"}
+                    = t("promotions.process_5")
+                  %p.description-step
+                    = t("promotions.pricing_step")
+                .uin-step
+                  .progress
+                    .progress-bar
+                  %a.step-dot#scheduling_promotion{href: "javascript:void(0)"}
+                    = t("promotions.process_6")
+                  %p.description-step
+                    = t("promotions.schedule_step")
+
+        #video-show-question
+          #modal-question-promotion.modal.fade{ role: "dialog"}
+            .modal-dialog.size-modal-question
+              .modal-content
+                .modal-body
+                  .container-modal
+                    %iframe{width: "640", height:"480", src: "https://www.youtube.com/embed/tqKpk1wABuI", frameborder: "0", allowfullscreen: "true"}
+
+    %div.minHeight
+      =yield
+
+  / Footer HTML code
+  %footer.uin-footer#uinFooter
+    .footer-page
+      .container
+        .row
+          .col-xs-12
+            .footer-holder
+              .contact-us
+                = link_to contact_path do
+                  = image_tag "contact_us.png"
+              .trm-service
+                %a{href: "/terms_of_service.html"}
+                  = image_tag "terms_services.png"
+              .privacy-footer
+                = link_to privacy_policy_home_index_path do
+                  = image_tag "policy_icon.png"
+              .faq
+                = link_to faqs_path do
+                  = image_tag "faq.png"
+
+
+:javascript
+  var key=  "#{ENV['FACEBOOK_APP_ID']}"
+  var google_map_key = "#{ j ENV['GOOGLEMAPKEY'] }"
+  if("#{(@promotion.present?)}")
+    switch("#{j(@promotion.try(:current_step)).html_safe}"){
+      case "basic_information":
+        $("#steps").find('#basic_information').addClass("complete-dot");
+        break;
+      case "add_location":
+        $("#steps").find('#basic_information, #add_location').addClass("complete-dot")
+        break;
+      case "add_image":
+        $("#steps").find('#basic_information, #add_location, #add_image').addClass("complete-dot")
+        break;
+      case "assign_catagories":
+        $("#steps").find('#basic_information, #add_location, #add_image, #assign_catagories').addClass("complete-dot")
+        break;
+      case "add_pricing":
+        $("#steps").find('#basic_information, #add_location, #add_image, #assign_catagories, #add_pricing').addClass("complete-dot")
+        break;
+      case "scheduling_promotion":
+        $("#steps").find('#basic_information, #add_location, #add_image, #assign_catagories, #add_pricing, #scheduling_promotion').addClass("complete-dot")
+        break;
+    }

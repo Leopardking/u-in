@@ -1,0 +1,29 @@
+#categories_list_table.col-md-10.col-md-offset-1.col-sm-12
+  = render "categories/categories"
+#modal_new
+  .modal.fade{ :id => "request_category" ,"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+          %h4#myModalLabel.modal-title= t(".add_modal")
+        .modal-body
+          .row
+            .col-xs-1.col-md-1.col-ms-1
+            .col-xs-10.col-md-10.col-ms-10
+              .row.form-horizontal
+                = form_for(Category.new, :remote => true ,:url => categories_path(Category.new), html: {class: "frm_category"}) do |f|
+                  = hidden_field_tag :authenticity_token, form_authenticity_token
+                  = hidden_field_tag :from_management, "1"
+                  .row.form-group.col-sm-10.col-md-12
+                    .col-md-4.col-xs-4.control-label
+                      = f.label :name
+                    .col-md-6.col-xs-8
+                      = f.text_field :name, class: "form-control"
+                  .clearfix
+                  .row.text-center.btn-group-horizontal
+                    = f.submit t(".add"), class: "btn btn-default"
+            .col-xs-1.col-md-1.col-ms-1
+        .modal-footer
+          %button.btn.btn-default{:type => "button", "data-dismiss" => "modal", "data-target" => "request_category" }= t("common.close")
+#modal_edit

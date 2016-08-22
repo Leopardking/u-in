@@ -1,0 +1,6 @@
+$("#error_crud_here").html('<%=j render "users/notice_errors" %>');
+<%= flash[:notice] = nil %>
+$('#new_merchant_profile_modal').modal('hide');
+$('#new_merchant_profile_modal').remove();
+$(".modal-backdrop").remove();
+add_validation_user();

@@ -1,0 +1,7 @@
+= render "#{promotion.current_step}_step",promotion: promotion,promotion_step: promotion_step, promotion_params: promotion_params, form_id: form_id, method: method, url: url
+%script
+  $("#steps").removeClass("temp_hide")
+
+:javascript
+  window.Pages['PromotionPage'].promotionID = "#{promotion.id}";
+  window.Pages['PromotionPage'].init();

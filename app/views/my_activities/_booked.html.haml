@@ -1,0 +1,8 @@
+- if booked.size> 0
+  - booked.each do |b|
+    - promotion = b.promotion
+    - if promotion != nil
+      = render 'promotion_booked', :promotion => promotion, book: b
+- else
+  %tr
+    %td= t("users.user.no_record")

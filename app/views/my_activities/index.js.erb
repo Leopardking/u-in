@@ -1,0 +1,2 @@
+$('.table-my-activities').html('<%= j render "my_activities/booked", booked: @booked %>');
+$('#paganite_booked').html('<%= j (paginate(@booked, :remote => true).to_s) %>');

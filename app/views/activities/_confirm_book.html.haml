@@ -1,0 +1,27 @@
+#book_in_view_day.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title= t(".confirmation")
+      .modal-body
+        .text-center
+          %h4= t(".modal_msg_confirm", name: to_day.strftime("%A %d.%B.%Y"))
+        = hidden_field_tag 'day_now', to_day
+        = hidden_field_tag 'segment_id'
+        = hidden_field_tag 'discount_percent', promotion.discount_percent
+        = hidden_field_tag 'discount_price', promotion.discount_price
+        = hidden_field_tag 'virtual_money', current_user.virtual_money
+        = hidden_field_tag 'segment_time'
+        = form_tag({:action => 'create'}, {:id => 'form_amount_use'}) do
+          %div.text-center= t(".virtual_msg", v_money: number_to_currency(current_user.virtual_money))
+          .row.form-group
+            .form-inline.col-md-8.col-md-offset-2
+              = label_tag 'Amount you use:', nil
+              = text_field_tag 'amount_use',0, class: "form-control"
+          .row.form-group
+            %div.text-center#will_charge= t(".charge_msg_rb", money: number_to_currency(promotion.discount_price))
+
+        #btn_control.text-center
+          %button.btn.btn-default{id: "booking_on_view_day", :type => "button","data-id" => promotion.id }= t(".yes_b_n")
+          %button.btn.btn-default{id: "booking_no_setup",:type => "button"}= t(".no_st_pm")

@@ -1,0 +1,25 @@
+- if @faqs.present?
+  - @faqs.each do |faq|
+    - if can? [:edit,:delete], faq
+      %p.control{style: "text-align: right;margin-right: 10px"}
+        =link_to t("common.edit"), edit_faq_path(faq), class: "btn btn-default btn-xs"
+        =link_to t("common.delete"), faq_path(faq), method: :delete, data: { confirm: t("faqs.index.confirm_delete_question") }, class: "btn btn-default btn-xs"
+    %div.faq-page
+      %div.row
+        %div.col-xs-1
+          %span
+            %label
+              Q
+        %div.col-xs-11
+          %p=faq.question
+    %div.faq-page1
+      %div.row
+        %div.col-xs-1
+          %span
+            %label
+              A
+        %div.col-xs-11
+          %p=faq.answer
+- else
+  %p{style: "text-align: center"}
+    No matches found

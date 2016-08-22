@@ -1,0 +1,4 @@
+$("#error_crud_here").html('<%=j render "users/notice_errors" %>');
+<%= flash[:notice] = nil %>
+$("#form_category").modal('hide');
+$.getScript("<%= categories_path %>");

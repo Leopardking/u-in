@@ -1,0 +1,19 @@
+%div.modal.fade{id: "publish-modal" + promotion.id.to_s,role: 'dialog'}
+  %div.modal-dialog{style: 'text-align:center'}
+    %div.modal-active
+      %div.modal-content
+        %div.modal-body
+          / Value is set through calendar.js script
+          %h2
+          %p.head
+          %p.prom
+            %p
+              %span= promotion.active_times == 0 ? t("promotions.index.active_warning") : t("promotions.index.re-active_warning")
+          %div.next-step1
+            %button.cancel-btn{"data-dismiss" => "modal"}=t("promotions.index.cancel")
+            - unless params[:updated]
+              = link_to set_cancel_reactive_status_promotion_path(promotion), method: :post, class: "re-active-promotion" do
+                %button.ok-btn=t("promotions.index.ok")
+            - else
+              = link_to publish_promotion_promotion_path(promotion), method: :put, class: "re-active-promotion" do
+                %button.ok-btn=t("promotions.index.ok")

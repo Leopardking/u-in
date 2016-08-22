@@ -1,0 +1,17 @@
+%body
+  %section.body-holder#privacy-page
+    .container
+      .row
+        .col-xs-12
+          .body-content
+            .step-header
+              %div
+                %h3
+                  = t('.title')
+              %div
+                %p= t('.content').html_safe
+
+            %div.back-btn-privacy
+              <a href="javascript:void(0)", onclick="window.history.back()">
+              %button.btn.btn-default Back
+            %br

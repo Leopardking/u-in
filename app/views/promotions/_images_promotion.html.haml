@@ -1,0 +1,44 @@
+- if promotion.images.present?
+  - images = promotion.images
+  .callbacks_container
+    - if promotion.youtube_video.present?
+      .youtube-link
+        = render "video_embed"
+    %ul.rslides
+      - images.each do |image|
+        %li.image-promotion-active
+          - image_url = image.image.url(:medium)
+          = image_tag image_url, alt: "", class:"img-responsive", id:"image_share"
+- else
+  - if promotion.youtube_video.present?
+    .callbacks_container
+      = render "video_embed"
+    = image_tag "question.svg", class: "youtube-promotion-image"
+  - else
+    = image_tag "question.svg", class: "youtube-promotion-image"
+
+#video-youtube
+  #modal-yotube-promotion.modal.fade{ role: "dialog" }
+    .modal-dialog.size-modal-question
+      .modal-content
+        .modal-body
+          .container-modal
+            - src = promotion.youtube_video
+            - if src.match(EMBED_YOUTUBE).present? || src.match("EMBED_VIMEO").present?
+              %iframe{width: "640", height:"480", src: "#{src}", frameborder: "0", allowfullscreen: "true"}
+            - else
+              %div.link-unavailable
+                %div
+                  %b
+                    = t(".link_unavailable")
+                %div
+                  %b
+                    = t(".link_embed")
+                %div
+                  %b
+                    =t(".example_link")
+                %div
+                  =t(".example_youtube")
+                %div
+                  =t(".example_vimeo")
+

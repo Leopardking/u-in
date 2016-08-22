@@ -1,0 +1,199 @@
+// Place all the styles related to the Calendars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.fc-day-number{
+  color: black !important;
+  font-weight: bold !important;
+  opacity: 1 !important;
+}
+
+.fc-view{
+  overflow-y: auto !important;
+	overflow-z: hidden !important;
+}
+
+.fc-event {
+  border: 1px solid #99CC66;
+  background-color: #99CC66;
+  color: #fff;
+  font-size: 12pt;
+  cursor: default;
+  min-height: 140px;
+}
+
+.fc-event:hover{
+  z-index: 222 !important;
+}
+
+.fc-content .fc-time{
+  display : none !important;
+}
+
+.fc-event .fc-content{
+    white-space: normal;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.4);
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.booking-event {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #3399CC;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+
+.booking-event span{
+  font-size: 12px;
+}
+
+.fc-agendaDay-view .booking-event{
+  width: 25% !important;
+}
+
+.booking-event{
+  position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(51,153,204,0.5);
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.booking-event span{
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.fc-agendaDay-view .fc-event {
+  border-bottom: 2px solid;
+  min-height: 80px;
+}
+.fc-agendaWeek-view .fc-event {
+  min-height: 95px;
+  .fc-content {
+    .fc-title {
+      font-size: 10px;
+    }
+  }
+}
+
+/*buttons*/
+.fc-state-default.fc-corner-right{
+  border-radius: 0;
+}
+
+.fc-state-default.fc-corner-left{
+  border-radius: 0;
+}
+
+.fc-button{
+  background: #cccccc;
+  color: #000000;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  box-shadow: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.fc .fc-button-group > *{
+  margin: 0 0 0 4px;
+}
+
+span.fc-icon.fc-icon-right-single-arrow{
+  background: url(asset_path('rightarrow.svg')) no-repeat;
+  width: 35px;
+  height: 21px;
+  right: 5px;
+  background-size: contain;
+}
+span.fc-icon.fc-icon-left-single-arrow{
+  background: url(asset_path('leftarrow.svg')) no-repeat;
+  width: 35px;
+  height: 21px;
+  right: 5px;
+  background-size: contain;
+}
+
+/*events*/
+.fc-t-events{
+  z-index: 1;
+  left: 30%;
+  right: 0;
+  bottom: 70px;
+  width: 70%;
+}
+.fc-t-events{
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 2px;
+  bottom: 0;
+}
+
+.fc-state-active{
+  background-color: #99CC66;
+  color: #ffffff;
+}
+
+/*remove content*/
+.fc-icon-right-single-arrow:after{
+  content: " "
+}
+.fc-icon-left-single-arrow:after{
+  content: " "
+}
+
+/*add this classes*/
+button.fc-next-button, button.fc-prev-button{
+  width: 35px;
+}
+
+@media(min-width: 768px){
+  .calender-body-holder {
+    min-height: 765px;
+  }
+}
+
+#optionsPopUp {
+  .modal-dialog {
+    .modal-content {
+      .modal-body {
+        .container-modal {
+          padding-top: 20px;
+          #book_promo {
+            .button-booking-event {
+              margin-top: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#ui-datepicker-div{
+  z-index: 99999 !important;
+}
+#calendar_at_promotion{
+  margin: 5px;
+  .fc-agendaWeek-button,.fc-agendaDay-button, .fc-month-button{
+    display: none;
+  } 
+}
+#inactive_promotion,#show_active_promotion{
+  float: right;
+  clear: both;
+  margin-bottom: 10px;
+}

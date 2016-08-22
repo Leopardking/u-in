@@ -1,0 +1,7 @@
+.col-md-10.col-md-offset-1
+  #booked.form-custom
+    = render 'booked', booked: @booked
+    .row
+      #share_health
+        = link_to t(".share_health"), share_promotion_path(@booked.promotion), class: "btn btn-default"
+

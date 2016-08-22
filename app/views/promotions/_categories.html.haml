@@ -1,0 +1,7 @@
+- categories_id_list = promotion.category_ids
+- categories.each_slice(4) do |categories_per_four|
+  #tb_row
+    - categories_per_four.each do |c|
+      .col-md-4.col-xs-6.col-sm-6
+        = check_box_tag "promotion[category_ids][]", c.id, categories_id_list.include?(c.id)
+        = label_tag truncate(c.name, :length => 17)

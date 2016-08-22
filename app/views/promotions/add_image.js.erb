@@ -1,0 +1,43 @@
+$("#image_upload_here").html("<%=j render 'modal_upload_image', image: @image %>");
+
+// Check condition to get value: defaul image, ...
+<% if @action == "add-image" %>
+  window.Pages['PromotionPage'].getDefaultImageStep3(".open-upload-modal", "<%= @image_name %>");
+<% else %>
+  window.Pages['PromotionPage'].getDefaultImageStep3(".change-image-uploaded", "<%= @image_name %>");
+<% end %>
+
+// Get image for modal upload image
+<% if @image.present? %>
+  switch("<%= @image_name %>") {
+    case "image-1":
+      var imageURL = $("img[data-image='image-1']").attr('src')
+      $("#image_promotion_large").attr("src", imageURL)
+      break;
+    case "image-2":
+      var imageURL = $("img[data-image='image-2']").attr('src')
+      $("#image_promotion_large").attr("src", imageURL)
+      break;
+    case "image-3":
+      var imageURL = $("img[data-image='image-3']").attr('src')
+      $("#image_promotion_large").attr("src", imageURL)
+      break;
+  };
+<% else %>
+  $("#image_promotion_large").attr("src", "/assets/default_image.png")
+<% end %>
+<% if @img_id %>
+  $("#img_id").val("<%= @img_id %>");
+  $(".submit-upload-image").attr("disabled", false);
+<% end %>
+// Show modal
+$("#upload_image").modal("show");
+// add promotion_id for set default image
+$("#new_image #image_promotion_id").val("<%= @imageable_id %>")
+// init function js
+window.Pages['PromotionPage'].validate_image_upload();
+window.Pages['PromotionPage'].disableButtonSaveImage();
+window.Pages['PromotionPage'].buttonUploadImagePromotion();
+window.Pages['CommonJs'].uploadImageAfterChange('#image_image','#upload-image-promotion');
+window.Pages['PromotionPage'].removeModalUploadImage();
+

@@ -1,0 +1,20 @@
+%p
+  Hi Admin
+%p
+  = "The user #{@data[:firstname]} #{@data[:lastname]}"
+  %br
+  has sent you a message below:
+  %br
+  %p
+    = @data[:message]
+  %br
+  %p 
+    Please find his contact details below:  
+    = "phone: #{@data[:phone]}" 
+    %br
+    = "email: #{@data[:email]}" 
+    %br 
+%p 
+  Regards,
+  %br 
+  U-IN Team

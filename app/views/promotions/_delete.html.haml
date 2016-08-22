@@ -1,0 +1,13 @@
+.modal.fade{:id => "del_promotion_on_day", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title= t(".delete_confirm")
+      .modal-body
+        %p= t("delete_msg")
+        %p= t(".proceed_msg")
+        %p.debug-url
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", "data-target" => "#confirm-delete" ,:type => "button"}= t("common.cancel")
+        =link_to t("common.delete"), user_path("1"), remote: true , method: :delete,  class: "btn btn-danger"

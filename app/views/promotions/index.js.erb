@@ -1,0 +1,3 @@
+$('#list_promotions_table_here').html('<%= j render("promotions/list_promotions") %>');
+$('#list_promotions_paginate').html('<%= j (paginate(@promotions, :remote => true).to_s) %>');
+

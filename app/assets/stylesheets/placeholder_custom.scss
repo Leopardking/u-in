@@ -1,0 +1,21 @@
+.custom-placeholder{
+  label{
+    line-height: 34px;
+    position: absolute;
+    left: 20px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    -moz-transition: 0.3s left,right ease;
+    -ms-transition: 0.3s left,right ease;
+    -o-transition: 0.3s left,right ease;
+    -webkit-transition: 0.3s left,right ease;
+    transition: 0.3s left,right ease;
+    z-index: 0;
+    opacity: 0.5;
+    font-weight: normal;
+  }
+  .has-background + label{
+    left: 32px;
+  }
+}

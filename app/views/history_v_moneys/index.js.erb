@@ -1,0 +1,2 @@
+$('#table_history').html('<%= j render "history_v_moneys/history", histories: @histories %>');
+$('#paganite_history').html('<%= j (paginate(@histories, :remote => true).to_s) %>');

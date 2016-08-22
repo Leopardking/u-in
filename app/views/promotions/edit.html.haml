@@ -1,0 +1,7 @@
+= render "promotions/form_promotion", form_id: "edit_promotion_form", promotion: @promotion,promotion_step: @promotion_step, promotion_params: @promotion_params, method: :put, url: promotion_path(@promotion.id)
+
+:javascript
+  $(".uin-steps > .uin-step > a").click(function(){
+    $(".promotion-form").append("<input type='hidden' id='skip_to' name='skip_to' value='"+$(this).attr('id')+"' >")
+    $(".promotion-form").submit()
+  })

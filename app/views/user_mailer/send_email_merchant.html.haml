@@ -1,0 +1,6 @@
+%p=raw t(".email_header", email: @email)
+%p=raw t(".email_body")
+%p=raw t(".email_body_info", password: @password)
+%p=raw t(".marchent_detail", name: @merchant_data[:business_name], address: @merchant_data[:street_address], city: @merchant_data[:city], state: @merchant_data[:state], zipcode: @merchant_data[:zipcode],  phone: @merchant_data[:phone_number] )
+%p=raw t(".email_footer")
+

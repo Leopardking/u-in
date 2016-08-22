@@ -1,0 +1,23 @@
+= stylesheet_link_tag "faqs"
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content.bckgrnd
+          %div.step-header
+            %div.stp-hdr.stp-head
+              %img{src: "/assets/faq.svg"}
+                %label.stp-label{style: 'color:rgba(153, 204, 102, 1);margin-left:2%;font-size:1.5em;'}Facts & Questions
+            = form_tag search_faqs_path, method: :get, remote: true do
+              %div.form-group.inp-append
+                = text_field_tag "query", params[:query], placeholder: "SEARCH", class: "form-control"
+                %button.btn
+                  %span.glyphicon.glyphicon-search
+          %div#faq-list
+            =render "faqs_list"
+          - if can? :create, Faq
+            %p{style: "padding-bottom: 5px;text-align: right;margin-right: 10px"}
+            = link_to t("common.add_new"), new_faq_path, class: "btn btn-primary"
+        .row.text-center#paganite_categories
+          = paginate @faqs
+

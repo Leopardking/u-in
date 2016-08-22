@@ -1,0 +1,460 @@
+// Edit profile
+.profile-form {
+  padding: 0 30px;
+  .edit_user {
+    width: 100%;
+    .container-upload-image {
+      .image-upload {
+        padding-right: 8px !important;
+        .logoUpload {
+          width: 100%;
+          #uploadBtn {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .edit-business-name, .edit-street-add, .edit-city, .edit-phone-number, .edit-email-business {
+      .form-group {
+        .label-business-name, .label-street-add, .label-city, .label-phone-number, .label-email-business {
+          padding-right: 0px;
+        }
+      }
+    }
+    .edit-state-zipcode {
+      .edit-info-input {
+        .edit-state, .edit-zipcode {
+          .form-group {
+            .label-state {
+              padding-right: 9px;
+            }
+            .input-state {
+              padding-left: 7px;
+              input {
+                border-radius: 5px;
+              }
+            }
+            .input-zipcode {
+              padding-left: 0px;
+            }
+            .button-edit-payment {
+              padding-right: 0px;
+              padding-left: 0px;
+              top: 20px;
+              color: #6186cf;
+              font-size: 14px;
+            }
+            @media(min-width: 1024px) {
+              .button-edit-payment:hover {
+                color: #1530fd;
+              }
+            }
+          }
+        }
+      }
+    }
+    .edit-payment-card {
+      .label-payment {
+        padding-left: 0px;
+      }
+      .image-payment {
+        top: 10px;
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 13%;
+        .image-master-card, .image-visa-card {
+          width: 50px;
+          height: 34px;
+          border: 1px solid;
+        }
+        .image-amex-card {
+          margin-top: -8px;
+          width: 50px;
+        }
+      }
+      .input-payment-number {
+        padding-left: 0px;
+        #number_card_show {
+          font-weight: bold;
+          border-radius: 5px;
+          height: 40px;
+          margin-top: 5px;
+        }
+      }
+      .button-edit-payment {
+        padding-right: 0px;
+        padding-left: 0px;
+        top: 20px;
+      }
+    }
+    .edit-password {
+      .label-password {
+        padding-left: 0px;
+        color: #6bb2ea;
+      }
+    }
+  }
+}
+.color-text-label-edit {
+  color: #666666;
+  font-weight: bold !important;
+}
+.box-show-input:focus {
+  box-shadow: 0 0 30px #9AC9F1 !important;
+  border: 1px solid #6bb2ea !important;
+}
+.button-edit-payment {
+  a {
+    .glyphicon-plus {
+      font-size: 13px;
+    }
+  }
+}
+.text-italicized {
+  font-style: italic;
+}
+#form-edit-profile {
+  .button-function-edit-profile {
+    .button-canel {
+      padding-right: 5px;
+      .link-to-merchant-page {
+        width: 100%;
+        .btn {
+          width: 40%;
+          border-radius: 0px;
+          font-weight: bold;
+          color: #666666;
+          float: right;
+          background-color: #cccccc;
+        }
+        .btn:hover {
+          opacity: 0.8;
+          transition: all ease 0.5s;
+        }
+      }
+      .link-to-merchant-page:hover {
+        text-decoration: none;
+      }
+    }
+    .button-save {
+      padding-left: 5px;
+      #submit-edit-profile {
+        font-weight: bold;
+        float: left;
+        width: 40%;
+        background: #99cc66;
+        border-radius: 0px;
+        color: #ffffff;
+      }
+      #submit-edit-profile:hover {
+        opacity: 0.8;
+        transition: all ease 0.5s;
+      }
+    }
+  }
+}
+#form-edit-paymet-card {
+  display: none;
+}
+#form-edit-paymet-card, #form-iput-paymet-card {
+  .container-modal {
+    .row {
+      .col-xs-12 {
+        .body-content {
+          padding: 80px 0px;
+          .booking-wrapper {
+            .payment-account-form {
+              form {
+                #input-information-card {
+                  padding-left: 5px;
+                  input, select {
+                    border: 1px solid black;
+                  }
+                  .padding-bottom-element-field {
+                    padding-bottom: 5px;
+                  }
+                  label {
+                    font-weight: normal;
+                  }
+                  .group-input-name-card {
+                    label {
+                      margin-right: 10px;
+                    }
+                    input {
+                      width: 50%;
+                    }
+                  }
+                  .group-input-card_number {
+                    label {
+                      margin-right: 14px;
+                    }
+                    input {
+                      width: 50%;
+                    }
+                  }
+                  .group-input-expiration-date {
+                    label {
+                      margin-right: 3px;
+                    }
+                    #billing_detail_exp_month {
+                      width: 18%;
+                      background-color: white;
+                      height: 27px;
+                    }
+                    #billing_detail_exp_year {
+                      width: 15%;
+                      background-color: white;
+                      height: 27px;
+                    }
+                  }
+                  .group-input-security-code {
+                    label {
+                      margin-right: 10px;
+                    }
+                    input {
+                      width: 20%;
+                    }
+                  }
+                }
+                #change-type-card {
+                  padding-top: 15px;
+                  padding-bottom: 30px;
+                  .size-image-type-normal {
+                    width: 45px;
+                  }
+                  .size-image-type-lager {
+                    width: 52px;
+                  }
+                  .image-visa-card, .image-master-card {
+                    margin-right: 10px;
+                  }
+                }
+              }
+            }
+          }
+          .button-function-finish-edit {
+            .button-ok-submit {
+              padding-right: 5px;
+              .btn {
+                float: right;
+                width: 40%;
+                border-radius: 0px;
+                background-color: #99CC66;
+                color: #ffffff;
+                font-weight: bold;
+              }
+            }
+            .button-cancel-submit {
+              padding-left: 5px;
+              .btn {
+                border-radius: 0px;
+                width: 40%;
+                color: #666666;
+                font-weight: bold;
+                background-color: #cccccc;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+#modal-change-avatar {
+  .modal {
+    .modal-dialog {
+      .modal-content {
+        .modal-body {
+          width: 100%;
+          .area-image {
+            width: 100%;
+            .crop-avatar-user {
+              width: 100%;
+            }
+          }
+          .group-button-footer {
+            padding-top: 20px;
+            #button-crop-avatar {
+              font-weight: bold;
+              float: right;
+              width: 40%;
+              background: #99cc66;
+              border-radius: 0px;
+              color: #ffffff;
+              input {
+                background-color: #99cc66;
+                border: none;
+                width: 100%;
+              }
+            }
+            #cancel-modal-change-avatar {
+              width: 40%;
+              border-radius: 0px;
+              font-weight: bold;
+              color: #666666;
+              float: left;
+              background-color: #cccccc;
+              border: none;
+              padding-top: 10px;
+            }
+            .btn:hover {
+              opacity: 0.8;
+              transition: all ease 0.5s;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  #modal-change-avatar {
+    .modal {
+      .modal-dialog {
+        .modal-content {
+          .modal-body {
+            .group-button-footer {
+              #button-crop-avatar {
+                width: 60%;
+              }
+              #cancel-modal-change-avatar{
+                width: 60%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .wrapper-edit-profile {
+    padding: 30px 0 !important;
+  }
+  .profile-form {
+    .edit_user {
+      .edit-state-zipcode {
+        .edit-info-input {
+          padding-right: 0px;
+          padding-left: 0px;
+          .form-horizontal {
+            margin-right: 0px;
+            margin-left: 0px;
+            .form-group {
+              margin-right: 0px;
+              margin-left: 0px;
+              .control-label {
+                padding-left: 0px;
+              }
+              .input-state {
+                padding-left: 0px;
+                padding-right: 25px;
+                .form-control {
+                  border-radius: 5px;
+                }
+              }
+              .input-zipcode {
+                padding-right: 0px;
+              }
+            }
+          }
+        }
+      }
+      .edit-payment-card {
+        .form-group {
+          margin-left: 0px;
+          .image-payment {
+            margin-right: 20px;
+          }
+          .input-payment-number {
+            padding-top: 2px;
+            padding-right: 0px;
+            margin-right: 6px;
+          }
+        }
+      }
+      .edit-password {
+        .form-group {
+          margin-left: 0px;
+          .input-password-user {
+            padding-left: 0px;
+          }
+        }
+      }
+    }
+  }
+  .button-function-edit-profile {
+    .btn {
+      width: 45% !important;
+    }
+  }
+  .button-function-finish-edit {
+    .btn {
+      width: 60% !important;
+    }
+  }
+  #input-information-card {
+    input {
+    border: 1px solid black;
+    }
+    .group-input-name-card, .group-input-card_number {
+      input {
+          width: 53% !important;
+      }
+    }
+    .group-input-expiration-date {
+      #billing_detail_exp_year {
+        width: 25% !important;
+      }
+    }
+  }
+}
+@media only screen and (min-device-width : 768px){
+  #modal-change-avatar {
+    .modal {
+      .modal-dialog {
+        .modal-content {
+          .modal-body {
+            height: 480px;
+            .area-image {
+              height: 400px;
+              .crop-avatar-user {
+                height: 400px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+  .edit-state-zipcode {
+    .edit-info-input {
+      .edit-state {
+        .form-group {
+          .input-state {
+            input {
+              width: 105px;
+              margin-left: 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+  .edit-state-zipcode {
+    .edit-info-input {
+      width: 50%;
+      padding-right: 0px;
+      .edit-state {
+        margin-right: -57px;
+        margin-left: 7px;
+      }
+      .edit-zipcode {
+        margin-right: -40px;
+        margin-left: 30px;
+      }
+    }
+  }
+}

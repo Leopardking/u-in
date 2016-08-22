@@ -1,0 +1,18 @@
+.col-md-10.col-md-offset-1
+  #promotion_booking.well.form-border.form-custom
+    .row#search_box_m_activities
+      .col-md-8.col-sm-8.col-xs-10.col-md-offset-2.col-sm-offset-2.col-xs-offset-1.text-center
+        = form_tag({:action => 'index'}, {:method => 'get', :role => "form", :id => 'search_form', :class => "form form-inline form-horizontal", :remote=> true}) do
+          .row.text-center
+            .form-group
+              .control-label
+                %label{:for => "promotion_name"}=t(".search_box")
+                %input.form-control{ type: :input, name: "promotion_name", id: "promotion_name"}
+                %input.btn.btn-default{ :id => "search_submit_activities", type: "submit",  :name => nil, value: t(".search"), :remote => true}
+    .table-responsive
+      %table.table-my-activities
+        = render "my_activities/booked", booked: @booked
+    .row.text-center#paganite_booked
+      = paginate @booked, :remote => true
+  #destroy_modal
+

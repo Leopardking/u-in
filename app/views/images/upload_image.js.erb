@@ -1,0 +1,34 @@
+$("#modal-change-avatar").html("<%=j render 'shared/modal_change_pic_profile', image: @image %>");
+// Add source image in modal crop image
+$(".area-image").append("<img id='get-width-height-of-crop-image' class='hidden' src='<%= @image.avatar.url %>' >");
+// Turn off loading
+$.unblockUI()
+// Get image id
+$("#avatar_id").val("<%= @image.id %>");
+// Show modal crop image
+$("#crop-image-avatar").modal("show");
+// Apply libary Jcrop
+setTimeout(function(){
+  $(".area-image").append("<img id='show-avatar-crop' class='crop-avatar-user' src='<%= @image.avatar.url %>' >");
+  var widthPopupEdit = $(".edit_image").width()
+  var jcropHeight = $(".jcrop-holder").height()
+  var imageWidth =  ($("#get-width-height-of-crop-image")[0].naturalWidth/$("#get-width-height-of-crop-image")[0].naturalHeight) * 400
+  var imageHeight =  ($("#get-width-height-of-crop-image")[0].naturalWidth/$("#get-width-height-of-crop-image")[0].naturalHeight) * jcropHeight
+  // set width for image with 400px is width of popup
+  if(imageWidth < widthPopupEdit){
+    $(".crop-avatar-user").css("width", imageWidth)
+    $("#crop-image-avatar .jcrop-holder").css("width", imageWidth)
+    window.Pages['CropImageProcess'].cropImageChange("#show-avatar-crop");
+  }else{
+    $(".crop-avatar-user").css("height", imageHeight)
+    // run here because to init jcrop and run "$("#crop-image-avatar .jcrop-holder")" work
+    window.Pages['CropImageProcess'].cropImageChange("#show-avatar-crop");
+    $("#crop-image-avatar .jcrop-holder").css({"top": "50%", "transform": "translateY(-50%)","-ms-transform": "translateY(-50%)","-webkit-transform": "translateY(-50%)"})
+    // only set width for crop when height than 0
+    if(imageHeight > 0){
+      $("#crop-image-avatar .jcrop-holder").css("height",imageHeight);
+    }
+  }
+}, JSConstant.TIME_OUT_APPLY_JCROP);
+// Call js show image
+window.Pages['EditProfilePage'].reloadModalUploadAvatar();

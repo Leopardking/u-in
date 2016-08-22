@@ -1,0 +1,116 @@
+#BookingPromotion {
+  .title-popup-booking {
+    font-size: 15px;
+    padding: 15px;
+  }
+  .btn-function {
+    .col-xs-6 {
+      padding-left: 5px;
+      padding-right: 5px;
+      #booking-promotion-active {
+        width: 60%;
+        border-radius: 0px;
+        background-color: #99cc66;
+        float: right;
+        .submit-info-booking {
+          border: none;
+          color: #ffffff;
+          font-weight: bold;
+          background-color: #99cc66;
+        }
+      }
+      #cancle-booking-promotion {
+        float: left;
+        width: 60%;
+        border-radius: 0;
+        background-color: #cccccc;
+        span {
+          color: #666666;
+          font-weight: bold;
+        }
+      }
+    }
+    .btn:hover {
+      opacity: 0.8;
+      transition: all ease 0.5s;
+    }
+  }
+  form {
+    .info-name-user-book {
+      padding-bottom: 5px;
+    }
+    .number-group{
+      .checking_promotion_booking{
+        .description-checkbox{
+          margin-bottom: 0px;
+        }
+        .checkbox_booking_yes{
+          span{
+            font-weight: bold;
+          }
+          .accept_booking{
+            vertical-align: middle;
+            width: 18px;
+            margin-top: 0px;
+          }
+        }
+      }
+    }
+  }
+  input {
+    border-radius: 5px;
+  }
+  .information-number-booking-free {
+    padding: 20px;
+  }
+}
+#optionsPopUp {
+  .container-modal {
+    .background-blackout-btn {
+      margin-left: 0px !important;
+      letter-spacing: 2px !important;
+    }
+    #edit_promo {
+      margin-left: 5px;
+    }
+  }
+}
+#InputInFoCardBooking {
+  .body-content {
+    padding: 20px 0px !important;
+  }
+  .button-function-finish-edit {
+    .button-submit-form {
+      padding-right: 5px;
+      .submit-form-info-payment {
+        float: right;
+        width: 40%;
+        border: none;
+        background-color: #99CC66;
+        border-radius: 0px;
+        color: #ffffff;
+        font-weight: bold;
+      }
+    }
+  }
+}
+@media(max-width: 767px) {
+  .break-inlinde {
+    display: none;
+  }
+}
+@media (max-width: 375px) {
+  #optionsPopUp {
+    .container-modal {
+      .green-btn, .grey-btn {
+        width: 60% !important;
+      }
+      .green-btn {
+        margin-left: 2px !important;
+      }
+      #edit_promo {
+        margin-left: 3px !important;
+      }
+    }
+  }
+}

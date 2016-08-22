@@ -1,0 +1,58 @@
+.row#wraper_register_all
+  .col-md-12.wraper_register
+    .col-md-3.margin-element-body
+    .col-md-5.container-form
+      .row
+        .col-md-12.header-box
+          %p.title-box
+            =raw t("devise.sessions.index.title_box_login")
+          .logo-uin
+            = image_tag "uINlogo_white.png", class: "image-logo-uni"
+        .col-md-12.content-form-input
+          .content-text
+            %p.text-email-immediate
+              %strong
+                = t("devise.sessions.index.email-immediate")
+            .row.import-information
+              = form_tag auth_check_email_regis_path, method: "GET", class: "row form-login-regis", id: "form-check-email" do
+                .col-md-12.form-group.form-input-email-address.input-placeholder
+                  .input-group.email-field.input-info
+                    %span.icon-mail-user.input-group-addon
+                      = image_tag "mailIcon.png", class: "image-mailbox"
+                    = email_field_tag :email_regis, nil,class: "form-control input-info style-input-login input-email-user input-with-placeholder", placeholder: t("devise.sessions.index.email_address"), required: "true"
+                .col-md-12.button-check-email
+                  = submit_tag t("devise.sessions.index.continue"), class: "btn btn-continue btn-check-email style-button-login font-stype-input"
+              %hr.col-md-12.separate-content
+              %span.text-or
+                %strong
+                  = t("devise.sessions.index.or")
+              .col-md-12#social-media-login
+                .row
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:twitter)}" do
+                        = image_tag "twitterIcon_normal.png", class: "size-image-social image-social-twitter hide-on-hover"
+                        = image_tag "twitterIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:facebook)}" do
+                        = image_tag "facebookIcon_normal.png", class: "size-image-social image-social-facebook hide-on-hover"
+                        = image_tag "facebookIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:google_oauth2)}" do
+                        = image_tag "googleIcon_normal.png", class: "size-image-social image-social-google hide-on-hover"
+                        = image_tag "googleIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:linkedin)}" do
+                        = image_tag "inIcon_normal.png", class: "size-image-social image-social-linkedin hide-on-hover"
+                        = image_tag "linkedinIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+              .col-lg-12.footer-box-import-email
+                .footer-box
+                  %p.text-noti
+                    %span
+                      = t("devise.registrations.index_regis.already_a_member")
+                    %span
+                      = link_to t("devise.registrations.index_regis.login"), auth_index_path, class: "text-not-decoration text-link-high-light"
+    .col-md-3

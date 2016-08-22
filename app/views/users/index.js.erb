@@ -1,0 +1,2 @@
+$('#table_user').html('<%= j render "users/user" %>');
+$('#paganite_user').html('<%= j (paginate(@users, :remote => true).to_s) %>');

@@ -1,0 +1,406 @@
+td.can_book a{
+  background: #E1E1E1!important;
+  border: 1px solid #AAAAAA !important;
+  border-radius: 4px!important;
+}
+.table-activities
+{
+  label
+  {
+    border: 1.5px solid #000000;
+  }
+  .img-thumbnail {
+    border: 1.5px solid #000000;
+    max-width: none;
+  }
+  border-collapse: separate;
+  tr:nth-child(1n) {
+    height: 5px;
+  }
+
+  td:first-child {
+    border-bottom: 1.5px solid #000000;
+  }
+
+  td:last-child {
+    border-bottom: 1.5px solid #000000;
+  }
+
+  td:not(:first-child):not(:last-child) {
+    border-bottom: 1.5px solid #000000;
+  }
+
+  tr {
+    td.col-a {
+      width: auto;
+      padding: 4px;
+      vertical-align: top;
+      .thumbnail {
+        margin-bottom: 0;
+      }
+      .rank {
+        color: #CC783F;
+        font-size: 11px;
+      }
+    }
+    td.col-b {
+      width: 100%;
+      padding: 8px;
+      vertical-align: top;
+      position: relative;
+      height: 100%;
+
+      .content {
+        position: relative;
+        height: 100%;
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      h4 {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      .desciption {
+        text-align: justify;
+      }
+      .bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-right: 0;
+      }
+      .duration {
+        padding-left: 0;
+      }
+      .booked {
+        color: #CC783F;
+        padding-right: 0;
+        margin-right: 0;
+      }
+    }
+    td.col-c {
+      width: 100%;
+      padding: 8px;
+      vertical-align: top;
+      position: relative;
+      height: 100%;
+      h4 {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: 0;
+        a {
+          width: 70px;
+          border-radius: 12px;
+          border: 1.5px solid #000000;
+        }
+      }
+    }
+  }
+}
+.table-my-activities
+{
+  label
+  {
+    border: 1.5px solid #000000;
+  }
+  .img-thumbnail {
+    border: 1.5px solid #000000;
+    max-width: none;
+  }
+  border-collapse: separate;
+  tr:nth-child(1n) {
+    height: 5px;
+  }
+
+  td:first-child {
+    border-bottom: 1.5px solid #000000;
+  }
+
+  td:last-child {
+    border-bottom: 1.5px solid #000000;
+  }
+
+  td:not(:first-child):not(:last-child) {
+    border-bottom: 1.5px solid #000000;
+  }
+
+  tr {
+    td.col-a {
+      width: auto;
+      padding: 4px;
+      vertical-align: top;
+      .thumbnail {
+        margin-bottom: 0;
+      }
+      .rank {
+        color: #CC783F;
+        font-size: 11px;
+      }
+    }
+    td.col-b {
+      padding: 8px;
+      vertical-align: top;
+      position: relative;
+      height: 100%;
+
+      .content {
+        position: relative;
+        height: 100%;
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      h4 {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      .desciption {
+        text-align: justify;
+      }
+      .bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-right: 0;
+      }
+      .duration {
+        padding-left: 0;
+      }
+      .booked {
+        color: #CC783F;
+        padding-right: 0;
+        margin-right: 0;
+      }
+    }
+    td.col-c {
+      padding: 8px;
+      vertical-align: top;
+      position: relative;
+      height: 100%;
+      h4 {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: 0;
+        a {
+          border-radius: 12px;
+          border: 1.5px solid #000000;
+        }
+      }
+    }
+  }
+}
+.table-activity-show
+{
+  label
+  {
+    border: 1.5px solid #000000;
+  }
+  .img-thumbnail {
+    border: 1.5px solid #000000;
+    max-width: none;
+  }
+  border-collapse: separate;
+  tr:nth-child(1n) {
+    height: 5px;
+  }
+
+  td:first-child {
+  }
+
+  td:last-child {
+  }
+
+  td:not(:first-child):not(:last-child) {
+  }
+
+  tr {
+    td.col-a {
+      width: auto;
+      padding: 4px;
+      vertical-align: top;
+      .thumbnail {
+        margin-bottom: 0;
+      }
+      .rank {
+        color: #CC783F;
+        font-size: 11px;
+      }
+    }
+    td.col-b {
+      width: 100%;
+      padding: 8px;
+      vertical-align: top;
+      position: relative;
+      height: 100%;
+
+      .content {
+        position: relative;
+        height: 100%;
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      h4 {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+
+      .desciption {
+        text-align: justify;
+      }
+      .bottom {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        margin-right: 0;
+      }
+      .duration {
+        padding-left: 0;
+      }
+      .booked {
+        color: #CC783F;
+        padding-right: 0;
+        margin-right: 0;
+      }
+    }
+    td.col-c {
+      width: 100%;
+      padding: 8px;
+      vertical-align: top;
+      position: relative;
+      height: 100%;
+      h4 {
+        font-weight: normal;
+        margin-bottom: 0;
+        margin-top: 0;
+        a {
+          width: 70px;
+          border-radius: 12px;
+          border: 1.5px solid #000000;
+        }
+      }
+    }
+  }
+}
+#promotion_booking_show
+{
+  #share_health {
+    margin-left: 130px;
+  }
+}
+#booked
+{
+  #share_health {
+    margin-left: 18%;
+  }
+
+}
+@media only screen and (max-width : 768px) {
+  .table-activities {
+    .space {
+      height: 60px;
+    }
+  }
+  .table-activity-show {
+    .space {
+      height: 60px;
+    }
+  }
+}
+@media only screen and (min-width : 768px) {
+  .table-activities {
+    .space {
+      height: 30px;
+    }
+  }
+  .table-activity-show {
+    .space {
+      height: 30px;
+    }
+  }
+}
+#datepicker_cus
+{
+  .ui-datepicker td.ui-datepicker-today a {
+    background: #E1E1E1;
+    border: none;
+    border-radius: none;
+  }
+  .ui-datepicker td a:hover {
+    background: #ECECEC;
+    border-radius: 4px;
+  }
+  .ui-datepicker td {
+    border: 1px solid #FFFAFF;
+    background: #ECECEC;
+    border-radius: 4px;
+    width: 14.2% !important;
+    border-bottom-right-radius: 6px;
+  }
+  .ui-datepicker td a{
+    color: #0080ca;
+    text-align: center;
+    border-radius: 4px;
+  }
+  .ui-datepicker
+  {
+    th {
+      color: #FFFAFF;
+      background-color: #58595D;
+      width: 14.2% !important;
+      padding: 0;
+      border: 1px solid #FFFAFF;
+      span {
+      }
+    }
+    th:first-child{
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    th:last-child{
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      width: 14.2% !important;
+      border: 0 none;
+    }
+  }
+  .ui-datepicker-week-end{
+
+  }
+  .ui-datepicker-title {
+    color: #0080ca;
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+#table_view_day{
+  .table-responsive{
+    table{
+      tr{
+        border: 1px solid #000800;
+        td {
+          border: 1px solid #000800;
+        }
+        th {border: 1px solid #000800;}
+      }
+
+      tr.booked{
+        background-color: #C4C0B7;
+      }
+      tr.can_book{
+        background-color: #B2FBA1;
+      }
+      #booking_on_day{
+        font-size: 1em;
+        font-weight: 900;
+        color: #fff;
+      }
+    }
+  }
+}

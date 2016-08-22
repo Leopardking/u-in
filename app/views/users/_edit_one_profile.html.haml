@@ -1,0 +1,63 @@
+.modal.fade{ :id => "edit_profile_user" ,"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", }
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title.text-center= t("common.edit_profile")
+      .modal-body
+        = form_for(@user, url: user_path, html: { method: :put, id: "new_user",:remote => true }) do |f|
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .row
+            .col-md-8.col-md-offset-2
+              .form-group
+                = f.label t("devise.registrations.edit.email")
+                = f.text_field :email, class: "form-control", required: true, autofocus: true, disabled: "disabled"
+          - if @user.merchant_detail
+            .row
+              .col-md-8.col-md-offset-2
+                = f.fields_for :merchant_detail do |mf|
+                  .form-group
+                    = mf.label t("devise.registrations.edit.business_name_label")
+                    = mf.text_field :business_name, class: "form-control", required: true, autofocus: true
+                  .form-group
+                    = mf.label t("devise.registrations.edit.street_address_label")
+                    = mf.text_field :street_address, class: "form-control", required: true
+                  .form-group
+                    .row
+                      .col-md-6.col-sm-6
+                        = mf.label t("devise.registrations.edit.city_label")
+                        = mf.text_field :city, class: "form-control", required: true
+                      .col-md-6.col-sm-6
+                        = mf.label t("devise.registrations.edit.state_label")
+                        = mf.text_field :state, class: "form-control", required: true
+                  .form-group
+                    .row
+                      .col-md-6
+                        = mf.label t("devise.registrations.edit.zipcode_label")
+                        = mf.text_field :zipcode, class: "form-control", required: true
+                      .col-md-6
+                        = mf.label t("devise.registrations.edit.phone_number_label")
+                        = mf.text_field :phone_number, class: "form-control", required: true
+                  .form-group
+                    .row
+                      .col-md-6
+                        =link_to t("common.forgot_pass"),send_reset_password_user_path(@user),remote: true, method: :post, class: "btn btn-primary"
+                  = f.fields_for :merchant_detail do |mf|
+                    .col-md-4= image_tag(@user.merchant_detail.logo.url(:thumb), size: "100x100")
+                    .col-md-8= mf.file_field :logo
+                  .clearfix
+          - else
+            .row
+              .col-md-8.col-md-offset-2
+                .form-group
+                  = f.label t("devise.registrations.edit.virtual_money")
+                  = f.text_field :virtual_money  , class: "form-control", required: true, autofocus: true
+            .row
+              .col-md-8.col-md-offset-2
+                .form-group
+                  .row
+                    .col-md-6
+                      =link_to t("common.forgot_pass"),send_reset_password_user_path(@user),remote: true, method: :post, class: "btn btn-primary"
+      .modal-footer
+        %button.btn.btn-success{ :id=> "update_profile_btn", :type => "button"}= t("common.update")
+        %button.btn.btn-default{"data-dismiss" => "modal","data-target" => "#edit_profile_user", :type => "button"}= t("common.close")

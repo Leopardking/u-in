@@ -1,0 +1,9 @@
+$("#list_contact_cus").html("<%= j render 'customer_contacts' %>");
+$("input[type=checkbox]").each(function() {
+  for (i=0; i<cus_email_check.length; i++)
+  {
+    if ($(this).val() == cus_email_check[i])
+      $(this).attr("checked", "checked");
+  }
+});
+

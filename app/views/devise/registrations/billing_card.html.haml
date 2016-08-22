@@ -1,0 +1,89 @@
+%script{:src => "https://js.stripe.com/v2/", :type => "text/javascript"}
+:javascript
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('pk_test_gKzES8fZ3JLYnJbZLA36UaBy');
+  // ...
+.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2.col-xs-8.col-xs-offset-2
+  = form_errors!(@billing_card)
+  #billing-card-page.form-border.well.form-custom
+    = form_for(@billing_card, as: resource_name, url: auth_billing_card_path(), html: { method: :post }) do |f|
+      .row
+        .col-md-8.col-md-offset-2
+          #text_errors
+          #billing_sec1
+            .form-group
+              %h4=t("devise.registrations.edit.billing_address")
+            .form-group
+              = f.label :first_name, t("devise.registrations.edit.first_name_label")
+              = f.text_field :first_name, class: "form-control", autofocus: true
+            .form-group
+              = f.label :last_name, t("devise.registrations.edit.last_name_label")
+              = f.text_field :last_name, class: "form-control"
+            .form-group
+              = f.label :street_address, t("devise.registrations.edit.street_address_label")
+              = f.text_field :street_address, class: "form-control"
+            .form-group
+              .row
+                .col-md-4.col-sm-4.col-xs-12
+                  = f.label :city,t("devise.registrations.edit.city_label")
+                  = f.text_field :city, class: "form-control"
+                .col-md-4.col-sm-4.col-xs-6
+                  = f.label :zipcode, t("devise.registrations.edit.zipcode_label")
+                  = f.text_field :zipcode, class: "form-control"
+                .col-md-4.col-sm-4.col-xs-6
+                  = f.label :state, t("devise.registrations.edit.state_label")
+                  = f.text_field :state, class: "form-control"
+            .form-group
+              %h4=t("devise.registrations.edit.credit_card_information")
+            .form-group
+              .row
+                .col-md-6.col-xs-6.col-sm-6
+                  = f.select :card_type, options_for_select(BillingDetail::SUPPORTED_CARDS), {},{:class => "form-control"}
+            .form-group
+              = f.label :ccard_last4, t("devise.registrations.edit.card_number")
+              = f.text_field :ccard_last4, class: "form-control"
+              = f.hidden_field :stripe_profile_token
+            .form-group
+              .row
+                .col-md-6.col-sm-6.col-xs-6
+                  = label_tag 'exp', t("devise.registrations.edit.exp")
+                  = text_field_tag 'exp','', class: "form-control"
+                .col-md-6.col-sm-6.col-xs-6
+                  = label_tag 'cvc',t("devise.registrations.edit.cvc")
+                  = text_field_tag 'cvc','', class: "form-control"
+            %p.text-center
+              = f.button t("common.continue"),id: "to_billing_sec2", class: "btn btn-default", type: 'button'
+          #billing_sec2.temp_hide
+            .form-group
+              %h4
+                = t("devise.registrations.edit.billing_address")
+                %a{:href => "#user_first_name", id: 'back_sec1_add', class: "btn btn-default btn-xs"}= t(".common.edit")
+            .form-group
+              #billing_sec2_full_name
+            .form-group
+              .row.col-md-12
+                #billing_sec2_street
+              .row.col-md-12
+                #billing_sec2_state_with_code
+            .form-group
+              %h4
+                = t("devise.registrations.edit.credit_card_information")
+                %a{:href => "#user_ccard_last4", id: 'back_sec1_billing', class: "btn btn-default btn-xs"}= t("common.edit")
+            .form-group
+              .row
+                .col-md-6.col-xs-6.col-sm-6
+                  = select_tag :select_card_review, options_for_select(BillingDetail::SUPPORTED_CARDS), {:class => "form-control"}
+            .form-group
+              #billing_sec2_card_num
+            .form-group
+              .row
+                .col-md-6.col-sm-6.col-xs-6
+                  #billing_sec2_exp
+                .col-md-6.col-sm-6.col-xs-6
+                  #billing_sec2_cvc
+              .row
+                .col-md-12
+                  = t("devise.registrations.edit.always_use")
+                  = f.check_box :always_use
+            %p.text-center
+              = f.button t("common.continue"), id:"submit_billing_card", class: "btn btn-default", type: 'button'

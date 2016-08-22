@@ -1,0 +1,37 @@
+%tr
+  %td.col-a.text-center.col-md-4
+    - if promotion.images.find_by_image_default(true).blank?
+      = link_to  activity_path(promotion.id) do
+        = image_tag("default_image.png", alt: "No Images", class: ".img-responsive img-thumbnail", id: "image_promotion_large_default", width: "100", height: "100")
+    -else
+      = link_to  activity_path(promotion.id) do
+        = image_tag(promotion.images.find_by_image_default(true).image.url(:thumb), class: ".img-responsive img-thumbnail h_w_100", width: "100", height: "100")
+  %td.col-b.col-md-8
+    .row.content
+      %table.no-border
+        %tr
+          %td
+            %h4
+              = link_to  activity_path(promotion.id), class: "list_promotion_a" do
+                =promotion.name
+      .row.no-padding
+        .col-md-12.desciption.white_space
+          =promotion.description
+      .row.no-padding
+        .col-md-12.desciption.white_space
+          - time = Segment.find_by_id(book.segment_id).start_time.strftime("%I:%M %p")
+          = t(".booked_msg", date: book.book_date.strftime("%B %d") , time: time)
+      .clear-both
+      .row.no-padding
+        #share_health
+          = link_to t(".share_health"), share_promotion_path(book.promotion_id), class: "btn btn-default"
+  %td.col-c.text-right.col-md-4
+    .content.col-md-12
+      .row
+        .col-md-5
+          %h4
+            = link_to t(".cancel"), my_activity_path(book.id), class: "btn btn-default btn-xs", remote: true
+        .col-md-7
+          %h4
+            = link_to t(".contact_merchant"), contact_my_activity_path(book.promotion_id), class: "btn btn-default btn-xs"
+

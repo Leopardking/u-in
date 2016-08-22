@@ -1,0 +1,11 @@
+%h2= "#{@blackout.promotion.discount_percent}% Off"
+%p.head= @blackout.promotion.name
+%p.prom
+  Are you sure you want to cancel this blackout
+%div.next-step1
+  %button.btn{"data-dismiss" => "modal"} No, Do Not Cancel
+  %br
+  = link_to cancel_blackout_path(blackout_id: @blackout.id),class: "btn",id: "cancel_blackout",method: :post, remote: true do
+    %span Yes, Cancel
+%div.clearfix
+%br/

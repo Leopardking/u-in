@@ -1,0 +1,16 @@
+.col-md-8.col-md-offset-2
+  #contact-page.well.form-border.form-custom
+    %h4=t ".header"
+    %form{ method: :post, role: :form, id: "contact-form", "data-remote" => "true"}
+      = hidden_field_tag :authenticity_token, form_authenticity_token
+      .form-group
+        %label=t(".email_label")
+        .row
+          .col-md-4
+            %input.form-control{ type: :email, name: "contact[email]", placeholder: t(".email_placeholder") }
+      .form-group
+        %label=t(".message_label")
+        %textarea.form-control{ name: "contact[message]", placeholder: t(".message_placeholder"), rows: 5 }
+      .row.text-right
+        .col-md-12
+          %input.btn.btn-primary{ type: "submit", value: t(".submit_button_value")}

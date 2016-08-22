@@ -1,0 +1,67 @@
+/ Promotion form HTML code
+%section.body-holder
+  .container
+    .row
+      .col-xs-12
+        .body-content
+          .steps-promo
+            .step-complete
+              %p
+                %span.step-inc{style: "color:rgba(153, 204, 102,1);"}
+                  = t("promotions.process_1")
+                %span
+                  = t("promotions.of")
+                %span.step-dec
+                  = t("promotions.process_6")
+            .clearfix
+          .step-header
+            .stp-hdr
+              %span
+                %label.stp-lbl
+                  =raw t(".title_step1")
+              = link_to "#", title: t("promotions.text_image_question") do
+                = image_tag "question.svg", alt: t("promotions.text_image_question"), class: "image-question-title-step"
+          %div.booking-wrapper{style: 'padding:20px'}
+            .description-form
+              = form_for @promotion, as: :promotion, method: method, url: url, html: { class: "promotion-form", id: form_id } do |f|
+                - image_ids = (params[:promotion].present? && params[:promotion][:image_ids].present?) ? params[:promotion][:image_ids] : promotion.image_ids
+                - image_ids.each_with_index do |img, index|
+                  = hidden_field_tag "promotion[image_ids][]", img, id: "h_image_#{index + 1}"
+                = hidden_field_tag "promotion_params", @promotion_params
+                = hidden_field_tag "promotion_step", @promotion_step
+                .form-group
+                  %label{for: "activity"}
+                    =raw t('.name_promotion')
+                  = f.text_field :name, class: "form-control", id: "activity", autofocus: true
+                  =f.hidden_field :user_id, value: "#{current_user.id}"
+                .form-group
+                  %label{for: "descactivity"}
+                    =raw t(".describe_activity")
+                  = f.text_area :description, class: "form-control", rows: "8",placeholder: t(".content_placeholder_desc"), class: "form-control", id: "descactivity"
+                .form-group
+                  .title-input-bring
+                    %label{for: "what to bring"}
+                      =raw t(".what_to_bring")
+                    %span.leave-ignore-text
+                      = t(".leave_ignore")
+                  = f.text_field :bring_item, class: "form-control", id: "what-bring"
+                .form-group.form-input-expect
+                  .title-input-expect
+                    %label{for: "what to expect"}
+                      =raw t(".what_to_expect")
+                    %span.leave-ignore-text
+                      = t(".leave_ignore")
+                  = f.text_area :expect, class: "form-control", id: "what-expect", rows: "5"
+        .next-step.row
+          - if form_id == "edit_promotion_form"
+            = render partial: "button_for_edit_steps", :locals => { :promotion => @promotion }
+          - else
+            .col-lg-6.col-md-6.col-xs-6.btn-back
+              = link_to promotions_path, class: "goto-list-promotion" do
+                .btn.back_arrow
+                  %span= t("promotions.back_step")
+            .col-lg-6.col-md-6.col-xs-6.btn-continue
+              %button.btn{onClick: "$('.promotion-form').submit()"}
+                %span= t("promotions.continue_step")
+
+

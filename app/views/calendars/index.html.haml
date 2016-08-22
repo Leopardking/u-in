@@ -1,0 +1,84 @@
+%br
+%section.body-holder.calender-body-holder
+  = hidden_field_tag "user_id", current_user.id
+  = hidden_field_tag "time_charge", current_user.time_charge
+  = hidden_field_tag "book_free", @booking_free
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+        %button.btn#inactive_promotion= t(".inactive_promotion")
+        %button.btn#show_active_promotion.hide= t(".active_promotion")
+        %div.row#calendar-loader
+          %p
+            = t(".loading_event")
+            = image_tag("ajax-loader.gif")
+          .clearfix
+        %div#calendar
+
+/ Event popUp html
+%div.modal.fade#optionsPopUp{role: 'dialog'}
+  %div.modal-dialog.text-center
+    %div.modal-content
+      %div.modal-body
+        %span.page
+        %h2
+        %p.head
+        %div.container-modal
+          = hidden_field_tag :cal_date
+          = hidden_field_tag :slot_start
+          = hidden_field_tag :slot_end
+          = hidden_field_tag :promotion_now_id
+          = hidden_field_tag :discount_percent_active
+          = hidden_field_tag :promotion_name_active
+          = hidden_field_tag :promotion_price_current
+          = hidden_field_tag :paid_price_current
+          = hidden_field_tag :event_status
+          = link_to "#",  id: "book_promo", class: "no-text-decoration" do
+            %button.btn.green-btn.button-booking-event
+              = t(".book")
+          %br
+          = link_to "", id: "edit_promo", class: "no-text-decoration" do
+            %button.btn.grey-btn.background-blackout-btn
+              = t(".edit")
+          %br
+          %button.btn.grey-btn#blackout-btn.background-blackout-btn
+            = t(".black_out")
+        %div.booking-num
+          %p.botom
+            %span.number-slot-booking
+            %span= t(".of")
+            %spane.total-slot-booking
+            %span= t(".booked")
+
+/ Blackout popUp html
+%div.modal.fade#blackoutPopUp{role: 'dialog'}
+  %div.modal-dialog{style: 'text-align:center'}
+    %div.modal-content
+      %div.modal-body
+
+
+/ Blackout Cancel popUp html
+%div.modal.fade#blackoutCancel{role: 'dialog'}
+  %div.modal-dialog{style: 'text-align:center'}
+    %div.modal-content
+      %div.modal-body
+
+/ Book Promotion popup
+%div#popup-booking-promotion
+  = render "bookings/booking_event_popup_modal", new_booking: @booking, book_free: @booking_free, can_book: current_user.charge_payment
+
+/ Input info card to booking no free
+%div#popup-payment-booking
+  = render "bookings/modal_input_info_card_booking", billing_card: @billing_card
+
+/ confirm booking popup
+#show-notification-booking
+  = render "bookings/booking_confirm_popup_modal"
+
+:javascript
+  window.Pages['CalendarPage'].agendaView = "#{j @agendaView}";
+  window.Pages['CalendarPage'].defaultDate = "#{j @default_date}";
+  window.Pages['CalendarPage'].promotionId = "#{@promotion.id if @promotion.present?}";
+  window.Pages['CalendarPage'].init();
+  window.Pages['EditProfilePage'].validateForEditPayment();

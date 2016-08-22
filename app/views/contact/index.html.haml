@@ -1,0 +1,63 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.step-header
+            %div.stp-hdr
+              %label.stp-lbl{style: "color:rgba(153, 204, 102,1);margin:1em 0.8em 0;font-size:1.5em;"} Contact Us
+          %div.booking-wrapper{style: 'padding: 30px 30px 0;'}
+            %div.location-form
+              %form.lctn-form{ method: :post, role: :form, id: "contactUs-form"}
+                = hidden_field_tag :authenticity_token, form_authenticity_token
+                = hidden_field_tag :back_url, @back_url
+                %div.form-group{style: "width:45%;float:left;margin-right:2%"}
+                  %label{for: "firstname"}
+                    First Name
+                    %span.req *
+                  %input.form-control{ type: :text, name: "contact[firstname]", placeholder: "First name" }
+                %div.form-group{style: "width:53%;float:left;"}
+                  %label{for: "lastname"}
+                    Last Name
+                    %span.req *
+                  %input.form-control{ type: :text, name: "contact[lastname]", placeholder: "Last name" }
+                %div.clearfix
+                %div.form-group
+                  %label{for: "phone"}
+                    Phone
+                    %span.req *
+                  %input.form-control{ type: :phone, name: "contact[phone]", placeholder: "Phone" }
+                %div.form-group
+                  %label{for: "email"}
+                    Email
+                    %span.req *
+                  %input.form-control{ type: :email, name: "contact[email]", placeholder: "Email" }
+                %div.form-group
+                  %label{for: "message"}
+                    Message
+                    %span.req *
+                  %textarea.form-control{style: "resize: vertical", rows: "10", name: "contact[message]", placeholder: "Message"}
+                %div.send
+                  %button.btn Send
+            %div.done-holder
+              %a{href: "#"}
+                %img{src: "/assets/done.png",alt: "done"}
+
+:css
+  .send{
+    text-align: right;
+  }
+  .send>.btn{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffffff;
+    background: #cccccc;
+    border-radius: 0;
+    outline: none!important;
+    font-weight: 600;
+  }
+  .send>.btn:hover{
+    opacity: 0.8;
+    transition: all ease 0.5s;
+  }
+

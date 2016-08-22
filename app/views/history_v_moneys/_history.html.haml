@@ -1,0 +1,18 @@
+%table.table.table-bordered.table-hover
+  %thead
+    %tr
+      %th.text-center No.
+      %th= t(".booking_id")
+      %th= t(".amount")
+      %th= t(".action")
+      %th= t(".created_at")
+  %tbody
+    - if histories.size > 0
+      - histories.each_with_index do |h, index|
+        %tr
+          - @page = params[:page].blank? ? 1 : params[:page].to_i
+          %td.text-center= (@page-1)*PER_PAGE+index+1
+          %td= h.booking_id
+          %td= number_to_currency(h.amount)
+          %td= HistoryVMoney::ACTION[h.action]
+          %td= h.created_at.to_time.strftime('%B %e %Y at %l:%M %p')

@@ -1,0 +1,17 @@
+.row#wraper_confirm_all_new
+  .col-xs-1.col-md-2
+  .col-xs-10.col-md-8#wraper_confirm_new
+    = devise_error_messages!.html_safe
+    .row.text-center
+      %p.logo
+        = image_tag("big_fun_icon.png", alt: t("devise.registrations.edit.logo"))
+    %h2.text-center=t(".resend_confirm")
+    .row.form-horizontal
+      = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+
+        .row.form-group
+          .col-md-4.col-sm-4.control-label= f.label :email, t(".email")
+          .col-md-5.col-sm-7= f.email_field :email, :autofocus => true, class: "form-control"
+        .row.text-center= f.submit t("common.submit"), class: "btn btn-default"
+        %p.text-center= render "devise/shared/links"
+  .col-xs-1.col-md-2

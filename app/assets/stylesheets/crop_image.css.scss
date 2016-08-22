@@ -1,0 +1,12 @@
+.jcrop-border {
+  background: #ffffff url(asset_path('Jcrop.gif')) !important;
+}
+.jcrop-hl-active .jcrop-selection.jcrop-current .jcrop-border {
+  background: #808080 url(asset_path('Jcrop.gif')) !important;
+}
+.jcrop-hl-active .jcrop-selection.jcrop-focus .jcrop-border {
+  background: url(asset_path('Jcrop.gif')) !important;
+}
+.jcrop-vline,.jcrop-hline {
+  background:#FFF url(asset_path('Jcrop.gif')) !important;
+}

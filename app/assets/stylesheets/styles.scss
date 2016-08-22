@@ -1,0 +1,111 @@
+.text-link-high-light {
+  border-bottom: 3px solid white;
+  color: #808080;
+}
+.wraper_register {
+    top: 10px;
+}
+.check-pass-dialog{
+  top: 25%;
+  margin-top: -90px;
+  position: fixed;
+  left: 25%;
+  margin-left: -65px;
+}
+.group-check-button{
+  text-align: right;
+}
+.group-check-button button{
+  width: 75px;
+}
+.group-check-button .ok-btn{
+  font-weight: bold;
+}
+.text-grey-color {
+  color: #bfbfbf;
+}
+.style-input-login {
+  height: 45px;
+  border-radius: 8px;
+}
+.style-button-login {
+  width: 377px;
+  background-color: #009AFF;
+  border-radius: 0px;
+}
+.button-login{
+  background-color: #99CC00;
+}
+.padding-element-nomal {
+  padding-left: 105px;
+}
+
+.display-none-element {
+  display: none;
+}
+.text-not-decoration {
+  text-decoration: none !important;
+}
+.margin-element-body {
+  margin-right: 60px;
+}
+
+// Hightligth text
+.text-noti a:hover, .text-noti a:focus  {
+  color: #200099;
+}
+
+//highlight button
+.btn-color-highlight:hover{
+  background-color: #009AFF !important;
+  color: #fff !important;
+}
+
+// Change iamge when hover
+@media (min-width: 1024px) {
+  .change-when-hover {
+    .show-on-hover {
+      display: none;
+    }
+    .hide-on-hover {
+      display: inherit;
+    }
+  }
+  .change-when-hover:hover{
+    .show-on-hover{
+      display: inherit;
+    }
+    .hide-on-hover{
+      display: none;
+    }
+  }
+}
+// Hide image width screen mobile
+@media (max-width: 1024px) {
+  .hide-element-on-mobile {
+    display: none !important;
+  }
+}
+
+.strong-text {
+  font-weight: bold;
+}
+
+#promotion-create-new .process-par-promotion .baricon
+{
+  display:inline-block;
+  border-radius:100%;
+  padding:12px;
+  background-color:#38610B;
+  color:white;
+}
+#promotion-create-new .process-par-promotion .progress_bar
+{
+  width:200px;
+  height:5px;
+  border-radius:20px;
+  background-color:#D8D8D8;
+  display:inline-block;
+}
+
+

@@ -1,0 +1,21 @@
+.row#wraper_password_all_new
+  .col-xs-1.col-md-2
+  .col-xs-10.col-md-8#wraper_password_new
+    .row.text-center
+      %p.logo
+        = image_tag("big_fun_icon.png", alt: t("devise.registrations.edit.logo"))
+    %h2.text-center=t(".change_password")
+    .row.form-horizontal
+      = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
+        = devise_error_messages!.html_safe
+        = f.hidden_field :reset_password_token
+        .row.form-group
+          .col-md-4.col-md-offset-1.col-sm-4.control-label= f.label :password, t(".new_password")
+          .col-md-5.col-sm-7= f.password_field :password, :autofocus => true, class: "form-control"
+        .row.form-group
+          .col-md-4.col-md-offset-1.col-sm-4.control-label= f.label :password_confirmation, t(".confirm_new_password")
+          .col-md-5.col-sm-7= f.password_field :password_confirmationm, class: "form-control"
+        .row.text-center= f.submit t(".change_my_password"), class: "btn btn-default"
+        %p.text-center= render "devise/shared/links"
+  .col-xs-1.col-md-2
+

@@ -1,0 +1,36 @@
+%br
+%section.body-holder
+  %div.container
+    %div.row.button-create-new-promotion
+      %div.row
+      - if !params[:id]
+        = link_to new_promotion_path do
+          = t("promotions.index.create_new_promo")
+          %i.fa.fa-plus
+      - else
+        - if current_user && @promotion.user == current_user
+          = render partial: "active_promotion_popup", :locals => { :promotion => @promotion }
+          - unless params[:updated]
+            = link_to "", data:{toggle: "modal",target: "#publish-modal" + @promotion.id.to_s} do
+              = @promotion.active_times == 0 ? t("promotions.inactive_promotion.publish_now") : t("promotions.inactive_promotion.re-active")
+          - else
+            = link_to "", data:{toggle: "modal",target: "#publish-modal" + @promotion.id.to_s} do
+              = t("promotions.inactive_promotion.publish_now")
+-unless params[:id]
+  - if @promotion
+    - unless @promotion.cancel_status
+      =render "active_promotion", promotion: @promotion
+    - unless current_user.promotions.empty?
+      %section.body-holder
+        %div.container
+          %div.row.button-create-new-promotion{style: "text-align: right; margin-top: 10px"}
+            = link_to show_inactive_promotions_path do
+              = t("promotions.inactive_promotion.list_inactive")
+-else
+  =render "active_promotion", promotion: @promotion #show with case inactive promotion
+%div#deletePopUp
+
+:javascript
+  Pages['PromotionPage'].applySildeImagePromotion();
+  Pages['CropImageProcess'].setRatioImage();
+

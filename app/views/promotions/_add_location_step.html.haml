@@ -1,0 +1,95 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.steps-promo
+            %div.step-desc
+              %p
+            %div.step-complete
+              %p
+                %span.step-inc{style: "color:rgba(153, 204, 102,1);"}
+                  = t("promotions.process_2")
+                %span
+                  = t("promotions.of")
+                %span.step-dec
+                  = t("promotions.process_6")
+            %div.clearfix
+          %div.step-header
+            %div.stp-hdr
+              %span
+                %label.stp-lbl
+                  =raw t(".location_activitly")
+              = link_to "#", title: t("promotions.text_image_question") do
+                = image_tag "question.svg", alt:t("promotions.text_image_question"), class: "image-question-title-step"
+          %div.booking-wrapper{style: 'padding:20px'}
+            %div.location-form
+              =form_for @promotion, as: :promotion, method: method, url: url, html: { class: "promotion-form", id: form_id } do |f|
+                - image_ids = (params[:promotion].present? && params[:promotion][:image_ids].present?) ? params[:promotion][:image_ids] : promotion.image_ids
+                - image_ids.each_with_index do |img, index|
+                  = hidden_field_tag "promotion[image_ids][]", img, id: "h_image_#{index + 1}"
+                = hidden_field_tag "promotion_params", @promotion_params
+                = hidden_field_tag "promotion_step", @promotion_step
+                = hidden_field_tag "back_button"
+                = hidden_field_tag "user_id", current_user.id
+                %div.form-group.font-style
+                  = f.check_box :same_as_business_address, value: @promotion.same_as_business_address, class:"get-address-business"
+                  = label_tag t(".check_same_as_address"), nil, class: "font-style"
+                %div.form-group
+                  %label{for: "strad"}
+                    =raw t(".street_address1_label")
+                  = f.text_field :street_address_1, class: "form-control may_disable"
+                %div.form-group
+                  %label{for: "strad2"}
+                    = t(".street_address_2_label")
+                  = f.text_field :street_address_2, class: "form-control may_disable"
+                %div.form-group{style: "width:56%;float:left;margin-right:3%"}
+                  %label{for: "city"}
+                    = raw t(".city_label")
+                  = f.text_field :city, class: "form-control may_disable"
+                %div.form-group{style: "width:36%;float:right;margin-left:3%"}
+                  %label{for: "state"}
+                    =raw t(".state_label")
+                  = f.text_field :state, class: "form-control may_disable"
+                %div.clearfix
+                %div.form-group{style: "width:46%;float:left;margin-right:3%"}
+                  %label{for: "zipcode"}
+                    =raw t(".zipcode_label")
+                  = f.text_field :zipcode, class: "form-control may_disable"
+                %div.form-group{style: "width:46%;float:right;margin-left:3%"}
+                  %label{for: "phone"}
+                    =raw t(".phone_number_label")
+                  = f.text_field :phone_number, class: "form-control may_disable"
+                %div.clearfix
+                %div.form-group.input-google-map-link
+                  %label{for: "map"}
+                    =raw t(".google_map_link")
+                  = f.text_field :google_map_link, value: @promotion.google_map_link, class: "form-control"
+                %div.step.button-preview-googlemap
+                  %span.btn#prevbtn
+                    = t(".btn_preview")
+          .next-step.row
+            - if form_id == "edit_promotion_form"
+              .col-lg-6.col-md-6.col-xs-6.btn-back
+                = link_to promotions_path, class: "goto-list-promotion" do
+                  .btn.back_arrow#edit-btn-back
+                    %span= t("promotions.cancel")
+              .col-lg-6.col-md-6.col-xs-6.btn-continue.edit-btn-continue
+                %button.btn#continue_step2{onClick: "$('.promotion-form').submit()"}
+                  %span= t("promotions.save")
+            - else
+              .col-lg-6.col-md-6.col-xs-6.btn-back
+                .btn.back_arrow
+                  %span
+                    = t("promotions.back_step")
+              .col-lg-6.col-md-6.col-xs-6.btn-continue
+                %button.btn#continue_step2
+                  %span
+                    = t("promotions.continue_step")
+
+%div.modal.fade#googleMapModal{role: 'dialog'}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-body
+        %a#close{href: "#", "data-dismiss" => 'modal'} close
+        %iframe.mapStyles{src: '', width: "100%", height: "300px",frameborder: "0"}

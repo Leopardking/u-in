@@ -1,0 +1,59 @@
+%div.modal.fade#BookingPromotion{role: 'dialog'}
+  %div.modal-dialog{style: 'text-align:center'}
+    %div.modal-content
+      %div.modal-body
+        .error-message-booking.alert.alert-danger
+        .title-popup-booking
+          %span
+            = t(".title_booking_popup")
+          %br.break-inlinde
+          %span.discount-of-promotion-active.text-color-title.style-font-title
+          %span.text-color-title.style-font-title
+            = t(".of")
+          %span.name-of-promotion-active.text-color-title.style-font-title
+        = form_for new_booking, url: create_new_booking_bookings_path, method: "post", :remote => true, html: {class: "form-new-booking"} do |f|
+          = f.hidden_field :book_date
+          = f.hidden_field :start_time
+          = f.hidden_field :end_time
+          = f.hidden_field :promotion_id
+          = f.hidden_field :check_discount
+          = f.hidden_field :promotion_price
+          = f.hidden_field :paid_price
+          - if can_book
+            = hidden_field_tag :check_status, true
+          - else
+            = hidden_field_tag :check_status, false
+          .form-inline.info-name-user-book
+            .form-group
+              = f.text_field :first_name,  class: "form-control booking-form", placeholder: "*First Name"
+            .form-group
+              = f.text_field :last_name, class: "form-control booking-form", placeholder: "*Last Name"
+          .form-inline
+            .form-group
+              = f.text_field :email, class: "form-control booking-form", placeholder: "*Email"
+            .form-group
+              = f.text_field :phone, class: "form-control booking-form", placeholder: "Phone"
+          .number-group
+            .form-group.row
+              = label_tag :numbers_booked, t(".number")
+              .select-wrapper.booked-select
+                = select_tag "numbers_booked", options_for_select(1..1000, selected: 1), include_blank: false, class: "custom-select"
+            .col-sx-12
+              .checking_promotion_booking
+                %p.description-checkbox
+                  = t(".description_checkbox", number: 0).html_safe
+                .checkbox_booking_yes
+                  %span Yes
+                  = check_box_tag :promotion_booking, 'true', false, class: 'accept_booking'
+
+              .information-number-booking-free
+                %p
+                  =raw t(".number_booking_free", numbers: book_free)
+        .row.btn-function
+          .col-xs-6.save-info-booking-current
+            %button.btn#booking-promotion-active
+              = t(".btn_ok")
+          .col-xs-6
+            %button.btn#cancle-booking-promotion
+              %span
+                = t(".btn_cancel")

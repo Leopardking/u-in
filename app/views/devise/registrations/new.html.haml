@@ -1,0 +1,37 @@
+.col-md-12.wraper_register
+  = user_error_messages!.html_safe
+  .col-md-3.margin-element-body
+  .col-md-5.container-form
+    .row
+      .col-md-12.header-box
+        %p.title-box
+          =raw t("devise.registrations.new.title_box_login")
+        .logo-uin
+          = image_tag "uINlogo_white.png", class: "image-logo-uni"
+      .col-md-12.content-form-input
+        .content-text
+          %p.text-email-immediate
+            %strong
+              =raw t("devise.registrations.new.choose_user_type")
+          .row.import-information
+            = form_for(resource, :url => auth_new_profile_path, :html => { :method => :post, class: "form-login-regis" }) do |f|
+              = f.email_field :email, required: true, class: "form-control style-input-login input-info display-none-element", value: session[:email]
+              = f.password_field :password, required: true, class: 'form-control style-input-login display-none-element', value: session[:password]
+              = f.hidden_field :user_type
+              = f.hidden_field :first_name, value: session[:first_name]
+              = f.hidden_field :last_name, value: session[:last_name]
+              = f.hidden_field :phone_number, value: session[:phone_number]
+              - if session[:provider].present?
+                = hidden_field_tag "provider", session[:provider]
+                = hidden_field_tag "uid", session[:uid]
+            .change-type-user
+              .search-client-type.change-when-hover
+                %a.btn-search-user.btn-type-user{href: "#", onclick: "get_value_type_user('client')"}
+                  = image_tag "btnSearch_normal.png", class:"image-change-type-user image-user-search hide-on-hover"
+                  = image_tag "btnSearch_highlight.png", class:"image-change-type-user image-user-search show-on-hover hide-element-on-mobile"
+              .promote-service-type.change-when-hover
+                %a.btn-promote-user.btn-type-user{href: "#", onclick: "get_value_type_user('merchant')"}
+                  = image_tag "btnPromoteSrvc_normal.png", class:"image-change-type-user image-user-merchant hide-on-hover"
+                  = image_tag "btnPromoteSrvc_highlight.png", class:"image-change-type-user image-user-merchant show-on-hover hide-element-on-mobile"
+
+  .col-md-3

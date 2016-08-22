@@ -1,0 +1,10 @@
+#error-message-image-size.modal.fade{ role: "dialog"}
+  .modal-dialog.modal-sm
+    .modal-content
+      .modal-body
+        %div.container-modal
+          %p.content-message.font-style
+            = t(".image_oversized")
+        %div.button-close-modal
+          %button.btn.btn-default{type:"button", "data-dismiss"=>"modal"}
+            = t("shared.button_ok")

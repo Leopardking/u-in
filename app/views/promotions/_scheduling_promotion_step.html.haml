@@ -1,0 +1,216 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.steps-promo
+            %div.step-desc
+              %p
+            %div.step-complete
+              %p
+                %span.step-inc{style: "color:rgba(153, 204, 102,1);"}
+                  = t("promotions.process_6")
+                %span
+                  = t("promotions.of")
+                %span.step-dec
+                  = t("promotions.process_6")
+            %div.clearfix
+          %div.step-header
+            %div.stp-hdr
+              %span
+                %label.stp-lbl{style: "color:rgba(153, 204, 102,1);"}
+                = raw t('.title_step6')
+              = link_to "#", title: t(".text_image_question") do
+                = image_tag "question.svg", alt: t(".text_image_question"), class: "image-question-title-step"
+          %div.booking-wrapper
+            %div.booking-holder
+              %div.promotion-wrap
+                %div.booking-img
+                  - image_ids = params[:promotion].present? ? params[:promotion][:image_ids] : nil
+                  - image_url = show_image_default_step5_step6(promotion, image_ids)
+                  = image_tag(image_url, height: '80', alt: "promotion_image")
+                %div.booking-description
+                  %h2
+                    %span#header_text
+                      = t(".booking_setup")
+                  %h3
+                    - if promotion.new_record?
+                      = "#{promotion_params['discount_percent']} % OFF"
+                    - else
+                      = "#{promotion.discount_percent} % OFF"
+                  %h4
+                    -if !promotion.current_rank.blank?
+                      = t(".ranked")
+                      %span.srt
+                        = (session[:current_rank].present? ? session[:current_rank] : promotion.current_rank)
+                      %span
+                        = t("promotions.of")
+                      %span.end
+                        = session[:total_rank].present? ? session[:total_rank] : ranking_data(promotion)[:total_ranks]
+                %div.clearfix
+              %div.daily-bookng
+                =form_for promotion, as: :promotion, method: method, url: url, html: { class: "promotion-form dailyBooking-form", id: form_id } do |f|
+                  - image_ids = (params[:promotion].present? && params[:promotion][:image_ids].present?) ? params[:promotion][:image_ids] : promotion.image_ids
+                  - image_ids.each_with_index do |img, index|
+                    = hidden_field_tag "promotion[image_ids][]", img, id: "h_image_#{index + 1}"
+                  = hidden_field_tag "promotion_params", promotion_params
+                  = hidden_field_tag "promotion_step", promotion_step
+                  = hidden_field_tag "back_button"
+                  %div.frm-row
+                    %div.bkg-rep
+                      %div.form-group
+                        %label{for: "repeats"}
+                          = t(".repeat")
+                        %span.select-wrapper
+                          = f.select(:repeat, options_for_select(REPEATS_PROMOTION, selected: promotion.repeat), {include_blank: false}, {class: "custom-select"} )
+                        %div.select_wrapper_repeat
+                      #repeat_error
+                    %div.bkg-days
+                      %div.form-group
+                        %label{for: "every"}
+                          = t(".every")
+                        =f.text_field :frequency, value: promotion.frequency, class: "form-control"
+                    %div.bkg-tx
+                      %p
+                        = t(".day")
+                    %div.clearfix
+                  / Days of week if the user selects the repeat daily option
+                  %div.frm-row.frm-row2.temp_hide#weekly_fields
+                    = hidden_field_tag :days,(promotion.days_of_week.class == Array ? promotion.days_of_week.join(',') :  (params[:promotion][:days_of_week] if params[:promotion][:days_of_week].present?))
+                    %div.fircol-row.width-100
+                      %div.form-group
+                        %label{for: "book-duration"}
+                          = t(".on")
+                        %span
+                          %ul
+                            %li{ "data-value" => "Sunday" }
+                              %a{style: "cursor: pointer"} S
+                            %li{ "data-value" => "Monday" }
+                              %a{style: "cursor: pointer"} M
+                            %li{ "data-value" => "Tuesday" }
+                              %a{style: "cursor: pointer"} T
+                            %li{ "data-value" => "Wednesday" }
+                              %a{style: "cursor: pointer"} W
+                            %li{ "data-value" => "Thursday" }
+                              %a{style: "cursor: pointer"} T
+                            %li{ "data-value" => "Friday" }
+                              %a{style: "cursor: pointer"} F
+                            %li{ "data-value" => "Saturday" }
+                              %a{style: "cursor: pointer"} S
+                    %div.clearfix
+                  %div.frm-row.frm-row1.temp_hide#monthly_fields
+                    %div.fircol-row
+                      %div.form-group
+                        %label{for: "book-duration"}
+                          = t(".on")
+                        %span.select-wrapper
+                          = f.select(:occurrence, options_for_select(OCCURRENCE.map{|e| [e[0], e[1]] }, selected: promotion.occurrence), {include_blank: false}, {class: "custom-select"} )
+                      #occurrence_error
+                    %div.iccon-row.temp_hide
+                      = image_tag "continue.png"
+                    %div.seccol-row{style: "margin-top: 4%"}
+                      %div.form-group#day_count
+                        = f.text_field :occurrence_extend, value: promotion.occurrence_extend, class: "form-control", style: "width: 33%"
+                      %div.form-group
+                        %span.select-wrapper#day_dropdown
+                          = f.select(:days_of_week, DAYS_DROPDOWN_VALUES, {selected: (promotion.days_of_week.is_a?(Array) ? promotion.days_of_week.join(",") : promotion.days_of_week), include_blank: false}, {class: "custom-select"} )
+                        #occurrence_error
+                    %div.clearfix
+                  / Monthly repeat options
+                  %div.frm-row.group-start-date
+                    %div.firtcol-row
+                      %div.form-group.form-start-date
+                        %label
+                          = t(".start_date")
+                        =hidden_field_tag :_start_date, promotion.start_date? ? promotion.start_date.strftime("%d-%m-%Y") : ""
+                        =f.text_field :start_date, value: promotion.start_date? ? promotion.start_date.strftime("%d-%m-%Y") : "", readonly: true, class: "form-control"
+                    %div.firstcol-row
+                      %div.form-group
+                        %label
+                          = t(".end")
+                        %span.select-wrapper
+                          =f.select(:end_date_type, options_for_select(DAYS_OF_WEEK.map{|e| [e[0], e[1]] }, selected: promotion.end_date_type), {include_blank: false}, {class: "custom-select"} )
+                        %div.select_wrapper_end_date_type
+                    %div.firtcol-row.temp_hide#end_date
+                      %div.form-group
+                        %label
+                          = t(".end_date")
+                        =hidden_field_tag :_end_date, promotion.end_date? ? promotion.end_date.strftime("%d-%m-%Y") : ""
+                        =f.text_field :end_date, value: promotion.end_date? ? promotion.end_date.strftime("%d-%m-%Y") : "", readonly: true, class: "form-control"
+                    %div.clearfix
+                  %div.frm-row.group-work-day
+                    %div.fircol-row
+                      %div.form-group
+                        %label{for: "book-duration"}
+                          = t(".start_work_day")
+                        = f.text_field :start_time, value: promotion.start_time? ? promotion.start_time.strftime("%H:%M") : "" ,class: "form-control time-field select-wrapper toogle-timepicker-class",style: "line-height: 0px"
+                    %div.iccon-row
+                      = image_tag "continue.png", class: "image-arrows"
+                    %div.seccol-row
+                      %div.form-group
+                        %label{for: "bookper-duration"}
+                          = t(".end_work_day")
+                        =f.text_field :end_time, value: promotion.end_time? ? promotion.end_time.strftime("%H:%M") : "", class: "form-control time-field select-wrapper",style: "line-height: 0px"
+                    %div.clearfix
+                  = f.fields_for :booking_detail do |booking_field|
+                    %div.frm-row.group-booking-duration
+                      %div.fircol-row
+                        %div.form-group
+                          %label{for: "book-duration"}
+                            = t(".booking_duration")
+                          %span.select-wrapper
+                            = booking_field.select(:booking_duration, options_for_select(BOOKING_DURATION, selected: promotion.booking_detail.booking_duration), {include_blank: false}, {class: "custom-select"} )
+                          %div.select_wrapper_booking_duration
+                      %div.iccon-row
+                        = image_tag "continue.png", class: "image-arrows"
+                      %div.seccol-row
+                        %div.form-group
+                          %label{for: "bookper-duration", style: "font-size: 13px"}
+                            = t(".regular_booking")
+                          = booking_field.text_field :bookings_per_duration, value: promotion.booking_detail.bookings_per_duration, class: "form-control"
+                      %div.clearfix
+                    %div.frm-row.row_number_bookings
+                      %label{style: "text-align: center;width: 100%"}
+                        = t('.maximum_number_of_bookings')
+                    %div.frm-row.group-maximun-promotion
+                      %div.fircol-row
+                        %div.form-group
+                          = booking_field.text_field :maximum_bookings, value: promotion.booking_detail.maximum_bookings,class: "form-control"
+                      %div.iccon-row{style: "line-height: 45px"}
+                        %label
+                          = t(".per")
+                      %div.seccol-row
+                        %div.form-group
+                          %span.select-wrapper
+                            = booking_field.select(:booking_criterion, options_for_select(BOOKING_CRITERION.map{|e| [e[0], e[1]] }, selected: promotion.booking_detail.booking_criterion), {include_blank: false}, {class: "custom-select"} )
+                          %div.select_wrapper_booking_field
+                      #max-error
+                      %div.clearfix
+                    %div.frm-row
+                      %div.fircol-row
+                        %div.form-group
+                          %label{for: "blackout-from"}
+                            = t(".blackout_form")
+                          = booking_field.text_field :blackout_from, value: promotion.booking_detail.blackout_from.present? ? promotion.booking_detail.blackout_from.strftime("%H:%M") : "", class: "form-control time-field select-wrapper",style: "line-height: 0px"
+                      %div.iccon-row
+                        = image_tag "continue.png"
+                      %div.seccol-row
+                        %div.form-group
+                          %label{for: "blackout-to"}
+                            = t(".to")
+                          = booking_field.text_field :blackout_to, value: promotion.booking_detail.blackout_to.present? ? promotion.booking_detail.blackout_to.strftime("%H:%M") : "", class: "form-control time-field select-wrapper",style: "line-height: 0px"
+                      %div.clearfix
+                  %div.clearfix
+            %div.clearfix
+          .next-step.row
+            - if form_id == "edit_promotion_form"
+              = render partial: "button_for_edit_steps", :locals => { :promotion => @promotion }
+            - else
+              .col-lg-6.col-md-6.col-xs-6.btn-back
+                .btn.back_arrow
+                  %span
+                    = t("promotions.back_step")
+              .col-lg-6.col-md-6.col-xs-6.btn-continue
+                %button.btn{onClick: "$('.promotion-form').submit()"}
+                  %span
+                    = t("promotions.continue_step")

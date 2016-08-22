@@ -1,0 +1,23 @@
+.row
+  .col-xs-10.col-md-10.col-xs-offset-1.col-md-offset-1
+    .row.text-center
+      %p.logo
+        = image_tag("big_fun_icon.png", alt: t("devise.registrations.edit.logo"))
+    .row
+      .col-md-8.col-sm-8.col-xs-10.col-md-offset-4.col-sm-offset-3.col-xs-offset-1.text-center#inline_control
+        = form_tag({:action => 'index'}, {:method => 'get', :role => "form", :id => 'search_form', :class => "form form-inline pull-left", :remote=> true}) do
+          .row.form-horizontal
+            .form-group.col-md-6.col-sm-6.col-xs-6.custom-placeholder
+              %label{:for => "search_email"}=t(".email")
+              %input.form-control{ type: :input, name: "search_email", id: "search_email"}
+            .col-md-3.col-sm-3.col-xs-3
+              %input.btn.btn-default{ :id => "search_submit", type: "submit",  :name => nil, value: t(".search"), :remote => true}
+            .col-md-3.col-sm-3.col-xs-3
+              = select_tag :user_type, options_for_select([[I18n.t("users.index.all"), "all"], [I18n.t("users.index.client"), "client"], [I18n.t("users.index.merchant"), "merchant"]]), :class => "form-control"
+    .row#table_user
+      = render  "users/user"
+    .row.text-center#paganite_user
+      = paginate @users, :remote => true
+
+
+

@@ -1,0 +1,22 @@
+.table-responsive
+  %table.table.table-condensed
+    %tr
+      %td.col-a.text-center
+        - if booked.promotion.images.find_by_image_default(true).blank?
+          = image_tag("default_image.png", alt: "No Images", class: ".img-responsive img-thumbnail h_w_110", id: "image_promotion_large_default")
+        -else
+          = image_tag(booked.promotion.images.find_by_image_default(true).image.url(:thumb), class: ".img-responsive img-thumbnail h_w_110")
+      %td.col-b
+        .content
+          %table.no-border
+            %tr
+              %td
+                %h4
+                  =booked.promotion.name
+          .row.no-padding
+            .col-md-12.desciption.white_space
+              = t(".msg_congratulations", percent: booked.promotion.discount_percent, date: booked.book_date.strftime("%B.%d"), time: booked.segment.start_time.strftime("%I:%M %p") )
+          .space
+          .row.bottom
+            .col-sm-3.col-xs-3.text-right.booked.temp_hide
+              = t(".x_of_y_booked", x: 7, y: 10)

@@ -1,0 +1,65 @@
+/*profile page*/
+.profile-head{
+  text-align: center;
+}
+.profile-head p{
+  padding: 40px 0;
+}
+.upload-logo{
+  width: 150px;
+}
+.upload-logo > img{
+  width: 100%;
+  height: auto;
+}
+.logo-upload .btn{
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  border-radius: 5px;
+  color: #666666;
+  padding: 0;
+  position: relative;
+  top: 0;
+  box-shadow: none;
+}
+.logoUpload{
+  width: 40%;
+  font-weight: 600;
+  overflow: hidden;
+}
+.logo-upload{
+  padding: 0;
+}
+.logo-upload > input{
+  background-color: transparent;
+  border: none;
+  float: none;
+  width: 55%;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+.logoUpload input.upload{
+  position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0
+}
+.logobtn{
+  text-align: center;
+}
+.logobtn .btn{
+  background: #ffffff;
+  color: #666666;
+  font-weight: 600;
+}
+
+@media(max-width: 470px){
+  .profile-form{
+    padding: 0;
+  }
+}

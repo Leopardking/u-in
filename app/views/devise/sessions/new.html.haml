@@ -1,0 +1,66 @@
+.row.wraper_login_all
+  .row
+    .col-md-3.margin-element-body
+    .col-md-5.container-form
+      .row
+        .col-md-12.header-box
+          %p.title-box
+            =raw t(".title_box_login")
+          .logo-uin
+            = image_tag "uINlogo_white.png", class: "image-logo-uni"
+          %div.strong-login
+            %strong
+              = t(".login")
+        .col-md-12.content-form-input
+          .content-text
+            %p.text-email-immediate
+            .row.import-information
+              = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { class: "row new_user form-login-regis" }) do |f|
+                .form-group.col-sm-12.show-email-user.padding-element-nomal.form-input-email-address.input-placeholder
+                  .input-group.email-field.input-info
+                    %span.icon-mail-user.input-group-addon
+                      = image_tag "mailIcon.png", class: "image-mailbox"
+                    = f.email_field :email, autofocus: true, class: "form-control style-input-login input-info input-with-placeholder", value: session[:email] || params[:user][:email], required: true, placeholder: t("devise.sessions.index.email_address")
+
+                .form-group.col-sm-12.import-password-user.padding-element-nomal.input-placeholder-password
+                  .input-group.password-field.input-info
+                    %span.icon-password-user.input-group-addon.placeholder-input-password.text-grey-color
+                      = image_tag "lockIcon.png", class: "image-lock"
+                    = f.password_field :password, required: true, autocomplete: "off", class: 'form-control style-input-login input-with-placeholder', placeholder: t(".password")
+                .col-xs-12.footer-box-import-email
+                  .rememberme-chb
+                    %input{"type"=>"checkbox", "name"=>"user[remember_me]"}
+                    %label=t(".remember_me")
+                  .footer-box
+                    %p.text-noti
+                      = link_to t(".forgot_password"), new_password_path(resource_name, email: params[:email]), class: "link-to-reset-password text-link-high-light text-not-decoration"
+                .col-xs-12.button-check-email
+                  .btn.btn-login.style-button-login.button-login.btn-check-email.button-im-i.change-when-hover
+                    = image_tag "ImIn_Black.png", class:"image-login hide-on-hover"
+                    = image_tag "Imgpsh_Fullsize.png", class:"image-login show-on-hover hide-element-on-mobile"
+                    = f.submit "login", class: "display-none-element"
+                .col-xs-12.footer-box-noti
+                  .small-noti-box
+                    %p.text-noti.small-noti
+                      = link_to t("devise.sessions.index.not_a_member").html_safe, auth_account_regis_path, class: "text-not-decoration text-link-high-light"
+              %span.text-or
+              .col-md-12#social-media-login
+                .row
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:facebook)}" do
+                        = image_tag "facebookIcon_normal.png", class: "size-image-social image-social-facebook hide-on-hover"
+                        = image_tag "facebookIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:instagram)}" do
+                        = image_tag "icon_instagram_normal.png", class: "size-image-social image-social-instagram hide-on-hover"
+                        = image_tag "icon_instagram_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+                  .col-lg-3.col-xs-3.show-connect-social
+                    .change-when-hover
+                      = link_to "#{user_omniauth_authorize_path(:linkedin)}" do
+                        = image_tag "inIcon_normal.png", class: "size-image-social image-social-linkedin hide-on-hover"
+                        = image_tag "linkedinIcon_highlight.png", class: "size-image-social show-on-hover hide-element-on-mobile"
+    .col-md-3
+:javascript
+  window.Pages['HomePages'].init();

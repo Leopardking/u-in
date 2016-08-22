@@ -1,0 +1,39 @@
+/ Value is set through calendar.js script
+%h2
+  = "#{@promotion.discount_percent}% Off"
+%div.value-discount-percent-promotion.display-none-element{value: "#{@promotion.discount_percent}"}
+%p.head.promotion-name-active
+  = @promotion.name
+%p.prom
+  Are you sure you want to blackout this <br> promotion for
+  %span#atDate= @selected_date.to_date
+= form_tag(apply_blackout_promotion_path(@promotion), method: :post, id: "blackout_form", remote: true) do
+  = hidden_field_tag :promotion_start_time, @promotion.start_time.strftime("%I:%M %p")
+  = hidden_field_tag :promotion_end_time, @promotion.end_time.strftime("%I:%M %p")
+  = hidden_field_tag :selected_date, @selected_date.to_date
+  = hidden_field_tag :time_now, Time.now.strftime("%I:%M %p")
+  = hidden_field_tag :agendaView
+  %div.frm-row
+    %div.fircol-row
+      %div.form-group
+        %label{for: "blackout-from"} Blackout From:
+        = text_field_tag "blackout_from", "", class: "form-control time-field"
+    %div.iccon-row
+      &nbsp;
+    %div.seccol-row
+      %div.form-group
+        %label{for: "blackout-to"} Blackout To:
+        = text_field_tag "blackout_to", "", class: "form-control time-field"
+    %div.clearfix
+  %div.next-step1
+    %span.btn{"data-dismiss" => "modal"} No, Do Not Black Out
+    %br
+    %button.btn{type: 'submit'} Yes, Black Out
+  / %div.booking-num
+  /   %p.botom=" #{@promotion.bookings.size} of #{@promotion.booking_detail.maximum_bookings} Booked"
+
+:javascript
+  $(".time-field").timepicker({ 'timeFormat': 'h:i a', 'step': 10 });
+  $("#blackout_from").val(formatAMPM(new Date($("#slot_start").val())));
+  $("#blackout_to").val(formatAMPM(new Date($("#slot_end").val())));
+  $("#agendaView").val(window.Pages['CalendarPage'].agendaView);

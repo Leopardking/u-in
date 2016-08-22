@@ -1,0 +1,77 @@
+= javascript_include_tag "sns"
+= javascript_include_tag "facebook_all"
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.step-header
+            %div.stp-hdr.shr-hder
+              %span
+                %label.stp-lbl
+                  Get Your peps In on this fun!
+
+%section.share-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.promtion-wrap
+          %div.prm-dp
+            - image_url = @promotion.main_image.present? ? @promotion.main_image.image.url : asset_path("question.svg")
+            = image_tag(image_url, alt: "promotion_image", width: "160",height: "160", id: "image_share")
+            %button.btn.ble-btn
+              = "#{@promotion.booking_detail.maximum_bookings - @promotion.bookings.size} Space left"
+          %div.prm-des
+            %h1.ofr-per
+              = "#{@promotion.discount_percent}% off"
+            %h3.prm-con#share_title
+              = @promotion.name
+            %p.prmcon-des#share_content
+              = short_promotion_description(@promotion)
+              = hidden_field_tag 'show_promotion_path', promotion_path(@promotion.id)
+            %div.duration.duration-small
+              %span.dur
+                Duration:
+              %label.dur-frm= "#{@promotion.start_date} -"
+              %label.dur-to= "#{@promotion.end_date}"
+            %div.duration.duration-big
+              %span.dur 
+                Duration:
+              %label.dur-frm= "#{@promotion.start_date} -"
+              %label.dur-to= "#{@promotion.end_date}"
+          %div.clearfix
+        %div.share-invite
+          %h2 Share this deal and invite your core partners.
+          %div.share-apps
+            %ul
+              %li
+                :javascript
+                  (function(d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1";
+                    fjs.parentNode.insertBefore(js, fjs);
+                  }(document, 'script', 'facebook-jssdk'));</script>
+                %a.fb-share-button{href: "javascript:void(0)"}
+                  = image_tag("facebook.svg", alt: "facebook")
+              %li
+                %a{href: "#",title: "twitter", :target => "popup",:onclick => "window.open('http://twitter.com/share?url=http://u-in.com#{promotion_path(@promotion.id)}&text=#{@promotion.name.gsub('%',"%25")}&','name','width=600,height=400')","data-count" => "none"}
+                  = image_tag("twitter.svg", alt: "twitter")
+              %li
+                %a{href: "#",title: "linked-in"}
+                  = image_tag("linked-in.svg", alt: "linked: in")
+              %li
+                %a{href: "#",title: "google+"}
+                  = image_tag("google.svg", alt: "google")
+              %li
+                %a{href: "#",title: "sms"}
+                  = image_tag("sms.svg", alt: "sms")
+              %li
+                %a{href: "#",title: "Email", :href => "mailto:?subject=#{t(".subject_email",promotion_name: @promotion.name)} &body=#{t(".body_email", promotion_id: @promotion.id)}"}
+                  = image_tag("email.svg", alt: "email")
+            %div.clearfix
+        %div.promotion-calendar
+          %div.prm-cal
+            = link_to calendars_path do
+              %button.btn View Promotion Calendar

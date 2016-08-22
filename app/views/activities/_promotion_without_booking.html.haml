@@ -1,0 +1,27 @@
+.table-responsive
+  %table.table-custom
+    %tr
+      %td.col-a.text-center
+        - if promotion.images.find_by_image_default(true).blank?
+          = image_tag("default_image.png", alt: "No Images", class: ".img-responsive img-thumbnail h_w_110", id: "image_promotion_large_default")
+        -else
+          = image_tag(promotion.images.find_by_image_default(true).image.url(:thumb), class: ".img-responsive img-thumbnail h_w_110")
+        %span.rank
+        = t(".current_rank", rank: promotion.current_rank.nil? ? promotion.current_rank : promotion.current_rank.ordinalize)
+      %td.col-b
+        .content
+          %table.no-border
+            %tr
+              %td
+                %h4
+                  =promotion.name
+          .row.no-padding
+            .col-md-12.desciption.white_space
+              =promotion.description
+          .space
+          .row.bottom
+            .col-sm-9.col-xs-9.duration
+              = t(".duration")
+              = "#{promotion.start_date.strftime('%m.%d.%Y')} - #{promotion.end_date.strftime('%m.%d.%Y')}"
+            .col-sm-3.col-xs-3.text-right.booked.temp_hide
+              = t(".x_of_y_booked", x: 7, y: 10)

@@ -1,0 +1,40 @@
+- promotion = promotion
+.table-responsive
+  %table.table.table-condensed
+    %thead
+      %tr
+        %th.text-center
+          %button.btn.btn-default.btn-sm{class: "pre_next pull-left", id: "pre_day" , type: "button", "data-promotion" => "#{promotion.id}"}
+            <
+          - day_now = to_day
+          %strong= day_now.strftime("%A %d.%B.%Y")
+          = hidden_field_tag 'day_now', day_now
+          = hidden_field_tag  'day_now_format', day_now.strftime("%B.%d")
+          %button.btn.btn-default.btn-sm{class: "pre_next pull-right",id: "next_day", type: "button", "data-promotion" => "#{promotion.id}"}
+            >
+    - if promotion.start_date <= day_now && promotion.end_date>=day_now
+      %tbody
+        - for i in 0...segment.size
+          - if  full_or_not(promotion.working_schedule_type, booked_day, promotion.booking_available,segment[i].id, day_now)
+            %tr.can_book
+              %td
+                .cover_b_r{"data-promotion" => "#{promotion.id}"}
+                  .row
+                    .col-md-9.col-xs-8.text-left
+                      = t(".select_to_book", start: segment[i].start_time.strftime("%I:%M %p"))
+                    .col-md-3.col-xs-4.text-right
+                      - percent_day = percent(promotion.working_schedule_type, promotion.id, promotion.booking_available, segment[i].id, day_now)
+                      - if percent_day >= 100 || segment[i].already_booked(current_user.id,promotion.id)
+                        %button.btn.btn-default{:style => "background-color: #EAECEB", id: "booked_on_day" , type: "button", :disabled => ""}= t("common.booked")
+                      - else
+                        %button.booking_day_view.btn.btn-default.btn-xs{:style => "background-color: #0B9BE1", id: "booking_on_day" , type: "button", "data-target" => "#book_in_view_day", "data-toggle" => "modal", "data-segment" => "#{segment[i].id}", "data-segtime"=> segment[i].start_time.strftime("%I:%M %p")}
+                          = t("common.book_now")
+                          %i.glyphicon.glyphicon-play
+          - else
+            %tr.booked
+              %td
+                .cover_b_r{"data-promotion" => "#{promotion.id}"}
+                  .row
+                    .col-md-9.col-xs-8.text-left
+                      = t(".sorry_to_book", start: segment[i].start_time.strftime("%I:%M %p"))
+                    .col-md-3.col-xs-4.text-right

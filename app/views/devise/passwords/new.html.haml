@@ -1,0 +1,24 @@
+.row#wraper_password_all_new
+  .col-md-3.margin-element-body
+  .col-md-5.container-form
+    .row
+      .col-md-12.header-box
+        %p.title-box
+          =raw t(".title_box_login")
+        .logo-uin
+          = image_tag "uINlogo_white.png", class: "image-logo-uni"
+      .col-md-12.content-form-input
+        .content-text
+          %p.text-email-immediate
+            %strong
+              = t(".reset_intstructions")
+          .row.import-information
+            = form_for(resource, :as => resource_name, :url => reset_password_path(resource_name), :html => { :method => :post, class: "form-login-regis" }) do |f|
+              .col-md-12.form-group.padding-element-nomal.form-input-email-address.input-placeholder
+                .input-group.email-field.input-info
+                  %span.icon-mail-user.input-group-addon
+                    = image_tag "mailIcon.png", class: "image-mailbox"
+                  = f.email_field :email, required: "true", value: params['email'], class: "form-control style-input-login input-info", placeholder: t("devise.passwords.new.email_address")
+              .col-md-12.button-reset-password
+                = f.submit t("devise.passwords.new.reset_password"), class: "btn btn-reset-pass button-login button-reset font-stype-input btn-color-highlight"
+  .col-md-3

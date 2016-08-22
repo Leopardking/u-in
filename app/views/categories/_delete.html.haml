@@ -1,0 +1,12 @@
+.modal.fade{:id => "del_category", "aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} &times;
+        %h4#myModalLabel.modal-title= t(".confirm_title")
+      .modal-body
+        .text-center
+          %p= t(".delete_msg", name: @category.name)
+        #btn_control.text-center
+          = link_to t(".delete_btn"), category_path(@category.id), method: :delete,  remote: true, class: "btn btn-danger"
+          %button.btn.btn-default{"data-dismiss" => "modal", "data-target" => "#confirm-delete" ,:type => "button"}= t(".btn_close")

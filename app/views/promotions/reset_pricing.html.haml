@@ -1,0 +1,8 @@
+= render "add_pricing_step", form_id: "edit_promotion_form"
+%script
+  $("#steps").removeClass("temp_hide")
+  / To change the  form action for std update action to custom action to bypass the opther step validations
+  $("#edit_promotion_form").attr("action", $("#edit_promotion_form").attr("action")+"/update_pricing")
+  / Disable the back button
+  $(".back_arrow").css({"cursor": "not-allowed"})
+  $(".back_arrow").removeClass("back_arrow")

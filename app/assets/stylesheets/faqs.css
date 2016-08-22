@@ -1,0 +1,46 @@
+/*faq styles*/
+.stp-head{
+	margin-left: 10%;
+	margin-top: 5%;
+}
+.inp-append{
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 25px;
+}
+.inp-append input{
+	width: 90%;
+	float: left;
+}
+.inp-append .btn{
+	height: 45px;
+	border-radius: 0;
+	border: 1px solid #cccccc;
+	outline: none!important;
+	width: 10%;
+}
+.bckgrnd{
+	background: #f0f0f0;
+}
+.faq-page{
+	background: #e5f1cc;
+	padding: 0 10px;
+}
+.faq-page1{
+	padding: 0 10px;
+}
+.faq-page label{
+	color: #3399cc;
+	font-size: 24px;
+	line-height: 60px;
+}
+.faq-page p,.faq-page1 p{
+	font-weight: 600;
+	margin-top: 10px;
+	font-size: 12px;
+}
+.faq-page1 label{
+	color: #99CC66;
+	font-size: 24px;
+	line-height: 35px;
+}

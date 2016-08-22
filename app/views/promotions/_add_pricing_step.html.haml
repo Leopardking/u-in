@@ -1,0 +1,141 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div.steps-promo
+            %div.step-desc
+              %p
+            %div.step-complete
+              %p
+                %span.step-inc{style: "color:rgba(153, 204, 102,1);"}
+                  = t("promotions.process_5")
+                %span
+                  = t("promotions.of")
+                %span.step-dec
+                  = t("promotions.process_6")
+            %div.clearfix
+          %div.step-header
+            %div.stp-hdr
+              %span
+                %label.stp-lbl{style: "color:rgba(153, 204, 102,1);"}
+                  =raw t(".title_step5")
+              = link_to "#", title: t(".text_image_question") do
+                = image_tag "question.svg", alt: t(".text_image_question"), class: "image-question-title-step"
+          %div.booking-wrapper
+            %div.promotion-wrap
+              %div.booking-img
+                - image_ids = params[:promotion].present? ? params[:promotion][:image_ids] : nil
+                - image_url = show_image_default_step5_step6(promotion, image_ids )
+                = image_tag(image_url, alt: "promotion_image")
+              %div.booking-description
+                %h2
+                  = promotion.name.titleize
+                %h3
+                  %span.discount_percent_first="#{promotion.discount_percent}"
+                  %span.discount_percent_last= "% OFF"
+                %h4#show_current_rank_init
+                  -if !promotion.current_rank.blank?
+                    Ranked
+                    %span.srt
+                      = (session[:current_rank].present? ? session[:current_rank] : promotion.current_rank)
+                    of
+                    %span.end
+                      = session[:total_rank].present? ? session[:total_rank] : ranking_data(promotion)[:total_ranks]
+                -# show current rank when the user get current rank
+                %h4#show_current_rank.hide
+                  Ranked
+                  %span.srt
+                    %div.show_current_rank_value
+                    of
+                    %span.end.show_total_ranks
+              %div.clearfix
+            %div.pridis-wrapper
+              %div.pridis-holder
+                %div.pridis
+                  =form_for promotion, as: :promotion, method: method, url: url, html: {class: "promotion-form form-horizontal pridis-form", id: form_id, role: "form"} do |f|
+                    - image_ids = (params[:promotion].present? && params[:promotion][:image_ids].present?) ? params[:promotion][:image_ids] : promotion.image_ids
+                    - image_ids.each_with_index do |img, index|
+                      = hidden_field_tag "promotion[image_ids][]", img, id: "h_image_#{index + 1}"
+                    = hidden_field_tag "promotion_params", promotion_params
+                    = hidden_field_tag "promotion_step", promotion_step
+                    = hidden_field_tag "back_button"
+                    = f.hidden_field :saving_price
+                    = f.hidden_field :cancel_status, value: promotion.new_record? ? true : promotion.cancel_status
+                    #category_current{ style:"display: 'none'", data: {category_ids: (promotion_params['category_ids'].present? ? promotion_params['category_ids'] : promotion.category_ids)} }
+                    %div.change-feilds
+                      %div.form-heading
+                        %h4
+                          %b
+                            = promotion.name
+                            = t(".pricing")
+                      %div.form-group
+                        %label.control-label{for: "price"}
+                          = t(".regular_price")
+                          %span.req *
+                        %div.form-feild.group-regular-price
+                          .input-group
+                            %span.input-group-addon
+                              = t("promotions.dollar")
+                            =f.text_field :price, :value => promotion.price ,class: "form-control"
+                      %div.form-group
+                        %label.control-label{for: "discount"}
+                          = t(".discount")
+                          %span.req *
+                        %div.form-feild.group-percent-discount
+                          .input-group
+                            %span.input-group-addon.icon-percentage-discount
+                              = t("promotions.percentage")
+                            =f.text_field :discount_percent, value: (promotion.discount_percent ? promotion.discount_percent : 50), class: "form-control"
+                      %div.form-group
+                        %label.control-label{for: "discount_price"}
+                          = t(".discount_price")
+                          %span.req *
+                        %div.form-feild.group-discount-price
+                          .input-group
+                            %span.input-group-addon
+                              = t("promotions.dollar")
+                            =f.text_field :discount_price, value: promotion.discount_price, class: "form-control"
+                      %div.form-group
+                        %label.control-label{for: "current_rank"}
+                          = t(".current_rank")
+                        %div.form-feild.input-group
+                          %span.input-group-addon
+                            = t("promotions.dollar")
+                          =f.text_field :current_rank, value: promotion.current_rank, readonly: true,class: "form-control"
+                        %a.control-label.form-feild.get_current_rank{"data-toggle"=>"tooltip", :title =>"Show the rank"}= t('.refresh_rating')
+                      %div{style: 'margin-top:30px;'}
+                        %div.form-group
+                          %label.control-label{for: "cancellation-fee"}
+                            = t(".cancel_fee")
+                          %div.form-feild.input-group
+                            %span.input-group-addon
+                              = t("promotions.dollar")
+                            =f.text_field :cancellation_fee, value: promotion.cancellation_fee, class: "form-control"
+                        %div.form-group
+                          %label.control-label{for: "can-time"}
+                            = t('.minimum_cancellation')
+                          %div.form-feild
+                            %span.select-wrapper
+                              = f.select(:cancellation_minimum, options_for_select([["24 hour", 24],["48 hour", 48],["36 hour", 36],["1 week", 168]], selected: promotion.cancellation_minimum), {include_blank: false}, {class: "custom-select"} )
+                          #cancel_error
+
+                    %div.changeValue-slider
+                      %input#priceDiscount{type: "text", "data-slider-min" => "0", "data-slider-max" => "20", "data-slider-step" => "1", "data-slider-value" => "0", "data-slider-orientation" => "vertical", "data-slider-tooltip" => "hide", "data-slider-natural-arrow-keys" => "true"}
+                    %div.clearfix
+                    %br
+                    %br
+          .next-step.row
+            - if form_id == "edit_promotion_form"
+              = render partial: "button_for_edit_steps", :locals => { :promotion => @promotion }
+            - else
+              .col-lg-6.col-md-6.col-xs-6.btn-back
+                .btn.back_arrow
+                  %span
+                    = t("promotions.back_step")
+              .col-lg-6.col-md-6.col-xs-6.btn-continue
+                %button.btn{onClick: "$('.promotion-form').submit()"}
+                  %span
+                    = t("promotions.continue_step")
+
+

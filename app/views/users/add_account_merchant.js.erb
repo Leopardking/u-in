@@ -1,0 +1,6 @@
+$('#add_account').modal('hide');
+$('#add_account').remove();
+$(".modal-backdrop").remove();
+$('#modal_here').html('<%= j render "users/add_account_merchant" %>');
+$('#new_merchant_profile_modal').modal('show');
+add_validation_user();

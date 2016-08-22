@@ -1,0 +1,172 @@
+.promtion-wrap .prm-dp>.blue-btn{
+  text-transform: none;
+  font-weight: 100;
+}
+.promtion-wrap.inactive-prom{
+  background-color:#f0f0f0;
+}
+.inactive-prom .prm-des{
+  border: none;
+  text-align: left;
+}
+.inactive-prom .prm-des .btn-active{
+  position: relative;
+  top: 3px;
+}
+.inactive-prom .prm-des h1{
+  font-size: 30px;
+}
+.prom-color{
+  background-color: rgba(153, 204, 102, 0.3);
+}
+.share-invite .promotion-apps{
+  padding: 40px 0;
+}
+.hline hr{
+  margin-top: 0;
+  border-top: 3px solid #3399cc;
+}
+.bookings label{
+  color: #3399cc;
+  font-size: 18px;
+  margin-top: 33px;
+}
+.prm-des .btn{
+  padding: 2px 8px;
+}
+.step-header{
+  padding-bottom: 8px;
+  margin-top: 10px;
+  text-align: center;
+}
+.button-create-new-promotion, .inacitve-promotion{
+  text-align: right;
+}
+.button-create-new-promotion a, .inacitve-promotion a{
+  font-size: 18px;
+  font-weight: bold;
+}
+.prm-mi img{
+  width: 100%;
+}
+.prm-des{
+  padding-top: 4px;
+  padding-left: 6px;
+}
+.prm-text{
+  border-style: inset;
+  border-color: #CCC;
+  border-width: 1px;
+  border-right-width: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding:10px;
+  color:#fff;
+}
+.prm-des{
+  border: 2px solid #CCCCCC;
+  border-top-width: 0px;
+}
+#inactive-prom{
+  border: 0px;
+  text-align: left;
+}
+#inactive-prom .active-btn{
+  position: relative;
+  top: 3px;
+}
+.prm-table{
+  border: 2px solid #CCCCCC;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  margin-bottom: 0px;
+  border-collapse: inherit;
+  border-spacing: 2px;
+  text-align: center;
+}
+.prm-table > tbody > tr > td{
+  font-size: 28px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.prm-table > thead > tr > th{
+  vertical-align: middle;
+}
+.prm-table th{
+  text-align: center;
+  vertical-align: middle;
+}
+.prm-table p{
+  font-size: 13px;
+  color: #666666;
+}
+th, td{
+   border: 2px solid #CCCCCC;
+   border-bottom: 0px;
+}
+.tb-head-first{
+  border-left: 0;
+}
+span.glyphicon{
+  color: #60AFE0;
+  font-size: 20px;
+}
+.tb-head-last{
+  border-right: 0;
+  position: relative;
+}
+
+.tb-last{
+  border-right: 0;
+  color: green;
+}
+.prm-name{
+  text-align: center;
+  background-color: #666666;
+  position: relative;
+}
+.prm-name h1{
+  font-weight: bold;
+}
+.panel-heading{
+  background-color: #666666;
+  color:#fff;
+}
+.panel-heading a{
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 10px;
+}
+
+.panel-heading .accordion-toggle:after {
+    /* symbol for "opening" panels glyphicon glyphicon-plus-sign*/
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e082";    /* adjust as needed, taken from bootstrap.css */
+    float: left;        /* adjust as needed */
+    color: #95a9a6;         /* adjust as needed */
+
+}
+.panel-heading .accordion-toggle.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e081";    /* adjust as needed, taken from bootstrap.css */
+}
+@media(max-width: 610px){
+  .promtion-wrap .prm-dp>.blue-btn{
+    font-size: 14px;
+  }
+}
+@media(max-width: 523px){
+  .promtion-wrap .prm-des{
+    width: 100%;
+    float: none;
+  }
+  .promtion-wrap .prm-dp{
+    width: 100%;
+    float: none;
+  }
+}
+@media(max-width: 580px){
+  .share-invite .share-apps ul{
+    padding: 0;
+  }
+}

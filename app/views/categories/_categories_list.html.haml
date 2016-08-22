@@ -1,0 +1,10 @@
+- categories_list = Category.all.order("name ASC")
+- categories_list.find_in_batches(batch_size: ((categories_list.size.to_f)/2).ceil) do |categories|
+  %div.catr-col.col-xs-6
+    -categories.each do |category|
+      %p.catr-row
+        %input.catr-chbox{type: "checkbox", value: "", name: "check"  }
+        = check_box_tag "promotion[category_ids][]", category.id, @promotion.category_ids.include?(category.id)
+        %label.catr-lbl
+          %span
+          = category.name

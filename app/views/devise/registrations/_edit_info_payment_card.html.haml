@@ -1,0 +1,30 @@
+%div.form-group
+  %label.col-sm-5.control-label.label-payment.color-text-label-edit
+    =raw t(".payment_information")
+  - unless @billing_card.new_record?
+    .col-sm-2.col-xs-5.image-payment
+      - if @billing_card.card_type == "mastercard"
+        = image_tag "master_card.jpg", class: "image-master-card"
+      - elsif @billing_card.card_type == "visacard"
+        = image_tag "visa_card.jpg", class: "image-visa-card"
+      - elsif @billing_card.card_type =="AMExcards"
+        = image_tag "amex_card.png", class: "image-amex-card"
+    - if @billing_card.ccard_last4.present?
+      .col-sm-4.col-xs-6.input-payment-number
+        = text_field_tag "number_card_show", "**** **** **** #{@billing_card.ccard_last4.last(4)}", class: "form-control", disabled: "true"
+    - else
+      .col-sm-4.col-xs-6.input-payment-number
+        = text_field_tag "number_card_show", "**** **** **** ****", class: "form-control", disabled: "true"
+    .col-sm-1.button-edit-payment
+      %a{href:"#"}
+        %span.glyphicon.glyphicon-plus
+        %span.text-button-edit-payment
+          = t(".edit")
+  - else
+    .col-xs-7.col-sm-4.input-payment-number
+      = text_field_tag "number_card_show", "**** **** **** ****", class: "form-control", disabled: "true"
+    .col-xs-4.col-sm-2.button-edit-payment
+      %a{href:"#"}
+        %span.glyphicon.glyphicon-plus
+        %span.text-button-edit-payment
+          = t(".create_new")

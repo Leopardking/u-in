@@ -1,0 +1,15 @@
+- @phone = Phoner::Phone.parse(@merchant_data.phone_number).format(:us)
+%p
+  = I18n.t("user_mailer.send_email_to_merchant_books.email_header")
+  %br
+  %br
+  = "#{@data[:first_name]} #{@data[:last_name]}"
+  %br
+%p
+  = I18n.t("user_mailer.send_email_to_merchant_books.name_booked_promotion",promotion_name: "#{@data.promotion.name}")
+  %br
+  = I18n.t("user_mailer.send_email_to_merchant_books.for_date",date: "#{Time.zone.at(@booking[:book_date].to_time).strftime("%I:%M%P")}")
+  %br
+  = I18n.t("user_mailer.send_email_to_merchant_books.for_date",date: "#{@data.book_date}")
+  %br
+  = I18n.t("user_mailer.send_email_to_merchant_books.infor_acontact", phone: "#{@phone}", email: "#{@merchant_data.email}")

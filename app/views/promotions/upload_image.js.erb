@@ -1,0 +1,25 @@
+$("#image-upload-msg").addClass("temp_hide")
+$('#upload_image').modal('hide');
+
+$('img[data-image="'+ $("#hidden_value_image input").val() +'"]').attr('src', "<%= @image.image.url(:medium)%>" );
+var image_select = $("#hidden_value_image input").val()
+// if a promotion has default image
+<% if @image.image_default %>
+  $('[data-default][data-image]').attr("data-default", "false");
+  $('#image_promotion_large_default').attr('src',"<%= @image.image.url(:medium) %>");
+<% end %>
+for (index_image =1; index_image<4; index_image++)
+{
+  if (('image-'+index_image) == image_select) {
+    $('#h_image_'+index_image).val("<%= @image.id %>");
+    $('#image_'+index_image).attr("data-desc", "<%= @image.description_image %>")
+    $('#image_'+index_image).attr("data-default", "<%= @image.image_default %>")
+    $('#image_'+index_image+'_medium').val("<%= @image.image.url(:medium)%>");
+    $(".image-"+ index_image +"-href").attr("href", "/promotions/add_image?activity=add-image&image_name=image-"+index_image+"&img_id="+"<%= @image.id %>");
+    $('#image_'+index_image).html("Change");
+  }else{
+    $('#image_'+index_image).attr("data-default", false)
+  }
+}
+$('#image_ids').val(","+"<%= @image.id %>");
+$("#upload_image, .modal-backdrop").remove();

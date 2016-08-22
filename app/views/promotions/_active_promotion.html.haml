@@ -1,0 +1,177 @@
+%section.body-holder
+  %div.container
+    %div.row
+      %div.col-xs-12
+        %div.body-content
+          %div
+            %div.step-header
+              %div.stp-hdr.shr-hder.list-promo
+                %span= params[:id] ? t('promotions.index.review_promotion') : t('promotions.index.currently_running_promotions')
+%section.share-holder
+  %div.container
+    %div.promotion-group
+      %div.row
+        %div.col-xs-12
+          %div.prm-name
+            %h1.prm-text= promotion.name
+            - if current_user && promotion.user == current_user && params[:updated]
+              = link_to edit_promotion_path(promotion.promotion.id) do
+                = image_tag "EditIcon.png", class: "edit-promotion-description"
+            - else
+              = link_to edit_promotion_path(promotion.id) do
+                = image_tag "EditIcon.png", class: "edit-promotion-description"
+            %div#promotion_share_id.hide= promotion.id
+          %div.prm-des
+            %p.prmcon-des= short_promotion_description(promotion)
+      %div.row
+        %div.col-xs-12
+          %div.prm-mi
+            = render 'images_promotion', promotion: promotion
+          %div.table-responsive
+            %table.table.prm-table
+              %thead
+                %tr
+                  %th.tb-head-first
+                    %div
+                      %span=t('.ratings')
+                      %span.glyphicon.glyphicon-star
+                      %span.glyphicon.glyphicon-star
+                      %span.glyphicon.glyphicon-star
+                      %span.glyphicon.glyphicon-star-empty
+                      %span.glyphicon.glyphicon-star-empty
+                  %th=t('.reviews')
+                  %th=t('.spaces')
+                  %th=t('.discount')
+                  %th.tb-head-last
+                    %div
+                      =t('.price_from')
+                      - if current_user && promotion.user == current_user && params[:updated]
+                        = link_to edit_promotion_path(promotion.promotion.id,promotion_step: promotion.steps[4]) do
+                          = image_tag "edit_icon_price.png", class: "edit-promotion-price"
+                      - else
+                        = link_to edit_promotion_path(promotion.id,promotion_step: promotion.steps[4]) do
+                          = image_tag "edit_icon_price.png", class: "edit-promotion-price"
+              %tbody
+                %tr
+                  %td.tb-head-first 3.0
+                  %td 300
+                  %td
+                    %div
+                      = promotion.end_date ? PromotionService.new.show_space(promotion, promotion.start_date, promotion.end_date, promotion.id, current_user ? current_user.id : nil) : t('.25')
+                  %td
+                    %div
+                      - unless current_user && promotion.user == current_user && params[:updated]
+                        = promotion.end_date ? t('.discount_percent',:value=>PromotionService.new.show_discount_percent(promotion, promotion.start_date, promotion.end_date, promotion.id, current_user ? current_user.id : nil)) : t('.discount_percent',:value=>promotion.discount_percent)
+                      - else
+                        = t('.discount_percent',:value=>promotion.discount_percent)
+                  %td.tb-last
+                    %div
+                      - unless current_user && promotion.user == current_user && params[:updated]
+                        = promotion.end_date ? t('.discount_from',:value=>PromotionService.new.show_discount_price(promotion, promotion.start_date, promotion.end_date, promotion.id, current_user ? current_user.id : nil)): t('.discount_from',:value=>promotion.discount_price.round(2))
+                      - else
+                        = t('.discount_from',:value=>promotion.discount_price.round(2))
+                      %br
+                      %p
+                        - unless current_user && promotion.user == current_user && params[:updated]
+                          - if promotion.end_date
+                            - if !PromotionService.new.show_saving_price(promotion, promotion.start_date, promotion.end_date, promotion.id, current_user ? current_user.id : nil)
+                              =nil
+                            - else
+                              =t('.discount_save',:value=>PromotionService.new.show_saving_price(promotion, promotion.start_date, promotion.end_date,promotion.id, current_user ? current_user.id : nil))
+                          - else
+                            =t('.discount_save',:value=>promotion.saving_price)
+                        - else
+                          =t('.discount_save',:value=>promotion.saving_price)
+          %div
+            - if promotion.bring_item?
+              %div.panel-heading.promotion-common-class
+                %h2.panel-title
+                  %a{"class"=>"accordion-toggle","data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-bring"}=t('.what_to_bring')
+                - if current_user && promotion.user == current_user && params[:updated]
+                  = link_to edit_promotion_path(promotion.promotion.id) do
+                    = image_tag "EditIcon.png", class: "edit-promotion-step"
+                - else
+                  = link_to edit_promotion_path(promotion.id) do
+                    = image_tag "EditIcon.png", class: "edit-promotion-step"
+              %div#collapse-bring.panel-collaps.collapse.in
+                %div.panel-body=promotion.bring_item
+          %div
+            - if promotion.expect?
+              %div.panel-heading.promotion-common-class
+                %h2.panel-title
+                  %a{"class"=>"accordion-toggle","data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-expect"}=t(".what_to_expect")
+                - if current_user && promotion.user == current_user && params[:updated]
+                  = link_to edit_promotion_path(promotion.promotion.id) do
+                    = image_tag "EditIcon.png", class: "edit-promotion-step"
+                - else
+                  = link_to edit_promotion_path(promotion.id) do
+                    = image_tag "EditIcon.png", class: "edit-promotion-step"
+              %div#collapse-expect.panel-collaps.collapse.in
+                %div.panel-body=promotion.expect
+          %div
+            %div.panel-heading.promotion-common-class
+              %h2.panel-title
+                %a{"class"=>"accordion-toggle","data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-location"}= t('.location')
+              - if current_user && promotion.user == current_user && params[:updated]
+                = link_to edit_promotion_path(id: promotion.promotion.id, promotion_step: promotion.steps[1]) do
+                  = image_tag "EditIcon.png", class: "edit-promotion-step"
+              - else
+                = link_to edit_promotion_path(id: promotion.id, promotion_step: promotion.steps[1]) do
+                  = image_tag "EditIcon.png", class: "edit-promotion-step"
+            %div#collapse-location.panel-collaps.collapse.in
+              %div.panel-body
+                %div.location-map.col-xs-12
+                  - address_promotion = LINK_GOOGLE_MAP + promotion.street_address_1 + promotion.city + "&key=" + ENV['GOOGLEMAPKEY']
+                  %iframe.mapStyles{src: "#{address_promotion}", width: "100%", height: "300px",frameborder: "0"}
+          %div
+            %div.panel-heading
+              %h2.panel-title
+                %a{"class"=>"accordion-toggle","data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-share"} Share & Book Together
+            %div#collapse-share.panel-collaps.collapse.in
+              %div.panel-body
+                .col-md-offset-3.col-md-6#social-media-shares
+                  .row
+                    .col-lg-3.col-xs-3.show-connect-twitter
+                      .change-when-hover
+                        = link_to "#",{href:"javascript:void(0)",class: "twitter-share-button share s_twitter", target: "_blank"} do
+                          = image_tag "twitterIcon_red.png", class: "size-image-social image-social-twitter hide-on-hover"
+                    .col-lg-3.col-xs-3.show-connect-facebook
+                      .change-when-hover
+                        = link_to "#",{href:"javascript:void(0)",class: "fb-share-button share s_facebook", target: "_blank"} do
+                          = image_tag "facebookIcon_red.png", class: "size-image-social image-social-facebook hide-on-hover"
+                    .col-lg-3.col-xs-3.show-connect-google
+                      .change-when-hover
+                        = link_to "#",{href:"javascript:void(0)",class: "google-share-button share s_plus", target: "_blank"} do
+                          = image_tag "googleIcon_red.png", class: "size-image-social image-social-google hide-on-hover"
+                    .col-lg-3.col-xs-3.show-connect-linkedin
+                      .change-when-hover
+                        = link_to "#",{href:"javascript:void(0)",class: "linkedin-share-button share s_linkedin", target: "_blank"} do
+                          = image_tag "inIcon_red.png", class: "size-image-social image-social-linkedin hide-on-hover"
+          %div
+            %div.panel-heading.promotion-common-class
+              %h2.panel-title
+                %a{"class"=>"accordion-toggle","data-parent" => "#accordion", "data-toggle" => "collapse", :href => "#collapse-calendar"} Calendar
+              - if current_user && promotion.user == current_user && params[:updated]
+                = link_to edit_promotion_path(id: promotion.promotion.id, promotion_step: :basic_information,promotion_step: promotion.steps.last) do
+                  = image_tag "EditIcon.png", class: "edit-promotion-step"
+              - else
+                = link_to edit_promotion_path(id: promotion.id, promotion_step: :basic_information,promotion_step: promotion.steps.last) do
+                  = image_tag "EditIcon.png", class: "edit-promotion-step"
+            %div#collapse-calendar.panel-collaps.collapse.in.icon-pencil
+              %div.panel-body
+                .row
+                  .col-sm-12.text-right
+                    %span
+                      =t(".publish_calendar")
+                    = link_to auth_redirect_path(current_user, promotion_id: @promotion.id) do
+                      = image_tag "calendar_icon.png", class: "calendar-icon-promotion"
+              %div#calendar_at_promotion
+:javascript
+  window.Pages['CalendarPage'].agendaView = "#{@agendaView}";
+  window.Pages['CalendarPage'].defaultDate = "#{@default_date}";
+  window.Pages['CalendarPage'].promotionId = "#{promotion.id}";
+  window.Pages['CalendarPage'].id = "#{params[:id]}";
+  window.Pages['SocialShare'].name = "#{promotion.name}";
+  window.Pages['SocialShare'].description = "#{promotion.description}";
+  window.Pages['CalendarPage'].init();
+  window.Pages['SocialShare'].init();

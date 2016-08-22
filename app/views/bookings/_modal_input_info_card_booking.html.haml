@@ -1,0 +1,99 @@
+%div.modal.fade#InputInFoCardBooking{role: 'dialog'}
+  %div.modal-dialog
+    %div.modal-content
+      %div.modal-body
+        %section.body-holder#form-iput-paymet-card
+          %div.container-modal.position-element-left
+            %div.row
+              %div.col-xs-12
+                %div.body-content
+                  %div.booking-wrapper{style: 'padding:20px'}
+                    %div.location-form.payment-account-form
+                      =form_for @billing_card, url: payment_booking_merchant_bookings_path, method: "post",  html: { class: "billing-detail-form"}, :remote => true do |f|
+                        = hidden_field_tag :stripe_token
+                        = hidden_field_tag :numbers_booked
+                        = hidden_field_tag :promotion_pay_id
+                        .form-group.font-style
+                          = f.check_box :same_as_company_address
+                          = label_tag t(".check_same_as_address"), nil, class: "font-style"
+                        .form-group{style: "width:46%;float:left;margin-right:3%"}
+                          %label{for: "firstname"}
+                            =raw t(".first_name_label")
+                          = f.text_field :first_name, class: "form-control"
+                        .form-group{style: "width:46%;float:right;margin-left:3%"}
+                          %label{for: "lastname"}
+                            =raw t(".last_name_label")
+                          = f.text_field :last_name, class: "form-control"
+                        .clearfix
+                        .form-group
+                          %label{for: "strad"}
+                            =raw t(".street_address_label")
+                          = f.text_field :street_address, class: "form-control may_disable"
+                        .clearfix
+                        .form-group
+                          %label{for: "strad2"}
+                            =raw t(".street_address2_label")
+                          = f.text_field :street_address_2, class: "form-control may_disable"
+                        .clearfix
+                        .form-group{style: "width:56%;float:left;margin-right:3%"}
+                          %label{for: "city"}
+                            = raw t(".city_label")
+                          = f.text_field :city, class: "form-control may_disable"
+                        .form-group{style: "width:36%;float:right;margin-left:3%"}
+                          %label{for: "state"}
+                            =raw t(".state_label")
+                          = f.text_field :state, class: "form-control may_disable"
+                        .clearfix
+                        .form-group{style: "width:46%;float:left;margin-right:3%"}
+                          %label{for: "zipcode"}
+                            =raw t(".zipcode_label")
+                          = f.text_field :zipcode, class: "form-control may_disable"
+                        .form-group{style: "width:46%;float:right;margin-left:3%"}
+                          %label{for: "phone"}
+                            =raw t(".phone_number_label")
+                          = f.text_field :phone, class: "form-control may_disable"
+                        .clearfix
+                        .form-group
+                          %label{for: "email"}
+                            =raw t(".email_label")
+                          = f.text_field :email, class: "form-control"
+                        #change-type-card
+                          = f.radio_button :card_type, "visacard"
+                          %span
+                            = image_tag "visa_card.jpg", class: "size-image-type-normal image-visa-card"
+                          = f.radio_button :card_type, "mastercard"
+                          %span
+                            = image_tag "master_card.jpg", class: "size-image-type-normal image-master-card"
+                          = f.radio_button :card_type, "AMExcards"
+                          %span
+                            = image_tag "amex_card.png", class: "size-image-type-lager image-amex-card"
+                        #input-information-card
+                          .group-input-name-card.padding-bottom-element-field
+                            %label{for: "namecard"}
+                              =raw t("information_cards.name_on_card")
+                            = f.text_field :name_card
+                          .group-input-card_number.padding-bottom-element-field
+                            %label{for: "cardnumber"}
+                              =raw t("information_cards.card_number")
+                            = f.text_field :ccard_last4
+                          .group-input-expiration-date.padding-bottom-element-field
+                            %label{for: "expirationdate"}
+                              =raw t("information_cards.expiration_date")
+                            = f.select :exp_month, options_for_select(MONTHLY, selected: billing_card.exp_month), {include_blank: true}
+                            = f.select :exp_year, options_for_select(YEAR, selected: billing_card.exp_year), {include_blank: true}
+                          .group-input-security-code.padding-bottom-element-field
+                            %label{for: "securitycode"}
+                              =raw t("information_cards.security_code")
+                            = f.text_field :security_code
+                            = link_to t("information_cards.help")
+                      .noti-stripe-errors
+                        %p.stripe-errors.display-none-element
+                      .row.button-function-finish-edit
+                        .col-lg-6.col-md-6.col-xs-6.button-submit-form
+                          %button.btn.submit-form-info-payment
+                            %span
+                              = t(".btn_ok")
+                        .col-lg-6.col-md-6.col-xs-6.button-cancel-submit
+                          %button.btn#button-cancel-edit-payment
+                            %span
+                              = t(".btn_cancel")

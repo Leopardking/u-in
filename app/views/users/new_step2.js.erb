@@ -1,0 +1,6 @@
+$(".modal").modal('hide');
+$("#add_account").remove();
+$(".modal-backdrop").remove();
+add_validation_user();
+$("#error_crud_here").html('<%=j render "users/notice_errors" %>');
+<%= flash[:notice] = nil %>

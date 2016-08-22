@@ -1,0 +1,7 @@
+en:
+  other_blackout:
+    errors:
+      messages:
+        in_the_past: Blackout must be in the future
+        form_greater_than_to: must be before Blackout to
+        has_booking: You cannot blackout a period having any bookings
