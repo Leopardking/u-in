@@ -1,17 +1,8 @@
-.col-md-10.col-md-offset-1
-  #promotion_booking.well.form-border.form-custom
-    #search_box.temp_hide
-      .col-md-8.col-sm-8.col-xs-10.col-md-offset-2.col-sm-offset-2.col-xs-offset-1.text-center
-        .row
-          = form_tag({:action => 'index'}, {:method => 'get', :role => "form", :id => 'search_form', :class => "form form-inline form-horizontal", :remote=> true}) do
-            .row.text-center
-              .form-group
-                .control-label
-                  %label{:for => "search_zip_city"}=t(".search_box")
-                  %input.form-control{ type: :input, name: "search_zip_city", id: "search_zip_city"}
-                  %input.btn.btn-default{ :id => "search_submit", type: "submit",  :name => nil, value: t(".search"), :remote => true}
-    .clearfix
-    .table-responsive#table_pro_for_book
-      = render 'promotion_booking', :promotions => @promotions
-    .row.text-center#paganite_promotion_for_book
-      = paginate @promotions, :remote => true
+%div{"ng-controller" => "PriceController"}
+  %form{:name => "myForm"}
+    %label{:for => "repeatSelect"} Repeat select:
+    %select#repeatSelect{:name => "repeatSelect", "ng-model" => "data.model"}
+      %option{"ng-repeat" => "option in data.availableOptions", :value => "{{option.id}}"} {{option.name}}
+  %hr/
+  %tt model = {{data.model}}
+  %br/
