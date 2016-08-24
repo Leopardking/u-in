@@ -114,3 +114,12 @@ gem 'phone', '~> 1.2', '>= 1.2.3'
 
 # Google AIP calendar
 gem 'google-api-client', '~> 0.9', require: 'google/apis/calendar_v3'
+
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-angular'
+  gem 'rails-assets-restangular'
+  gem 'rails-assets-angular-ui-router'
+end
+
+gem 'angular-rails-templates'

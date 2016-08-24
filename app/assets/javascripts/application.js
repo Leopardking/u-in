@@ -40,6 +40,15 @@
 //= require contact_us.js
 //= require global
 //= require responsiveslides
+//= require angular
+//= require restangular
+//= require angular-ui-router
+//= require angular-rails-templates
+//= require angular/main
+//= require_tree ./angular
+//= require_tree ../templates
+//= require_tree ./templates
+
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
