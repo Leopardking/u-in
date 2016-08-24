@@ -29,7 +29,7 @@ class Promotion < ActiveRecord::Base
       promotions = promotions.where("city LIKE ?", "%#{params[:city]}%") if params[:city]
       promotions = promotions.where(state: params[:state]) if params[:state]
       promotions = promotions.where(zipcode: params[:zipcode]) if params[:zipcode]
-      # params[:category_ids] e.g -> ["20", "30"]
+      # params[:category_ids] e.g -> "202, 203"
       promotions = promotions.joins(:categories).where(categories: {id: params[:category_ids].split(",")}).uniq if params[:category_ids].present?
       
       promotions
