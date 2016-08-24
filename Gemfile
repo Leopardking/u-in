@@ -40,6 +40,7 @@ gem 'devise', '3.0.4'
 gem 'wicked', '~>1.2.1'
 
 gem 'ice_cube', '~>0.13.2'
+gem 'countries', :require => 'countries/global'
 
 group :development, :test, :staging do
   gem 'quiet_assets', '~>1.0.2'

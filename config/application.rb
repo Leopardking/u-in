@@ -23,6 +23,9 @@ module BookingApp
     I18n.enforce_available_locales = false
     config.assets.precompile += %w( promotions_layout.css promotions_layout.js scheduling_promotion.js )
     config.assets.precompile += %w( *.png *.jpeg *.jpg *.gif )
+    # config.autoload_paths += Dir["#{config.root}/lib/**/*"]
+    # config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[File.join(Rails.root, "lib", "ext", "*.rb")].each {|l| require l }
     # add app/assets/fonts to the asset path
     # config.assets.enabled = true
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")

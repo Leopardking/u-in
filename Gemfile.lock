@@ -80,6 +80,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    countries (1.2.5)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    currencies (0.4.2)
     daemons (1.1.9)
     debug_inspector (0.0.2)
     delayed_job (4.0.1)
@@ -145,6 +149,7 @@ GEM
     i18n (0.6.9)
     i18n-js (2.1.2)
       i18n
+    i18n_data (0.7.0)
     ice_cube (0.13.2)
     instagram (1.1.6)
       faraday (>= 0.7, < 0.10)
@@ -392,6 +397,7 @@ DEPENDENCIES
   capistrano (~> 2.15.5)
   capistrano-rvm (~> 0.0.3)
   coffee-rails (~> 4.0.0)
+  countries
   daemons (~> 1.1.9)
   delayed_job_active_record (~> 4.0.1)
   devise (= 3.0.4)
