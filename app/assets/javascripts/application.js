@@ -97,6 +97,13 @@ jQuery(function ($) {
     })
 });
 
+
+$( document ).ready(function() {
+  $(".dropdown-menu").click(function(event){
+    event.stopPropagation()
+  })
+});
+
 $(function() {
   $('.wrapper-choose-distance').change(function() {
     var elem = document.querySelector('input[type="range"]');
