@@ -1,0 +1,70 @@
+.wrapper-navigation {
+
+  // .navbar {
+  //   min-height: 81px;
+  // }
+
+  // @media (max-width: 768px) {
+  //   .navbar {
+  //     min-height: 50px;
+  //   }
+  // }
+
+  @media (max-width: 768px) {
+    .navbar-header {
+      float: left;
+    }
+  }
+
+  .navbar-brand {
+    padding: 16px 15px;
+
+    img {
+      width: 80px;
+    }
+  }
+
+  .navbar-default {
+    background: rgba(0,0,0,0.50);
+    @include border-radius(0px);
+    border-color: transparent;
+
+    .navbar-nav > li > a {
+      color: $white;
+
+      @media (min-width: 768px) {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+    }
+  }
+
+  .navbar-right {
+
+    @media (max-width: 768px) {
+      float: right;
+    }
+  }
+
+  .navbar-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .login {
+    padding-top: 23px !important;
+    text-transform: uppercase;
+  }
+
+  span.dollar-text {
+    position: relative;
+    top: -11px;
+  }
+
+    span.share-text {
+    position: relative;
+    top: -12px;
+  }
+}

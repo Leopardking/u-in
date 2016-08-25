@@ -1,5 +1,277 @@
+-#.container
+-#  %h1 The Activities View!
+-#  %ul
+-#    %li{"ng-repeat" => "activity in activities"} 
+-#      {{activity.name}}
+
+-# .col-md-10.col-md-offset-1
+-#   #promotion_booking.well.form-border.form-custom
+-#     #search_box.temp_hide
+-#       .col-md-8.col-sm-8.col-xs-10.col-md-offset-2.col-sm-offset-2.col-xs-offset-1.text-center
+-#         .row
+-#           = form_tag({:action => 'index'}, {:method => 'get', :role => "form", :id => 'search_form', :class => "form form-inline form-horizontal", :remote=> true}) do
+-#             .row.text-center
+-#               .form-group
+-#                 .control-label
+-#                   %label{:for => "search_zip_city"}=t(".search_box")
+-#                   %input.form-control{ type: :input, name: "search_zip_city", id: "search_zip_city"}
+-#                   %input.btn.btn-default{ :id => "search_submit", type: "submit",  :name => nil, value: t(".search"), :remote => true}
+-#     .clearfix
+-#     .table-responsive#table_pro_for_book
+-#       = render 'promotion_booking', :promotions => @promotions
+-#     .row.text-center#paganite_promotion_for_book
+-#       = paginate @promotions, :remote => true
+
 .container
-  %h1 The Activities View!
-  %ul
-    %li{"ng-repeat" => "activity in activities"} 
-      {{activity.name}}
+  .row
+    .col-md-12.col-lg-12
+      .wrapper-select-activity
+        .left
+          .column-1
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Genre
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+
+          .column-2
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Price Range
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+
+        .right
+          .column-1
+            %input.form-control{:placeholder => "City", :type => "text"}
+          .column-2
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Co
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+          .column-3
+            %input.form-control{:placeholder => "Zip Code", :type => "text"}
+
+    .col-md-12.col-lg-12
+      .wrapper-choose-distance
+        .text-distance
+          Choose Your Distance
+        .sliding
+          .circle-slide
+        .text-range
+          102 mi
+
+    .col-md-12.col-lg-12
+      .wrapper-table-activity
+        .head-activity
+          .left
+            .column
+              .my-location
+                %h4 My Location
+            .column
+              .share
+                %h4
+                  Share
+                  %br
+                  Activities
+            .column
+              .bookmark
+                %h4
+                  Bookmark
+                  %br
+                  Activities
+            .column
+              .most-popular
+                %h4 Most Popular
+          .right
+            .column
+              .off
+                %h4 % Off
+            .column
+              .prices
+                %h4
+                  Prices
+                  %br
+                  From
+            .column
+              .spaces
+                %h4 Spaces
+
+        .body-activity
+          .left
+            .left-picture
+              =image_tag ('img-default.jpg'), width:"100%"
+              .radio
+                .wrapper-checkbox
+                  .checkbox-custom
+                    %span
+                      %input#check1{:name => "check", :type => "radio", :value => "check1"}
+                      %label{:for => "check1"}
+
+            .right-content-picture
+              %p Steambot ATV Half Day
+          .right
+            .count.blue-box
+              %p 65%
+            .count.black-box
+              %p $15
+            .count.green-box
+              %p 9
+
+        .body-activity
+          .left
+            .left-picture
+              =image_tag ('img-default_2.jpg'), width:"100%"
+              .radio
+                .wrapper-checkbox
+                  .checkbox-custom
+                    %span
+                      %input#check2{:name => "check", :type => "radio", :value => "check2"}
+                      %label{:for => "check2"}
+            .right-content-picture
+              %p Steambot ATV Half Day
+          .right
+            .count.blue-box
+              %p 65%
+            .count.black-box
+              %p $15
+            .count.green-box
+              %p 9
+
+        .body-activity
+          .left
+            .left-picture
+              =image_tag ('img-default_3.jpg'), width:"100%"
+              .radio
+                .wrapper-checkbox
+                  .checkbox-custom
+                    %span
+                      %input#check3{:name => "check", :type => "radio", :value => "check3"}
+                      %label{:for => "check3"}
+            .right-content-picture
+              %p Steambot ATV Half Day
+          .right
+            .count.blue-box
+              %p 65%
+            .count.black-box
+              %p $15
+            .count.green-box
+              %p 9
+
+        .body-activity
+          .left
+            .left-picture
+              =image_tag ('img-default_4.jpg'), width:"100%"
+              .radio
+                .wrapper-checkbox
+                  .checkbox-custom
+                    %span
+                      %input#check4{:name => "check", :type => "radio", :value => "check4"}
+                      %label{:for => "check4"}
+            .right-content-picture
+              %p Steambot ATV Half Day
+          .right
+            .count.blue-box
+              %p 65%
+            .count.black-box
+              %p $15
+            .count.green-box
+              %p 9
+
+        .body-activity
+          .left
+            .left-picture
+              =image_tag ('img-default_4.jpg'), width:"100%"
+              .radio
+                .wrapper-checkbox
+                  .checkbox-custom
+                    %span
+                      %input#check5{:name => "check", :type => "radio", :value => "check5"}
+                      %label{:for => "check5"}
+            .right-content-picture
+              %p Steambot ATV Half Day
+          .right
+            .count.blue-box
+              %p 65%
+            .count.black-box
+              %p $15
+            .count.green-box
+              %p 9
+
+        .body-activity
+          .left
+            .left-picture
+              =image_tag ('img-default.jpg'), width:"100%"
+              .radio
+                .wrapper-checkbox
+                  .checkbox-custom
+                    %span
+                      %input#check6{:name => "check", :type => "radio", :value => "check6"}
+                      %label{:for => "check6"}
+            .right-content-picture
+              %p Steambot ATV Half Day
+          .right
+            .count.blue-box
+              %p 65%
+            .count.black-box
+              %p $15
+            .count.green-box
+              %p 9
+
+        -# %table.table.table-bordered
+        -#   %thead
+        -#     %tr
+        -#       %th My Location
+        -#       %th
+        -#         Share
+        -#         %br
+        -#         Activities
+        -#       %th
+        -#         Bookmark
+        -#         %br
+        -#         Activities
+        -#       %th Most Popular
+        -#       %th % Off
+        -#       %th
+        -#         Prices
+        -#         %br
+        -#         From
+        -#       %th Spaces
+        -#   %tbody
+        -#     %tr
+        -#       %td 1
+        -#       %td{:colspan => "3"}  Mark
+        -#       %td Otto
+        -#       %td @mdo
+        -#       %td @mdo
+      .arrow-down-loadmore
+        %a{:href => "#"}
+          %span.social-icon.chevron-down
