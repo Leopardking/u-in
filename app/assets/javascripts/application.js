@@ -40,6 +40,7 @@
 //= require contact_us.js
 //= require global
 //= require responsiveslides
+//= require bootstrap-select
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
@@ -128,5 +129,11 @@ $(function() {
     if (!$(target).is('.dropdown-toggle-humberger') && !$(target).parents().is('.dropdown-toggle-humberger')) {
       $('.dropdown-humberger').hide();
     }
+  });
+
+  $( ".js-example-disabled-results" ).select2({
+    width: 'element',
+    theme: "bootstrap",
+    minimumResultsForSearch: Infinity
   });
 });

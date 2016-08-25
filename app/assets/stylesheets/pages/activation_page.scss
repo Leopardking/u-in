@@ -86,7 +86,12 @@
     width: 50%;
     float: left;
 
-    button {
+    .column-1 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+
+     button {
       width: 100%;
       text-align: left;
       text-transform: uppercase;
@@ -120,11 +125,6 @@
         border-left: 8px solid transparent;
       }
     }
-
-    .column-1 {
-      width: 50%;
-      float: left;
-      padding-right: 6px;
 
       .dropdown-menu {
         width: 380px;
@@ -260,8 +260,31 @@
       float: left;
       padding-right: 6px;
 
+      button {
+        width: 100%;
+        text-align: left;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: 2px solid $blue;
+        font-weight: 500;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+          background: rgba(43, 169, 246, 0.3);
+          color: $dgray;
+        }
+      }
+
+      .caret {
+        color: #2ba9f6;
+        border-top: 8px solid;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+
       .dropdown-menu {
-        width: 279px;
+        width: 220px;
         padding: 0px;
         margin: 0px;
         @include border-radius(0px);
@@ -269,7 +292,7 @@
         margin-top: -1px;
 
         > li > a {
-          font-size: 20px;
+          font-size: 16px;
           color: $black;
           padding: 6px 12px;
 
@@ -493,6 +516,7 @@
     float: left;
     margin-bottom: 15px;
     margin-top: 15px;
+
     .left {
       width: 70%;
       float: left;
@@ -622,4 +646,56 @@
 
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: #5c8acc;
- }
+}
+
+.select2-container--bootstrap .select2-selection--single {
+  height: 36px !important;
+  text-align: left;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: 2px solid $blue;
+  font-weight: 500;
+
+  &:hover {
+    background: rgba(43, 169, 246, 0.3);
+  }
+}
+
+// .select2-results__options {
+//   color: $black;
+//   text-transform: uppercase;
+// }
+
+// .select2-container--bootstrap .select2-selection--single .select2-selection__rendered {
+//   color: $black;
+// }
+
+// .select2-results__option[aria-selected] {
+//   // font-size: 20px;
+// }
+
+// .select2-container--bootstrap .select2-results__option--highlighted[aria-selected] {
+//    background: rgba(43, 169, 246, 0.3);
+//    color: $dgray;
+// }
+
+// .select2-container--bootstrap .select2-dropdown {
+//   @include border-radius(0px);
+//   box-shadow: none;
+//   border: 1px solid $dgray;
+// }
+
+// .select2-container--bootstrap.select2-container--focus .select2-selection, .select2-container--bootstrap.select2-container--open .select2-selection {
+//   box-shadow: none;
+// }
+
+// .select2-container--bootstrap .select2-selection--single .select2-selection__arrow b {
+//   border-color: $blue transparent transparent transparent;
+//   border-width: 8px 8px 0 8px;
+//   margin-left: -10px;
+// }
+
+// .select2-container--bootstrap.select2-container--open .select2-selection .select2-selection__arrow b {
+//   border-color: $blue transparent transparent transparent;
+//   border-width: 8px 8px 0 8px;
+// }

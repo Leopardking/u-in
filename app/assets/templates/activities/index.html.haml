@@ -42,19 +42,26 @@
 
 
             .column-2
-              .dropdown
-                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                  Price Range
-                  %span.caret
-                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-                  %li
-                    %a{:href => "javascript:void(0)"} $2 - $25
-                  %li
-                    %a{:href => "javascript:void(0)"} $2 - $25
+              %select.selectpicker
+                %option Price Range
+                %option $2 - $25
+                %option $2 - $25
+                %option $2 - $25
 
-                  .wrapper-close
-                    %a{:href => "javascript:void(0)"}
-                      %span.btn-close-filter
+
+              -# .dropdown
+              -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              -#     Price Range
+              -#     %span.caret
+              -#   %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+              -#     %li
+              -#       %a{:href => "javascript:void(0)"} $2 - $25
+              -#     %li
+              -#       %a{:href => "javascript:void(0)"} $2 - $25
+
+              -#     .wrapper-close
+              -#       %a{:href => "javascript:void(0)"}
+              -#         %span.btn-close-filter
 
           .right
             .column-1
