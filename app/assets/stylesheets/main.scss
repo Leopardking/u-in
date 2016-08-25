@@ -10,3 +10,12 @@ body {
 .wrapper-main-container {
   // margin-top: 80px;
 }
+
+a {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

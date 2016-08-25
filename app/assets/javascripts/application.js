@@ -72,3 +72,22 @@ $(function () {
       }
     });
 });
+
+jQuery(function ($) {
+    $(".show-highlight").on('click', function (e) {
+        if (!$('#overlay').length) {
+            $('body').append('<div id="overlay"> </div>')
+        }
+    }).keyup(function (e) {
+        if (e.which == 27) {
+            $('#overlay').remove();
+        }
+    }).blur(function (e) {
+        $('#overlay').remove();
+    });
+    $('body').click(function (e) {
+        if (!$(e.target).is('.show-highlight')) {
+            $('#overlay').remove();
+        }
+    })
+});
