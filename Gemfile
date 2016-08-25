@@ -111,7 +111,7 @@ gem 'mina', '~> 0.3.8'
 gem 'mina-multistage', '~>1.0.1', require: false
 gem 'browser-timezone-rails', '~> 0.0.8'
 
-gem 'mailcatcher', '~>0.2.4', group: :development
+# gem 'mailcatcher', '~>0.2.4', group: :development
 gem 'instagram', '~>1.1.6'
 gem 'phone', '~> 1.2', '>= 1.2.3'
 
