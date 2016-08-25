@@ -40,7 +40,6 @@
 //= require contact_us.js
 //= require global
 //= require responsiveslides
-//= require select2-full
 //= require bootstrap-select
 //= require angular
 //= require angular-ui-router

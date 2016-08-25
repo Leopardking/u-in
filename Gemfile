@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
+ruby '2.1.2'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -52,7 +54,7 @@ group :development, :test, :staging do
   gem 'capistrano-rvm', '~>0.0.3'
   gem 'pry-rails', '~> 0.3.4'
   gem 'byebug', '~> 8.2', '>= 8.2.2'
-  gem 'did_you_mean', '0.3.0'
+  gem 'did_you_mean', '0.9.10'
 end
 
 #Better Errors
@@ -63,6 +65,7 @@ group :development do
   gem 'rails-erd', '~>1.4.6'
   gem 'rails_best_practices', '~> 1.16'
   gem 'bullet', '~> 5.0'
+  gem 'mailcatcher'
 end
 
 # For pagination
@@ -109,16 +112,16 @@ gem 'mina', '~> 0.3.8'
 gem 'mina-multistage', '~>1.0.1', require: false
 gem 'browser-timezone-rails', '~> 0.0.8'
 
-gem 'mailcatcher', '~>0.2.4'
 gem 'instagram', '~>1.1.6'
 gem 'phone', '~> 1.2', '>= 1.2.3'
 
 # Google AIP calendar
 gem 'google-api-client', '~> 0.9', require: 'google/apis/calendar_v3'
 
+# handle angular
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
-
 gem 'angular-rails-templates'
 
-gem "select2-rails"
+gem 'rails_12factor', group: :production
+gem 'sinatra', :require => false
