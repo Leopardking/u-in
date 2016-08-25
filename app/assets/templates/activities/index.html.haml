@@ -6,10 +6,10 @@
           .left
             .column-1
               .dropdown
-                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight.dropdown-button-action{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
                   Genre
                   %span.caret
-                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %ul.dropdown-menu.search-filter-container{"aria-labelledby" => "dropdownMenu1"}
                   .input-search
                     .input-group
                       %input.form-control{:placeholder => "Search", :type => "text"}
@@ -78,7 +78,7 @@
 
           .right
             .column-1
-              %input.form-control.show-highlight{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
+              %input.form-control.show-highlight.overlay-placeholder{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
             .column-2
               %select.selectpicker
                 %option Co

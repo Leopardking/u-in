@@ -82,24 +82,27 @@ $(function () {
 });
 
 jQuery(function ($) {
+
     $(".show-highlight").on('click', function (e) {
         if (!$('#overlay').length) {
-            $('body').append('<div id="overlay"> </div>')
+
+            $(".show-highlight").addClass('overlay-placeholder')
+
+            $('body').append('<div id="overlay"> </div>');
         }
     }).keyup(function (e) {
         if (e.which == 27) {
             $('#overlay').remove();
+            $(".show-highlight").removeClass('overlay-placeholder')
         }
-    }).blur(function (e) {
-        $('#overlay').remove();
     });
     $('body').click(function (e) {
         if (!$(e.target).is('.show-highlight')) {
             $('#overlay').remove();
-        }
-    })
+            $(".show-highlight").removeClass('overlay-placeholder')
+        };
+    });
 });
-
 
 $( document ).ready(function() {
   $(".dropdown-menu").click(function(event){

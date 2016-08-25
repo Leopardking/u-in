@@ -290,4 +290,11 @@ select.selectpicker {
   width: 100%;
   float: none;
 }
+
+.bootstrap-select.open {
+
+  span.filter-option {
+    color: $white;
+  }
+}
 /*# sourceMappingURL=bootstrap-select.css.map */
