@@ -15,6 +15,10 @@
   @include border-radius(0px);
 }
 
+li.navbar-menu:hover {
+  background-color: #aeaeaf;  
+}
+
 ul.dropdown-humberger {
     display: none;
     position: absolute;

@@ -97,29 +97,29 @@ jQuery(function ($) {
     })
 });
 
-$(function () {
-  var elem = document.querySelector('input[type="range"]');
-  var rangeValue = function(){
-    var newValue = elem.value;
-    var target = document.querySelector('.value');
-    target.innerHTML = newValue;
-  }
+$(function() {
+  $('.wrapper-choose-distance').change(function() {
+    var elem = document.querySelector('input[type="range"]');
+    var rangeValue = function(){
+      var newValue = elem.value;
+      var target = document.querySelector('.value');
+      target.innerHTML = newValue;
+    }
 
-  elem.addEventListener("input", rangeValue);
+    elem.addEventListener("input", rangeValue);
+  });
 });
 
 $(function() {
+  // Dropdown toggle
+  $('.dropdown-toggle-humberger').click(function(){
+    $(this).next('.dropdown-humberger').toggle();
+  });
 
-// Dropdown toggle
-$('.dropdown-toggle-humberger').click(function(){
-  $(this).next('.dropdown-humberger').toggle();
-});
-
-$(document).click(function(e) {
-  var target = e.target;
-  if (!$(target).is('.dropdown-toggle-humberger') && !$(target).parents().is('.dropdown-toggle-humberger')) {
-    $('.dropdown-humberger').hide();
-  }
-});
-
+  $(document).click(function(e) {
+    var target = e.target;
+    if (!$(target).is('.dropdown-toggle-humberger') && !$(target).parents().is('.dropdown-toggle-humberger')) {
+      $('.dropdown-humberger').hide();
+    }
+  });
 });

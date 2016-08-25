@@ -15,60 +15,52 @@
               %span.nav-icon.dollar
               %span.dollar-text Operators Login
 
-        %ul.nav.navbar-nav.navbar-right
-          - if user_signed_in?
-            - if current_user.admin?
-              %li
-                =link_to t(".home"), root_path, class: "btn-header btn-default-header tab-active"
-              %li
-                =link_to t(".user_management"), users_path, class: "btn-header btn-default-header"
-              %li.temp_hide_i
-                =link_to t(".promotions"), promotions_path, class: "btn-header btn-default-header"
-              %li
-                =link_to t(".categories"), categories_path, class: "btn-header btn-default-header"
-              %li
-                =link_to t(".list_booked"), my_activities_path, class: "btn-header btn-default-header"
-              %li
-                =link_to t(".account_settings"), edit_user_registration_path, class: "btn-header btn-default-header"
-              %li
-                = link_to t(".faqs"), faqs_path, class: "btn-header btn-default-header"
-            - else
-              - if current_user.user_type == User::USER_TYPE[:merchant]
-                %li
-                %li
-                  =link_to t(".promotions"), promotions_path, class: "btn-header btn-default-header"
-                %li
-                  =link_to t(".calendar"), calendars_path, class: "btn-header btn-default-header"
-                %li
-                  =link_to t(".profile"), edit_user_registration_path, class: "btn-header btn-default-header"
-              - else
-                %li
-                  =link_to t(".home"), root_path, class: "btn-header btn-default-header tab-active"
-                %li
-                  =link_to t(".my_activities"), my_activities_path, class: "btn-header btn-default-header"
-                %li
-                  %a.btn-header.btn-default-header{:href => "/#/activities"} Activities
-                %li
-                  =link_to t(".account_settings"), edit_user_registration_path, class: "btn-header btn-default-header"
-                %li
-                  =link_to t(".history"), history_v_moneys_path, class: "btn-header btn-default-header"
-          - else
-            %li
-              = link_to t(".sign_up"), auth_account_regis_path, class: "btn btn-small"
-            %li
-              = link_to t(".sign_in"), new_user_session_path, class: "btn btn-small"
+        %ul.nav.navbar-nav.navbar-right          
           %li
-            %a.dropdown-toggle-humberger{:href => "#"}
+            %a.dropdown-toggle-humberger{:href => "javascript:void(0)"}
               %span.nav-icon.menu-hamburger
             %ul.dropdown-humberger
-              %li
-                %a{:href => "#"} Menu Item
-              %li
-                %a{:href => "#"} Menu
-              %li
-                %a{:href => "#"} Settings
-              %li
-                %a{:href => "#"} Search
+              - if user_signed_in?
+                - if current_user.admin?
+                  %li.navbar-menu
+                    =link_to t(".home"), root_path
+                  %li.navbar-menu
+                    =link_to t(".user_management"), users_path
+                  %li.navbar-menu.temp_hide_i
+                    =link_to t(".promotions"), promotions_path
+                  %li.navbar-menu
+                    =link_to t(".categories"), categories_path
+                  %li.navbar-menu
+                    =link_to t(".list_booked"), my_activities_path
+                  %li.navbar-menu
+                    =link_to t(".account_settings"), edit_user_registration_path
+                  %li.navbar-menu
+                    = link_to t(".faqs"), faqs_path
+                - else
+                  - if current_user.user_type == User::USER_TYPE[:merchant]
+                    %li.navbar-menu
+                    %li.navbar-menu
+                      =link_to t(".promotions"), promotions_path
+                    %li.navbar-menu
+                      =link_to t(".calendar"), calendars_path
+                    %li.navbar-menu
+                      =link_to t(".profile"), edit_user_registration_path
+                  - else
+                    %li.navbar-menu
+                      =link_to t(".home"), root_path
+                    %li.navbar-menu
+                      =link_to t(".my_activities"), my_activities_path
+                    %li.navbar-menu
+                      %a{:href => "/#/activities"} Activities
+                    %li.navbar-menu
+                      =link_to t(".account_settings"), edit_user_registration_path
+                    %li.navbar-menu
+                      =link_to t(".history"), history_v_moneys_path
+              - else
+                %li.navbar-menu
+                  = link_to t(".sign_up"), auth_account_regis_path
+                %li.navbar-menu
+                  = link_to t(".sign_in"), new_user_session_path
 
 .wrapper-header
   %header
