@@ -86,7 +86,7 @@ jQuery(function ($) {
     $(".show-highlight").on('click', function (e) {
         if (!$('#overlay').length) {
 
-            $(".show-highlight").addClass('overlay-placeholder')
+            $(".show-highlight").addClass('overlay-placeholder');
 
             $('body').append('<div id="overlay"> </div>');
         }
