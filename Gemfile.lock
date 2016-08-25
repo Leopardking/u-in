@@ -280,10 +280,6 @@ GEM
     rails-assets-angular (1.5.8)
     rails-assets-angular-ui-router (0.3.1)
       rails-assets-angular (>= 1.0.8, < 2)
-    rails-assets-lodash (4.15.0)
-    rails-assets-restangular (1.5.2)
-      rails-assets-angular (~> 1.0)
-      rails-assets-lodash (>= 1.3.0)
     rails-erd (1.4.6)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
@@ -446,9 +442,8 @@ DEPENDENCIES
   quiet_assets (~> 1.0.2)
   railroady (~> 1.3.1)
   rails (= 4.0.0)
-  rails-assets-angular!
-  rails-assets-angular-ui-router!
-  rails-assets-restangular!
+  rails-assets-angular
+  rails-assets-angular-ui-router
   rails-erd (~> 1.4.6)
   rails_best_practices (~> 1.16)
   rank (~> 0.0.2)

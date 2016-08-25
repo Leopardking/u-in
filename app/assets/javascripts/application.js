@@ -41,6 +41,7 @@
 //= require global
 //= require responsiveslides
 //= require angular
+<<<<<<< HEAD
 //= require restangular
 //= require angular-ui-router
 //= require angular-rails-templates
@@ -49,6 +50,12 @@
 //= require_tree ../templates
 //= require_tree ./templates
 
+=======
+//= require angular-ui-router
+//= require angular-rails-templates
+//= require_tree ./ng-app
+//= require_tree ../templates
+>>>>>>> ng-angular
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
@@ -65,3 +72,19 @@ window.onload = function() {
   }
   $(".alert").fadeOut(3000)
 };
+
+$(function () {
+  $("#slider4").responsiveSlides({
+      auto: true,
+      pager: false,
+      nav: true,
+      speed: 500,
+      namespace: "callbacks",
+      before: function () {
+        $('.events').append("<li>before event fired.</li>");
+      },
+      after: function () {
+        $('.events').append("<li>after event fired.</li>");
+      }
+    });
+});

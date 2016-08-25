@@ -1,0 +1,126 @@
+.container
+  .row
+    .col-md-12.col-lg-12
+      .wrapper-select-activity
+        .left
+          .column-1
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Genre
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+
+          .column-2
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Price Range
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+
+        .right
+          .column-1
+            %input.form-control{:placeholder => "City", :type => "text"}
+          .column-2
+            .dropdown
+              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                Co
+                %span.caret
+              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %li
+                  %a{:href => "#"} Action
+                %li
+                  %a{:href => "#"} Another action
+                %li
+                  %a{:href => "#"} Something else here
+                %li.divider{:role => "separator"}
+                %li
+                  %a{:href => "#"} Separated link
+          .column-3
+            %input.form-control{:placeholder => "Zip Code", :type => "text"}
+
+    .col-md-12.col-lg-12
+      .wrapper-choose-distance
+        .text-distance
+          Choose Your Distance
+        .sliding
+          .circle-slide
+        .text-range
+          102 mi
+
+    .col-md-12.col-lg-12
+      .wrapper-table-activity
+        .head-activity
+          .left
+            .column
+              .my-location
+                %h4 My Location
+            .column
+              .share
+                %h4
+                  Share
+                  %br
+                  Activities
+            .column
+              .bookmark
+                %h4
+                  Bookmark
+                  %br
+                  Activities
+            .column
+              .most-popular
+                %h4 Most Popular
+          .right
+            .column
+              .off
+                %h4 % Off
+            .column
+              .prices
+                %h4
+                  Prices
+                  %br
+                  From
+            .column
+              .spaces
+                %h4 Spaces
+        %span{"ng-repeat" => "activity in activities"}
+          .body-activity
+            .left
+              .left-picture
+                =image_tag ('img-default.jpg'), width:"100%"
+                .radio
+                  .wrapper-checkbox
+                    .checkbox-custom
+                      %span
+                        %input#check1{:name => "check", :type => "radio", :value => "check1"}
+                        %label{:for => "check1"}
+
+              .right-content-picture
+                %p {{activity.name}}
+            .right
+              .count.blue-box
+                %p {{activity.discount_percent}} %
+              .count.black-box
+                %p $ {{activity.discount_price}}
+              .count.green-box
+                %p 9
+      .arrow-down-loadmore
+        %a{:href => "javascript:void(0)"}
+          %span.social-icon.chevron-down
