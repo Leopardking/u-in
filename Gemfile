@@ -120,3 +120,5 @@ gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
 
 gem 'angular-rails-templates'
+
+gem "select2-rails"
