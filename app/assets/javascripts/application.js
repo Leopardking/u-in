@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -44,7 +45,6 @@
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
-//= require angular-local-storage
 //= require ng-app/app
 //= require_tree ./ng-app/controllers
 //= require_tree ../templates
@@ -110,7 +110,7 @@ $( document ).ready(function() {
   })
 });
 
-$(function() {
+$( document ).ready(function() {
   $('.wrapper-choose-distance').change(function() {
     var elem = document.querySelector('input[type="range"]');
     var rangeValue = function(){
@@ -123,7 +123,7 @@ $(function() {
   });
 });
 
-$(function() {
+$( document ).ready(function() {
   // Dropdown toggle
   $('.dropdown-toggle-humberger').click(function(){
     $(this).next('.dropdown-humberger').toggle();
