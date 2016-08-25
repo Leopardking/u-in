@@ -82,9 +82,11 @@
         .text-distance
           Choose Your Distance
         .sliding
-          .circle-slide
+          %input{:max => "10000", :min => "0", :step => "1", :type => "range", :value => "0"}
         .text-range
-          102 mi
+          .value
+            %span 0
+          %span mi
 
     .col-md-12.col-lg-12
       .wrapper-table-activity
