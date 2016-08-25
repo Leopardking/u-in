@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+source 'https://rails-assets.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -114,3 +114,8 @@ gem 'phone', '~> 1.2', '>= 1.2.3'
 
 # Google AIP calendar
 gem 'google-api-client', '~> 0.9', require: 'google/apis/calendar_v3'
+
+gem 'rails-assets-angular'
+gem 'rails-assets-angular-ui-router'
+
+gem 'angular-rails-templates'

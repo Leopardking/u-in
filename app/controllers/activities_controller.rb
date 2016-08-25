@@ -4,5 +4,9 @@ class ActivitiesController < ApplicationController
 
   def index
     @promotions = Promotion.filter(params).page(params[:page])
+    respond_to do |format|
+      format.html
+      format.json { render :json => @promotions }
+    end
   end
 end

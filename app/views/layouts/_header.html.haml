@@ -47,7 +47,8 @@
               %li
                 =link_to t(".my_activities"), my_activities_path, class: "btn-header btn-default-header"
               %li
-                =link_to t(".activities"), activities_path, class: "btn-header btn-default-header"
+                %a.btn-header.btn-default-header{:href => "/#/activities"} Activities
+                / =link_to t(".activities"), activities_path, class: "btn-header btn-default-header"
               %li
                 =link_to t(".account_settings"), edit_user_registration_path, class: "btn-header btn-default-header"
               %li

@@ -39,13 +39,14 @@ BookingApp::Application.routes.draw do
 
   root 'home#index'
 
-  resources :home do
+  resources :home, except: [:index] do
     collection do
       get 'check_password_page'
       get 'check_pass'
       get :privacy_policy
     end
   end
+  # get '*path' => 'home#index'
 
   resources :users do
     collection do
