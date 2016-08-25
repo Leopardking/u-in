@@ -1,60 +1,81 @@
 .container
   .row
     .col-md-12.col-lg-12
-      .wrapper-select-activity
-        .left
-          .column-1
-            .dropdown
-              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                Genre
-                %span.caret
-              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-                %li
-                  %a{:href => "#"} Action
-                %li
-                  %a{:href => "#"} Another action
-                %li
-                  %a{:href => "#"} Something else here
-                %li.divider{:role => "separator"}
-                %li
-                  %a{:href => "#"} Separated link
+      .wrapper-activity
+        .wrapper-select-activity
+          .left
+            .column-1
+              .dropdown
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  Genre
+                  %span.caret
+                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                  .input-search
+                    .input-group
+                      %input.form-control{:placeholder => "Search", :type => "text"}
+                      %span.input-group-btn
+                        %button.btn.btn-default{:type => "button"}
+                          %span.btn-search-filter
+                  %ul.radio-years
+                    .scrollbar#custom-scroll-vertical
+                      %li
+                        .radio
+                          .wrapper-checkbox
+                            .checkbox-custom
+                              %span
+                                %input#check-years1{:name => "check", :type => "radio", :value => "check-years1"}
+                                %label{:for => "check-years1"} 7-10 years old
+                      %li
+                        .radio
+                          .wrapper-checkbox
+                            .checkbox-custom
+                              %span
+                                %input#check-years2{:name => "check", :type => "radio", :value => "check-years2"}
+                                %label{:for => "check-years2"} 7-10 years old
 
-          .column-2
-            .dropdown
-              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                Price Range
-                %span.caret
-              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-                %li
-                  %a{:href => "#"} Action
-                %li
-                  %a{:href => "#"} Another action
-                %li
-                  %a{:href => "#"} Something else here
-                %li.divider{:role => "separator"}
-                %li
-                  %a{:href => "#"} Separated link
 
-        .right
-          .column-1
-            %input.form-control{:placeholder => "City", :type => "text"}
-          .column-2
-            .dropdown
-              %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                Co
-                %span.caret
-              %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-                %li
-                  %a{:href => "#"} Action
-                %li
-                  %a{:href => "#"} Another action
-                %li
-                  %a{:href => "#"} Something else here
-                %li.divider{:role => "separator"}
-                %li
-                  %a{:href => "#"} Separated link
-          .column-3
-            %input.form-control{:placeholder => "Zip Code", :type => "text"}
+                  .wrapper-close-save
+                    %a{:href => "#"}
+                      %span.btn-close-filter
+                    %a.btn-save-continue{:href => "#"} Save & Continue
+
+
+
+            .column-2
+              .dropdown
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  Price Range
+                  %span.caret
+                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                  %li
+                    %a{:href => "#"} $2 - $25
+                  %li
+                    %a{:href => "#"} $2 - $25
+
+                  .wrapper-close
+                    %a{:href => "#"}
+                      %span.btn-close-filter
+
+          .right
+            .column-1
+              %input.form-control.show-highlight{:placeholder => "City", :type => "text"}
+            .column-2
+              .dropdown
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  Co
+                  %span.caret
+                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                  %li
+                    %a{:href => "#"} Action
+                  %li
+                    %a{:href => "#"} Another action
+                  %li
+                    %a{:href => "#"} Something else here
+                  %li.divider{:role => "separator"}
+                  %li
+                    %a{:href => "#"} Separated link
+            .column-3
+              %input.form-control.show-highlight{:placeholder => "Zip Code", :type => "text"}
 
     .col-md-12.col-lg-12
       .wrapper-choose-distance
