@@ -41,14 +41,10 @@
 //= require global
 //= require responsiveslides
 //= require angular
-//= require restangular
 //= require angular-ui-router
 //= require angular-rails-templates
-//= require angular/main
-//= require_tree ./angular
+//= require_tree ./ng-app
 //= require_tree ../templates
-//= require_tree ./templates
-
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
@@ -65,3 +61,38 @@ window.onload = function() {
   }
   $(".alert").fadeOut(3000)
 };
+
+$(function () {
+  $("#slider4").responsiveSlides({
+      auto: true,
+      pager: false,
+      nav: true,
+      speed: 500,
+      namespace: "callbacks",
+      before: function () {
+        $('.events').append("<li>before event fired.</li>");
+      },
+      after: function () {
+        $('.events').append("<li>after event fired.</li>");
+      }
+    });
+});
+
+jQuery(function ($) {
+    $(".show-highlight").on('click', function (e) {
+        if (!$('#overlay').length) {
+            $('body').append('<div id="overlay"> </div>')
+        }
+    }).keyup(function (e) {
+        if (e.which == 27) {
+            $('#overlay').remove();
+        }
+    }).blur(function (e) {
+        $('#overlay').remove();
+    });
+    $('body').click(function (e) {
+        if (!$(e.target).is('.show-highlight')) {
+            $('#overlay').remove();
+        }
+    })
+});

@@ -1,0 +1,21 @@
+@import 'moduls/all.scss';
+@import 'partials/all.scss';
+@import 'plugin/all.scss';
+@import 'pages/all.scss';
+
+body {
+  background-color: $gray;
+}
+
+.wrapper-main-container {
+  // margin-top: 80px;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+}

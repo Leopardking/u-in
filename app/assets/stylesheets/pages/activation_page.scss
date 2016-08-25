@@ -1,0 +1,589 @@
+.wrapper-activity {
+  margin-top: 20px;
+}
+
+.wrapper-choose-distance {
+  margin-top: 20px;
+  background-color: $black;
+  color: $white;
+  height: 40px;
+  padding: 10px;
+
+  .text-distance {
+    float: left;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .sliding {
+    float: left;
+    width: 860px;
+    height: 2px;
+    background-color: $white;
+    margin-top: 10px;
+  }
+
+  .circle-slide {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: $green;
+    border: 3px solid $white;
+    border-radius: 50%;
+    top: -8px;
+    left: 0px;
+  }
+
+  .text-range {
+    float: right;
+    margin-left: 20px;
+    font-weight: 500;
+  }
+}
+
+.wrapper-select-activity {
+  z-index: 99999;
+  position: relative;
+
+  .left {
+    width: 50%;
+    float: left;
+
+    button {
+      width: 100%;
+      text-align: left;
+      text-transform: uppercase;
+      background-color: transparent;
+      border: 2px solid $blue;
+      font-weight: 500;
+
+      &:hover {
+        background: rgba(43, 169, 246, 0.3);
+      }
+
+      span {
+        position: absolute;
+        right: 9px;
+        top: 16px;
+      }
+    }
+
+    .open > .btn-default.dropdown-toggle {
+      background-color: transparent;
+      border-color: $blue;
+      background: rgba(43, 169, 246, 0.3);
+    }
+
+    .dropdown {
+
+      .caret {
+        color: $blue;
+        border-top: 8px solid;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+    }
+
+    .column-1 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+
+      .dropdown-menu {
+        width: 380px;
+        padding: 15px;
+        @include border-radius(0px);
+        border: 1px solid $dgray;
+        margin-top: -1px;
+      }
+
+      .input-search {
+        margin-bottom: 10px;
+
+        input {
+          border: 2px solid #000;
+          border-radius: 0px;
+          height: 43px;
+          color: $llgray;
+          text-align: center;
+
+          @include placeholder {
+            text-align: center;
+            text-transform: uppercase;
+            color: $llgray;
+            letter-spacing: 6px;
+          }
+        }
+
+        button {
+          @include border-radius(0px);
+          outline: none;
+          border: 2px solid $black;
+          padding: 2px 6px;
+          background-color: $llgray2;
+        }
+
+        .btn-search-filter {
+          background: asset-url("search_filter_icon.png") no-repeat;
+          width: 30px;
+          height: 30px;
+          display: inline-block;
+          position: relative;
+          top: 3px;
+          left: -1px;
+        }
+      }
+
+      ul.radio-years {
+        list-style: none;
+        padding-left: 0px;
+
+        .wrapper-checkbox {
+          margin-bottom: 10px;
+        }
+
+        .wrapper-checkbox label {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          padding-left: 30px !important;
+          color: $black;
+          font-weight: 500;
+        }
+
+        .wrapper-checkbox label:before {
+          content: "";
+          width: 18px;
+          height: 18px;
+          position: absolute;
+          left: 0;
+          top: 0px;
+        }
+
+        .wrapper-checkbox input[type=radio] {
+          display: none;
+        }
+
+        .wrapper-checkbox .checkbox-custom label:before {
+          background: asset-url("checkbox_normal.png") left center no-repeat;
+          background-size: cover;
+        }
+
+        .wrapper-checkbox input[type=radio]:checked + label:before {
+          background: asset-url("Checkbox_selected.png") left center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      .scrollbar {
+        height: 200px;
+        padding-left: 1px;
+        overflow-y: scroll;
+      }
+
+      .wrapper-close-save {
+        margin-top: 25px;
+        margin-bottom: 10px;
+
+        .btn-close-filter {
+          background: asset-url("PriceRange_CLoseButton_LG.png") no-repeat;
+          width: 37px;
+          height: 32px;
+          display: inline-block;
+          background-size: cover;
+          position: relative;
+          top: 12px;
+          margin-right: 28px;
+          text-decoration: none;
+
+          &:hover,
+          &:focus {
+            text-decoration: none;
+          }
+        }
+
+        .btn-save-continue {
+          color: black;
+          border: 2px solid $green;
+          padding: 10px 60px;
+          border-radius: 8px;
+          font-weight: 500;
+          font-size: 20px;
+
+          &:hover,
+          &:focus {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+
+    .column-2 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+
+      .dropdown-menu {
+        width: 279px;
+        padding: 0px;
+        margin: 0px;
+        @include border-radius(0px);
+        border: 1px solid $dgray;
+        margin-top: -1px;
+
+        > li > a {
+          font-size: 20px;
+          color: $black;
+          padding: 6px 12px;
+
+          &:hover,
+          &:focus {
+            background: rgba(43, 169, 246, 0.3);
+          }
+        }
+      }
+
+      .wrapper-close {
+        margin-bottom: 15px;
+        text-align: right;
+        .btn-close-filter {
+          background: asset-url("PriceRange_CLoseButton_sm.png") no-repeat;
+          width: 29px;
+          height: 26px;
+          display: inline-block;
+          background-size: cover;
+          position: relative;
+          top: 12px;
+          margin-right: 7px;
+          text-decoration: none;
+
+          &:hover,
+          &:focus {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 50%;
+    float: left;
+
+    button {
+      width: 100%;
+      text-align: left;
+      text-transform: uppercase;
+      border: 2px solid $green;
+      background-color: transparent;
+      font-weight: 500;
+
+      &:hover,
+      &:focus {
+        box-shadow: none;
+        background: rgba(168, 213, 37, 0.3);
+      }
+
+      span {
+        position: absolute;
+        right: 9px;
+        top: 16px;
+      }
+    }
+
+    .open > .btn-default.dropdown-toggle {
+      background-color: transparent;
+      border: 2px solid $green;
+    }
+
+    .dropdown {
+
+      .caret {
+        color: $green;
+        border-top: 8px solid;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+    }
+
+
+    .column-1 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+
+      input {
+        background-color: transparent;
+        border: 2px solid $green;
+        text-align: center;
+        font-weight: 500;
+        text-transform: uppercase;
+        height: 36px;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+          background: rgba(168, 213, 37, 0.3);
+        }
+
+        @include placeholder {
+          text-align: center;
+          font-weight: 500;
+          color: $black
+        }
+      }
+    }
+
+    .column-2 {
+      width: 15%;
+      float: left;
+      padding-right: 6px;
+    }
+
+    .column-3 {
+      width: 35%;
+      float: left;
+
+      input {
+        background-color: transparent;
+        border: 2px solid $green;
+        text-align: center;
+        font-weight: 500;
+        text-transform: uppercase;
+        height: 36px;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+          background: rgba(168, 213, 37, 0.3);
+        }
+
+        @include placeholder {
+          text-align: center;
+          font-weight: 500;
+          color: $black
+        }
+      }
+    }
+  }
+}
+
+.wrapper-table-activity {
+  margin-top: 20px;;
+
+  .radio {
+    position: absolute;
+    bottom: -13px;
+    right: -20px;
+  }
+
+  .head-activity {
+    text-align: center;
+
+    .left {
+      width: 70%;
+      float: left;
+
+      .column {
+        width: 25%;
+        float: left;
+        background-color: $white;
+
+        .my-location {
+          border: 2px solid $blue;
+
+          h4 {
+            line-height: 38px;
+            color: $blue;
+          }
+        }
+
+        .share,
+        .bookmark {
+          border: 2px solid $green;
+        }
+
+        .most-popular {
+          border: 2px solid $black;
+
+          h4 {
+            line-height: 38px;
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 30%;
+      float: left;
+
+      .column {
+        width: 33.33%;
+        float: left;
+        background-color: $white;
+
+        .off {
+          border: 2px solid $blue;
+
+          h4 {
+            color: $blue;
+            line-height: 38px;
+          }
+        }
+
+        .prices {
+          border: 2px solid $black;
+
+          h4 {
+            line-height: 19px;
+          }
+        }
+
+        .spaces {
+          border: 2px solid $green;
+
+          h4 {
+            line-height: 38px;
+            color: $lgreen;
+          }
+        }
+      }
+    }
+  }
+
+  .body-activity {
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    .left {
+      width: 70%;
+      float: left;
+
+      .left-picture {
+        float:left;
+        width: 20%;
+        border: solid 1px #7d7d7c;
+        position: relative;
+      }
+      .right-content-picture {
+        float: left;
+        width: 80%;
+        border: solid 1px #7d7d7c;
+        background-color: $white;
+        p {
+          line-height: 97px;
+          padding-left: 15px;
+          font-size: 25px;
+          font-weight: 300;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .right {
+      width: 30%;
+      float: left;
+      background-color: $white;
+
+      .count {
+        width: 33.33%;
+        float: left;
+        p {
+          text-align: center;
+        }
+        &.blue-box {
+          border: 2px solid $blue;
+          p {
+            color: $blue;
+            font-size: 25px;
+            padding: 25px 0;
+          }
+        }
+        &.black-box {
+          border: 2px solid $black;
+          p {
+            color: $black;
+            font-size: 25px;
+            padding: 25px 0;
+          }
+        }
+        &.green-box {
+          border: 2px solid $green;
+          p {
+            color: $lgreen;
+            font-size: 25px;
+            padding: 25px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .wrapper-checkbox {
+    margin-bottom: 10px;
+  }
+
+  .wrapper-checkbox label {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding-left: 30px !important;
+    color: #bdc0cb;
+  }
+
+  .wrapper-checkbox label:before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+  }
+
+  .wrapper-checkbox input[type=radio] {
+    display: none;
+  }
+
+  .wrapper-checkbox .checkbox-custom label:before {
+    background: asset-url("checkbox_normal.png") left center no-repeat;
+  }
+
+  .wrapper-checkbox input[type=radio]:checked + label:before {
+    background: asset-url("Checkbox_selected.png") left center no-repeat;
+  }
+}
+
+.arrow-down-loadmore {
+  text-align: center;
+}
+
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $black;
+  filter:alpha(opacity=80);
+  -moz-opacity:0.8;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+  z-index: 10000;
+  display: block;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  border-radius: 0px;
+  border: 1px solid $black;
+  background-color: #cdcccb;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #5c8acc;
+ }

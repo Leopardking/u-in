@@ -4,16 +4,9 @@ class ActivitiesController < ApplicationController
 
   def index
     @promotions = Promotion.filter(params).page(params[:page])
-    @data 			= MerchantDetail.all.limit(10)
-    @state 			= MerchantDetail.limit(50).pluck(:state)
-		respond_to do |format|
-		  format.html # show.html.erb
-		  format.xml  { render :xml => @data }
-		  format.json { render :json => { 
-		  	:data => @data,
-		  	:state => @state 
-		  	}
-		  }
-		end
+    respond_to do |format|
+      format.html
+      format.json { render :json => @promotions }
+    end
   end
 end
