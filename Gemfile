@@ -117,5 +117,7 @@ gem 'google-api-client', '~> 0.9', require: 'google/apis/calendar_v3'
 
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
+# gem 'rails-assets-ngstorage'
+gem 'rails-assets-angular-local-storage'
 
 gem 'angular-rails-templates'
