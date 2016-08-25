@@ -65,7 +65,7 @@ group :development do
   gem 'rails-erd', '~>1.4.6'
   gem 'rails_best_practices', '~> 1.16'
   gem 'bullet', '~> 5.0'
-  # gem 'mailcatcher'
+  gem 'mailcatcher'
 end
 
 # For pagination
@@ -112,7 +112,7 @@ gem 'mina', '~> 0.3.8'
 gem 'mina-multistage', '~>1.0.1', require: false
 gem 'browser-timezone-rails', '~> 0.0.8'
 
-gem 'instagram', '~>1.1.6'
+# gem 'instagram', '~>1.1.6'
 gem 'phone', '~> 1.2', '>= 1.2.3'
 
 # Google AIP calendar
@@ -124,3 +124,4 @@ gem 'rails-assets-angular-ui-router'
 gem 'angular-rails-templates'
 
 gem 'rails_12factor', group: :production
+gem 'sinatra', :require => false
