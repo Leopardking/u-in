@@ -44,7 +44,9 @@
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
-//= require_tree ./ng-app
+//= require angular-local-storage
+//= require ng-app/app
+//= require_tree ./ng-app/controllers
 //= require_tree ../templates
 
 window.onload = function() {
