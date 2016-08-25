@@ -1,0 +1,49 @@
+.wrapper-footer {
+  background-color: $dgray;
+  color: $white;
+  padding: 20px 0;
+
+  .footer-text {
+
+    li {
+      display: block;
+      text-align: left;
+      padding: 0px 0px;
+      color: $llgray ;
+
+      &:first-child {
+        color: white;
+        font-size: 18px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+
+
+  .btn-blue {
+    background-color: $blue;
+    border-radius : 0px;
+    width: 100%;
+    border: solid 1px black;
+    font-size: 18px;
+  }
+}
+
+.socmed {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding: 10px;
+
+  li {
+    padding: 5px 5px;
+
+    a {
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+}

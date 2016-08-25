@@ -1,0 +1,67 @@
+.nav-icon {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+
+  &.share {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: 0px 5px;
+    position: relative;
+    top: -4px
+  }
+
+  &.dollar {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -40px 0px;
+  }
+
+  &.menu-hamburger {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -80px 5px;
+  }
+}
+
+
+.social-icon {
+  @extend .nav-icon;
+
+  &.facebook {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -120px 0px;
+  }
+
+  &.twitter {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -160px 0px;
+  }
+
+  &.linkedin {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -200px 0px;
+  }
+
+  &.google-plus {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -240px 0px;
+  }
+
+  &.pinterest {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -280px 0px;
+  }
+
+  &.vine {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -320px 0px;
+  }
+
+  &.instagram {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -360px 0px;
+  }
+
+  &.chevron-down {
+    background: asset-url("sprite_icon_1.png") no-repeat;
+    background-position: -400px 0px;
+  }
+}

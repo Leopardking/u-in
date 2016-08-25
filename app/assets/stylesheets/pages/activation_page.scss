@@ -1,0 +1,376 @@
+.wrapper-select-activity {
+  margin-top: 20px;
+}
+
+.wrapper-choose-distance {
+  margin-top: 20px;
+  background-color: $black;
+  color: $white;
+  height: 40px;
+  padding: 10px;
+
+  .text-distance {
+    float: left;
+    margin-right: 20px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .sliding {
+    float: left;
+    width: 860px;
+    height: 2px;
+    background-color: $white;
+    margin-top: 10px;
+  }
+
+  .circle-slide {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    background-color: $green;
+    border: 3px solid $white;
+    border-radius: 50%;
+    top: -8px;
+    left: 0px;
+  }
+
+  .text-range {
+    float: right;
+    margin-left: 20px;
+    font-weight: 500;
+  }
+}
+
+.wrapper-select-activity {
+
+  .left {
+    width: 50%;
+    float: left;
+
+    button {
+      width: 100%;
+      text-align: left;
+      text-transform: uppercase;
+      background-color: transparent;
+      border: 2px solid $blue;
+      font-weight: 500;
+
+      span {
+        position: absolute;
+        right: 9px;
+        top: 16px;
+      }
+    }
+
+    .open > .btn-default.dropdown-toggle {
+      background-color: transparent;
+      border-color: $blue;
+    }
+
+    .dropdown {
+
+      .caret {
+        color: $blue;
+        border-top: 8px solid;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+    }
+
+    .column-1 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+    }
+
+    .column-2 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+    }
+  }
+
+  .right {
+    width: 50%;
+    float: left;
+
+    button {
+      width: 100%;
+      text-align: left;
+      text-transform: uppercase;
+      border: 2px solid $green;
+      background-color: transparent;
+      font-weight: 500;
+
+      span {
+        position: absolute;
+        right: 9px;
+        top: 16px;
+      }
+    }
+
+    .open > .btn-default.dropdown-toggle {
+      background-color: transparent;
+      border: 2px solid $green;
+    }
+
+    .dropdown {
+
+      .caret {
+        color: $green;
+        border-top: 8px solid;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+    }
+
+
+    .column-1 {
+      width: 50%;
+      float: left;
+      padding-right: 6px;
+
+      input {
+        background-color: transparent;
+        border: 2px solid $green;
+        text-align: center;
+        font-weight: 500;
+        text-transform: uppercase;
+        height: 36px;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+        }
+
+        @include placeholder {
+          text-align: center;
+          font-weight: 500;
+          color: $black
+        }
+      }
+    }
+
+    .column-2 {
+      width: 15%;
+      float: left;
+      padding-right: 6px;
+    }
+
+    .column-3 {
+      width: 35%;
+      float: left;
+
+      input {
+        background-color: transparent;
+        border: 2px solid $green;
+        text-align: center;
+        font-weight: 500;
+        text-transform: uppercase;
+        height: 36px;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+        }
+
+        @include placeholder {
+          text-align: center;
+          font-weight: 500;
+          color: $black
+        }
+      }
+    }
+  }
+}
+
+.wrapper-table-activity {
+  margin-top: 20px;
+
+  .radio {
+    position: absolute;
+    bottom: -13px;
+    right: -20px;
+  }
+
+  .head-activity {
+    text-align: center;
+
+    .left {
+      width: 70%;
+      float: left;
+
+      .column {
+        width: 25%;
+        float: left;
+        background-color: $white;
+
+        .my-location {
+          border: 2px solid $blue;
+
+          h4 {
+            line-height: 38px;
+            color: $blue;
+          }
+        }
+
+        .share,
+        .bookmark {
+          border: 2px solid $green;
+        }
+
+        .most-popular {
+          border: 2px solid $black;
+
+          h4 {
+            line-height: 38px;
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 30%;
+      float: left;
+
+      .column {
+        width: 33.33%;
+        float: left;
+        background-color: $white;
+
+        .off {
+          border: 2px solid $blue;
+
+          h4 {
+            color: $blue;
+            line-height: 38px;
+          }
+        }
+
+        .prices {
+          border: 2px solid $black;
+
+          h4 {
+            line-height: 19px;
+          }
+        }
+
+        .spaces {
+          border: 2px solid $green;
+
+          h4 {
+            line-height: 38px;
+            color: $lgreen;
+          }
+        }
+      }
+    }
+  }
+
+  .body-activity {
+    width: 100%;
+    float: left;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    .left {
+      width: 70%;
+      float: left;
+
+      .left-picture {
+        float:left;
+        width: 20%;
+        border: solid 1px #7d7d7c;
+        position: relative;
+      }
+      .right-content-picture {
+        float: left;
+        width: 80%;
+        border: solid 1px #7d7d7c;
+        background-color: $white;
+        p {
+          line-height: 97px;
+          padding-left: 15px;
+          font-size: 25px;
+          font-weight: 300;
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .right {
+      width: 30%;
+      float: left;
+      background-color: $white;
+
+      .count {
+        width: 33.33%;
+        float: left;
+        p {
+          text-align: center;
+        }
+        &.blue-box {
+          border: 2px solid $blue;
+          p {
+            color: $blue;
+            font-size: 25px;
+            padding: 25px 0;
+          }
+        }
+        &.black-box {
+          border: 2px solid $black;
+          p {
+            color: $black;
+            font-size: 25px;
+            padding: 25px 0;
+          }
+        }
+        &.green-box {
+          border: 2px solid $green;
+          p {
+            color: $lgreen;
+            font-size: 25px;
+            padding: 25px 0;
+          }
+        }
+      }
+    }
+  }
+
+  .wrapper-checkbox {
+    margin-bottom: 10px;
+  }
+
+  .wrapper-checkbox label {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding-left: 30px !important;
+    color: #bdc0cb;
+  }
+
+  .wrapper-checkbox label:before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+  }
+
+  .wrapper-checkbox input[type=radio] {
+    display: none;
+  }
+
+  .wrapper-checkbox .checkbox-custom label:before {
+    background: asset-url("checkbox_normal.png") left center no-repeat;
+  }
+
+  .wrapper-checkbox input[type=radio]:checked + label:before {
+    background: asset-url("Checkbox_selected.png") left center no-repeat;
+  }
+}
+
+.arrow-down-loadmore {
+  text-align: center;
+}

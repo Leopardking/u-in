@@ -11,20 +11,20 @@
     = csrf_meta_tags
 
   %body
-    #wrapper
-      .container
-        .row
-          - if need_header?
-            = render "layouts/header"
-          .col-md-12
-            -if user_signed_in?
-              %p.text-center
-                =t("sign_msg", :email => current_user.email )
-                = link_to t("sign_out"), auth_destroy_path, class: "btn btn-small"
-            = form_notice_alert!
-          #error_crud_here
-          = yield
-        = render "layouts/footer"
+    - if need_header?
+      = render "layouts/header"
+    .wrapper-main-container
+      -# .container
+      -#   .row
+      -#     .col-md-12
+            -# -if user_signed_in?
+            -#   %p.text-center
+            -#     =t("sign_msg", :email => current_user.email )
+            -#     = link_to t("sign_out"), auth_destroy_path, class: "btn btn-small"
+            -# = form_notice_alert!
+      #error_crud_here
+      = yield
+  = render "layouts/footer"
 
 %script
   var key=  "#{ENV['FACEBOOK_APP_ID']}"
