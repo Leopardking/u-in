@@ -2,16 +2,16 @@
   %nav.navbar.navbar-default.navbar-fixed-top
     .container-fluid
       .navbar-header
-        %a.navbar-brand{:href => "#"}
+        = link_to root_path, class: "navbar-brand" do
           =image_tag "uINlogo_white.png"
       #navbar
         %ul.nav.navbar-nav.navbar-center
           %li
-            %a{:href => "#"}
+            %a{:href => "javascript:void(0)"}
               %span.nav-icon.share
               %span.share-text Share
           %li
-            %a{:href => "#"}
+            %a{:href => "javascript:void(0)"}
               %span.nav-icon.dollar
               %span.dollar-text Operators Login
 
@@ -81,7 +81,7 @@
         =image_tag "Slider_Main_Image_LG.png"
 
     .button-bottom-header
-      %a.btn-activity{:href => "#"} Find An Activity
+      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
       .arrow-bottom-header
-        %a{:href => "#"}
-          =image_tag "Slider_Arrowdown_LG.png"
+        %a{:href => "javascript:void(0)"}
+          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
