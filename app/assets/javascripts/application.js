@@ -82,24 +82,33 @@ $(function () {
 });
 
 jQuery(function ($) {
-
+    $('.genre-dropdown').on('show.bs.dropdown', function () {
+      $(".show-highlight").addClass('overlay-placeholder');
+      $(".bootstrap-select").addClass('overlay-open');
+    })
     $(".show-highlight").on('click', function (e) {
         if (!$('#overlay').length) {
 
             $(".show-highlight").addClass('overlay-placeholder');
-
             $('body').append('<div id="overlay"> </div>');
+            $(".show-highlight").addClass('overlay-placeholder');
+            $(".bootstrap-select").addClass('overlay-open');
+            $(".genre-dropdown").addClass('overlay-open');
         }
     }).keyup(function (e) {
         if (e.which == 27) {
             $('#overlay').remove();
-            $(".show-highlight").removeClass('overlay-placeholder')
+            $(".show-highlight").removeClass('overlay-placeholder');
+            $(".bootstrap-select").removeClass('overlay-open');
+            $(".genre-dropdown").removeClass('overlay-open');
         }
     });
     $('body').click(function (e) {
         if (!$(e.target).is('.show-highlight')) {
             $('#overlay').remove();
-            $(".show-highlight").removeClass('overlay-placeholder')
+            $(".show-highlight").removeClass('overlay-placeholder');
+            $(".bootstrap-select").removeClass('overlay-open');
+            $(".genre-dropdown").removeClass('overlay-open');
         };
     });
 });

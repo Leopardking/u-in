@@ -117,6 +117,13 @@
       color: $white;
     }
 
+    .overlay-open > .btn-default.dropdown-toggle {
+      background-color: transparent;
+      border-color: $blue;
+      background: rgba(43, 169, 246, 0.3);
+      color: $white;
+    }
+
     .dropdown {
 
       .caret {
