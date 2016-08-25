@@ -10,6 +10,44 @@
   //   }
   // }
 
+ .dropdown-toggle-humberger {
+  padding: .5em 1em;
+  @include border-radius(0px);
+}
+
+li.navbar-menu:hover {
+  background-color: #aeaeaf;  
+}
+
+ul.dropdown-humberger {
+    display: none;
+    position: absolute;
+    top: 100%;
+    margin-top: .5em;
+    background: rgba(0,0,0,0.50);
+    min-width: 12em;
+    padding: 0;
+    right: 0px;
+    margin-top: 1px;
+    @include border-radius(0px);
+
+    li {
+      list-style-type: none;
+
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        padding: .5em 1em;
+        display: block;
+
+        &:hover,
+        &:focus {
+          color: $white;
+        }
+      }
+   }
+}
+
   @media (max-width: 768px) {
     .navbar-header {
       float: left;

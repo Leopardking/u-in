@@ -52,6 +52,7 @@ group :development, :test, :staging do
   gem 'capistrano-rvm', '~>0.0.3'
   gem 'pry-rails', '~> 0.3.4'
   gem 'byebug', '~> 8.2', '>= 8.2.2'
+  gem 'did_you_mean', '0.3.0'
 end
 
 #Better Errors
