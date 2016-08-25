@@ -190,16 +190,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mailcatcher (0.2.4)
-      eventmachine
-      haml
-      i18n
-      json
-      mail
-      sinatra
-      skinny (>= 0.1.2)
-      sqlite3-ruby
-      thin
     memoist (0.15.0)
     method_source (0.8.2)
     mime-types (1.25.1)
@@ -276,8 +266,6 @@ GEM
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.5)
-    rack-protection (1.5.3)
-      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     railroady (1.3.1)
@@ -358,13 +346,6 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    sinatra (1.4.7)
-      rack (~> 1.5)
-      rack-protection (~> 1.4)
-      tilt (>= 1.3, < 3)
-    skinny (0.2.2)
-      eventmachine (~> 1.0)
-      thin
     slop (3.6.0)
     sprockets (2.12.4)
       hike (~> 1.2)
@@ -375,9 +356,6 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
-    sqlite3 (1.3.11)
-    sqlite3-ruby (1.3.3)
-      sqlite3 (>= 1.3.3)
     stripe (1.13.0)
       json (~> 1.8.1)
       mime-types (~> 1.25)
@@ -445,7 +423,6 @@ DEPENDENCIES
   jquery-rails (~> 3.1.0)
   js-routes (~> 0.9.8)
   kaminari!
-  mailcatcher
   mina (~> 0.3.8)
   mina-multistage (~> 1.0.1)
   momentjs-rails (~> 2.5.0)

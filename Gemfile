@@ -65,7 +65,7 @@ group :development do
   gem 'rails-erd', '~>1.4.6'
   gem 'rails_best_practices', '~> 1.16'
   gem 'bullet', '~> 5.0'
-  gem 'mailcatcher'
+  # gem 'mailcatcher'
 end
 
 # For pagination
