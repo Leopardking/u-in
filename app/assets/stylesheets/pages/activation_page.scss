@@ -197,7 +197,7 @@
           top: 0px;
         }
 
-        .wrapper-checkbox input[type=radio] {
+        .wrapper-checkbox input[type=checkbox] {
           display: none;
         }
 
@@ -206,7 +206,7 @@
           background-size: cover;
         }
 
-        .wrapper-checkbox input[type=radio]:checked + label:before {
+        .wrapper-checkbox input[type=checkbox]:checked + label:before {
           background: asset-url("Checkbox_selected.png") left center no-repeat;
           background-size: cover;
         }
@@ -277,7 +277,7 @@
       }
 
       .caret {
-        color: #2ba9f6;
+        color: $blue;
         border-top: 8px solid;
         border-right: 8px solid transparent;
         border-left: 8px solid transparent;
@@ -330,41 +330,41 @@
     width: 50%;
     float: left;
 
-    button {
-      width: 100%;
-      text-align: left;
-      text-transform: uppercase;
-      border: 2px solid $green;
-      background-color: transparent;
-      font-weight: 500;
+    // button {
+    //   width: 100%;
+    //   text-align: left;
+    //   text-transform: uppercase;
+    //   border: 2px solid $green;
+    //   background-color: transparent;
+    //   font-weight: 500;
 
-      &:hover,
-      &:focus {
-        box-shadow: none;
-        background: rgba(168, 213, 37, 0.3);
-      }
+    //   &:hover,
+    //   &:focus {
+    //     box-shadow: none;
+    //     background: rgba(168, 213, 37, 0.3);
+    //   }
 
-      span {
-        position: absolute;
-        right: 9px;
-        top: 16px;
-      }
-    }
+    //   span {
+    //     position: absolute;
+    //     right: 9px;
+    //     top: 16px;
+    //   }
+    // }
 
-    .open > .btn-default.dropdown-toggle {
-      background-color: transparent;
-      border: 2px solid $green;
-    }
+    // .open > .btn-default.dropdown-toggle {
+    //   background-color: transparent;
+    //   border: 2px solid $green;
+    // }
 
-    .dropdown {
+    // .dropdown {
 
-      .caret {
-        color: $green;
-        border-top: 8px solid;
-        border-right: 8px solid transparent;
-        border-left: 8px solid transparent;
-      }
-    }
+    //   .caret {
+    //     color: $green;
+    //     border-top: 8px solid;
+    //     border-right: 8px solid transparent;
+    //     border-left: 8px solid transparent;
+    //   }
+    // }
 
 
     .column-1 {
@@ -398,6 +398,49 @@
       width: 15%;
       float: left;
       padding-right: 6px;
+
+      button {
+        width: 100%;
+        text-align: left;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: 2px solid $green;
+        font-weight: 500;
+
+        &:hover,
+        &:focus {
+          box-shadow: none;
+          background: rgba(168, 213, 37, 0.3);
+          color: $dgray;
+        }
+      }
+
+      .caret {
+        color: $green;
+        border-top: 8px solid;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+
+      .dropdown-menu {
+        width: 63px;
+        padding: 0px;
+        margin: 0px;
+        @include border-radius(0px);
+        border: 1px solid $dgray;
+        margin-top: -1px;
+
+        > li > a {
+          font-size: 16px;
+          color: $black;
+          padding: 6px 12px;
+
+          &:hover,
+          &:focus {
+            background: rgba(43, 169, 246, 0.3);
+          }
+        }
+      }
     }
 
     .column-3 {

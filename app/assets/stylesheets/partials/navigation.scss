@@ -16,7 +16,7 @@
 }
 
 li.navbar-menu:hover {
-  background-color: #aeaeaf;  
+  background-color: #aeaeaf;
 }
 
 ul.dropdown-humberger {
@@ -66,6 +66,7 @@ ul.dropdown-humberger {
     background: rgba(0,0,0,0.50);
     @include border-radius(0px);
     border-color: transparent;
+    z-index: 999999;
 
     .navbar-nav > li > a {
       color: $white;

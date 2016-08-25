@@ -130,10 +130,4 @@ $(function() {
       $('.dropdown-humberger').hide();
     }
   });
-
-  $( ".js-example-disabled-results" ).select2({
-    width: 'element',
-    theme: "bootstrap",
-    minimumResultsForSearch: Infinity
-  });
 });
