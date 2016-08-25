@@ -65,6 +65,7 @@ group :development do
   gem 'rails-erd', '~>1.4.6'
   gem 'rails_best_practices', '~> 1.16'
   gem 'bullet', '~> 5.0'
+  gem 'mailcatcher'
 end
 
 # For pagination
@@ -111,7 +112,6 @@ gem 'mina', '~> 0.3.8'
 gem 'mina-multistage', '~>1.0.1', require: false
 gem 'browser-timezone-rails', '~> 0.0.8'
 
-# gem 'mailcatcher', '~>0.2.4', group: :development
 gem 'instagram', '~>1.1.6'
 gem 'phone', '~> 1.2', '>= 1.2.3'
 
