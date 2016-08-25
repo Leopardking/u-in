@@ -41,21 +41,10 @@
 //= require global
 //= require responsiveslides
 //= require angular
-<<<<<<< HEAD
-//= require restangular
-//= require angular-ui-router
-//= require angular-rails-templates
-//= require angular/main
-//= require_tree ./angular
-//= require_tree ../templates
-//= require_tree ./templates
-
-=======
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require_tree ./ng-app
 //= require_tree ../templates
->>>>>>> ng-angular
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
