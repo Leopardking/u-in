@@ -43,7 +43,6 @@
 //= require responsiveslides
 //= require bootstrap-select
 //= require angular
-//= require ng-rails-csrf
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require ng-app/app

@@ -39,6 +39,8 @@ GEM
       railties (>= 3.1)
       sprockets (~> 2)
       tilt
+    angular_csrf (0.1.4)
+      rails (>= 3.1)
     arel (4.0.2)
     autoprefixer-rails (6.4.0.3)
       execjs
@@ -292,7 +294,6 @@ GEM
     rails-assets-angular (1.5.8)
     rails-assets-angular-ui-router (0.3.1)
       rails-assets-angular (>= 1.0.8, < 2)
-    rails-assets-ng-rails-csrf (0.1.0)
     rails-erd (1.4.7)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
@@ -416,6 +417,7 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
+  angular_csrf
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)
   bootstrap-sass (>= 3.1.1.1)
@@ -466,7 +468,6 @@ DEPENDENCIES
   rails (= 4.0.0)
   rails-assets-angular
   rails-assets-angular-ui-router
-  rails-assets-ng-rails-csrf
   rails-erd (~> 1.4.6)
   rails_12factor
   rails_best_practices (~> 1.16)

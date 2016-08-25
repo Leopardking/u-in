@@ -123,7 +123,6 @@ gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
 # gem 'rails-assets-ngstorage'
 gem 'angular-rails-templates'
-gem 'rails-assets-ng-rails-csrf'
-
+gem 'angular_csrf'
 gem 'rails_12factor', group: :production
 gem 'sinatra', :require => false

@@ -1,7 +1,6 @@
 angular.module('uinApp', [
   'ui.router'
   'templates'
-  'ng-rails-csrf'
 ]).config ($stateProvider, $urlRouterProvider) ->
   $stateProvider
     .state('home',
