@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -41,8 +42,8 @@
 //= require global
 //= require responsiveslides
 //= require bootstrap-select
-//= require ng-rails-csrf
 //= require angular
+//= require ng-rails-csrf
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require ng-app/app
