@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 source 'https://rails-assets.org'
-ruby "2.1.4"
+ruby '2.1.2'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
@@ -53,7 +54,7 @@ group :development, :test, :staging do
   gem 'capistrano-rvm', '~>0.0.3'
   gem 'pry-rails', '~> 0.3.4'
   gem 'byebug', '~> 8.2', '>= 8.2.2'
-  gem 'did_you_mean', '0.3.0'
+  gem 'did_you_mean', '0.9.10'
 end
 
 #Better Errors
