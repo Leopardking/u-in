@@ -1,4 +1,4 @@
-window.uinApp.controller 'ActivitiesCtrl', [
+angular.module('uinApp').controller 'ActivitiesCtrl', [
   '$scope'
   '$http'
   ($scope, $http) ->

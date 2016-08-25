@@ -1,4 +1,4 @@
-window.uinApp = angular.module('uinApp', [
+angular.module('uinApp', [
   'ui.router'
   'templates'
 ]).config ($stateProvider, $urlRouterProvider) ->
