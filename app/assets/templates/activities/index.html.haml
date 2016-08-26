@@ -5,11 +5,11 @@
         .wrapper-select-activity
           .left
             .column-1
-              .dropdown
-                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              .dropdown.genre-dropdown
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight.dropdown-button-action{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
                   Genre
                   %span.caret
-                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                %ul.dropdown-menu.search-filter-container{"aria-labelledby" => "dropdownMenu1"}
                   .input-search
                     .input-group
                       %input.form-control{:placeholder => "Search", :type => "text"}

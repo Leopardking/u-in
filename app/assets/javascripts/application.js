@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
@@ -44,7 +45,6 @@
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
-//= require angular-local-storage
 //= require angular-ui-select
 //= require ng-app/app
 //= require_tree ./ng-app/controllers
@@ -83,24 +83,36 @@ $(function () {
 });
 
 jQuery(function ($) {
+    $('.genre-dropdown').on('show.bs.dropdown', function () {
+      $(".show-highlight").addClass('overlay-placeholder');
+      $(".bootstrap-select").addClass('overlay-open');
+    })
     $(".show-highlight").on('click', function (e) {
         if (!$('#overlay').length) {
-            $('body').append('<div id="overlay"> </div>')
+
+            $(".show-highlight").addClass('overlay-placeholder');
+            $('body').append('<div id="overlay"> </div>');
+            $(".show-highlight").addClass('overlay-placeholder');
+            $(".bootstrap-select").addClass('overlay-open');
+            $(".genre-dropdown").addClass('overlay-open');
         }
     }).keyup(function (e) {
         if (e.which == 27) {
             $('#overlay').remove();
+            $(".show-highlight").removeClass('overlay-placeholder');
+            $(".bootstrap-select").removeClass('overlay-open');
+            $(".genre-dropdown").removeClass('overlay-open');
         }
-    }).blur(function (e) {
-        $('#overlay').remove();
     });
     $('body').click(function (e) {
         if (!$(e.target).is('.show-highlight')) {
             $('#overlay').remove();
-        }
-    })
+            $(".show-highlight").removeClass('overlay-placeholder');
+            $(".bootstrap-select").removeClass('overlay-open');
+            $(".genre-dropdown").removeClass('overlay-open');
+        };
+    });
 });
-
 
 $( document ).ready(function() {
   $(".dropdown-menu").click(function(event){
@@ -110,7 +122,7 @@ $( document ).ready(function() {
   localStorage.removeItem("search")
 });
 
-$(function() {
+$( document ).ready(function() {
   $('.wrapper-choose-distance').change(function() {
     var elem = document.querySelector('input[type="range"]');
     var rangeValue = function(){
@@ -123,7 +135,7 @@ $(function() {
   });
 });
 
-$(function() {
+$( document ).ready(function() {
   // Dropdown toggle
   $('.dropdown-toggle-humberger').click(function(){
     $(this).next('.dropdown-humberger').toggle();

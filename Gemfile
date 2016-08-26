@@ -6,7 +6,7 @@ ruby '2.1.2'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'mysql2', '0.3.16'
+gem 'mysql2', '0.3.18'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -121,10 +121,9 @@ gem 'google-api-client', '~> 0.9', require: 'google/apis/calendar_v3'
 # handle angular
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
-# gem 'rails-assets-ngstorage'
-gem 'rails-assets-angular-local-storage'
 gem 'rails-assets-angular-ui-select'
-gem 'angular-rails-templates'
 
+gem 'angular-rails-templates'
+gem 'angular_csrf'
 gem 'rails_12factor', group: :production
 gem 'sinatra', :require => false

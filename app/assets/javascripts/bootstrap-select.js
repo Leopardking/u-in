@@ -390,6 +390,10 @@
         'show.bs.dropdown': function (e) {
           that.$menuInner.attr('aria-expanded', true);
           that.$element.trigger('show.bs.select', e);
+          $('body').append('<div id="overlay"> </div>');
+          $(".show-highlight").addClass('overlay-placeholder');
+          $(".bootstrap-select").addClass('overlay-open');
+          $(".genre-dropdown").addClass('overlay-open');
         },
         'shown.bs.dropdown': function (e) {
           that.$element.trigger('shown.bs.select', e);
