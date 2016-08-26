@@ -118,35 +118,42 @@
           .left
             .column
               .my-location
-                %h4 My Location
+                %h4.hidden-xs My Location
+                %i.fa.fa-map-marker.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .share
-                %h4
+                %h4.hidden-xs
                   Share
                   %br
                   Activities
+                %i.fa.fa-share-alt.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .bookmark
-                %h4
+                %h4.hidden-xs
                   Bookmark
                   %br
                   Activities
+                %i.fa.fa-bookmark.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .most-popular
-                %h4 Most Popular
+                %h4.hidden-xs Most Popular
+                %i.fa.fa-star.visible-xs.fa-2x{"aria-hidden" => "true"}
           .right
             .column
               .off
-                %h4 % Off
+                %h4.hidden-xs % Off
+                %i.fa.fa-percent.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .prices
-                %h4
+                %h4.hidden-xs
                   Prices
                   %br
                   From
+                %i.fa.fa-tag.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .spaces
-                %h4 Spaces
+                %h4.hidden-xs Spaces
+                %i.fa.fa-users.visible-xs.fa-2x{"aria-hidden" => "true"}
         %span{"ng-repeat" => "activity in activities"}
           .body-activity
             .left

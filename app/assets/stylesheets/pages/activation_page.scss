@@ -6,7 +6,8 @@
   margin-top: 20px;
   background-color: $black;
   color: $white;
-  height: 41px;
+  height: auto;
+  overflow: hidden;
   padding: 10px;
 
 
@@ -43,6 +44,10 @@
     margin-right: 20px;
     text-transform: uppercase;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      margin-bottom: 6px;
+    }
   }
 
   .sliding {
@@ -50,6 +55,19 @@
     width: 825px;
     height: 2px;
     margin-top: 10px;
+
+
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    // @media (max-width: 320px) {
+    //   width: 100%;
+    // }
   }
 
   .circle-slide {
@@ -68,14 +86,36 @@
     font-weight: 500;
     font-size: 18px;
     margin-top: -2px;
-    width: 95px;
+    width: auto;
     text-align: center;
 
     .value {
       font-size: 15px;
       display: inline-block;
     }
+
+    @media (max-width: 767px) {
+      text-align: right;
+      margin-right: 0px;
+      margin-top: 20px;
+    }
   }
+
+  // @media (max-width: 1200px) {
+  //   height: 41px;
+  // }
+
+  // @media (max-width: 960px) {
+  //   height: 88px;
+  // }
+
+  // @media (max-width: 768px) {
+  //   height: 43px;
+  // }
+
+  //  @media (max-width: 480px) {
+  //   height: 88px;
+  // }
 }
 
 .wrapper-select-activity {
@@ -86,18 +126,22 @@
     width: 50%;
     float: left;
 
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
     .column-1 {
       width: 50%;
       float: left;
       padding-right: 6px;
 
-     button {
-      width: 100%;
-      text-align: left;
-      text-transform: uppercase;
-      background-color: transparent;
-      border: 2px solid $blue;
-      font-weight: 500;
+      button {
+        width: 100%;
+        text-align: left;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: 2px solid $blue;
+        font-weight: 500;
 
       &:hover {
         background: rgba(43, 169, 246, 0.3);
@@ -107,6 +151,10 @@
         position: absolute;
         right: 9px;
         top: 16px;
+      }
+
+      @media (max-width: 768px) {
+        position: static;
       }
     }
 
@@ -131,6 +179,14 @@
         border-top: 8px solid;
         border-right: 8px solid transparent;
         border-left: 8px solid transparent;
+
+        @media (max-width: 768px) {
+          left: 40%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        position: static;
       }
     }
 
@@ -140,6 +196,12 @@
         @include border-radius(0px);
         border: 1px solid $dgray;
         margin-top: -1px;
+
+        @media (max-width: 768px) {
+          top: 37px;
+          width: 100%;
+        }
+
       }
 
       .input-search {
@@ -259,6 +321,10 @@
           &:focus {
             text-decoration: none;
           }
+
+          @media (max-width: 768px) {
+            padding: 10px 16px;
+          }
         }
       }
     }
@@ -299,12 +365,6 @@
           box-shadow: none;
         }
       }
-
-      // .ui-select-bootstrap {
-      //   .glyphicon-remove {
-      //     display: none;
-      //   }
-      // }
 
       .ui-select-bootstrap .ui-select-choices-row {
 
@@ -367,6 +427,10 @@
             background: rgba(43, 169, 246, 0.3);
           }
         }
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
       }
 
       .wrapper-close {
@@ -389,6 +453,10 @@
           }
         }
       }
+
+      @media (max-width: 768px) {
+        padding-right: 0px;
+      }
     }
   }
 
@@ -396,42 +464,9 @@
     width: 50%;
     float: left;
 
-    // button {
-    //   width: 100%;
-    //   text-align: left;
-    //   text-transform: uppercase;
-    //   border: 2px solid $green;
-    //   background-color: transparent;
-    //   font-weight: 500;
-
-    //   &:hover,
-    //   &:focus {
-    //     box-shadow: none;
-    //     background: rgba(168, 213, 37, 0.3);
-    //   }
-
-    //   span {
-    //     position: absolute;
-    //     right: 9px;
-    //     top: 16px;
-    //   }
-    // }
-
-    // .open > .btn-default.dropdown-toggle {
-    //   background-color: transparent;
-    //   border: 2px solid $green;
-    // }
-
-    // .dropdown {
-
-    //   .caret {
-    //     color: $green;
-    //     border-top: 8px solid;
-    //     border-right: 8px solid transparent;
-    //     border-left: 8px solid transparent;
-    //   }
-    // }
-
+    @media (max-width: 768px) {
+      width: 100%;
+    }
 
     .column-1 {
       width: 45%;
@@ -457,6 +492,10 @@
           font-weight: 500;
           color: $black
         }
+      }
+
+      @media (max-width: 768px) {
+        width: 50%;
       }
     }
 
@@ -496,12 +535,6 @@
           box-shadow: none;
         }
       }
-
-      // .ui-select-bootstrap {
-      //   .glyphicon-remove {
-      //     display: none;
-      //   }
-      // }
 
       .ui-select-bootstrap .ui-select-choices-row {
 
@@ -564,6 +597,15 @@
             background: rgba(168, 213, 37, 0.3);
           }
         }
+
+        @media (max-width: 768px) {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 768px) {
+        width: 50%;
+        padding-right: 0px;
       }
     }
 
@@ -591,8 +633,26 @@
           color: $black
         }
       }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-top: 6px;
+
+      }
+    }
+
+    @media (max-width: 768px) {
+      margin-top: 6px;
     }
   }
+  @media (max-width: 1200px) {
+     min-height: 35px;
+  }
+
+  @media (max-width: 768px) {
+    min-height: 118px;
+  }
+
 }
 
 .wrapper-table-activity {
@@ -607,6 +667,10 @@
   .head-activity {
     text-align: center;
 
+    i {
+      padding: 10px 0;
+    }
+
     .left {
       width: 70%;
       float: left;
@@ -619,6 +683,11 @@
         .my-location {
           border: 2px solid $blue;
 
+          i {
+            color: $blue;
+            font-size: 20px;
+          }
+
           h4 {
             line-height: 38px;
             color: $blue;
@@ -628,10 +697,20 @@
         .share,
         .bookmark {
           border: 2px solid $green;
+
+          i {
+            color: $green;
+            font-size: 20px;
+          }
         }
 
         .most-popular {
           border: 2px solid $black;
+
+          i {
+            color: $black;
+            font-size: 20px;
+          }
 
           h4 {
             line-height: 38px;
@@ -652,6 +731,11 @@
         .off {
           border: 2px solid $blue;
 
+          i {
+            color: $blue;
+            font-size: 20px;
+          }
+
           h4 {
             color: $blue;
             line-height: 38px;
@@ -661,6 +745,11 @@
         .prices {
           border: 2px solid $black;
 
+          i {
+            color: $black;
+            font-size: 20px;
+          }
+
           h4 {
             line-height: 19px;
           }
@@ -668,6 +757,11 @@
 
         .spaces {
           border: 2px solid $green;
+
+          i {
+            color: $lgreen;
+            font-size: 20px;
+          }
 
           h4 {
             line-height: 38px;
@@ -687,20 +781,33 @@
     .left {
       width: 70%;
       float: left;
+      @media (max-width: 768px){
+        width: 100%;
+      }
 
       .left-picture {
         float:left;
         width: 20%;
         border: solid 1px #7d7d7c;
         position: relative;
+        @media (max-width: 768px){
+          width: 100%;
+        }
       }
+
       .right-content-picture {
         float: left;
         width: 80%;
         border: solid 1px #7d7d7c;
         background-color: $white;
+        @media (max-width: 768px){
+          width: 100%;
+        }
         p {
           line-height: 97px;
+          @media(min-width: 769px) and (max-width:1199px){
+            line-height: 63px;
+          }
           padding-left: 15px;
           font-size: 25px;
           font-weight: 300;
@@ -713,6 +820,9 @@
       width: 30%;
       float: left;
       background-color: $white;
+      @media (max-width: 768px){
+        width: 100%;
+      }
 
       .count {
         width: 33.33%;
@@ -730,6 +840,10 @@
             font-size: 18px;
             // padding: 25px 0;
             line-height: 95px;
+            @media(min-width: 769px)and(max-width:1199px){
+              line-height: 63px;
+              font-size: 15px;
+            }
           }
         }
         &.black-box {
@@ -739,6 +853,10 @@
             font-size: 18px;
             // padding: 25px 0;
             line-height: 95px;
+            @media(min-width: 769px)and(max-width:1199px){
+              line-height: 63px;
+              font-size: 15px;
+            }
           }
         }
         &.green-box {
@@ -748,6 +866,10 @@
             font-size: 18px;
             // padding: 25px 0;
             line-height: 95px;
+            @media(min-width: 769px)and(max-width:1199px){
+              line-height: 63px;
+              font-size: 15px;
+            }
           }
         }
       }

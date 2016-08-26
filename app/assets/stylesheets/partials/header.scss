@@ -15,11 +15,21 @@ header {
       text-align: center;
       letter-spacing: 5px;
 
+      @media (max-width: 768px) {
+        font-size: 60px;
+        line-height: 50px;
+      }
+
       span {
         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-size: 180px;
         display: inline-block;
         margin-left: -50px;
+
+        @media (max-width: 768px) {
+          font-size: 50px;
+          margin-left: -25px;
+        }
       }
     }
   }
@@ -44,6 +54,11 @@ header {
       color: $white;
       text-decoration: none;
     }
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+      padding: 12px 17px;
+    }
   }
 
   .arrow-bottom-header {
@@ -54,5 +69,9 @@ header {
     img {
       width: 50px;
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 236px;
   }
 }
