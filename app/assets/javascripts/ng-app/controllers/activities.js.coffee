@@ -18,6 +18,9 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
     activitiesService.fetch({}, 1).success (res, status) ->
       $scope.activities = res.activities
       $scope.next_page = res.next_page
+    
+    $http.get('/genre.json').success (res) ->
+      $scope.genres = res
       return
 
     $scope.nextPage = (next_page) ->
@@ -72,6 +75,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
           $scope.activities = res.activities
           $scope.next_page = res.next_page
           return
+
+    $scope.searchClick = ->
+      console.log 'dd'
+      return
+
+    $scope.ids = []
 
     $scope.$on '$destroy', ->
       localStorage.removeItem("search")

@@ -117,6 +117,7 @@ BookingApp::Application.routes.draw do
       get "check_categories_unique"
     end
   end
+  get '/genre', to: 'activities#genre'
   resources :activities do
     member do
       get "view_day"

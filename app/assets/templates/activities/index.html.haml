@@ -12,45 +12,27 @@
                 %ul.dropdown-menu.search-filter-container{"aria-labelledby" => "dropdownMenu1"}
                   .input-search
                     .input-group
-                      %input.form-control{:placeholder => "Search", :type => "text"}
+                      %input.form-control{:placeholder => "Search", :type => "text", "ng-model" => "searchText"}
+
                       %span.input-group-btn
                         %button.btn.btn-default{:type => "button"}
                           %span.btn-search-filter
+
                   %ul.radio-years
                     .scrollbar#custom-scroll-vertical
-                      %li
-                        .checkbox
-                          .wrapper-checkbox
-                            .checkbox-custom
-                              %span
-                                %input#check-years-1{:name => "check", :type => "checkbox", :value => "check-years-1"}
-                                %label{:for => "check-years-1"} 7-10 years old
-                      %li
-                        .checkbox
-                          .wrapper-checkbox
-                            .checkbox-custom
-                              %span
-                                %input#check-years-2{:name => "check", :type => "checkbox", :value => "check-years-2"}
-                                %label{:for => "check-years-2"} 7-10 years old
-                        -# .radio
-                        -#   .wrapper-checkbox
-                        -#     .checkbox-custom
-                        -#       %span
-                        -#         %input#check-years1{:name => "check", :type => "radio", :value => "check-years1"}
-                        -#         %label{:for => "check-years1"} 7-10 years old
-                      -# %li
-                      -#   .radio
-                      -#     .wrapper-checkbox
-                      -#       .checkbox-custom
-                      -#         %span
-                      -#           %input#check-years2{:name => "check", :type => "radio", :value => "check-years2"}
-                      -#           %label{:for => "check-years2"} 7-10 years old
-
+                      %span{"ng-repeat" => "genre in genres | filter: searchText"}
+                        %li
+                          .checkbox
+                            .wrapper-checkbox
+                              .checkbox-custom
+                                %span
+                                  %input{:name => "check", :type => "checkbox", :value => "check-years-{{genre.id}}", :id => "check-years-{{genre.id}}"}
+                                  %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
 
                   .wrapper-close-save
                     %a{:href => "javascript:void(0)"}
                       %span.btn-close-filter
-                    %a.btn-save-continue{:href => "javascript:void(0)"} Save & Continue
+                    %a.btn-save-continue{:href => "javascript:void(0)", "ng-click" => "searchClick([])"} Save & Continue
 
             .column-2
               %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)"}
@@ -60,23 +42,11 @@
                 %ui-select-choices{:repeat => "item in (itemArray | filter: $select.search) track by item.range"}
                   %span{"ng-bind" => "item.name"}
 
-              -# .dropdown
-              -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-              -#     Price Range
-              -#     %span.caret
-              -#   %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-              -#     %li
-              -#       %a{:href => "javascript:void(0)"} $2 - $25
-              -#     %li
-              -#       %a{:href => "javascript:void(0)"} $2 - $25
-
-              -#     .wrapper-close
-              -#       %a{:href => "javascript:void(0)"}
-              -#         %span.btn-close-filter
 
           .right
             .column-1
               %input.form-control.show-highlight{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
+            
             .column-2
               %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)"}
                 %ui-select-match{"placeholder" => "State", "allow-clear" => "true"}
@@ -84,20 +54,7 @@
                 }
                 %ui-select-choices{:repeat => "region in (regionArray | filter: $select.search) track by region.code"}
                   %span{"ng-bind" => "region.name"}
-              -# .dropdown
-              -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-              -#     Co
-              -#     %span.caret
-              -#   %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-              -#     %li
-              -#       %a{:href => "javascript:void(0)"} Action
-              -#     %li
-              -#       %a{:href => "javascript:void(0)"} Another action
-              -#     %li
-              -#       %a{:href => "javascript:void(0)"} Something else here
-              -#     %li.divider{:role => "separator"}
-              -#     %li
-              -#       %a{:href => "javascript:void(0)"} Separated link
+
             .column-3
               %input.form-control.show-highlight{:placeholder => "Zip Code", :type => "text", "ng-keydown" => "zipcode($event, zipcodeParams)", "ng-model" => "zipcodeParams"}
 
@@ -118,35 +75,42 @@
           .left
             .column
               .my-location
-                %h4 My Location
+                %h4.hidden-xs My Location
+                %i.fa.fa-map-marker.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .share
-                %h4
+                %h4.hidden-xs
                   Share
                   %br
                   Activities
+                %i.fa.fa-share-alt.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .bookmark
-                %h4
+                %h4.hidden-xs
                   Bookmark
                   %br
                   Activities
+                %i.fa.fa-bookmark.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .most-popular
-                %h4 Most Popular
+                %h4.hidden-xs Most Popular
+                %i.fa.fa-star.visible-xs.fa-2x{"aria-hidden" => "true"}
           .right
             .column
               .off
-                %h4 % Off
+                %h4.hidden-xs % Off
+                %i.fa.fa-percent.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .prices
-                %h4
+                %h4.hidden-xs
                   Prices
                   %br
                   From
+                %i.fa.fa-tag.visible-xs.fa-2x{"aria-hidden" => "true"}
             .column
               .spaces
-                %h4 Spaces
+                %h4.hidden-xs Spaces
+                %i.fa.fa-users.visible-xs.fa-2x{"aria-hidden" => "true"}
         %span{"ng-repeat" => "activity in activities"}
           .body-activity
             .left
