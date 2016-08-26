@@ -46,7 +46,7 @@
           .right
             .column-1
               %input.form-control.show-highlight{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
-            
+
             .column-2
               %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)"}
                 %ui-select-match{"placeholder" => "State", "allow-clear" => "true"}

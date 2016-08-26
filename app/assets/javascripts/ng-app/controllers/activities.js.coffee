@@ -18,10 +18,20 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
     activitiesService.fetch({}, 1).success (res, status) ->
       $scope.activities = res.activities
       $scope.next_page = res.next_page
-    
+
     $http.get('/genre.json').success (res) ->
       $scope.genres = res
       return
+
+    # $scope.overlayShow = false;
+    # $scope.showH = () ->
+    #   if (!$scope.overlayShow)
+    #     $scope.overlayShow = true;
+    #     # $(".show-highlight").addClass('overlay-placeholder');
+    #     # $('body').append('<div id="overlay"> </div>');
+    #     $(".genre-dropdown").addClass('overlay-open');
+    #     return
+
 
     $scope.nextPage = (next_page) ->
       if next_page != null
@@ -29,7 +39,7 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
         activitiesService.fetch(obj, next_page).success (res, status) ->
           $scope.activities = $scope.activities.concat(res.activities)
           $scope.next_page = res.next_page
-          return    
+          return
 
     $scope.price = (price) ->
       obj = JSON.parse(localStorage.getItem("search"))
@@ -53,7 +63,7 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
           $scope.activities = res.activities
           $scope.next_page = res.next_page
           return
-          
+
     $scope.region = (region) ->
       obj = JSON.parse(localStorage.getItem("search"))
       if region == undefined
