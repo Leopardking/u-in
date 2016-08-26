@@ -1,9 +1,11 @@
-angular.module('uinApp').factory 'activitiesService', ($http) ->
-  { fetch: (obj, page, statePopular) ->
-    $http.get('/activities.json', params:
-      criteria: obj, page: page, popular: statePopular)
- }
-
+angular.module('uinApp').factory 'activitiesService', [
+  '$http'
+  ($http) ->
+    { fetch: (obj, page, statePopular) ->
+      $http.get('/activities.json', params:
+        criteria: obj, page: page, popular: statePopular)
+    }
+]
 angular.module('uinApp').controller 'ActivitiesCtrl', [
   '$scope'
   '$http'

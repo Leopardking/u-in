@@ -5,7 +5,7 @@ app = angular.module('uinApp', [
 ])
 
 app.config([
-  '$stateProvider' 
+  '$stateProvider'
   '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider) ->
     $stateProvider
