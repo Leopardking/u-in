@@ -36,6 +36,7 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
         .success (res, status) ->
           $scope.activities = res
           return
+          
     $scope.region = (region) ->
       obj = JSON.parse(localStorage.getItem("search"))
       if region == undefined
