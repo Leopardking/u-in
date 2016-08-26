@@ -6,13 +6,13 @@ class ActivitiesController < ApplicationController
     @promotions = Promotion.filter(params_query).page(params[:page])
     respond_to do |format|
       format.html
-      format.json { render :json => @promotions }
+      format.json { render :json => {activities: @promotions, next_page: @promotions.next_page} }
     end
   end
 
 
   private
   def params_query
-    params[:criteria].nil? ? {} : JSON.parse(params[:criteria])
+    params["criteria"].nil? ? {} : JSON.parse(params["criteria"])
   end
 end
