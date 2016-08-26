@@ -278,6 +278,10 @@
           font-weight: 500;
           color: $black;
         }
+
+        &:hover {
+          background: rgba(43, 169, 246, 0.3);
+        }
       }
 
       input[type=search] {
@@ -430,7 +434,7 @@
 
 
     .column-1 {
-      width: 50%;
+      width: 45%;
       float: left;
       padding-right: 6px;
 
@@ -457,9 +461,67 @@
     }
 
     .column-2 {
-      width: 15%;
+      width: 20%;
       float: left;
       padding-right: 6px;
+
+      .btn-default {
+        height: 36px;
+        text-transform: uppercase;
+        background-color: transparent;
+        border: 2px solid $green;
+
+        span {
+          font-weight: 500;
+          color: $black;
+        }
+
+        &:hover {
+          background: rgba(168, 213, 37, 0.3);
+        }
+      }
+
+      input[type=search] {
+        border: 2px solid $green;
+        background-color: transparent;
+        box-shadow: none;
+
+        @include placeholder {
+          font-weight: 500;
+          color: $black;
+          text-transform: uppercase;
+        }
+
+        &:focus {
+          box-shadow: none;
+        }
+      }
+
+      .ui-select-bootstrap {
+        .glyphicon-remove {
+          display: none;
+        }
+      }
+
+      .ui-select-bootstrap .ui-select-choices-row {
+
+       span {
+          font-size: 18px;
+        }
+      }
+
+      .ui-select-bootstrap .ui-select-choices-row > span:hover, .ui-select-bootstrap .ui-select-choices-row > span:focus {
+        text-decoration: none;
+        color: $dgray;
+        background: rgba(168, 213, 37, 0.3);
+      }
+
+      .ui-select-bootstrap .ui-select-choices-row.active > span {
+        text-decoration: none;
+        outline: 0;
+        color: $dgray;
+       background: rgba(168, 213, 37, 0.3);
+      }
 
       button {
         width: 100%;
@@ -499,7 +561,7 @@
 
           &:hover,
           &:focus {
-            background: rgba(43, 169, 246, 0.3);
+            background: rgba(168, 213, 37, 0.3);
           }
         }
       }
@@ -538,8 +600,8 @@
 
   .radio {
     position: absolute;
-    bottom: -13px;
-    right: -20px;
+    bottom: -35px;
+    right: -21px;
   }
 
   .head-activity {
@@ -655,31 +717,37 @@
       .count {
         width: 33.33%;
         float: left;
+
         p {
           text-align: center;
+          margin-bottom: 0px;
         }
+
         &.blue-box {
           border: 2px solid $blue;
           p {
             color: $blue;
-            font-size: 25px;
-            padding: 25px 0;
+            font-size: 18px;
+            // padding: 25px 0;
+            line-height: 95px;
           }
         }
         &.black-box {
           border: 2px solid $black;
           p {
             color: $black;
-            font-size: 25px;
-            padding: 25px 0;
+            font-size: 18px;
+            // padding: 25px 0;
+            line-height: 95px;
           }
         }
         &.green-box {
           border: 2px solid $green;
           p {
             color: $lgreen;
-            font-size: 25px;
-            padding: 25px 0;
+            font-size: 18px;
+            // padding: 25px 0;
+            line-height: 95px;
           }
         }
       }
