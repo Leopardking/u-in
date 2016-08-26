@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160701151136) do
+ActiveRecord::Schema.define(version: 20160726101914) do
 
   create_table "billing_details", force: true do |t|
     t.string   "card_type"
@@ -317,6 +317,7 @@ ActiveRecord::Schema.define(version: 20160701151136) do
     t.string   "last_name"
     t.string   "phone_number"
     t.string   "avatar_url"
+    t.string   "google_refresh_token"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
