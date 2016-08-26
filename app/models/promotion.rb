@@ -25,12 +25,19 @@ class Promotion < ActiveRecord::Base
     def filter(params)
       promotions = all
       # params[:price_range] e.g -> "20..30"
-      promotions = promotions.where(price: params[:price_range].to_range) if params[:price_range]
-      promotions = promotions.where("city LIKE ?", "%#{params[:city]}%") if params[:city]
+      if params["price_range"]
+        price_range = params["price_range"].to_range
+        if price_range.is_a?(String)
+          promotions = promotions.where("discount_price > ?", price_range)
+        else
+          promotions = promotions.where(discount_price: price_range)
+        end
+      end
+      promotions = promotions.where("city LIKE ?", "%#{params['city']}%") if params["city"]
       promotions = promotions.where(state: params[:state]) if params[:state]
-      promotions = promotions.where("zipcode LIKE ?", "%#{params[:zipcode]}%") if params[:zipcode]
+      promotions = promotions.where("zipcode LIKE ?", "%#{params['zipcode']}%") if params["zipcode"]
       # params[:category_ids] e.g -> "202, 203"
-      promotions = promotions.joins(:categories).where(categories: {id: params[:category_ids].split(",")}).uniq if params[:category_ids].present?
+      promotions = promotions.joins(:categories).where(categories: {id: params["category_ids"].split(",")}).uniq if params["category_ids"].present?
       
       promotions
     end

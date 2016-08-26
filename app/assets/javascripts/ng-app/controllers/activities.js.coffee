@@ -1,17 +1,53 @@
-window.uinApp.controller 'ActivitiesCtrl', [
+angular.module('uinApp').controller 'ActivitiesCtrl', [
   '$scope'
   '$http'
   ($scope, $http) ->
     if localStorage.getItem('search') == null
       localStorage.setItem("search", JSON.stringify({}))
+    $scope.itemArray = [
+      {
+        range: "5..25"
+        name: '$5-$25'
+      }
+      {
+        range: "25..50"
+        name: '$25-$50'
+      }
+      {
+        range: "50..75"
+        name: '$50-$75'
+      }
+      {
+        range: "75..100"
+        name: '$75-$100'
+      }
+      {
+        range: "100..150"
+        name: '$100-$150'
+      }
+      {
+        range: "150..250"
+        name: '$150-$250'
+      }
+      {
+        range: "250"
+        name: '$250 & up'
+      }
+    ]
     $http.get('/activities.json').success (res) ->
       $scope.activities = res
       return
-
-    $scope.drawWinner = (price) ->
+    
+    $scope.price = (price) ->
       obj = JSON.parse(localStorage.getItem("search"))
+      if price == undefined
+        delete obj["price_range"];
+      else
+        price_range = price.range
+        obj.price_range = price_range
+      localStorage.setItem("search", JSON.stringify(obj))
       $http.get('/activities.json', params:
-        price_range: localStorage.search.price_range)
+        criteria: obj)
       .success (res, status) ->
         $scope.activities = res
         return
@@ -22,7 +58,7 @@ window.uinApp.controller 'ActivitiesCtrl', [
         obj.city = city
         localStorage.setItem("search", JSON.stringify(obj))
         $http.get('/activities.json', params:
-          city: obj.city)
+          criteria: obj)
         .success (res, status) ->
           $scope.activities = res
           return
@@ -33,7 +69,7 @@ window.uinApp.controller 'ActivitiesCtrl', [
         obj.zipcode = zipcode
         localStorage.setItem("search", JSON.stringify(obj))
         $http.get('/activities.json', params:
-          zipcode: obj.zipcode)
+          criteria: obj)
         .success (res, status) ->
           $scope.activities = res
           return

@@ -52,15 +52,13 @@
                       %span.btn-close-filter
                     %a.btn-save-continue{:href => "javascript:void(0)"} Save & Continue
 
-
-
             .column-2
-              %select.selectpicker
-                %option Price Range
-                %option $2 - $25
-                %option $2 - $25
-                %option $2 - $25
-
+              %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)"}
+                %ui-select-match{"placeholder" => "Price Range", "allow-clear" => "true"}
+                  %span{"ng-bind" => "$select.selected.name"}
+                }
+                %ui-select-choices{:repeat => "item in (itemArray | filter: $select.search) track by item.range"}
+                  %span{"ng-bind" => "item.name"}
 
               -# .dropdown
               -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}

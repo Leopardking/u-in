@@ -1,6 +1,7 @@
-window.uinApp = angular.module('uinApp', [
+angular.module('uinApp', [
   'ui.router'
   'templates'
+  'ui.select'
 ]).config ($stateProvider, $urlRouterProvider) ->
   $stateProvider
     .state('home',

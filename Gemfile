@@ -123,6 +123,7 @@ gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
 # gem 'rails-assets-ngstorage'
 gem 'rails-assets-angular-local-storage'
+gem 'rails-assets-angular-ui-select'
 gem 'angular-rails-templates'
 
 gem 'rails_12factor', group: :production

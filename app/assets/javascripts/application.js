@@ -45,6 +45,7 @@
 //= require angular-ui-router
 //= require angular-rails-templates
 //= require angular-local-storage
+//= require angular-ui-select
 //= require ng-app/app
 //= require_tree ./ng-app/controllers
 //= require_tree ../templates
@@ -105,6 +106,8 @@ $( document ).ready(function() {
   $(".dropdown-menu").click(function(event){
     event.stopPropagation()
   })
+
+  localStorage.removeItem("search")
 });
 
 $(function() {

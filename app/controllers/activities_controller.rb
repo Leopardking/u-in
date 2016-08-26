@@ -3,7 +3,8 @@ class ActivitiesController < ApplicationController
   before_filter :load_book, only: [:booked]
 
   def index
-    @promotions = Promotion.filter(params).page(params[:page])
+    p = params[:criteria].nil? ? {} : JSON.parse(params[:criteria])
+    @promotions = Promotion.filter(p).page(params[:page])
     respond_to do |format|
       format.html
       format.json { render :json => @promotions }
