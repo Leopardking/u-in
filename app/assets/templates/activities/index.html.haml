@@ -17,22 +17,22 @@
                       %span.input-group-btn
                         %button.btn.btn-default{:type => "button"}
                           %span.btn-search-filter
+                  %form{"ng-submit"=>"submit()"}
+                    %ul.radio-years
+                      .scrollbar#custom-scroll-vertical
+                        %span{"ng-repeat" => "genre in genres | filter: searchText track by genre.id"}
+                          %li
+                            .checkbox
+                              .wrapper-checkbox
+                                .checkbox-custom
+                                  %span
+                                    %input{:name => "check[]", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "myGenre.selected[genre.id]"}
+                                    %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
 
-                  %ul.radio-years
-                    .scrollbar#custom-scroll-vertical
-                      %span{"ng-repeat" => "genre in genres | filter: searchText"}
-                        %li
-                          .checkbox
-                            .wrapper-checkbox
-                              .checkbox-custom
-                                %span
-                                  %input{:name => "check[]", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "fromData.genre.id"}
-                                  %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
-
-                    .wrapper-close-save
-                      %a{:href => "javascript:void(0)"}
-                        %span.btn-close-filter
-                      %a.btn-save-continue{:href => "javascript:void(0)", "ng-click"=>"submit()"} Save & Continue
+                      .wrapper-close-save
+                        %a{:href => "javascript:void(0)"}
+                          %span.btn-close-filter
+                        %input.btn-save-continue{:type => "submit", :value => "Save & Continue"}
             .column-2
               %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)", class: 'js-ui-select-override'}
                 %ui-select-match{"placeholder" => "Price Range", "allow-clear" => "true"}

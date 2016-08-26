@@ -79,6 +79,8 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
         $scope.next_page = res.next_page
         return
 
+    $scope.myGenre = selected: {}
+
     $scope.zipcode = (event, zipcode) ->
       if event.keyCode == 13
         obj = JSON.parse(localStorage.getItem("search"))
@@ -89,13 +91,18 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
           $scope.next_page = res.next_page
           return
 
-    $scope.list = []
-    $scope.text = ''
     $scope.submit = ->
-      if $scope.text
-        $scope.list.push @text
-        $scope.text = ''
-      return
+      arr = []
+      for key of $scope.myGenre.selected
+        if $scope.myGenre.selected[key] == true
+          arr.push key
+      obj = JSON.parse(localStorage.getItem("search"))
+      obj.category_ids = arr
+      localStorage.setItem("search", JSON.stringify(obj))
+      activitiesService.fetch(obj, 1, $scope.statePopular).success (res, status) ->
+        $scope.activities = res.activities
+        $scope.next_page = res.next_page
+        return
 
     $scope.$on '$destroy', ->
       localStorage.removeItem("search")
