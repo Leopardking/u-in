@@ -112,6 +112,15 @@ jQuery(function ($) {
             $(".genre-dropdown").removeClass('overlay-open');
         };
     });
+    $('.btn-close-filter').click(function (e) {
+        if (!$(e.target).is('.show-highlight')) {
+            $('#overlay').remove();
+            $(".show-highlight").removeClass('overlay-placeholder');
+            $(".bootstrap-select").removeClass('overlay-open');
+            $(".genre-dropdown").removeClass('overlay-open');
+            $(".genre-dropdown").removeClass('open');
+        };
+    });
 });
 
 $( document ).ready(function() {

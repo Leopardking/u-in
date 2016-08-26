@@ -26,14 +26,13 @@
                             .wrapper-checkbox
                               .checkbox-custom
                                 %span
-                                  %input{:name => "check", :type => "checkbox", :value => "check-years-{{genre.id}}", :id => "check-years-{{genre.id}}"}
+                                  %input{:name => "check", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "text"}
                                   %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
 
-                  .wrapper-close-save
-                    %a{:href => "javascript:void(0)"}
-                      %span.btn-close-filter
-                    %a.btn-save-continue{:href => "javascript:void(0)", "ng-click" => "searchClick([])"} Save & Continue
-
+                    .wrapper-close-save
+                      %a{:href => "javascript:void(0)"}
+                        %span.btn-close-filter
+                      %a.btn-save-continue{:href => "javascript:void(0)", "ng-click"=>"submit()"} Save & Continue
             .column-2
               %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)"}
                 %ui-select-match{"placeholder" => "Price Range", "allow-clear" => "true"}

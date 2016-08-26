@@ -19,10 +19,10 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
       $scope.activities = res.activities
       $scope.next_page = res.next_page
 
-    $http.get('/genre.json').success (res) ->
+    $http.get('/activities/genre.json').success (res) ->
       $scope.genres = res
       return
-
+      
     $scope.mostPopular = (statePopular) ->
       obj = JSON.parse(localStorage.getItem("search"))
       if statePopular
@@ -87,11 +87,13 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
           $scope.next_page = res.next_page
           return
 
-    $scope.searchClick = ->
-      console.log 'dd'
+    $scope.list = []
+    $scope.text = ''
+    $scope.submit = ->
+      if $scope.text
+        $scope.list.push @text
+        $scope.text = ''
       return
-
-    $scope.ids = []
 
     $scope.$on '$destroy', ->
       localStorage.removeItem("search")
