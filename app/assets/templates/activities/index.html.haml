@@ -6,7 +6,7 @@
           .left
             .column-1
               .dropdown.genre-dropdown
-                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight.dropdown-button-action{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight.dropdown-button-action.js-filter-select.js-has-placeholder{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
                   Genre
                   %span.caret
                 %ul.dropdown-menu.search-filter-container{"aria-labelledby" => "dropdownMenu1"}
@@ -34,9 +34,9 @@
                         %span.btn-close-filter
                       %a.btn-save-continue{:href => "javascript:void(0)", "ng-click"=>"submit()"} Save & Continue
             .column-2
-              %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)"}
+              %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)", class: 'js-ui-select-override'}
                 %ui-select-match{"placeholder" => "Price Range", "allow-clear" => "true"}
-                  %span{"ng-bind" => "$select.selected.name"}
+                  %span.js-has-placeholder{"ng-bind" => "$select.selected.name"}
                 }
                 %ui-select-choices{:repeat => "item in (itemArray | filter: $select.search) track by item.range"}
                   %span{"ng-bind" => "item.name"}
@@ -44,10 +44,10 @@
 
           .right
             .column-1
-              %input.form-control.show-highlight{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
+              %input.form-control.show-highlight.js-filter-select.js-has-placeholder{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
 
             .column-2
-              %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)"}
+              %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)", class: 'js-ui-select-override'}
                 %ui-select-match{"placeholder" => "State", "allow-clear" => "true"}
                   %span{"ng-bind" => "$select.selected.name"}
                 }
@@ -55,7 +55,7 @@
                   %span{"ng-bind" => "region.name"}
 
             .column-3
-              %input.form-control.show-highlight{:placeholder => "Zip Code", :type => "text", "ng-keydown" => "zipcode($event, zipcodeParams)", "ng-model" => "zipcodeParams"}
+              %input.form-control.show-highlight.js-filter-select.js-has-placeholder{:placeholder => "Zip Code", :type => "text", "ng-keydown" => "zipcode($event, zipcodeParams)", "ng-model" => "zipcodeParams"}
 
     .col-md-12.col-lg-12
       .wrapper-choose-distance

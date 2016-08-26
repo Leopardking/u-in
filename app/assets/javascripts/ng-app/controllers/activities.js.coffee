@@ -22,7 +22,7 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
     $http.get('/activities/genre.json').success (res) ->
       $scope.genres = res
       return
-      
+
     $scope.mostPopular = (statePopular) ->
       obj = JSON.parse(localStorage.getItem("search"))
       if statePopular
