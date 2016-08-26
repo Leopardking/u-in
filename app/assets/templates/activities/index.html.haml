@@ -26,7 +26,7 @@
                             .wrapper-checkbox
                               .checkbox-custom
                                 %span
-                                  %input{:name => "check", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "text"}
+                                  %input{:name => "check[]", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "fromData.genre.id"}
                                   %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
 
                     .wrapper-close-save
@@ -119,8 +119,8 @@
                   .wrapper-checkbox
                     .checkbox-custom
                       %span
-                        %input#check1{:name => "check", :type => "radio", :value => "check1"}
-                        %label{:for => "check1"}
+                        %input{:id => "check{{activity.id}}", :name => "check", :type => "radio", :value => "check1"}
+                        %label{:for => "check{{activity.id}}"}
 
               .right-content-picture
                 %p {{activity.name}}
