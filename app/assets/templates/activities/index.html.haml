@@ -78,11 +78,12 @@
             .column-1
               %input.form-control.show-highlight{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
             .column-2
-              %select.selectpicker
-                %option Co
-                %option 1
-                %option 2
-                %option 1
+              %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)"}
+                %ui-select-match{"placeholder" => "State", "allow-clear" => "true"}
+                  %span{"ng-bind" => "$select.selected.name"}
+                }
+                %ui-select-choices{:repeat => "region in (regionArray | filter: $select.search) track by region.code"}
+                  %span{"ng-bind" => "region.name"}
               -# .dropdown
               -#   %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
               -#     Co
