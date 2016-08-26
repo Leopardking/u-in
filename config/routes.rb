@@ -117,7 +117,7 @@ BookingApp::Application.routes.draw do
       get "check_categories_unique"
     end
   end
-  get '/genre', to: 'activities#genre'
+
   resources :activities do
     member do
       get "view_day"
@@ -127,6 +127,7 @@ BookingApp::Application.routes.draw do
     end
     collection do
       post "book"
+      get "genre"
     end
   end
   resources :my_activities,only: [:destroy, :index] do
