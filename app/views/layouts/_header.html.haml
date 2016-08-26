@@ -56,6 +56,8 @@
                       =link_to t(".account_settings"), edit_user_registration_path
                     %li.navbar-menu
                       =link_to t(".history"), history_v_moneys_path
+                    %li.navbar-menu
+                      =link_to "Sign Out", destroy_user_session_path, method: :get
               - else
                 %li.navbar-menu
                   = link_to t(".sign_up"), auth_account_regis_path
