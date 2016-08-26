@@ -119,7 +119,7 @@ $( document ).ready(function() {
     event.stopPropagation()
   })
 
-  localStorage.removeItem("search")
+  localStorage.setItem("search", JSON.stringify({}))
 });
 
 $( document ).ready(function() {
