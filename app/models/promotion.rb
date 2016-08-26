@@ -41,6 +41,7 @@ class Promotion < ActiveRecord::Base
       
       promotions
     end
+    
     #get current rank of promotion new
     def get_current_rank promotion
       ranks = []
