@@ -41,6 +41,10 @@ class Promotion < ActiveRecord::Base
       
       promotions
     end
+
+    def get_total_booking
+      select("*, (select COUNT(*) from bookings where bookings.promotion_id=promotions.id) total_booking").order("total_booking DESC")
+    end
     
     #get current rank of promotion new
     def get_current_rank promotion
