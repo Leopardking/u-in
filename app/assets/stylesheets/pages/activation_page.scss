@@ -181,6 +181,20 @@
         border-left: 8px solid transparent;
 
         @media (max-width: 768px) {
+          left: 44%;
+        }
+
+
+        @media (max-width: 612px) {
+          left: 43%;
+        }
+
+
+        @media (max-width: 512px) {
+          left: 43%;
+        }
+
+        @media (max-width: 412px) {
           left: 40%;
         }
       }
