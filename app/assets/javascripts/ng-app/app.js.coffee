@@ -11,8 +11,8 @@ app.config([
     $stateProvider
       .state('home',
       url: '/'
-      templateUrl: 'home.html'
-      controller: 'HomeCtrl')
+      templateUrl: 'activities/index.html'
+      controller: 'ActivitiesCtrl')
     .state('activities',
       url: '/activities'
       templateUrl: 'activities/index.html'

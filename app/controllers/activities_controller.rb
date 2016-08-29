@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   before_filter :load_activities, only: [:show, :cus_month_calendars,:view_day]
   before_filter :load_book, only: [:booked]
+  skip_before_action :authenticate_user!
 
   def index
     if params[:popular].eql?("true")
