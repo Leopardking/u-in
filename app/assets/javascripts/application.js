@@ -156,12 +156,14 @@ $( document ).ready(function() {
 
   localStorage.setItem("search", JSON.stringify({}))
 
-  // $(".btn-close-filter").click(function(){
-  //   $(".js-ui-select-override .ui-select-placeholder").removeClass('white-text');
-  //   $(".js-ui-select-override .ui-select-search").attr('id', 'white-placeholder');
-  //   $(".show-highlight").removeClass('overlay-placeholder');
-  //   $(".bootstrap-select").removeClass('overlay-open');
-  //   $(".genre-dropdown").removeClass('overlay-open');
-  // })
+  $(".btn-close-filter").click(function(){
+    $('#overlay').remove();
+    $(".genre-dropdown").removeClass('overlay-open');
+    $(".genre-dropdown").removeClass('open');
+    $(".js-ui-select-override .ui-select-placeholder").removeClass('white-text');
+    $(".js-ui-select-override .ui-select-search").attr('id', 'white-placeholder');
+    $(".show-highlight").removeClass('overlay-placeholder');
+    $(".bootstrap-select").removeClass('overlay-open');
+  })
 });
 
