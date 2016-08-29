@@ -48,17 +48,18 @@
                         =link_to t(".profile"), edit_user_registration_path
                     - else
                       %li.navbar-menu
-                        =link_to t(".home"), root_path
+                        =link_to "My Account", "#", method: :get
+                        -#=link_to t(".home"), root_path
                       %li.navbar-menu
-                        =link_to t(".my_activities"), my_activities_path
+                        =link_to "My Profile", "#", method: :get
+                        -#=link_to t(".my_activities"), my_activities_path
                       %li.navbar-menu
-                        %a{:href => "/#/activities"} Activities
+                        %a{:href => "/#/activities"} My Activities
                       %li.navbar-menu
-                        =link_to t(".account_settings"), edit_user_registration_path
+                        =link_to "Bucket List", "#", method: :get
+                        -#=link_to t(".history"), history_v_moneys_path
                       %li.navbar-menu
-                        =link_to t(".history"), history_v_moneys_path
-                      %li.navbar-menu
-                        =link_to "Sign Out", destroy_user_session_path, method: :get
+                        =link_to "Logout", destroy_user_session_path, method: :get
                       .done-login
                         =image_tag "done.png"
 
