@@ -390,6 +390,7 @@
 
       .ui-select-bootstrap {
         .glyphicon-remove{
+          color: $blue;
 
           margin-right: 7px;
           margin-top: 4px;
@@ -582,7 +583,7 @@
 
       .ui-select-bootstrap {
         .glyphicon-remove{
-
+          color: $green;
           margin-right: 7px;
           margin-top: 4px;
         }
@@ -707,6 +708,11 @@
     position: absolute;
     bottom: -35px;
     right: -21px;
+
+    @media (max-width: 768px) {
+      right: -16px;
+      bottom: -34px;
+    }
   }
 
   .head-activity {

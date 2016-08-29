@@ -100,7 +100,7 @@
       color: $white;
 
       @media (min-width: 768px) {
-        padding-top: 8px;
+        // padding-top: 8px;
         padding-bottom: 8px;
       }
     }
@@ -120,8 +120,9 @@
     transform: translate(-50%, -50%);
 
     @media (max-width: 768px) {
-      left: 60%;
+      left: 50%;
       top: 46%;
+      transform: translate(-27%, -50%);
 
       li {
         display: inline-block;
@@ -148,6 +149,6 @@
 
     span.share-text {
     position: relative;
-    top: -12px;
+    top: -14px;
   }
 }
