@@ -45,6 +45,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
           return
 
     $scope.price = (price) ->
+      $('#overlay').remove()
+      $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+      $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+      $('.show-highlight').removeClass 'overlay-placeholder'
+      $('.bootstrap-select').removeClass 'overlay-open'
+      $('.genre-dropdown').removeClass 'overlay-open'
       obj = JSON.parse(localStorage.getItem("search"))
       if price == undefined
         delete obj["price_range"];
@@ -74,6 +80,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
           return
 
     $scope.region = (region) ->
+      $('#overlay').remove()
+      $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+      $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+      $('.show-highlight').removeClass 'overlay-placeholder'
+      $('.bootstrap-select').removeClass 'overlay-open'
+      $('.genre-dropdown').removeClass 'overlay-open'
       obj = JSON.parse(localStorage.getItem("search"))
       if region == undefined
         delete obj["state"];

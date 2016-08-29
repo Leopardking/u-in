@@ -156,7 +156,7 @@ $( document ).ready(function() {
 
   localStorage.setItem("search", JSON.stringify({}))
 
-  $(".btn-close-filter").click(function(){
+  $(".btn-close-filter, .btn-save-continue").click(function(){
     $('#overlay').remove();
     $(".genre-dropdown").removeClass('overlay-open');
     $(".genre-dropdown").removeClass('open');
