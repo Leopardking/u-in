@@ -20,49 +20,53 @@
             %a.dropdown-toggle-humberger{:href => "javascript:void(0)"}
               %span.nav-icon.menu-hamburger
             %ul.dropdown-humberger
-              - if user_signed_in?
-                - if current_user.admin?
-                  %li.navbar-menu
-                    =link_to t(".home"), root_path
-                  %li.navbar-menu
-                    =link_to t(".user_management"), users_path
-                  %li.navbar-menu.temp_hide_i
-                    =link_to t(".promotions"), promotions_path
-                  %li.navbar-menu
-                    =link_to t(".categories"), categories_path
-                  %li.navbar-menu
-                    =link_to t(".list_booked"), my_activities_path
-                  %li.navbar-menu
-                    =link_to t(".account_settings"), edit_user_registration_path
-                  %li.navbar-menu
-                    = link_to t(".faqs"), faqs_path
-                - else
-                  - if current_user.user_type == User::USER_TYPE[:merchant]
-                    %li.navbar-menu
-                    %li.navbar-menu
-                      =link_to t(".promotions"), promotions_path
-                    %li.navbar-menu
-                      =link_to t(".calendar"), calendars_path
-                    %li.navbar-menu
-                      =link_to t(".profile"), edit_user_registration_path
-                  - else
+              .fix-menu-height
+                - if user_signed_in?
+                  - if current_user.admin?
                     %li.navbar-menu
                       =link_to t(".home"), root_path
                     %li.navbar-menu
-                      =link_to t(".my_activities"), my_activities_path
+                      =link_to t(".user_management"), users_path
+                    %li.navbar-menu.temp_hide_i
+                      =link_to t(".promotions"), promotions_path
                     %li.navbar-menu
-                      %a{:href => "/#/activities"} Activities
+                      =link_to t(".categories"), categories_path
+                    %li.navbar-menu
+                      =link_to t(".list_booked"), my_activities_path
                     %li.navbar-menu
                       =link_to t(".account_settings"), edit_user_registration_path
                     %li.navbar-menu
-                      =link_to t(".history"), history_v_moneys_path
-                    %li.navbar-menu
-                      =link_to "Sign Out", destroy_user_session_path, method: :get
-              - else
-                %li.navbar-menu
-                  = link_to t(".sign_up"), auth_account_regis_path
-                %li.navbar-menu
-                  = link_to t(".sign_in"), new_user_session_path
+                      = link_to t(".faqs"), faqs_path
+                  - else
+                    - if current_user.user_type == User::USER_TYPE[:merchant]
+                      %li.navbar-menu
+                      %li.navbar-menu
+                        =link_to t(".promotions"), promotions_path
+                      %li.navbar-menu
+                        =link_to t(".calendar"), calendars_path
+                      %li.navbar-menu
+                        =link_to t(".profile"), edit_user_registration_path
+                    - else
+                      %li.navbar-menu
+                        =link_to t(".home"), root_path
+                      %li.navbar-menu
+                        =link_to t(".my_activities"), my_activities_path
+                      %li.navbar-menu
+                        %a{:href => "/#/activities"} Activities
+                      %li.navbar-menu
+                        =link_to t(".account_settings"), edit_user_registration_path
+                      %li.navbar-menu
+                        =link_to t(".history"), history_v_moneys_path
+                      %li.navbar-menu
+                        =link_to "Sign Out", destroy_user_session_path, method: :get
+                      .done-login
+                        =image_tag "done.png"
+
+                - else
+                  %li.navbar-menu
+                    = link_to t(".sign_up"), auth_account_regis_path
+                  %li.navbar-menu
+                    = link_to t(".sign_in"), new_user_session_path
 
 .wrapper-header
   %header
@@ -76,11 +80,11 @@
 
     %ul#slider4.rslides
       %li
-        =image_tag "1.jpg"
+        =image_tag "slide-img-1.jpg"
       %li
-        =image_tag "2.jpg"
+        =image_tag "slide-img-2.jpg"
       %li
-        =image_tag "3.jpg"
+        =image_tag "slide-img-3.jpg"
 
     .button-bottom-header
       %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
