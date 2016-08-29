@@ -65,7 +65,7 @@ window.onload = function() {
   }
   $(".alert").fadeOut(3000)
 
-  $("a").click(function() {
+  $("a.scroll-down").click(function() {
   $('html,body').animate({
       scrollTop: $(".second").offset().top},
       'slow');
