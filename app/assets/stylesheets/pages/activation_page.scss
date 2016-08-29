@@ -390,10 +390,9 @@
 
       .ui-select-bootstrap {
         .glyphicon-remove{
-          background-color: $black;
-          // width: 50px;
-          // height: 50px;
-          color: $white;
+
+          margin-right: 7px;
+          margin-top: 4px;
         }
       }
 
@@ -578,6 +577,14 @@
 
        span {
           font-size: 18px;
+        }
+      }
+
+      .ui-select-bootstrap {
+        .glyphicon-remove{
+
+          margin-right: 7px;
+          margin-top: 4px;
         }
       }
 
@@ -935,7 +942,7 @@
     top: 0px;
   }
 
-  .wrapper-checkbox input[type=radio] {
+  .wrapper-checkbox input[type=checkbox] {
     display: none;
   }
 
@@ -943,7 +950,7 @@
     background: asset-url("checkbox_normal.png") left center no-repeat;
   }
 
-  .wrapper-checkbox input[type=radio]:checked + label:before {
+  .wrapper-checkbox input[type=checkbox]:checked + label:before {
     background: asset-url("Checkbox_selected.png") left center no-repeat;
   }
 }
