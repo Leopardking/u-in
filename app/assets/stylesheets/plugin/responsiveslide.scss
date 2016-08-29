@@ -116,6 +116,7 @@ a {
 
   @media (max-width: 768px) {
     min-height: 380px;
+    object-fit: cover;
   }
 }
 
@@ -180,10 +181,8 @@ a {
 }
 
 @media screen and (max-width: 600px) {
-  h1 {
-    font: 24px/50px "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-  .callbacks_nav {
-    top: 47%;
-    }
+
+.callbacks_nav {
+  top: 47%;
   }
+}
