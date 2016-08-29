@@ -59,6 +59,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
 
     $scope.city = (event, city) ->
       if event.keyCode == 13
+        $('#overlay').remove()
+        $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+        $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+        $('.show-highlight').removeClass 'overlay-placeholder'
+        $('.bootstrap-select').removeClass 'overlay-open'
+        $('.genre-dropdown').removeClass 'overlay-open'
         obj = JSON.parse(localStorage.getItem("search"))
         obj.city = city
         localStorage.setItem("search", JSON.stringify(obj))
@@ -83,6 +89,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
 
     $scope.zipcode = (event, zipcode) ->
       if event.keyCode == 13
+        $('#overlay').remove()
+        $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+        $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+        $('.show-highlight').removeClass 'overlay-placeholder'
+        $('.bootstrap-select').removeClass 'overlay-open'
+        $('.genre-dropdown').removeClass 'overlay-open'
         obj = JSON.parse(localStorage.getItem("search"))
         obj.zipcode = zipcode
         localStorage.setItem("search", JSON.stringify(obj))

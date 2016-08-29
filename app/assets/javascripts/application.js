@@ -70,20 +70,6 @@ window.onload = function() {
       scrollTop: $(".second").offset().top},
       'slow');
   });
-
-
-  // $(".js-ui-select-override .ui-select-placeholder").addClass('js-has-placeholder');
-  // $(".js-ui-select-override input[type='search']").addClass('js-has-placeholder');
-
-  // $(".js-filter-select").click(function(){
-  //   $(".overlay-act").removeClass('hide');
-  //   $('.js-has-placeholder').addClass('white-color');
-  // });
-
-  // $(".overlay-act").click(function(){
-  //   $(".overlay-act").addClass('hide');
-  //   $('.js-has-placeholder').removeClass('white-color');
-  // });
 };
 
 $(function () {
@@ -142,27 +128,16 @@ jQuery(function ($) {
 });
 
 $( document ).ready(function() {
-  $(".dropdown-menu").click(function(event){
-    event.stopPropagation()
-  })
+  var elem = document.querySelector('input[type="range"]');
+  var rangeValue = function(){
+    var newValue = elem.value;
+    var target = document.querySelector('.value');
+    target.innerHTML = newValue;
+  }
 
-  localStorage.setItem("search", JSON.stringify({}))
-});
+  elem.addEventListener("input", rangeValue);
 
-$( document ).ready(function() {
-  $('.wrapper-choose-distance').change(function() {
-    var elem = document.querySelector('input[type="range"]');
-    var rangeValue = function(){
-      var newValue = elem.value;
-      var target = document.querySelector('.value');
-      target.innerHTML = newValue;
-    }
 
-    elem.addEventListener("input", rangeValue);
-  });
-});
-
-$( document ).ready(function() {
   // Dropdown toggle
   $('.dropdown-toggle-humberger').click(function(){
     $(this).next('.dropdown-humberger').toggle();
@@ -174,5 +149,19 @@ $( document ).ready(function() {
       $('.dropdown-humberger').hide();
     }
   });
+
+  $(".dropdown-menu").click(function(event){
+    event.stopPropagation()
+  })
+
+  localStorage.setItem("search", JSON.stringify({}))
+
+  // $(".btn-close-filter").click(function(){
+  //   $(".js-ui-select-override .ui-select-placeholder").removeClass('white-text');
+  //   $(".js-ui-select-override .ui-select-search").attr('id', 'white-placeholder');
+  //   $(".show-highlight").removeClass('overlay-placeholder');
+  //   $(".bootstrap-select").removeClass('overlay-open');
+  //   $(".genre-dropdown").removeClass('overlay-open');
+  // })
 });
 
