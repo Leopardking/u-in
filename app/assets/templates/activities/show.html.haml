@@ -1,0 +1,28 @@
+.container
+  .row
+    %h3 {{promotionhash.promotion.name}}
+    .table-responsive
+      %table.table.table-hover
+        %thead
+          %tr
+            %th Rating
+            %th Reviews
+            %th Space
+            %th Discount
+            %th Price From
+            %th Description
+            %th Location
+        %tbody
+          %tr
+            %td 3
+            %td 10
+            %td 500M
+            %td {{promotionhash.promotion.discount_percent}}
+            %td {{promotionhash.promotion.discount_price}}
+            %td {{promotionhash.promotion.description}}
+            %td 
+              %p {{promotionhash.promotion.street_address_1}}
+              %p {{promotionhash.promotion.street_address_2}}
+              %p {{promotionhash.promotion.city}}
+              %p {{promotionhash.promotion.state}}
+      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed/v1/view?zoom=11&center=-6.9175,107.6191&key=AIzaSyA6OIZxHF6S9LYLhGULDl_0wXLRAdIdkf8", :style => "border:0", :width => "600"}

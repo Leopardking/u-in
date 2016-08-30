@@ -9,7 +9,7 @@ app.config([
   '$urlRouterProvider'
   ($stateProvider, $urlRouterProvider) ->
     $stateProvider
-      .state('home',
+    .state('home',
       url: '/'
       templateUrl: 'activities/index.html'
       controller: 'ActivitiesCtrl')
@@ -17,6 +17,10 @@ app.config([
       url: '/activities'
       templateUrl: 'activities/index.html'
       controller: 'ActivitiesCtrl')
+    .state('overview',
+      url: '/activities/:activityId'
+      templateUrl: 'activities/show.html'
+      controller: 'overviewsCtrl')
     # default fall back route
     $urlRouterProvider.otherwise '/'
     # enable HTML5 Mode for SEO

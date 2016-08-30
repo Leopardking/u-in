@@ -20,6 +20,15 @@ a {
   }
 }
 
+p.link-custome.ng-binding {
+  color: #000;
+
+  &:hover,
+  &:focus {
+    color: #23527c;
+  }
+}
+
 #white-placeholder::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: white;
 }
