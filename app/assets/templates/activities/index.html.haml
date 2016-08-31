@@ -1,3 +1,27 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+            %h1
+              are you in
+              %span ?
+
+    %ul#slider4.rslides
+      %li
+        =image_tag "banner-img-1.jpg"
+      %li
+        =image_tag "banner-img-2.jpg"
+      %li
+        =image_tag "banner-img-3.jpg"
+
+    .button-bottom-header
+      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
+      .arrow-bottom-header
+        %a.first.scroll-down{:href => "javascript:void(0)"}
+          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
+          
 .container
   .row
     .col-md-12.col-lg-12
@@ -114,7 +138,8 @@
           .body-activity
             .left
               .left-picture
-                = image_tag ('img-default.jpg'), width:"100%"
+                %a{:href => "/#/activities/{{activity.id}}"}
+                  = image_tag ('img-default.jpg'), width:"100%"
                 .radio
                   .wrapper-checkbox
                     .checkbox-custom

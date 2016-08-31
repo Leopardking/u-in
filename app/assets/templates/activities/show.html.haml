@@ -1,28 +1,108 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+            %h1
+              are you in
+              %span ?
+
+    %ul#slider4.rslides{"data-slider-class-selector" => "rslides", "data-slider-refresh-on-watch" => "images", :slider => ""}
+      %li{"ng-repeat" => "image in promotionhash.images", "ng-if"=>"image.length>= 1"}
+        %img{:height => "42", :src => "{{image}}", :width => "42", "onError"=>"this.onerror=null;this.src='/assets/banner-img-1.jpg'"}
+      
+      %li{"ng-if"=>"image.length==0"}
+        =image_tag "banner-img-1.jpg"
+      %li{"ng-if"=>"image.length==0"}
+        =image_tag "banner-img-2.jpg"
+      %li{"ng-if"=>"image.length==0"}
+        =image_tag "banner-img-3.jpg"
+
+
+    .button-bottom-header
+      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
+      .arrow-bottom-header
+        %a.first.scroll-down{:href => "javascript:void(0)"}
+          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
+
 .container
   .row
-    %h3 {{promotionhash.promotion.name}}
-    .table-responsive
-      %table.table.table-hover
-        %thead
-          %tr
-            %th Rating
-            %th Reviews
-            %th Space
-            %th Discount
-            %th Price From
-            %th Description
-            %th Location
-        %tbody
-          %tr
-            %td 3
-            %td 10
-            %td 500M
-            %td {{promotionhash.promotion.discount_percent}}
-            %td {{promotionhash.promotion.discount_price}}
-            %td {{promotionhash.promotion.description}}
-            %td 
-              %p {{promotionhash.promotion.street_address_1}}
-              %p {{promotionhash.promotion.street_address_2}}
-              %p {{promotionhash.promotion.city}}
-              %p {{promotionhash.promotion.state}}
-      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed/v1/view?zoom=11&center=-6.9175,107.6191&key=AIzaSyA6OIZxHF6S9LYLhGULDl_0wXLRAdIdkf8", :style => "border:0", :width => "600"}
+    .col-md-12.col-lg-12
+      %h3.text-center {{promotionhash.promotion.name}}
+      .col-md-2
+        %div.w3-card-12{:style => "width:50%"}
+          %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+          .w3-container.w3-center
+            %p Image Title
+
+      .col-md-10
+        .col-md-12
+          .col-md-4
+            %p Ratings
+            %br
+            %p 3
+          .col-md-2
+            %p Reviews
+            %br
+            %p 3
+          .col-md-2
+            %p Spaces
+            %br
+            %p {{promotionhash.space}}
+          .col-md-2
+            %p Discount
+            %br
+            %p {{promotionhash.promotion.discount_percent}}
+          .col-md-2
+            %p Price From
+            %br
+            %p {{promotionhash.promotion.discount_price}}
+
+        .panel-group
+          .panel.panel-default
+            .panel-heading
+              %h4.panel-title
+                %a{"data-toggle" => "collapse", :href => "!#desc"} Description
+            #desc.panel-collapse.collapse
+              .panel-body {{promotionhash.promotion.description}}
+
+        .panel-group
+          .panel.panel-default
+            .panel-heading
+              %h4.panel-title
+                %a{"data-toggle" => "collapse", :href => "!#share"} Share & Book Together
+            #share.panel-collapse.collapse
+              .panel-body Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.
+
+
+        .panel-group
+          .panel.panel-default
+            .panel-heading
+              %h4.panel-title
+                %a{"data-toggle" => "collapse", :href => "!#bring"} What To Bring
+            #bring.panel-collapse.collapse
+              .panel-body {{promotionhash.promotion.bring_item}}
+
+        .panel-group
+          .panel.panel-default
+            .panel-heading
+              %h4.panel-title
+                %a{"data-toggle" => "collapse", :href => "!#location"} Location
+            #location.panel-collapse.collapse
+              .panel-body 
+                .col-md-4
+                  %p {{promotionhash.promotion.street_address_1}}
+                  %p {{promotionhash.promotion.street_address_2}}
+                  %p {{promotionhash.promotion.city}}
+                  %p {{promotionhash.promotion.state}}
+                .col-md-8
+                  %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed/v1/view?zoom=11&center=-6.9175,107.6191&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU", :style => "border:0", :width => "400"}
+
+        .panel-group
+          .panel.panel-default
+            .panel-heading
+              %h4.panel-title
+                %a{"data-toggle" => "collapse", :href => "!#book"} I'm In! Book It!
+            #book.panel-collapse.collapse
+              .panel-body TEST

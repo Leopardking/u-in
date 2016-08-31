@@ -27,8 +27,12 @@ class ActivitiesController < ApplicationController
   def show
     @activity = Promotion.find(params[:id])
     h = Hash.new
-    h["promotion"] = @activity
-    h["images"] = @activity.images.map { |v| v.image.url(:medium)}
+    h["promotion"]  = @activity
+    h["images"]     = @activity.images.map { |v| v.image.url(:medium)}
+    if @activity.end_date.present?
+      h["space"]      = PromotionService.new.show_space(@activity, @activity.start_date, @activity.end_date, @activity.id, nil)
+    end
+    
     @activity = h
     respond_to do |format|
       format.html

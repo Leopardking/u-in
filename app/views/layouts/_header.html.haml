@@ -65,27 +65,3 @@
                     = link_to t(".sign_up"), auth_account_regis_path
                   %li.navbar-menu
                     = link_to t(".sign_in"), new_user_session_path
-
-.wrapper-header
-  %header
-    .title-header
-      .container
-        .row
-          .col-md-12.col-lg-12
-            %h1
-              are you in
-              %span ?
-
-    %ul#slider4.rslides
-      %li
-        =image_tag "banner-img-1.jpg"
-      %li
-        =image_tag "banner-img-2.jpg"
-      %li
-        =image_tag "banner-img-3.jpg"
-
-    .button-bottom-header
-      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
-      .arrow-bottom-header
-        %a.first.scroll-down{:href => "javascript:void(0)"}
-          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
