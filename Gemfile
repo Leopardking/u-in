@@ -122,6 +122,7 @@ gem 'google-api-client', '~> 0.9', require: 'google/apis/calendar_v3'
 gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
 gem 'rails-assets-angular-ui-select'
+gem 'angular-ui-bootstrap-rails'
 
 gem 'angular-rails-templates'
 gem 'angular_csrf'

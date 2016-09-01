@@ -39,6 +39,7 @@ GEM
       railties (>= 3.1)
       sprockets (~> 2)
       tilt
+    angular-ui-bootstrap-rails (1.3.2)
     angular_csrf (0.1.4)
       rails (>= 3.1)
     arel (4.0.2)
@@ -419,6 +420,7 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
+  angular-ui-bootstrap-rails
   angular_csrf
   better_errors (~> 1.1.0)
   binding_of_caller (~> 0.7.2)

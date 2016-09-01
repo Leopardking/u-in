@@ -2,6 +2,7 @@ app = angular.module('uinApp', [
   'ui.router'
   'templates'
   'ui.select'
+  'ui.bootstrap'
 ])
 
 app.config([

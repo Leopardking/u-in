@@ -36,7 +36,10 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
         $scope.next_page = res.next_page
         return
 
+    $scope.count = 2
+    
     $scope.nextPage = (next_page) ->
+      next_page = $scope.count++
       if next_page != null
         obj = JSON.parse(localStorage.getItem("search"))
         activitiesService.fetch(obj, next_page, $scope.statePopular).success (res, status) ->
@@ -126,9 +129,119 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
       activitiesService.fetch(obj, 1, $scope.statePopular).success (res, status) ->
         $scope.activities = res.activities
         $scope.next_page = res.next_page
+        $scope.count = 2
         return
 
     $scope.$on '$destroy', ->
       localStorage.removeItem("search")
+      return
+    
+    $scope.$on '$stateChangeSuccess', ->
+      # do something
+      $ ->
+        $('#slider4').responsiveSlides
+          auto: true
+          pager: false
+          nav: true
+          speed: 500
+          namespace: 'callbacks'
+          before: ->
+            $('.events').append '<li>before event fired.</li>'
+            return
+          after: ->
+            $('.events').append '<li>after event fired.</li>'
+            return
+        return
+      return
+
+    $scope.$on '$stateChangeSuccess', ->
+      jQuery ($) ->
+        $('.js-ui-select-override .ui-select-toggle').addClass 'show-highlight'
+        $('.js-ui-select-override .ui-select-placeholder').addClass 'show-highlight'
+        $('.genre-dropdown').on 'show.bs.dropdown', ->
+          $('.show-highlight').addClass 'overlay-placeholder'
+          $('.bootstrap-select').addClass 'overlay-open'
+          return
+        $('.show-highlight').on('click', (e) ->
+          if !$('#overlay').length
+            $('.js-ui-select-override .ui-select-placeholder').addClass 'white-text'
+            $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+            $('.show-highlight').addClass 'overlay-placeholder'
+            $('body').append '<div id="overlay"> </div>'
+            $('.show-highlight').addClass 'overlay-placeholder'
+            $('.bootstrap-select').addClass 'overlay-open'
+            $('.genre-dropdown').addClass 'overlay-open'
+          return
+        ).keyup (e) ->
+          if e.which == 27
+            $('#overlay').remove()
+            $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+            $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+            $('.show-highlight').removeClass 'overlay-placeholder'
+            $('.bootstrap-select').removeClass 'overlay-open'
+            $('.genre-dropdown').removeClass 'overlay-open'
+          return
+        $('body').click (e) ->
+          if !$(e.target).is('.show-highlight')
+            $('#overlay').remove()
+            $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+            $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+            $('.show-highlight').removeClass 'overlay-placeholder'
+            $('.bootstrap-select').removeClass 'overlay-open'
+            $('.genre-dropdown').removeClass 'overlay-open'
+          return
+        return
+
+    $scope.$on '$stateChangeSuccess', ->
+      elem = document.querySelector('input[type="range"]')
+
+      rangeValue = ->
+        newValue = elem.value
+        target = document.querySelector('.value')
+        target.innerHTML = newValue
+        return
+
+      elem.addEventListener 'input', rangeValue
+
+      localStorage.setItem 'search', JSON.stringify({})
+      $('.btn-close-filter, .btn-save-continue').click ->
+        $('#overlay').remove()
+        $('.genre-dropdown').removeClass 'overlay-open'
+        $('.genre-dropdown').removeClass 'open'
+        $('.js-ui-select-override .ui-select-placeholder').removeClass 'white-text'
+        $('.js-ui-select-override .ui-select-search').attr 'id', 'white-placeholder'
+        $('.show-highlight').removeClass 'overlay-placeholder'
+        $('.bootstrap-select').removeClass 'overlay-open'
+        return
+      return
+
+    $scope.$on '$stateChangeSuccess', ->
+      # Dropdown toggle
+      $('.dropdown-toggle-humberger').click ->
+        $(this).next('.dropdown-humberger').toggle()
+        return
+      $(document).click (e) ->
+        target = e.target
+        if !$(target).is('.dropdown-toggle-humberger') and !$(target).parents().is('.dropdown-toggle-humberger')
+          $('.dropdown-humberger').hide()
+        return
+      $('.dropdown-menu').click (event) ->
+        event.stopPropagation()
+        return
+
+    $scope.$on '$stateChangeSuccess', ->
+      url_href = window.location.href.split('/')[3].split('?')[0]
+      if url_href != ''
+        $('.navbar-right li a').removeClass 'tab-active'
+        $('.navbar-right li a').each ->
+          if $(this).attr('href').indexOf('/' + url_href) >= 0
+            $(this).addClass 'tab-active'
+          return
+        $('.navbar-nav a.btn').removeClass 'tab-active'
+        $('.navbar-nav a.btn[href=\'' + window.location.pathname + '\']').addClass 'tab-active'
+      $('.alert').fadeOut 3000
+      $('a.scroll-down').click ->
+        $('html,body').animate { scrollTop: $('.second').offset().top }, 'slow'
+        return
       return
 ]

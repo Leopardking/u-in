@@ -49,6 +49,7 @@
 //= require ng-app/app
 //= require_tree ./ng-app/controllers
 //= require_tree ../templates
+//= require angular-ui-bootstrap
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]

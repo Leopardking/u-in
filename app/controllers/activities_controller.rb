@@ -8,11 +8,7 @@ class ActivitiesController < ApplicationController
     if params[:popular].eql?("true")
       @promotions = Promotion.get_total_booking.filter(params_query).page(params[:page])
     else
-      @promotions = Promotion.filter(params_query).page(params[:page]).order(discount_percent: :desc, discount_price: :desc, created_at: :asc)
-    end
-    respond_to do |format|
-      format.html
-      format.json { render :json => {activities: @promotions, next_page: @promotions.next_page} }
+      @promotions = Promotion.includes(:images).filter(params_query).page(params[:page]).order(discount_percent: :desc, discount_price: :desc, created_at: :asc)
     end
   end
 

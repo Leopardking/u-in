@@ -15,7 +15,7 @@
               %span.nav-icon.dollar
               %span.dollar-text Operators Login
 
-        %ul.nav.navbar-nav.navbar-right
+        %ul.nav.navbar-nav.navbar-right{"ng-init"=>"init()", "ng-controller"=> "HeaderCtrl", "ng-click"=> "load"}
           %li
             %a.dropdown-toggle-humberger{:href => "javascript:void(0)"}
               %span.nav-icon.menu-hamburger

@@ -139,7 +139,7 @@
             .left
               .left-picture
                 %a{:href => "/#/activities/{{activity.id}}"}
-                  = image_tag ('img-default.jpg'), width:"100%"
+                  %img{:src => "{{activity.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
                 .radio
                   .wrapper-checkbox
                     .checkbox-custom
@@ -159,4 +159,4 @@
                 %p 9
       .arrow-down-loadmore
         %a{:href => "javascript:void(0)"}
-          %span.social-icon.chevron-down{'ng-click' => "nextPage(next_page)"}
+          %span.social-icon.chevron-down{'ng-click' => "nextPage()"}
