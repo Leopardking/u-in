@@ -124,6 +124,7 @@
       .row
         .col-md-12.col-lg-12
           %h3.text-center {{promotionhash.promotion.name}}
+          %a{:class => "rate", :href => "javascript:void(0)", "data-target" => "#myModal", "data-toggle" => "modal"} Create Review
           .col-md-12
             #review{"ng-repeat" => "review in promotionhash.reviews "}
               .row  
@@ -154,6 +155,7 @@
           .col-md-4 
             %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
           .col-md-8 {{promotionhash.promotion.name}}
+          
           %textarea{:cols => "50", :rows => "4", "ng-model"=> "reviewForm.content"}
           %input{:name => "id", :type => "hidden", "ng-model"=> "reviewForm.id", "value" => "{{promotionhash.promotion.id}}"}
         .modal-footer
