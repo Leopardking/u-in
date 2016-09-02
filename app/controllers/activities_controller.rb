@@ -29,6 +29,7 @@ class ActivitiesController < ApplicationController
   private
   def load_current_user
     if user_signed_in?
+      gon.current_user_id = current_user.id
       gon.current_user_name = current_user.email
     else
       gon.current_user_name = false

@@ -25,18 +25,18 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         return
 
     $scope.submit = ->
+      arr = angular.element(document.getElementsByName('id')[0]).val()
       obj = 
         content: $scope.reviewForm.content
+        rating: $scope.reviewForm.rating
+        user_id: arr
+      
       localStorage.setItem("search", JSON.stringify(obj))
       reviewService.fetch(obj).success (res, status) ->
         console.log "success"
         return
 
-    $scope.rate = 3
-    $scope.max = 5
-
-    $scope.hoveringOver = ->
-      return
+    $scope.rate = [1, 2, 3, 4, 5]
 ]
 
 

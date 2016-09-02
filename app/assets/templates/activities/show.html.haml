@@ -155,12 +155,16 @@
           .modal-body
             .col-md-4 
               %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
-            .col-md-8 {{promotionhash.promotion.name}}
-
+            .col-md-8 
+              %p {{promotionhash.promotion.name}}
+              %p your rating
+              %select{"ng-model" => "reviewForm.rating"}
+                %option{"ng-repeat" => "x in rate", :value => "{{x}}"} {{x}}
             %textarea{:cols => "50", :rows => "4", "ng-model"=> "reviewForm.content"}
-            %input{:name => "id", :type => "hidden", "ng-model"=> "reviewForm.id", "value" => "{{promotionhash.promotion.id}}"}
+            %input{:name => "id", :type => "hidden", "ng-model"=> "reviewForm.id", "value" => "{{promotionhash.user_id}}"}
           .modal-footer
             %button.btn.btn-primary{:type => "submit"} SUBMIT
+      -# handle false (no login)            
       %div{"ng-if" => "promotionhash.is_login == false"}    
         %form{"ng-submit"=> "submit()", "ng-controller" => "overviewsCtrl","name"=> "reviewForm"}
           .modal-body

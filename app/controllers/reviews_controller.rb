@@ -6,9 +6,9 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(
       content: params[:review]["content"], 
-      user_id: nil, 
+      user_id: params[:review]["user_id"], 
       promotion_id: params[:id],
-      rating: 2.5
+      rating: params[:review]["rating"]
       )
 
     respond_to do |format|
