@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   has_many :categories
   has_many :history_v_moneys
   has_many :images
+  has_one :review
+
   ##
   # Nested models
   accepts_nested_attributes_for :merchant_detail, :billing_detail

@@ -124,6 +124,7 @@ BookingApp::Application.routes.draw do
       get "cus_month_calendars"
       get "data_day"
       get "booked"
+      resources :reviews
     end
     collection do
       post "book"

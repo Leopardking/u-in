@@ -125,6 +125,10 @@ gem 'rails-assets-angular-ui-select'
 gem 'angular-ui-bootstrap-rails'
 
 gem 'angular-rails-templates'
-gem 'angular_csrf'
+gem 'ng-rails-csrf'
 gem 'rails_12factor', group: :production
 gem 'sinatra', :require => false
+
+
+# handle rating
+gem 'letsrate'

@@ -3,6 +3,7 @@ app = angular.module('uinApp', [
   'templates'
   'ui.select'
   'ui.bootstrap'
+  'ng-rails-csrf'
 ])
 
 app.config([

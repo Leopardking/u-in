@@ -50,6 +50,7 @@
 //= require_tree ./ng-app/controllers
 //= require_tree ../templates
 //= require angular-ui-bootstrap
+//= require ng-rails-csrf
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
@@ -140,10 +141,11 @@ $( document ).ready(function() {
 
 
   // Dropdown toggle
+
   $('.dropdown-toggle-humberger').click(function(){
     $(this).next('.dropdown-humberger').toggle();
   });
-  
+
   $(document).on("click", '.dropdown-toggle-humberger', function(e){
     var target = e.target;
     if (!$(target).is('.dropdown-toggle-humberger') && !$(target).parents().is('.dropdown-toggle-humberger')) {

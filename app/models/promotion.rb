@@ -9,7 +9,7 @@ class Promotion < ActiveRecord::Base
   has_many :history_v_moneys
   has_many :other_blackouts
   has_one :temp_promotion, dependent: :destroy
-
+  has_many :reviews
   after_create :clone_data_to_temp_promotion
 
   class << self

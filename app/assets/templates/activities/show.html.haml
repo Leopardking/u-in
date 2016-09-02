@@ -124,5 +124,37 @@
       .row
         .col-md-12.col-lg-12
           %h3.text-center {{promotionhash.promotion.name}}
-  
+          .col-md-12
+            #review{"ng-repeat" => "review in promotionhash.reviews "}
+              .row  
+                .rating
+                  .col-md-3
+                    %p {{review.rating}}
+                  .col-md-7
+                    %p Test
+                  .col-md-2
+                    %a{:class => "rate", :href => "javascript:void(0)", "data-target" => "#myModal", "data-toggle" => "modal"} Rate Now
+                .review-content
+                  .col-md-12
+                    %p 
+                      {{review.content}}
+    
   #booking.tab-pane Message
+
+
+#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
+      %form{"ng-submit"=> "submit()", "ng-controller" => "overviewsCtrl","name"=> "reviewForm"}
+        .modal-body
+          .col-md-4 
+            %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+          .col-md-8 {{promotionhash.promotion.name}}
+          %textarea{:cols => "50", :rows => "4", "ng-model"=> "reviewForm.content"}
+          %input{:name => "id", :type => "hidden", "ng-model"=> "reviewForm.id", "value" => "{{promotionhash.promotion.id}}"}
+        .modal-footer
+          %button.btn.btn-primary{:type => "submit"} SUBMIT
