@@ -9,6 +9,7 @@
     = render 'layouts/js_setup'
     = javascript_include_tag "application"
     = csrf_meta_tags
+    = include_gon 
 
   %body{"ng-app" => "uinApp"}
     - if need_header?

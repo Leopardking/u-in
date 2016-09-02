@@ -31,6 +31,12 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       reviewService.fetch(obj).success (res, status) ->
         console.log "success"
         return
+
+    $scope.rate = 3
+    $scope.max = 5
+
+    $scope.hoveringOver = ->
+      return
 ]
 
 

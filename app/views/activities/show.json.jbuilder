@@ -7,3 +7,4 @@ end
 
 json.reviews @activity.reviews
 json.user_name @activity.reviews.map {|v| v.user.first_name if v.user.present? }
+json.is_login user_signed_in? ? true : false
