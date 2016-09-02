@@ -4,6 +4,9 @@ class ReviewsController < ApplicationController
   end
 
   def create
+    if  params[:review]["rating"].nil?
+      params[:review]["rating"] = 2.5
+    end
     @review = Review.new(
       content: params[:review]["content"], 
       user_id: params[:review]["user_id"], 
