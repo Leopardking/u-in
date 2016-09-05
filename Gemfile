@@ -131,6 +131,6 @@ gem 'sinatra', :require => false
 
 
 # handle rating
-gem 'letsrate'
+gem 'ratyrate'
 
 gem 'gon'

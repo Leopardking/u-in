@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  ratyrate_rater
+   
   TEMP_EMAIL_REGEX = /change@me.com/
   USER_TYPE = {
     merchant: "merchant",

@@ -4,6 +4,7 @@ app = angular.module('uinApp', [
   'ui.select'
   'ui.bootstrap'
   'ng-rails-csrf'
+  'ngRateIt'
 ])
 
 app.config([

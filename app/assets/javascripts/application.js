@@ -51,6 +51,7 @@
 //= require_tree ../templates
 //= require angular-ui-bootstrap
 //= require ng-rails-csrf
+//= require ng-rateit.js
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
@@ -137,7 +138,7 @@ $( document ).ready(function() {
     target.innerHTML = newValue;
   }
 
-  elem.addEventListener("input", rangeValue);
+  // elem.addEventListener("input", rangeValue);
 
 
   // Dropdown toggle

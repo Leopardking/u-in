@@ -9,21 +9,16 @@
               %span ?
 
     %ul#slider4.rslides{"data-slider-class-selector" => "rslides", "data-slider-refresh-on-watch" => "images", :slider => ""}
-      %li{"ng-repeat" => "image in promotionhash.images", "ng-if"=>"image.length>= 1"}
-        %img{:height => "42", :src => "{{image}}", :width => "42", "onError"=>"this.onerror=null;this.src='/assets/banner-img-1.jpg'"}
-      
-      %li{"ng-if"=>"image.length==0"}
+      -#%li{"ng-repeat" => "image in promotionhash.images", "ng-if"=>"image.length>= 1"}
+        -#%img{:height => "42", :src => "{{image}}", :width => "42", "onError"=>"this.onerror=null;this.src='/assets/banner-img-1.jpg'"}
+      %li
         =image_tag "banner-img-1.jpg"
-      %li{"ng-if"=>"image.length==0"}
-        =image_tag "banner-img-2.jpg"
-      %li{"ng-if"=>"image.length==0"}
-        =image_tag "banner-img-3.jpg"
 
 
     .button-bottom-header
-      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
+      %a.btn-activity{:href => "#"} Find An Activity
       .arrow-bottom-header
-        %a.first.scroll-down{:href => "javascript:void(0)"}
+        %a.first.scroll-down{:href => "#"}
           =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
 
 %ul#myTab.nav.nav-tabs
@@ -124,17 +119,19 @@
       .row
         .col-md-12.col-lg-12
           %h3.text-center {{promotionhash.promotion.name}}
-          %a{:class => "rate", :href => "javascript:void(0)", "data-target" => "#myModal", "data-toggle" => "modal"} Create Review
-          .col-md-12{"ng-controller"=> "reviewsCtrl", "ng-init"=>"initFirst()"}
-            #review{"ng-repeat" => "review in reviews track by $index"}
+          %h3.text-center {{name}}
+          %a{:class => "rate", :href => "javacript:void(0)", "data-target" => "#reviewModal", "data-toggle" => "modal"} Rate Now
+          .col-md-12
+            #review{"ng-repeat" => "review in reviews"}
               .row  
                 .rating
                   .col-md-3
-                    %p {{review.rating}}
+                    %ng-rate-it{"ng-model" => "review.rating", "resetable"=> "false", "read-only" => "true"}
+                    %span 
                   .col-md-7
                     %p {{review.user.user_name}}
                   .col-md-2
-                    %a{:class => "rate", :href => "javascript:void(0)", "data-target" => "#myModal", "data-toggle" => "modal"} Rate Now
+                    %a{:class => "rate", :href => "javacript:void(0)", "data-target" => "#reviewModal", "data-toggle" => "modal"} Rate Now
                 .review-content
                   .col-md-12
                     %p 
@@ -142,35 +139,21 @@
     
   #booking.tab-pane Message
 
-
-#myModal.modal.fade{"aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+#reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
       .modal-header
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
         %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
-      %div{"ng-if" => "promotionhash.is_login == true"}
-        %form{"ng-submit"=> "submit()", "ng-controller" => "reviewsCtrl","name"=> "reviewForm"}
-          .modal-body
-            .col-md-4 
-              %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
-            .col-md-8 
-              %p {{promotionhash.promotion.name}}
-              %p your rating
-              %select{"ng-model" => "reviewForm.rating"}
-                %option{"ng-repeat" => "x in rate", :value => "{{x}}"} {{x}}
-            %textarea{:cols => "50", :rows => "4", "ng-model"=> "reviewForm.content"}
-            %input{:name => "id", :type => "hidden", "ng-model"=> "reviewForm.id", "value" => "{{promotionhash.user_id}}"}
-            %p{"ng-show"=>"reviewForm.content.$error.required"} Content is requirer
-          .modal-footer
-            %button.btn.btn-primary{:type => "submit"} SUBMIT
-      -# handle false (no login)            
-      %div{"ng-if" => "promotionhash.is_login == false"}    
-        %form{"ng-submit"=> "submit()", "ng-controller" => "overviewsCtrl","name"=> "reviewForm"}
-          .modal-body
-            %p Please login for create review this activities!!
-            %p You can following this link
-            %a{class: "rate",:href => "/auth/sign_in"} My Activities
-          .modal-footer
-            %button.btn.btn-primary{:type => "button", "data-dismiss"=>"modal"} Close
+      %form{"ng-submit"=>"submitForm()"}
+        .modal-body
+          .col-md-4 
+            %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+          .col-md-8 
+            %h3 {{promotionhash.promotion.name}}
+            %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+          .col-md-12
+            %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
+        .modal-footer
+          %button.btn.btn-primary{:type => "submit"} SUBMIT

@@ -188,7 +188,6 @@ GEM
       sprockets-rails
     json (1.8.3)
     jwt (1.5.4)
-    letsrate (1.0.9)
     libv8 (3.16.14.15)
     little-plugger (1.1.4)
     logging (2.1.0)
@@ -327,6 +326,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (11.2.2)
     rank (0.0.2)
+    ratyrate (1.2.2.alpha)
     ref (2.0.0)
     remotipart (1.2.1)
     representable (2.3.0)
@@ -458,7 +458,6 @@ DEPENDENCIES
   jquery-rails (~> 3.1.0)
   js-routes (~> 0.9.8)
   kaminari!
-  letsrate
   mailcatcher
   mina (~> 0.3.8)
   mina-multistage (~> 1.0.1)
@@ -485,6 +484,7 @@ DEPENDENCIES
   rails_12factor
   rails_best_practices (~> 1.16)
   rank (~> 0.0.2)
+  ratyrate
   remotipart (~> 1.2)
   rspec-rails (~> 2.0)
   sass-rails (~> 4.0.0)

@@ -1,22 +1,15 @@
 class ReviewsController < ApplicationController
+  before_action :set_promotion, only: [:create, :index]
+
   def index
-    @review = Review.where(promotion_id: params[:id])
+    @reviews =  @promotion.reviews
   end
 
   def create
-    if  params[:review]["rating"].nil?
-      params[:review]["rating"] = 2.5
-    end
-    @review = Review.new(
-      content: params[:review]["content"], 
-      user_id: params[:review]["user_id"], 
-      promotion_id: params[:id],
-      rating: params[:review]["rating"]
-      )
+    @review = @promotion.reviews.new(review_params)
 
     respond_to do |format|
       if @review.save
-        @review = Review.where(promotion_id: params[:id])
         format.json { render json: @review }
       else
         format.html { render action: 'new' }
@@ -27,12 +20,12 @@ class ReviewsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
+    def set_promotion
+      @promotion = Promotion.find(params[:id])  
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params[:review]
+      params.require(:review).permit(:content, :user_id, :rating, :promotion_id).merge(:user_id => current_user.id)
     end
 end

@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration
     	t.references :user, index: true
     	t.references :promotion, index: true
     	t.text :content
-    	t.float :rating
+    	t.float :rating, default: 2.5
       t.timestamps
     end
   end

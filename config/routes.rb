@@ -1,4 +1,5 @@
 BookingApp::Application.routes.draw do
+  post '/rate' => 'rater#create', :as => 'rate'
   get "/users/:id/add_email", to: "users#add_email", via: [:get, :patch, :post], as: :add_user_email
   get "/contact", to: "contact#index"
   post "/contact", to: "contact#send_contact"
