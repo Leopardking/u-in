@@ -72,4 +72,9 @@ class User < ActiveRecord::Base
     !Merchant.find(id).account_types.map(&:merchant_type).include? "I am an individual"
   end
 
+  def name
+    name = (self.first_name + " "+ self.last_name)
+    name
+  end
+
 end

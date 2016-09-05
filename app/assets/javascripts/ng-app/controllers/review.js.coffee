@@ -7,15 +7,20 @@ angular.module('uinApp').factory 'reviewService', [
     }
 ]
 
-angular.module('uinApp').controller 'overviewsCtrl', [
+angular.module('uinApp').controller 'reviewsCtrl', [
   '$scope'
   '$http'
   '$stateParams'
   'reviewService'
-  ($scope, $http, $stateParams, reviewService) ->
+  ($scope, $http, $stateParams, reviewService) ->  
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
-      $scope.promotionhash = res
+      $scope.reviews = res.reviews
       return
+
+    $scope.initFirst = ->
+      $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
+        $scope.reviews = res.reviews
+        return
 
     $scope.submit = ->
       arr = angular.element(document.getElementsByName('id')[0]).val()
@@ -29,12 +34,4 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         $('.modal-backdrop').removeClass 'modal-backdrop'
         $scope.promotionhash.reviews = res
         return
-
-    $scope.rate = [1, 2, 3, 4, 5]
 ]
-
-
-angular.element(document).ready ->
-  $('.rslides').responsiveSlides()
-  console.log 'slide1'
-  return
