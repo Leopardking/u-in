@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_password
   before_action :authenticate_user!
   before_filter :define_header_title
+  before_filter :set_current_user
   around_action :set_time_zone
   rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
   rescue_from ActionController::RoutingError, :with => :render_not_found
@@ -98,5 +99,9 @@ class ApplicationController < ActionController::Base
   #render 404 error
   def render_not_found(e)
     render :file => "#{Rails.root}/public/404.html", :layout => false, :status => :not_found
+  end
+
+  def set_current_user
+    gon.current_user = current_user.nil? ? {id: nil} : { id: current_user.id }
   end
 end

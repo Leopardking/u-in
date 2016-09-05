@@ -123,9 +123,10 @@ gem 'rails-assets-angular'
 gem 'rails-assets-angular-ui-router'
 gem 'rails-assets-angular-ui-select'
 gem 'angular-ui-bootstrap-rails'
-
 gem 'angular-rails-templates'
 gem 'ng-rails-csrf'
+gem "rails-assets-angular-devise"
+
 gem 'rails_12factor', group: :production
 gem 'sinatra', :require => false
 

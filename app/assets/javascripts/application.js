@@ -52,6 +52,7 @@
 //= require angular-ui-bootstrap
 //= require ng-rails-csrf
 //= require ng-rateit.js
+//= require angular-devise
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]

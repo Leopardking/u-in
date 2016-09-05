@@ -5,12 +5,23 @@ app = angular.module('uinApp', [
   'ui.bootstrap'
   'ng-rails-csrf'
   'ngRateIt'
+  'Devise'
 ])
+
+app.service 'sessionService', [ '$window', ($window)->
+
+  factory =
+    current_user: ->
+      $window.gon.current_user
+
+  factory
+]
 
 app.config([
   '$stateProvider'
   '$urlRouterProvider'
-  ($stateProvider, $urlRouterProvider) ->
+  'AuthProvider'
+  ($stateProvider, $urlRouterProvider, AuthProvider) ->
     $stateProvider
     .state('home',
       url: '/'

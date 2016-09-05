@@ -142,30 +142,18 @@
 #reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
     .modal-content
-      %div{"ng-switch"=> "promotionhash.is_login == true"}
-        %div{"ng-switch-when"=> "true"}
-          .modal-header
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
-            %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
-          %form{"ng-submit"=>"submitForm()"}
-            .modal-body
-              .col-md-4 
-                %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
-              .col-md-8 
-                %h3 {{promotionhash.promotion.name}}
-                %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
-              .col-md-12
-                %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
-            .modal-footer
-              %button.btn.btn-primary{:type => "submit"} SUBMIT
-        %div{"ng-switch-when"=> "false"}
-          .modal-header
-            %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-              %span{"aria-hidden" => "true"} ×
-            %h4#myModalLabel.modal-title Please Sign In
-          .modal-body
-            %p please sign in before you continue
-            %a.rate{:href => "/auth/sign_in"} Sign In
-          .modal-footer
-            %button.btn.btn-primary{:type => "submit", "data-dismiss"=>"modal"} Close
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
+      %form{"ng-submit"=>"submitForm()"}
+        .modal-body
+          .col-md-4 
+            %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+          .col-md-8 
+            %h3 {{promotionhash.promotion.name}}
+            %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+          .col-md-12
+            %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
+        .modal-footer
+          %button.btn.btn-primary{:type => "submit"} SUBMIT

@@ -30,5 +30,9 @@ module BookingApp
     # config.assets.enabled = true
     # config.assets.paths << Rails.root.join("app", "assets", "fonts")
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+    #  Devise JSON
+    config.to_prepare do
+      DeviseController.respond_to :html, :json
+    end
   end
 end
