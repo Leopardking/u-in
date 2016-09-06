@@ -53,6 +53,9 @@
 //= require ng-rails-csrf
 //= require ng-rateit.js
 //= require angular-devise
+//= require angular-momentjs
+//= require calendar
+//= require fullcalendar
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]

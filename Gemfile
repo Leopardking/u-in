@@ -126,6 +126,7 @@ gem 'angular-ui-bootstrap-rails'
 gem 'angular-rails-templates'
 gem 'ng-rails-csrf'
 gem "rails-assets-angular-devise"
+gem 'rails-assets-angular-momentjs'
 
 gem 'rails_12factor', group: :production
 gem 'sinatra', :require => false

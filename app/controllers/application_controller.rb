@@ -102,6 +102,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_user
-    gon.current_user = current_user.nil? ? {id: nil} : { id: current_user.id }
+    gon.current_user = current_user.nil? ? {current_user_id: nil} : { current_user_id: current_user.id }
   end
 end

@@ -111,7 +111,9 @@
                   %h4.panel-title
                     %a{"data-toggle" => "collapse", :href => "!#book"} I'm In! Book It!
                 #book.panel-collapse.collapse
-                  .panel-body TEST
+                  .panel-body 
+                    %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar"}
+
 
 
   #reveiw.tab-pane 
@@ -120,7 +122,8 @@
         .col-md-12.col-lg-12
           %h3.text-center {{promotionhash.promotion.name}}
           %h3.text-center {{name}}
-          %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
+          %div{"ng-if"=>"reviews == 0"}
+            %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
           .col-md-12
             #review{"ng-repeat" => "review in reviews"}
               .row  
@@ -137,7 +140,9 @@
                     %p 
                       {{review.content}}
     
-  #booking.tab-pane Message
+  #booking.tab-pane 
+    %h3.text-center {{promotionhash.promotion.name}}
+    %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar"}
 
 #reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}

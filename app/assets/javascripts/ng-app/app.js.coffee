@@ -6,6 +6,8 @@ app = angular.module('uinApp', [
   'ng-rails-csrf'
   'ngRateIt'
   'Devise'
+  'ui.calendar'
+  'angular-moment'
 ])
 
 app.service 'sessionService', [ '$window', ($window)->
