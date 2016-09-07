@@ -1,4 +1,26 @@
 json.promotion @activity
+
+json.booking_detail do
+  json.id @activity.booking_detail.id
+  json.booking_criterion @activity.booking_detail.booking_criterion
+  json.booking_start_time @activity.booking_detail.booking_start_time
+  json.booking_end_time @activity.booking_detail.booking_end_time
+  json.blackout_from @activity.booking_detail.blackout_from
+  json.blackout_to @activity.booking_detail.blackout_to
+  json.booking_duration @activity.booking_detail.booking_duration
+  json.bookings_per_duration @activity.booking_detail.bookings_per_duration
+  arr_per_duration = []
+  @activity.booking_detail.bookings_per_duration.times {|n| arr_per_duration << n+1}
+  json.bookings_per_duration_arr arr_per_duration
+  json.created_at @activity.booking_detail.created_at
+  json.updated_at @activity.booking_detail.updated_at
+  json.maximum_bookings @activity.booking_detail.maximum_bookings
+  arr_max_booking = []
+  @activity.booking_detail.maximum_bookings.times {|n| arr_max_booking << n+1}
+  json.maximum_bookings_arr arr_max_booking 
+  json.booking_detailable_id @activity.booking_detail.booking_detailable_id
+  json.booking_detailable_type @activity.booking_detail.booking_detailable_type
+end
 json.images @activity.images.map { |v| v.image.url}
 json.image @activity.images.first.image.url(:medium) rescue 0
 if @activity.end_date.present?

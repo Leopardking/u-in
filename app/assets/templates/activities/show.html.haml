@@ -111,8 +111,14 @@
                   %h4.panel-title
                     %a{"data-toggle" => "collapse", :href => "!#book"} I'm In! Book It!
                 #book.panel-collapse.collapse
-                  .panel-body 
-                    %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar"}
+                  .panel-body
+                    .col-md-12  
+                      %p.input-group
+                        %span.input-group-btn
+                          %button.btn.btn-default{"ng-click" => "openDate()", :type => "button", "alt-input-formats" => "altInputFormats", "close-text" => "Close", "datepicker-options" => "dateOptions", "is-open" => "popup1.opened", "ng-model" => "dt", "ng-required" => "true", :type => "text", "uib-datepicker-popup" => "", "datepicker-options" => "dateOptions"}
+                            %i.glyphicon.glyphicon-calendar
+                    .col-md-12 
+                      %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview"}
 
 
 
@@ -162,3 +168,42 @@
             %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
         .modal-footer
           %button.btn.btn-primary{:type => "submit"} SUBMIT
+
+
+#fullCalModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+          %span.sr-only close
+        %h4#modalTitle.modal-title
+          %h3.text-center {{promotionhash.promotion.name}}
+      #modalBody.modal-body
+        .col-md-12
+          .col-md-10
+            %small.text-center Cost Per Person
+            %p Regular Price $ {{promotionhash.promotion.price}}
+            %p Discount Price $ {{promotionhash.promotion.discount_price}}
+          .col-md-2
+            %small.text-center Reserve Spaces
+            %select#regularPrice{:name => "regularPrice", "ng-model" => "regularPrice", "ng-options" => "option for option in perDuration track by option", "ng-change"=> "updatePrice()"}
+            %select#discountPrice{:name => "discountPrice", "ng-model" => "discountPrice", "ng-change"=> "updatePrice()", "ng-options" => "option for option in maximumBoking track by option"}
+        .col-md-12
+          %hr
+          .col-md-10
+            %p.text-right Total
+          .col-md-2
+            %p.text-right.total-price $ {{totalPrice}}
+        .col-md-12
+          .col-md-10
+            %button.btn.btn-default{"id" => "help-popup", "data-placement" => "top", "data-toggle" => "tooltip", :title => "his deposit is refundable as a credit to your account that can be used for future bookings. Please be sure you understand the merchant’s cancellation policy. u-IN? is not responsible for any charges between customer and merchant.", :type => "button"} ?
+            %p.text-right Deposit Due
+          .col-md-2
+            %p.text-right.deposit-due $ 999
+        .col-md-12
+          %hr
+          %h5 Deposit are due at time of booking. FUll payment will be made at time of service with XXXXXXXX
+      .modal-footer
+        {{date_completed}}
+        %button.btn.btn-primary{:type => "submit"} Im In Book it!

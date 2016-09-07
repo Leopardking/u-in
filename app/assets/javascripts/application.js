@@ -50,6 +50,7 @@
 //= require_tree ./ng-app/controllers
 //= require_tree ../templates
 //= require angular-ui-bootstrap
+//= require angular-ui-bootstrap-tpls
 //= require ng-rails-csrf
 //= require ng-rateit.js
 //= require angular-devise
