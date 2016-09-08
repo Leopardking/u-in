@@ -15,7 +15,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
   'sessionService'
   'uiCalendarConfig'
   '$compile'
-  ($scope, $http, $stateParams, reviewService, sessionService, uiCalendarConfig, $compile) ->
+  'stripe'
+  ($scope, $http, $stateParams, reviewService, sessionService, uiCalendarConfig, $compile, stripe) ->
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
       $scope.promotionhash = res
       $scope.reviews = res.reviews
@@ -27,10 +28,12 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.regularPrice = []
       $scope.discountPrice = []
       $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
+      $scope.depositDue = $scope.totalPrice * 5 / 100
       $scope.updatePrice = ->
         $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
+        $scope.depositDue = $scope.totalPrice * 5 / 100
 
-    $scope.alertOnEventClick = (event, date, jsEvent, view) ->
+    $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
       $scope.date_completed = date_completed
       $('#modalTitle').html event.title
@@ -85,13 +88,10 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.dt = null
       return
 
-    $scope.inlineOptions =
-      customClass: getDayClass
-      minDate: new Date
-      showWeeks: true
 
     $scope.dateOptions =
-      dateDisabled: disabled
+      customClass: getDayClass
+      showWeeks: true
       formatYear: 'yy'
       maxDate: new Date((String(new Date().getFullYear() + 10)))
       minDate: new Date
@@ -134,7 +134,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         right: 'agendaWeek'
       defaultView: 'agendaWeek'
       height: 'auto'
-      eventClick: $scope.alertOnEventClick
+      eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
       eventColor: '#378006'
     
@@ -156,5 +156,34 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       reviewService.sending($scope.reviewParam).success (res, status) ->
         $scope.reviews.push(res)
         $("#reviewModal").modal('hide')
+        return
+
+    # goTO page modal payment
+    $scope.changeToUser =->
+      $scope.isHideAmount = true
+      return
+
+    $scope.changeToPayment =->
+      $scope.isHideUser = true
+      return
+
+    # for stripe integration
+    $scope.handleStripe = (code, result) ->
+      debugger
+      stripe.card.createToken($scope.payment.number).then((response) ->
+        $("#fullCalModal").modal('hide')
+        console.log 'token created for card ending in ', response.card.last4
+        payment = angular.copy($scope.payment)
+        payment.card = undefined
+        payment.token = response.id
+        $http.post 'https://yourserver.com/payments', payment
+      ).then((payment) ->
+        console.log 'successfully submitted payment for $', payment.amount
+        return
+      ).catch (err) ->
+        if err.type and /^Stripe/.test(err.type)
+          console.log 'Stripe error: ', err.message
+        else
+          console.log 'Other error occurred, possibly with your API', err.message
         return
 ]

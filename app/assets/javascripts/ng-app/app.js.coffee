@@ -8,7 +8,12 @@ app = angular.module('uinApp', [
   'Devise'
   'ui.calendar'
   'angular-moment'
+  'stripe'
+  'angularPayments'
+  'angular-stripe'
 ])
+
+#Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
 
 app.service 'sessionService', [ '$window', ($window)->
 
@@ -23,7 +28,9 @@ app.config([
   '$stateProvider'
   '$urlRouterProvider'
   'AuthProvider'
-  ($stateProvider, $urlRouterProvider, AuthProvider) ->
+  'stripeProvider'
+  ($stateProvider, $urlRouterProvider, AuthProvider, stripeProvider) ->
+    stripeProvider.setPublishableKey('pk_test_GV5ggkXJsOFMFLqyIR3gCScj');
     $stateProvider
     .state('home',
       url: '/'

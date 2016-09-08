@@ -57,6 +57,9 @@
 //= require angular-momentjs
 //= require calendar
 //= require fullcalendar
+//= require stripe-angular.js
+//= require angular-payments
+//= require angular-stripe
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]
