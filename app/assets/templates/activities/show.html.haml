@@ -333,9 +333,9 @@
             %button.btn.btn-primary{:type => "button", "ng-click" => "changeToPayment()"} CONTINUE
 
       #container-modal{{"ng-show" => "isHideUser == true "}}
-        #modalBody.modal-body
-          .col-md-12
-            %form{"stripe-form" => "stripeCallback"}
+        %form{"stripe-form" => "stripeCallback"}
+          #modalBody.modal-body
+            .col-md-12
               #change-type-card
                 %input{:name => "card_type", :type => "radio", :value => "visacard"}
                 %span
@@ -349,8 +349,7 @@
               %input{"ng-model" => "number", :placeholder => "Card Number", "payments-format"=>"card", "payments-validate"=>"card", "name"=>"card"}
               %input{"ng-model" => "expiry", :placeholder => "Expiration", "payments-format"=>"expiry", "payments-validate"=>"expiry", "name"=>"expiry"}
               %input{"ng-model" => "cvc", :placeholder => "CVC", "payments-format"=>"cvc", "payments-validate"=>"cvc", "name"=>"cvc"}
-              %button{:type => "submit"} Submit
               %div{"ng-if" => "checkoutForm.card.$invalid"}
                 Error: invalid card number!
-        .modal-footer
-          %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
+          .modal-footer
+            %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}

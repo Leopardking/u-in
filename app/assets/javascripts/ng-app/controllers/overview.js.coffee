@@ -204,7 +204,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         email: $scope.email
         phone: $scope.mobile
       bookingService.booking(check_status, numbers_booked, object).success (res, status) ->
-        console.log 'push name client'
       return
 
     # for stripe integration
@@ -217,7 +216,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         obj_stripe_token    = result.id
         obj_numbers_booked  = ""
         amount              = ($scope.depositDue * 100)
-        console.log amount
         obj =  
           same_as_company_address: 0
           first_name: $scope.firstName
@@ -237,6 +235,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           security_code: $scope.csv
           amount: $scope.depositDue
         paymentService.chargeSripe(result.id, "", "", obj).success (res, status) ->
-          console.log 'good job!'
+          $("#fullCalModal").modal('hide')
       return
 ]
