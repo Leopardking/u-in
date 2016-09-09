@@ -205,7 +205,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         phone: $scope.mobile
       bookingService.booking(check_status, numbers_booked, object).success (res, status) ->
         console.log 'push name client'
-    return
+      return
 
     # for stripe integration
     $scope.stripeCallback = (code, result) ->     

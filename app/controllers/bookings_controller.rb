@@ -93,7 +93,6 @@ class BookingsController < ApplicationController
       rescue Stripe::StripeError => e
         raise e
     end
-    binding.pry
     if current_user.user_type == User::USER_TYPE[:merchant]
       current_user.charge_payment = true
       current_user.time_charge = Time.zone.now + 7.minutes
@@ -140,7 +139,6 @@ class BookingsController < ApplicationController
   end
 
   def booking_via_merchant format_booking_params, promotion
-    binding.pry
     @avaiable_booking = BookingService.calculate_avaiable_booking(format_booking_params, promotion)
     if session[:promotion_booking].present?
       # avaiable promotion booking

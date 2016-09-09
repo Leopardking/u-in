@@ -17,7 +17,6 @@ class BookingService < BaseService
   end
 
   def self.calculate_avaiable_booking params, promotion
-    binding.pry
     totals_promotion_booking = PromotionService.number_avaiable_promotion_booking(promotion)
     case promotion.booking_detail.booking_criterion
       when BOOKING_CRITERION["Duration"]
