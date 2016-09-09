@@ -100,7 +100,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'
 gem 'cancan', '1.6.10'
 # Upload Form AJAX
 gem 'remotipart', '~> 1.2'
-gem 'therubyracer', '~>0.12.1'
+# gem 'therubyracer', '~>0.12.1'
 gem 'daemons', '~> 1.1.9'
 # Cron Job with Whenever
 gem 'whenever', '~>0.9.2', :require => false
