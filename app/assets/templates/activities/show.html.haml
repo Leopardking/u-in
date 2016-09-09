@@ -291,7 +291,7 @@
             .col-md-12
               %hr
               .col-md-10
-                %p.text-right Total
+                %p.text-right Total regularPrice
               .col-md-2
                 %p.text-right.total-price $ {{totalPrice}}
             .col-md-12
@@ -305,21 +305,37 @@
               %h5 Deposit are due at time of booking. Full payment will be made at time of service with XXXXXXXX
           .modal-footer
             {{date_completed}}
-            %button.btn.btn-primary{:type => "submit", "ng-click" => "changeToUser()"} Im In Book it! 
+            %button.btn.btn-primary{:type => "button", "ng-click" => "changeToUser()"} Im In Book it! 
 
-      %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
+      %div{{"ng-hide" => "isHideUser == true && isHideAmount == true"}}
         #container-modal{{"ng-show" => "isHideAmount == true"}}
           #modalBody.modal-body
             .col-md-12
-              %form
-                %p DUMMY FORM
+              %p FIRST NAME
+              %input{"ng-model" => "firstName", "name"=>"firstName"}
+              %p LAST NAME
+              %input{"ng-model" => "lastName", "name"=>"lastName"}
+              %p STREET
+              %input{"ng-model" => "street", "name"=>"street"}
+              %p STREET 2
+              %input{"ng-model" => "street2", "name"=>"street2"}
+              %p CITY
+              %input{"ng-model" => "city", "name"=>"city"}
+              %p STATE
+              %input{"ng-model" => "state", "name"=>"state"}
+              %p ZIP CODE
+              %input{"ng-model" => "zipCode", "name"=>"zipCode"}
+              %p EMAIL
+              %input{"ng-model" => "email", "name"=>"email"}
+              %p MOBILE# 
+              %input{"ng-model" => "mobile", "name"=>"mobile"}
           .modal-footer
-            %button.btn.btn-primary{:type => "submit", "ng-click" => "changeToPayment()"} CONTINUE
+            %button.btn.btn-primary{:type => "button", "ng-click" => "changeToPayment()"} CONTINUE
 
       #container-modal{{"ng-show" => "isHideUser == true "}}
         #modalBody.modal-body
           .col-md-12
-            %form{"stripe-form" => "handleStripe"}
+            %form{"stripe-form" => "stripeCallback"}
               #change-type-card
                 %input{:name => "card_type", :type => "radio", :value => "visacard"}
                 %span
@@ -330,9 +346,9 @@
                 %input{:name => "card_type", :type => "radio", :value => "AMExcards"}
                 %span
                   = image_tag "amex_card.png", class: "size-image-type-lager image-amex-card"
-              %input{"ng-model" => "payment.number", :placeholder => "Card Number", "payments-format"=>"card", "payments-validate"=>"card", "name"=>"card"}
-              %input{"ng-model" => "payment.expiry", :placeholder => "Expiration", "payments-format"=>"expiry", "payments-validate"=>"expiry", "name"=>"expiry"}
-              %input{"ng-model" => "payment.cvc", :placeholder => "CVC", "payments-format"=>"cvc", "payments-validate"=>"cvc", "name"=>"cvc"}
+              %input{"ng-model" => "number", :placeholder => "Card Number", "payments-format"=>"card", "payments-validate"=>"card", "name"=>"card"}
+              %input{"ng-model" => "expiry", :placeholder => "Expiration", "payments-format"=>"expiry", "payments-validate"=>"expiry", "name"=>"expiry"}
+              %input{"ng-model" => "cvc", :placeholder => "CVC", "payments-format"=>"cvc", "payments-validate"=>"cvc", "name"=>"cvc"}
               %button{:type => "submit"} Submit
               %div{"ng-if" => "checkoutForm.card.$invalid"}
                 Error: invalid card number!

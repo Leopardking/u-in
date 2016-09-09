@@ -20,7 +20,8 @@ class BookingsController < ApplicationController
     session[:promotion_booking] = params[:promotion_booking] || nil
     #format params
     @format_booking_params = booking_params
-    if current_user.user_type == User::USER_TYPE[:merchant]
+    # if current_user.user_type == User::USER_TYPE[:merchant]
+    if current_user.user_type.eql? "client" || "merchant"
       # check number booking of users has exceed avaiable booking
       # to set value in the popup
       @avaiable_booking = BookingService.calculate_avaiable_booking(params[:booking], @promotion)
@@ -92,6 +93,7 @@ class BookingsController < ApplicationController
       rescue Stripe::StripeError => e
         raise e
     end
+    binding.pry
     if current_user.user_type == User::USER_TYPE[:merchant]
       current_user.charge_payment = true
       current_user.time_charge = Time.zone.now + 7.minutes
@@ -105,7 +107,40 @@ class BookingsController < ApplicationController
 
   end
 
+  # payment with client, from anguar 
+  def payment_booking_client
+    @numbers_booked = session[:numbers_booked].to_i
+    booking_params = session[:@info_booking]
+    token = params[:stripe_token]
+    amount = (params[:billing_detail][:amount] * 100).round
+    promotion = Promotion.find(params[:promotion_pay_id])
+    begin
+      Stripe::Charge.create(
+        amount: amount,
+        currency: CURRENCY_STRIPE_CHARGE,
+        card: token,
+        description: "#{params[:billing_detail][:email]}"
+      )
+      rescue Stripe::StripeError => e
+        raise e
+    end
+    if current_user.user_type == User::USER_TYPE[:client]
+      current_user.charge_payment = true
+      current_user.time_charge = Time.zone.now + 7.minutes
+      current_user.booking_free = Booking::MAXIMUM_BOOKING_FREE
+      current_user.save
+      # create booking also check availabel booking
+      booking_via_merchant(booking_params, promotion)
+      session.delete(:@info_booking)
+      session.delete(:numbers_booked)
+      session.delete(:promotion_booking)
+    end
+
+    render :nothing => true, :status => 200
+  end
+
   def booking_via_merchant format_booking_params, promotion
+    binding.pry
     @avaiable_booking = BookingService.calculate_avaiable_booking(format_booking_params, promotion)
     if session[:promotion_booking].present?
       # avaiable promotion booking

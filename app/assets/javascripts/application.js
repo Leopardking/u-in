@@ -57,7 +57,6 @@
 //= require angular-momentjs
 //= require calendar
 //= require fullcalendar
-//= require stripe-angular.js
 //= require angular-payments
 //= require angular-stripe
 

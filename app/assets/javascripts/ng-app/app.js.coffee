@@ -8,7 +8,6 @@ app = angular.module('uinApp', [
   'Devise'
   'ui.calendar'
   'angular-moment'
-  'stripe'
   'angularPayments'
   'angular-stripe'
 ])
@@ -30,7 +29,6 @@ app.config([
   'AuthProvider'
   'stripeProvider'
   ($stateProvider, $urlRouterProvider, AuthProvider, stripeProvider) ->
-    stripeProvider.setPublishableKey('pk_test_GV5ggkXJsOFMFLqyIR3gCScj');
     $stateProvider
     .state('home',
       url: '/'

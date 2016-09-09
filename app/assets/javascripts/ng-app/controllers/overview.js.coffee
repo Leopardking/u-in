@@ -7,16 +7,37 @@ angular.module('uinApp').factory 'reviewService', [
     }
 ]
 
+angular.module('uinApp').factory 'paymentService', [
+  '$http'
+  '$stateParams'
+  ($http, $stateParams) ->
+    { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj) ->
+      $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj)
+    }
+]
+
+angular.module('uinApp').factory 'bookingService', [
+  '$http'
+  '$stateParams'
+  ($http, $stateParams) ->
+    { booking: (check_status, numbers_booked, object) ->
+      $http.post('/bookings/create_new_booking', check_status: status, numbers_booked: numbers_booked, booking: object)
+    }
+]
+
 angular.module('uinApp').controller 'overviewsCtrl', [
   '$scope'
   '$http'
   '$stateParams'
   'reviewService'
+  'paymentService'
+  'bookingService'
   'sessionService'
   'uiCalendarConfig'
   '$compile'
-  'stripe'
-  ($scope, $http, $stateParams, reviewService, sessionService, uiCalendarConfig, $compile, stripe) ->
+  '$window'
+  ($scope, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window) ->
+    $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
       $scope.promotionhash = res
       $scope.reviews = res.reviews
@@ -29,11 +50,13 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.discountPrice = []
       $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
       $scope.depositDue = $scope.totalPrice * 5 / 100
+
       $scope.updatePrice = ->
         $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
+      $scope.end_date =  event.end._i
       date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
       $scope.date_completed = date_completed
       $('#modalTitle').html event.title
@@ -165,25 +188,55 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
     $scope.changeToPayment =->
       $scope.isHideUser = true
-      return
+      check_status = false
+      numbers_booked = ($scope.regularPrice + $scope.discountPrice)
+      amount              = ($scope.depositDue * 100)
+      object = 
+        book_date: moment().format()
+        start_time: moment().format()
+        end_time: $scope.end_date
+        promotion_id: $stateParams.activityId
+        check_discount: true
+        promotion_price: 0
+        paid_price: amount
+        first_name: $scope.firstName
+        last_name: $scope.lastName
+        email: $scope.email
+        phone: $scope.mobile
+      bookingService.booking(check_status, numbers_booked, object).success (res, status) ->
+        console.log 'push name client'
+    return
 
     # for stripe integration
-    $scope.handleStripe = (code, result) ->
-      debugger
-      stripe.card.createToken($scope.payment.number).then((response) ->
-        $("#fullCalModal").modal('hide')
-        console.log 'token created for card ending in ', response.card.last4
-        payment = angular.copy($scope.payment)
-        payment.card = undefined
-        payment.token = response.id
-        $http.post 'https://yourserver.com/payments', payment
-      ).then((payment) ->
-        console.log 'successfully submitted payment for $', payment.amount
-        return
-      ).catch (err) ->
-        if err.type and /^Stripe/.test(err.type)
-          console.log 'Stripe error: ', err.message
-        else
-          console.log 'Other error occurred, possibly with your API', err.message
-        return
+    $scope.stripeCallback = (code, result) ->     
+      if result.error
+        console.log 'it failed! error: ' + result.error.message
+      else
+        # obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj
+        current_user_id     = gon.current_user.current_user_id
+        obj_stripe_token    = result.id
+        obj_numbers_booked  = ""
+        amount              = ($scope.depositDue * 100)
+        console.log amount
+        obj =  
+          same_as_company_address: 0
+          first_name: $scope.firstName
+          last_name: $scope.lastName
+          street_address: $scope.street
+          street_address_2: $scope.street2
+          city: $scope.city
+          state: $scope.state
+          zipcode: $scope.zipCode
+          phone: $scope.mobile
+          email: $scope.email
+          card_type: "visacard"
+          name_card: ($scope.firstName + $scope.lastName)
+          ccard_last4: $scope.number
+          exp_month: $scope.expiry
+          exp_year: $scope.expiry
+          security_code: $scope.csv
+          amount: $scope.depositDue
+        paymentService.chargeSripe(result.id, "", "", obj).success (res, status) ->
+          console.log 'good job!'
+      return
 ]
