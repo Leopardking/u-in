@@ -70,6 +70,7 @@ BookingApp::Application.routes.draw do
     collection do
       post "create_new_booking"
       post "payment_booking_merchant"
+      post "payment_booking_client"
     end
   end
   resources :images do

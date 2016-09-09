@@ -130,7 +130,7 @@ gem 'rails-assets-angular-momentjs'
 
 gem 'rails_12factor', group: :production
 gem 'sinatra', :require => false
-
+gem 'rails-assets-angular-stripe'
 
 # handle rating
 gem 'ratyrate'
