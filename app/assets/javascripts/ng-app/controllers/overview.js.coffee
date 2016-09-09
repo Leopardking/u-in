@@ -54,7 +54,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.updatePrice = ->
         $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
-
+      
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       $scope.end_date =  event.end._i
       date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
