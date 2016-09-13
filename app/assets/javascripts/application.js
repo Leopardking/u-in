@@ -82,22 +82,6 @@ window.onload = function() {
   });
 };
 
-$(function () {
-  $("#slider4").responsiveSlides({
-      auto: true,
-      pager: false,
-      nav: true,
-      speed: 500,
-      namespace: "callbacks",
-      before: function () {
-        $('.events').append("<li>before event fired.</li>");
-      },
-      after: function () {
-        $('.events').append("<li>after event fired.</li>");
-      }
-    });
-});
-
 jQuery(function ($) {
     $(".js-ui-select-override .ui-select-toggle").addClass('show-highlight');
     $(".js-ui-select-override .ui-select-placeholder").addClass('show-highlight');
@@ -137,6 +121,26 @@ jQuery(function ($) {
     });
 });
 
+$(document).ready(function(){
+  if (document.location.hash.includes("#/activities")){
+     setTimeout(function(){
+          $("#slider4").responsiveSlides({
+            auto: true,
+            pager: false,
+            nav: true,
+            speed: 500,
+            namespace: "callbacks",
+            before: function () {
+              $('.events').append("<li>before event fired.</li>");
+            },
+            after: function () {
+              $('.events').append("<li>after event fired.</li>");
+            }
+          });
+     },1000);
+  }
+});
+
 $( document ).ready(function() {
   var elem = document.querySelector('input[type="range"]');
   var rangeValue = function(){
@@ -145,8 +149,20 @@ $( document ).ready(function() {
     target.innerHTML = newValue;
   }
 
-  // elem.addEventListener("input", rangeValue);
-
+  elem.addEventListener("input", rangeValue);
+  $("#slider4").responsiveSlides({
+      auto: true,
+      pager: false,
+      nav: true,
+      speed: 500,
+      namespace: "callbacks",
+      before: function () {
+        $('.events').append("<li>before event fired.</li>");
+      },
+      after: function () {
+        $('.events').append("<li>after event fired.</li>");
+      }
+  });
 
   // Dropdown toggle
 

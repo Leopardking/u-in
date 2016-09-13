@@ -104,4 +104,13 @@ class ApplicationController < ActionController::Base
   def set_current_user
     gon.current_user = current_user.nil? ? {current_user_id: nil} : { current_user_id: current_user.id }
   end
+
+  protected
+  def after_sign_in_path_for(resource)
+    request.env['omniauth.origin'] || stored_location_for(resource) || root_path
+  end
+
+  def after_sign_up_path_for(resource)
+    'auth/sign_up#/'
+  end
 end

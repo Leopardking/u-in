@@ -44,7 +44,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
       $scope.city = res.promotion.city
-
+      $scope.$broadcast("imageLoaded")
       # Add maps
       # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
       # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
@@ -253,4 +253,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         paymentService.chargeSripe(result.id, "", "", obj).success (res, status) ->
           $("#fullCalModal").modal('hide')
       return
+
+
+    $scope.$on 'imageLoaded', ->
+      $('#slider4').responsiveSlides
+        auto: true
+        pager: false
+        nav: true
 ]

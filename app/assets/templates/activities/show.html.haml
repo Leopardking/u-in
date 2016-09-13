@@ -4,24 +4,15 @@
       .container
         .row
           .col-md-12.col-lg-12
-            %h1
-              are you in
-              %span ?
-
     %ul#slider4.rslides{"data-slider-class-selector" => "rslides", "data-slider-refresh-on-watch" => "images", :slider => ""}
-      -#%li{"ng-repeat" => "image in promotionhash.images", "ng-if"=>"image.length>= 1"}
-        -#%img{:height => "42", :src => "{{image}}", :width => "42", "onError"=>"this.onerror=null;this.src='/assets/banner-img-1.jpg'"}
-      %li
+      %li{"ng-repeat" => "image in promotionhash.images", "ng-if"=>"image.length>= 1", "ng-click"=> "test()"}
+        %img{:height => "42", :src => "{{image}}", :width => "42"}
+      %li{"ng-if"=>"image.length>= 0"}
         =image_tag "banner-img-1.jpg"
-      %li
-        =image_tag "banner-img-1.jpg"
-
-
-    .button-bottom-header
-      %a.btn-activity{:href => "#"} Find An Activity
-      .arrow-bottom-header
-        %a.first.scroll-down{:href => "#"}
-          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
+      %li{"ng-if"=>"image.length>= 0"}
+        =image_tag "banner-img-2.jpg"
+      %li{"ng-if"=>"image.length>= 0"}
+        =image_tag "banner-img-3.jpg"
 
 .nav-wrap-tabs
   .container
