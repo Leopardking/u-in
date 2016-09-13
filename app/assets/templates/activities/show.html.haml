@@ -331,21 +331,21 @@
           #modalBody.modal-body
             .col-md-12
               %p FIRST NAME
-              %input{"ng-model" => "firstName", "name"=>"firstName"}
+              %input{"ng-model" => "firstName", "name"=>"firstName", :required => "", :type => "text"}
               %p LAST NAME
-              %input{"ng-model" => "lastName", "name"=>"lastName"}
+              %input{"ng-model" => "lastName", "name"=>"lastName", :required => "", :type => "text"}
               %p STREET
-              %input{"ng-model" => "street", "name"=>"street"}
+              %input{"ng-model" => "street", "name"=>"street", :required => "", :type => "text"}
               %p STREET 2
-              %input{"ng-model" => "street2", "name"=>"street2"}
+              %input{"ng-model" => "street2", "name"=>"street2", :required => "", :type => "text"}
               %p CITY
-              %input{"ng-model" => "city", "name"=>"city"}
+              %input{"ng-model" => "city", "name"=>"city", :required => "", :type => "text"}
               %p STATE
-              %input{"ng-model" => "state", "name"=>"state"}
+              %select{"ng-model" => "state", "name"=>"state", "ng-options" => "item.code as item.name for item in regionArray"}
               %p ZIP CODE
-              %input{"ng-model" => "zipCode", "name"=>"zipCode"}
+              %input{"ng-model" => "zipCode", "name"=>"zipCode", :required => "", :type => "text"}
               %p EMAIL
-              %input{"ng-model" => "email", "name"=>"email"}
+              %input{"ng-model" => "email", "name"=>"email", :required => "", :type => "email"}
               %p MOBILE# 
               %input{"ng-model" => "mobile", "name"=>"mobile"}
           .modal-footer
