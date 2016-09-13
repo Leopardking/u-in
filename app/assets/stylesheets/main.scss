@@ -62,20 +62,175 @@ a.tabs-mod {
 }
 
 //review
-
+#reveiw.tab-pane {
+  background: #fff;
+  h3.text-center {
+    font-size: 30px;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 600;
+    color: #7E7C7C;
+    margin: 20px 0px 20px 0px;
+  }
+}
 div#review {
-  border: 1px solid gray;
-  padding: 10px;
+  border: 2px solid #5C5C5C;
+  padding: 0px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 18px;
+  .rating-review {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    background: #797979;
+    border-bottom: 2px solid #5C5C5C;
+    .col-md-6 {
+      p {
+        color: #fff;
+        font-size: 18px;
+        margin: 0px;
+        margin-top: -4px;
+        text-transform: capitalize;
+        font-family: 'Helvetica', sans-serif;
+        letter-spacing: 0.5px;
+        text-align: center;
+      }
+    }
+    .rate-stars {
+      text-align: right;
+    }
+  }
+  .review-content {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    .review-text {
+      font-size: 14px;
+      font-family: 'Helvetica', sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .read-more {
+      color: #51C2FB;
+      font-size: 16px;
+      margin-bottom: 0px;
+      text-transform: uppercase;;
+      letter-spacing: 0.5px;
+    }
+  }
 }
 
 a.rate {
   color: #15fb15;
+  &:focus {
+    outline: none;
+  }
 }
 
 
 .ngrateit-rating {
   display: inline-block;
     overflow: hidden;
+}
+
+/* reviewModal */
+#reviewModal {
+  .modal-dialog {
+    margin: 80px auto;
+    max-width: 550px;
+    .modal-content {
+      border: 2px solid #15fb15;
+      border-radius: 0px;
+      background: #EEEEF0;
+    }
+    .modal-header {
+      background: #0099FF;
+      padding: 10px 15px;
+      .modal-title {
+        text-align: center;
+        letter-spacing: 1px;
+        color: #fff;
+      }
+      .close {
+        background-color: #000;
+        opacity: 1;
+        color: #fff;
+        padding: 3px;
+        margin-top: 2px;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        span {
+          text-align: center;
+          position: absolute;
+          top: -3px;
+          right: 3px;
+        }
+      }
+    }
+    .modal-body {
+      display: inline-block;
+      padding-bottom: 5px;
+      width: 100%;
+      .wrap-content-rate {
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+        .col-md-4 {
+          width: 30%;
+          margin-right: 15px;
+          padding-right: 0px;
+          .img-rating {
+            width: 125px;
+            height: auto;
+            border: 1px solid #000;
+            img {
+              max-width: 100%;
+            }
+          }
+        }
+        .col-md-8 {
+          padding: 0px;
+          width: 65%;
+          h3 {
+            font-family: 'Helvetica', sans-serif;
+            font-size: 24px;
+            color: #656565;
+            margin-top: 0px;
+          }
+        }
+      }
+      .col-md-12 {
+        .wrap-comment {
+          width: 90%;
+          display: block;
+          margin: 0 auto;
+          margin-top: 20px;
+          span {
+            letter-spacing: 1px;
+            color: #656565;
+            font-family: 'Helvetica', sans-serif;
+            text-transform: uppercase;
+            float: left;
+          }
+          textarea {
+            resize: inherit;
+            width: 100%;
+          }
+        }
+      }
+    }
+    .modal-footer {
+      border: none;
+      text-align: center;
+      padding-top: 0px;
+      .btn-submit {
+        background: #0099FF;
+        border-radius: 0px;
+        border: 1px solid #000;
+      }
+    }
+  }
+
 }
 
 /* Reset button */
@@ -223,7 +378,7 @@ a.rate {
   border:solid 1px black;
   margin-top: 5px;
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: 600;
   @media (max-width: 768px){
     margin-bottom: 15px;
