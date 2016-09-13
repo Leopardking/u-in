@@ -27,6 +27,7 @@ angular.module('uinApp').factory 'bookingService', [
 
 angular.module('uinApp').controller 'overviewsCtrl', [
   '$scope'
+  '$sce'
   '$http'
   '$stateParams'
   'reviewService'
@@ -36,12 +37,23 @@ angular.module('uinApp').controller 'overviewsCtrl', [
   'uiCalendarConfig'
   '$compile'
   '$window'
-  ($scope, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window) ->
+  ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window) ->
     $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
       $scope.promotionhash = res
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
+      $scope.city = res.promotion.city
+      $scope.$broadcast("imageLoaded")
+      # Add maps
+      # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
+      # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
+      $scope.trustSrc = (src) ->
+        $sce.trustAsResourceUrl src
+
+      $scope.maps =
+        src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+'&key=AIzaSyAYFishFM9brgk3wn025czamFm9EWHVhQA'
+      return
 
       # select box value on booking modal
       $scope.perDuration = $scope.booking_detail.bookings_per_duration_arr
@@ -54,7 +66,10 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.updatePrice = ->
         $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
-      
+
+
+      $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
+
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       $scope.end_date =  event.end._i
       date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
@@ -171,7 +186,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     start_date = $scope.dt
     end_date = moment(start_date).endOf('month').format()
     $scope.eventSource = 
-      url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
+      #url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
+      url: '/calendars/get_segmented_events?start_date=2016-09-14&end_date=2016-09-15&promotion_id=52'
     $scope.eventSources = [$scope.eventSource]
 
     # submit reveiw
@@ -237,4 +253,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         paymentService.chargeSripe(result.id, "", "", obj).success (res, status) ->
           $("#fullCalModal").modal('hide')
       return
+
+
+    $scope.$on 'imageLoaded', ->
+      $('#slider4').responsiveSlides
+        auto: true
+        pager: false
+        nav: true
 ]
