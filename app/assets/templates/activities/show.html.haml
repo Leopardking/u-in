@@ -211,7 +211,7 @@
                       %p {{promotionhash.promotion.city}}
                       %p {{promotionhash.promotion.state}}
                     .col-md-8
-                      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", :src => "https://www.google.com/maps/embed/v1/view?zoom=11&center=-6.9175,107.6191&key=AIzaSyAN0om9mFmy1QN6Wf54tXAowK4eT0ZUPrU", :style => "border:0", :width => "100%"}
+                      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", "ng-src" => "{{trustSrc(movie.src)}}", :type => "text/html", :width => "100%"}
 
             .panel-box.panel-group
               .panel.panel-default
