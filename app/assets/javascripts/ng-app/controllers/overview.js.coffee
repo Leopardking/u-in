@@ -95,9 +95,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'color': '#FFFFFF'
       booking_tag = "<div class='booking-event'><div class='booking-space'><p>SPACE DUMMY</p></div><div class='booking-price'>$5000</div><div class='booking-button'><p>I'm In! <br> Book it!</p></div></div>"
       element.append(booking_tag)
+      booking_coba = "<h3>cobaan hiji</h3>"
+      element.append(booking_coba)
       return
 
-    # popup datepicker 
+    # popup datepicker
     disabled = (data) ->
       date = data.date
       mode = data.mode
@@ -175,7 +177,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
       eventColor: '#378006'
-    
+
     # get date from datepicker
     $scope.$watch 'dt', ->
       angular.element('.calendar-overview').fullCalendar('gotoDate', $scope.dt)
@@ -185,7 +187,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     id = $stateParams.activityId
     start_date = $scope.dt
     end_date = moment(start_date).endOf('month').format()
-    $scope.eventSource = 
+    $scope.eventSource =
       #url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
       url: '/calendars/get_segmented_events?start_date=2016-09-14&end_date=2016-09-15&promotion_id=52'
     $scope.eventSources = [$scope.eventSource]
@@ -207,7 +209,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       check_status = false
       numbers_booked = ($scope.regularPrice + $scope.discountPrice)
       amount              = ($scope.depositDue * 100)
-      object = 
+      object =
         book_date: moment().format()
         start_time: moment().format()
         end_time: $scope.end_date
@@ -223,7 +225,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       return
 
     # for stripe integration
-    $scope.stripeCallback = (code, result) ->     
+    $scope.stripeCallback = (code, result) ->
       if result.error
         console.log 'it failed! error: ' + result.error.message
       else
@@ -232,7 +234,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         obj_stripe_token    = result.id
         obj_numbers_booked  = ""
         amount              = ($scope.depositDue * 100)
-        obj =  
+        obj =
           same_as_company_address: 0
           first_name: $scope.firstName
           last_name: $scope.lastName
