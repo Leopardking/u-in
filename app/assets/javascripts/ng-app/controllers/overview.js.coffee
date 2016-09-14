@@ -46,16 +46,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.city = res.promotion.city
       $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
-      # Add maps
-      # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
-      # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
-      $scope.trustSrc = (src) ->
-        $sce.trustAsResourceUrl src
-
-      $scope.maps =
-        src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+' '+$scope.adress+'&key=AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
-      return
-
 
       # select box value on booking modal
       $scope.perDuration = $scope.booking_detail.bookings_per_duration_arr
@@ -71,7 +61,16 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
 
       $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
+      # Add maps
+      # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
+      # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
+      $scope.trustSrc = (src) ->
+        $sce.trustAsResourceUrl src
 
+      $scope.maps =
+        src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+' '+$scope.adress+'&key=AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
+      return
+      
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       check_day = event.start._i
       today     = moment().format()
