@@ -92,6 +92,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           $('[data-toggle="tooltip"]').tooltip()
 
     $scope.eventRender = (event, element, view) ->
+
       element.css
         'border-color': '#3C3B3B'
         'border-width': '1px'
@@ -132,8 +133,13 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       header = "
       <div class='fc-title-header'>
       </div>"
+
+      toolbar = "
+        <div class='mod-tollbar'></div>
+      "
       element.find("div.fc-content").prepend(header)
       element.append(booking_tag)
+      element.find(".fc-tollbar").addClass('mod-tollbar')
       if event.blackout
         # If the event is blackout event, Add the corresponding CSS
         $(element).addClass 'blackout_event'
@@ -212,7 +218,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       header:
         left: ''
         center: 'prev title next'
-        right: 'agendaWeek'
+        right: ''
       defaultView: 'agendaWeek'
       height: 650,
       eventLimit: 4,
