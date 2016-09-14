@@ -102,7 +102,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	margin: 0 -1em; /* ensures character will be centered, regardless of width */
 }
 
-.fc-icon-left-single-arrow:after {
+/*.fc-icon-left-single-arrow:after {
 	content: "\02039";
 	font-weight: bold;
 	font-size: 200%;
@@ -116,7 +116,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	font-size: 200%;
 	top: -7%;
 	left: -3%;
-}
+}*/
 
 .fc-icon-left-double-arrow:after {
 	content: "\000AB";
@@ -165,7 +165,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 
-	 dimensions 
+	 dimensions
 	margin: 0;
 	height: 2.1em;
 	padding: 0 .6em;
@@ -177,7 +177,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 /* Firefox has an annoying inner border */
 .fc button::-moz-focus-inner { margin: 0; padding: 0; }
-	
+
 .fc-state-default { /* non-theme */
 	border: 1px solid;
 }
@@ -200,7 +200,7 @@ NOTE: use percentage font sizes or else old IE chokes
 	margin: 0 .2em;
 	vertical-align: middle;
 }
-	
+
 /*
   button states
   borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
@@ -409,7 +409,7 @@ hr.fc-divider {
 	border-right: 0 hidden transparent;
 
 	/* no bottom borders on rows */
-	border-bottom: 0 hidden transparent; 
+	border-bottom: 0 hidden transparent;
 }
 
 .fc-row:first-child table {
@@ -534,9 +534,9 @@ temporary rendered events).
 }
 
 .fc-event .fc-bg { /* the generic .fc-bg already does position */
-	z-index: 1;
+/*	z-index: 1;
 	background: #fff;
-	opacity: .25;
+	opacity: .25;*/
 	filter: alpha(opacity=25); /* for IE */
 }
 
@@ -675,7 +675,10 @@ a.fc-more:hover {
 
 .fc-toolbar {
 	text-align: center;
-	margin-bottom: 1em;
+  margin-bottom: 1em;
+  background: #494D5A;
+  color: #fff;
+  font-family: 'Helvetica', sans-serif;
 }
 
 .fc-toolbar .fc-left {
@@ -700,7 +703,7 @@ a.fc-more:hover {
 .fc .fc-toolbar > * > :first-child { /* extra precedence to override button border margins */
 	margin-left: 0;
 }
-	
+
 /* title text */
 
 .fc-toolbar h2 {
@@ -717,7 +720,7 @@ a.fc-more:hover {
 .fc-toolbar .ui-state-hover {
 	z-index: 2;
 }
-	
+
 .fc-toolbar .fc-state-down {
 	z-index: 3;
 }
@@ -825,6 +828,7 @@ a.fc-more:hover {
 .fc-agenda-view .fc-day-grid {
 	position: relative;
 	z-index: 2; /* so the "more.." popover will be over the time grid */
+	display: none;
 }
 
 .fc-agenda-view .fc-day-grid .fc-row {
@@ -915,7 +919,7 @@ a.fc-more:hover {
 --------------------------------------------------------------------------------------------------*/
 
 .fc-time-grid .fc-slats td {
-	height: 1.5em;
+	height: 3.5em;
 	border-bottom: 0; /* each cell is responsible for its top border */
 }
 
@@ -1064,4 +1068,53 @@ be a descendant of the grid when it is being dragged.
 
 .fc-time-grid-event .fc-resizer:after {
 	content: "=";
+}
+
+.blackout_event {
+	left: 0% !important;
+	right: 0% !important;
+	background-color: #a4a4a4 !important;
+	border: 1px solid #a4a4a4 !important;
+	min-height: inherit !important;	
+}
+
+.booking-wraper {
+	height: 100%;
+}
+
+.booking-header {
+	height: 28%;
+}
+
+.booking-space {
+	/*height: 10%;*/
+}
+
+.booking-price {
+	/*height: 40%;*/
+}
+
+.booking-button {
+	background-color: #006da0;
+	text-align: center;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	height: 30%;
+}
+
+.fc-view-container {
+	background-color: #ffffff;
+}
+
+.span8.calendar-overview.ng-pristine.ng-untouched.ng-valid.ng-isolate-scope.fc.fc-ltr.fc-unthemed.ng-not-empty {
+	background-color: #99CC00;
+}
+
+thead.fc-head {
+	background-color: #494d5a;
+}
+
+th.fc-day-header.fc-widget-header {
+	color: white;
 }

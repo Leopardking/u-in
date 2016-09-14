@@ -93,7 +93,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           $('[data-toggle="tooltip"]').tooltip()
 
     $scope.eventRender = (event, element, view) ->
-
       element.css
         'border-color': '#3C3B3B'
         'border-width': '1px'
@@ -102,8 +101,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'min-height': '70px'
         'background-color': ''
       element.find('.fc-content').css
-        'top': '10px'
-        'background-color': '#0099FF'
+        'background-color': '#006da0'
         'color': '#FFFFFF'
         'border-top-style': 'solid'
         'border-color': '#99CC00'
@@ -122,8 +120,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           </div>
           <div class='booking-space'>
             <p>5 SPACES</p>
-          </div>
-          <div class='booking-price'>
             <p> $ "+$scope.promotionhash.promotion.price+"</p>
           </div>
         <div class='booking-button'>
@@ -139,7 +135,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         <div class='mod-tollbar'></div>
       "
       element.find("div.fc-content").prepend(header)
-      element.append(booking_tag)
+      element.find("div.fc-bg").append(booking_tag)
       element.find(".fc-tollbar").addClass('mod-tollbar')
       if event.blackout
         # If the event is blackout event, Add the corresponding CSS
@@ -221,8 +217,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         center: 'prev title next'
         right: ''
       defaultView: 'agendaWeek'
-      height: 700,
-      eventLimit: 4,
+      height: 650
       eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
       eventColor: '#378006'
