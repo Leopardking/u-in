@@ -43,18 +43,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.promotionhash = res
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
-      $scope.maps = res.promotion.google_map_link
+      $scope.city = res.promotion.city
+      $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
-
-      # Add maps
-      # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
-      # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
-      $scope.trustSrc = (src) ->
-        $sce.trustAsResourceUrl src
-
-      $scope.maps =
-        src: $scope.maps + 'AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
-      return
 
       # select box value on booking modal
       $scope.perDuration = $scope.booking_detail.bookings_per_duration_arr
@@ -70,15 +61,36 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
 
       $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
+      # Add maps
+      # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
+      # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
+      $scope.trustSrc = (src) ->
+        $sce.trustAsResourceUrl src
+
+      $scope.maps =
+        src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+' '+$scope.adress+'&key=AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
+      return
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
-      check_day = event.start._i
-      today     = moment().format()
+      check_day = moment(event.start._i).format("YYYY-M-d")
+      today     = moment().format("YYYY-M-d")
+      
       if check_day < today
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
         else
           alert 'You can\'t choice Previous Day'
+      else if check_day = today
+        if event.blackout == true
+          alert 'You can\'t cancel this blackout'
+        else
+          $scope.end_date =  event.end._i
+          date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
+          $scope.date_completed = date_completed
+          $('#modalTitle').html event.title
+          $('#modalBody').html event.description
+          $('#fullCalModal').modal()
+          $('[data-toggle="tooltip"]').tooltip()
       else
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
@@ -100,22 +112,25 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'min-height': '70px'
         'background-color': ''
       element.find('.fc-content').css
-        'top': '10px'
-        'background-color': '#0099FF'
+        'background-color': '#006da0'
         'color': '#FFFFFF'
         'border-top-style': 'solid'
         'border-color': '#99CC00'
-      element.find('.fc-bg').css
-        'background-color': '#0099FF'
-        'color': '#FFFFFF'
+      if event.blackout
+        element.find('.fc-bg').css
+          'background-color': '#a4a4a4 !important'
+        element.find('.fc-event').css
+          'cursor': 'not-allowed'
+      else
+        element.find('.fc-bg').css
+          'background-color': '#0099FF'
+          'color': '#FFFFFF'
       booking_tag = "
         <div class='booking-wraper'>
           <div class='booking-header'>
           </div>
           <div class='booking-space'>
             <p>5 SPACES</p>
-          </div>
-          <div class='booking-price'>
             <p> $ "+$scope.promotionhash.promotion.price+"</p>
           </div>
         <div class='booking-button'>
@@ -127,8 +142,12 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       <div class='fc-title-header'>
       </div>"
 
+      toolbar = "
+        <div class='mod-tollbar'></div>
+      "
       element.find("div.fc-content").prepend(header)
-      element.append(booking_tag)
+      element.find("div.fc-bg").append(booking_tag)
+      element.find(".fc-tollbar").addClass('mod-tollbar')
       if event.blackout
         # If the event is blackout event, Add the corresponding CSS
         $(element).addClass 'blackout_event'
@@ -207,10 +226,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       header:
         left: ''
         center: 'prev title next'
-        right: 'agendaWeek'
+        right: ''
       defaultView: 'agendaWeek'
-      height: 650,
-      eventLimit: 4,
+      height: 650
       eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
       eventColor: '#378006'
@@ -222,7 +240,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
     # parsing ui-calender json
     id = $stateParams.activityId
-    start_date = $scope.dt
+    start_date = moment($scope.dt).format("YYYY-M-d")
     end_date = moment(start_date).endOf('month').format()
 
     $scope.eventSource =
