@@ -105,26 +105,34 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'color': '#FFFFFF'
         'border-top-style': 'solid'
         'border-color': '#99CC00'
-      element.find('.fc-bg').css
-        'background-color': '#0099FF'
-        'color': '#FFFFFF'
+      if event.blackout
+        element.find('.fc-bg').css
+          'background-color': '#a4a4a4 !important'
+        element.find('.fc-event').css
+          'cursor': 'not-allowed'
+      else
+        element.find('.fc-bg').css
+          'background-color': '#0099FF'
+          'color': '#FFFFFF'
       booking_tag = "
         <div class='booking-wraper'>
           <div class='booking-header'>
           </div>
           <div class='booking-space'>
-            <p>SPACE DUMMY</p>
+            <p>5 SPACES</p>
           </div>
           <div class='booking-price'>
-            <p>$5000</p>
+            <p> $ "+$scope.promotionhash.promotion.price+"</p>
           </div>
         <div class='booking-button'>
           <p>I'm In! <br> Book it!</p>
         </div>
       </div>"
+
       header = "
       <div class='fc-title-header'>
       </div>"
+      
       element.find("div.fc-content").prepend(header)
       element.append(booking_tag)
       if event.blackout
