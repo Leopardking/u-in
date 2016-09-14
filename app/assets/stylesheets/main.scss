@@ -56,7 +56,14 @@ ul {
 
 
 //overview activities
-
+#overview.tab-pane {
+  .col-md-9 {
+    display: inline-block;
+    @media (max-width: 480px) {
+      padding: 0px;
+    }
+  }
+}
 a.tabs-mod {
   background-color: #2ba9f6;
 }
@@ -71,6 +78,12 @@ a.tabs-mod {
     color: #7E7C7C;
     margin: 20px 0px 20px 0px;
   }
+  .outer-review {
+    display: inline-block;
+    @media (max-width: 480px) {
+      padding: 0px;
+    }
+  }
 }
 div#review {
   border: 2px solid #5C5C5C;
@@ -84,6 +97,13 @@ div#review {
     padding: 10px 0px 10px 0px;
     background: #797979;
     border-bottom: 2px solid #5C5C5C;
+    .rate-stars {
+      @media (max-width: 520px) {
+        padding-left: 10px;
+        padding-right: 0px;
+        width: 32%;
+      }
+    }
     .col-md-6 {
       p {
         color: #fff;
@@ -94,10 +114,27 @@ div#review {
         font-family: 'Helvetica', sans-serif;
         letter-spacing: 0.5px;
         text-align: center;
+        @media (max-width: 520px) {
+          font-size: 14px;
+          margin-top: -1px;
+        }
       }
     }
-    .rate-stars {
+    .col-xs-6 {
+      @media (max-width: 520px) {
+        padding-left: 10px;
+        padding-right: 0px;
+        width: 40%;
+      }
+    }
+    .rate-now {
       text-align: right;
+      @media (max-width: 520px) {
+        font-size: 13px;
+        padding-right: 0px;
+        padding-left: 10px;
+        margin-top: 1px;
+      }
     }
   }
   .review-content {
@@ -291,6 +328,9 @@ a.rate {
   @media (max-width: 768px){
     padding: 0 20px;
   }
+  @media (max-width: 320px) {
+    padding: 0px;
+  }
   li {
     width: 33.3%;
     a {
@@ -299,6 +339,9 @@ a.rate {
       border: solid 2px white;
       font-size: 20px;
       font-weight: 600;
+      @media (max-width: 320px) {
+        font-size: 15px;
+      }
     }
   }
 }
@@ -427,6 +470,9 @@ a.rate {
   }
   .panel-body {
     border-top: solid 1px black !important;
+    @media (max-width: 320px) {
+      padding: 0px 10px;
+    }
   }
   .panel-title{
     font-size: 30px;
@@ -439,6 +485,9 @@ a.rate {
 .div-socmed {
   margin-top: 20%;
   text-align: center;
+  @media (max-width: 768px) {
+    margin: 20px 0px;
+  }
   li {
     width: 50px;
     height: 50px;
@@ -480,6 +529,10 @@ a.rate {
     border-radius: 50px;
     padding: 15px 50px;
     font-size: 20px;
+    @media (max-width: 480px) {
+      font-size: 18px;
+      margin: 15px 0px;
+    }
   }
   p {
     text-align: left;

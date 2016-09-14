@@ -101,20 +101,20 @@ class Promotion < ActiveRecord::Base
   end
 
   # Generating events based on the segments
-  def self.generate_segments_events(promotion_id, cal_start, cal_end)
+  def self.generate_segments_events(promotion_id, cal_start, cal_end, new_calendar=nil)
     events = []
     promotions = Promotion.where("id IN (?)", promotion_id)
     return events if promotions.empty?
     promotions.each do |promo|
       schedule = PromotionService.new.general_repeated_events_by_ice_cube promo,cal_start
       # get all events based on the generated schedules
-      events.push(promo.get_segmented_events(schedule, cal_start, cal_end,promo))
+      events.push(promo.get_segmented_events(schedule, cal_start, cal_end,promo,new_calendar))
     end
     events.flatten.compact
   end
 
   # Generates events based on the generated schedules of a day or a week
-  def get_segmented_events(schedule, cal_start, cal_end, promotion)
+  def get_segmented_events(schedule, cal_start, cal_end, promotion, new_calendar=nil)
     scheduled_events = []
     date_of_lastest_booking = nil
     booking_promotion_avaiable = 0
@@ -156,28 +156,53 @@ class Promotion < ActiveRecord::Base
         if event_statistic[:event_status] == "promotion_available"
           booking_promotion_avaiable = [available_bookings, total_bookings].min - number_booking
         end
-        scheduled_events.push({
-          discount_percent: discount_percent,
-          name: self.name,
-          title: "#{self.discount_percent}% Off #{self.name.titleize}",
-          start: start_time,
-          end: end_time,
-          id: self.id,
-          bookings: number_booking,
-          date_of_lastest_booking: date_of_lastest_booking,
-          total_bookings: [available_bookings, total_bookings].min,
-          promotion_price: self.price,
-          paid_price: self.saving_price,
-          cancel_status: self.cancel_status,
-          number_bookings_in_current_period: number_bookings_in_current_period,
-          booking_without_promotion: booking_without_promotion,
-          booking_without_promotion_total: event_status == 'regular_available' ? available_books_at_this_moment : booking_without_promotion_total,
-          sold_out: I18n.t('models.promotion.segmented_events.promotion_sold_out'),
-          booking_regular_price: I18n.t('models.promotion.segmented_events.booking_regular_price'),
-          allDay: false,
-          event_status: event_status,
-          booking_promotion_avaiable: booking_promotion_avaiable
-        })
+        if new_calendar == "true"
+          scheduled_events.push({
+            discount_percent: discount_percent,
+            name: self.name,
+            title: "#{self.discount_percent}% Off",
+            start: start_time,
+            end: end_time,
+            id: self.id,
+            bookings: number_booking,
+            date_of_lastest_booking: date_of_lastest_booking,
+            total_bookings: [available_bookings, total_bookings].min,
+            promotion_price: self.price,
+            paid_price: self.saving_price,
+            cancel_status: self.cancel_status,
+            number_bookings_in_current_period: number_bookings_in_current_period,
+            booking_without_promotion: booking_without_promotion,
+            booking_without_promotion_total: event_status == 'regular_available' ? available_books_at_this_moment : booking_without_promotion_total,
+            sold_out: I18n.t('models.promotion.segmented_events.promotion_sold_out'),
+            booking_regular_price: I18n.t('models.promotion.segmented_events.booking_regular_price'),
+            allDay: false,
+            event_status: event_status,
+            booking_promotion_avaiable: booking_promotion_avaiable
+          })
+        else
+          scheduled_events.push({
+            discount_percent: discount_percent,
+            name: self.name,
+            title: "#{self.discount_percent}% Off #{self.name.titleize}",
+            start: start_time,
+            end: end_time,
+            id: self.id,
+            bookings: number_booking,
+            date_of_lastest_booking: date_of_lastest_booking,
+            total_bookings: [available_bookings, total_bookings].min,
+            promotion_price: self.price,
+            paid_price: self.saving_price,
+            cancel_status: self.cancel_status,
+            number_bookings_in_current_period: number_bookings_in_current_period,
+            booking_without_promotion: booking_without_promotion,
+            booking_without_promotion_total: event_status == 'regular_available' ? available_books_at_this_moment : booking_without_promotion_total,
+            sold_out: I18n.t('models.promotion.segmented_events.promotion_sold_out'),
+            booking_regular_price: I18n.t('models.promotion.segmented_events.booking_regular_price'),
+            allDay: false,
+            event_status: event_status,
+            booking_promotion_avaiable: booking_promotion_avaiable
+          })
+        end
       end
       # Get the blackout time slots
       if self.booking_detail.blackout_from.present?
