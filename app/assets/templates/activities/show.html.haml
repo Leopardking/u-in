@@ -233,21 +233,21 @@
           %h3.text-center {{name}}
           %div{"ng-if"=>"reviews == 0"}
             %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
-          .col-md-12
+          .col-md-12.outer-review
             #review{"ng-repeat" => "review in reviews"}
               .rating-review
-                .col-md-3
+                .col-md-3.col-xs-3.rate-stars
                   %ng-rate-it{"ng-model" => "review.rating", "resetable"=> "false", "read-only" => "true"}
                   %span
-                .col-md-6
+                .col-md-6.col-xs-6
                   %p {{review.user.user_name}}
-                .col-md-3.rate-stars
+                .col-md-3.rate-now.col-xs-3
                   %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
               .review-content
                 .col-md-12
                   %p.review-text
                     {{review.content}}
-                  %p.read-more
+                  %a{:class => "read-more", :href => "#"}
                     Read More
 
   #booking.tab-pane

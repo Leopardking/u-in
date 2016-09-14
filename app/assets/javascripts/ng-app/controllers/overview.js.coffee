@@ -45,7 +45,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.booking_detail = res.booking_detail
       $scope.maps = res.promotion.google_map_link
       $scope.$broadcast("imageLoaded")
-      
+
       # Add maps
       # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
       # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
@@ -74,7 +74,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       check_day = event.start._i
       today     = moment().format()
-      if check_day < today 
+      if check_day < today
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
         else
@@ -132,7 +132,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       header = "
       <div class='fc-title-header'>
       </div>"
-      
       element.find("div.fc-content").prepend(header)
       element.append(booking_tag)
       if event.blackout
@@ -141,7 +140,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
       return
 
-    # popup datepicker 
+    # popup datepicker
     disabled = (data) ->
       date = data.date
       mode = data.mode
@@ -220,7 +219,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
       eventColor: '#378006'
-    
+
     # get date from datepicker
     $scope.$watch 'dt', ->
       angular.element('.calendar-overview').fullCalendar('gotoDate', $scope.dt)
@@ -231,7 +230,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     start_date = $scope.dt
     end_date = moment(start_date).endOf('month').format()
 
-    $scope.eventSource = 
+    $scope.eventSource =
       #url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
       url: '/calendars/get_segmented_events?start_date='+start_date+'&end_date='+end_date+'&promotion_id='+id+'&new_calendar=true'
       cache: false
@@ -254,7 +253,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       check_status = false
       numbers_booked = ($scope.regularPrice + $scope.discountPrice)
       amount              = ($scope.depositDue * 100)
-      object = 
+      object =
         book_date: moment().format()
         start_time: moment().format()
         end_time: $scope.end_date
@@ -270,7 +269,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       return
 
     # for stripe integration
-    $scope.stripeCallback = (code, result) ->     
+    $scope.stripeCallback = (code, result) ->
       if result.error
         console.log 'it failed! error: ' + result.error.message
       else
@@ -279,7 +278,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         obj_stripe_token    = result.id
         obj_numbers_booked  = ""
         amount              = ($scope.depositDue * 100)
-        obj =  
+        obj =
           same_as_company_address: 0
           first_name: $scope.firstName
           last_name: $scope.lastName

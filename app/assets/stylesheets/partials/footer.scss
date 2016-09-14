@@ -2,7 +2,14 @@
   background-color: $dgray;
   color: $white;
   padding: 20px 0;
-
+  .iconic-footer {
+    width: 130px;
+    margin: 0 auto;
+    margin-top: 10px;
+    img {
+      max-width: 100%;
+    }
+  }
   .footer-text {
 
     li {
