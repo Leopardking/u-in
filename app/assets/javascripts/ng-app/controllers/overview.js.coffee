@@ -43,9 +43,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.promotionhash = res
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
-      $scope.maps = res.promotion.google_map_link
+      $scope.city = res.promotion.city
+      $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
-
       # Add maps
       # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
       # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
@@ -53,8 +53,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         $sce.trustAsResourceUrl src
 
       $scope.maps =
-        src: $scope.maps + 'AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
+        src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+' '+$scope.adress+'&key=AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
       return
+
 
       # select box value on booking modal
       $scope.perDuration = $scope.booking_detail.bookings_per_duration_arr
@@ -220,7 +221,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         center: 'prev title next'
         right: ''
       defaultView: 'agendaWeek'
-      height: 650,
+      height: 700,
       eventLimit: 4,
       eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
