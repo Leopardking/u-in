@@ -32,7 +32,7 @@ class CalendarsController < ApplicationController
 
   def get_segmented_events
     # authorize! :manage, Promotion
-    promotion_events = Promotion.generate_segments_events(params[:promotion_id], params[:start_date], params[:end_date])
+    promotion_events = Promotion.generate_segments_events(params[:promotion_id], params[:start_date], params[:end_date], params[:new_calendar])
     render json: promotion_events
   end
 

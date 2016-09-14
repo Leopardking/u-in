@@ -72,13 +72,24 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
-      $scope.end_date =  event.end._i
-      date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
-      $scope.date_completed = date_completed
-      $('#modalTitle').html event.title
-      $('#modalBody').html event.description
-      $('#fullCalModal').modal()
-      $('[data-toggle="tooltip"]').tooltip()
+      check_day = event.start._i
+      today     = moment().format()
+      if check_day < today 
+        if event.blackout == true
+          alert 'You can\'t cancel this blackout'
+        else
+          alert 'You can\'t choice Previous Day'
+      else
+        if event.blackout == true
+          alert 'You can\'t cancel this blackout'
+        else
+          $scope.end_date =  event.end._i
+          date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
+          $scope.date_completed = date_completed
+          $('#modalTitle').html event.title
+          $('#modalBody').html event.description
+          $('#fullCalModal').modal()
+          $('[data-toggle="tooltip"]').tooltip()
 
     $scope.eventRender = (event, element, view) ->
       element.css
@@ -96,6 +107,10 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'color': '#FFFFFF'
       booking_tag = "<div class='booking-event'><div class='booking-space'><p>SPACE DUMMY</p></div><div class='booking-price'>$5000</div><div class='booking-button'><p>I'm In! <br> Book it!</p></div></div>"
       element.append(booking_tag)
+      if event.blackout
+        # If the event is blackout event, Add the corresponding CSS
+        $(element).addClass 'blackout_event'
+
       return
 
     # popup datepicker 
@@ -187,9 +202,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     id = $stateParams.activityId
     start_date = $scope.dt
     end_date = moment(start_date).endOf('month').format()
+
     $scope.eventSource = 
       #url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
-      url: '/calendars/get_segmented_events?start_date=2016-09-14&end_date=2016-09-15&promotion_id=52'
+      url: '/calendars/get_segmented_events?start_date='+start_date+'&end_date='+end_date+'&promotion_id='+id+'&new_calendar=true'
+      cache: false
     $scope.eventSources = [$scope.eventSource]
 
     # submit reveiw

@@ -1065,3 +1065,11 @@ be a descendant of the grid when it is being dragged.
 .fc-time-grid-event .fc-resizer:after {
 	content: "=";
 }
+
+.blackout_event {
+	left: 0% !important;
+	right: 0% !important;
+	background-color: #a4a4a4 !important;
+	border: 1px solid #a4a4a4 !important;
+	min-height: inherit !important;	
+}
