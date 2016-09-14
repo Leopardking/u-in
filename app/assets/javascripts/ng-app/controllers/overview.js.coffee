@@ -100,12 +100,32 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'min-height': '70px'
         'background-color': ''
       element.find('.fc-content').css
+        'top': '10px'
         'background-color': '#0099FF'
         'color': '#FFFFFF'
+        'border-top-style': 'solid'
+        'border-color': '#99CC00'
       element.find('.fc-bg').css
         'background-color': '#0099FF'
         'color': '#FFFFFF'
-      booking_tag = "<div class='booking-event'><div class='booking-space'><p>SPACE DUMMY</p></div><div class='booking-price'>$5000</div><div class='booking-button'><p>I'm In! <br> Book it!</p></div></div>"
+      booking_tag = "
+        <div class='booking-wraper'>
+          <div class='booking-header'>
+          </div>
+          <div class='booking-space'>
+            <p>SPACE DUMMY</p>
+          </div>
+          <div class='booking-price'>
+            <p>$5000</p>
+          </div>
+        <div class='booking-button'>
+          <p>I'm In! <br> Book it!</p>
+        </div>
+      </div>"
+      header = "
+      <div class='fc-title-header'>
+      </div>"
+      element.find("div.fc-content").prepend(header)
       element.append(booking_tag)
       if event.blackout
         # If the event is blackout event, Add the corresponding CSS

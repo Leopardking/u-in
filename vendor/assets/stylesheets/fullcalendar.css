@@ -1073,3 +1073,24 @@ be a descendant of the grid when it is being dragged.
 	border: 1px solid #a4a4a4 !important;
 	min-height: inherit !important;	
 }
+
+.booking-wraper {
+	height: 100%;
+}
+
+.booking-header {
+	height: 20%;
+}
+
+.booking-space {
+	height: 10%;
+}
+
+.booking-price {
+	height: 40%;
+}
+
+.booking-button {
+	background-color: #006da0;
+	text-align: center;
+}
