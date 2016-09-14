@@ -70,15 +70,27 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.maps =
         src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+' '+$scope.adress+'&key=AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
       return
-      
+
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
-      check_day = event.start._i
-      today     = moment().format()
+      check_day = moment(event.start._i).format("YYYY-M-d")
+      today     = moment().format("YYYY-M-d")
+      
       if check_day < today
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
         else
           alert 'You can\'t choice Previous Day'
+      else if check_day = today
+        if event.blackout == true
+          alert 'You can\'t cancel this blackout'
+        else
+          $scope.end_date =  event.end._i
+          date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
+          $scope.date_completed = date_completed
+          $('#modalTitle').html event.title
+          $('#modalBody').html event.description
+          $('#fullCalModal').modal()
+          $('[data-toggle="tooltip"]').tooltip()
       else
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
@@ -228,7 +240,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
     # parsing ui-calender json
     id = $stateParams.activityId
-    start_date = $scope.dt
+    start_date = moment($scope.dt).format("YYYY-M-d")
     end_date = moment(start_date).endOf('month').format()
 
     $scope.eventSource =
