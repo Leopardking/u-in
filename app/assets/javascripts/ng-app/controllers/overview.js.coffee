@@ -172,7 +172,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         center: 'prev title next'
         right: 'agendaWeek'
       defaultView: 'agendaWeek'
-      height: 'auto'
+      height: 650,
+      eventLimit: 4,
       eventClick: $scope.modalOnEventClick
       eventRender: $scope.eventRender
       eventColor: '#378006'
