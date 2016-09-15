@@ -215,7 +215,7 @@
                     .col-md-12
                       %p.input-group
                         %span.input-group-btn
-                          %p SELECT DATE
+                          %p.select-date SELECT DATE
                           %button.btn.btn-default{"ng-click" => "openDate()", :type => "button", "alt-input-formats" => "altInputFormats", "close-text" => "Close", "datepicker-options" => "dateOptions", "is-open" => "popup1.opened", "ng-model" => "dt", "ng-required" => "true", :type => "text", "uib-datepicker-popup" => "", "datepicker-options" => "dateOptions"}
                             %i.glyphicon.glyphicon-calendar
                       %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview"}
@@ -254,10 +254,10 @@
           %h3.text-center {{promotionhash.promotion.name}}
           %p.input-group
             %span.input-group-btn
-              %p SELECT DATE
+              %p.select-date SELECT DATE
               %button.btn.btn-default{"ng-click" => "openDate()", :type => "button", "alt-input-formats" => "altInputFormats", "close-text" => "Close", "datepicker-options" => "dateOptions", "is-open" => "popup1.opened", "ng-model" => "dt", "ng-required" => "true", :type => "text", "uib-datepicker-popup" => "", "datepicker-options" => "dateOptions"}
                 %i.glyphicon.glyphicon-calendar
-            %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview"}
+          %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview"}
 
 #reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}

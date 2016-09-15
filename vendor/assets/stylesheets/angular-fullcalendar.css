@@ -198,6 +198,7 @@ NOTE: use percentage font sizes or else old IE chokes
   border: none;
   margin-top: 5px;
   box-shadow: none;
+  padding-left: 25px;
 }
 
 /* icons in buttons */
@@ -234,18 +235,20 @@ NOTE: use percentage font sizes or else old IE chokes
 }
 
 span.fc-icon.fc-icon-right-single-arrow{
-  background: url('/assets/rightarrow.svg') no-repeat;
+  background: url('/assets/rightarrow-cal.png') no-repeat;
   width: 35px;
   height: 21px;
   right: 5px;
   background-size: contain;
+  float: right;
 }
 span.fc-icon.fc-icon-left-single-arrow{
-  background: url('/assets/leftarrow.svg') no-repeat;
+  background: url('/assets/leftarrow-cal.png') no-repeat;
   width: 35px;
   height: 21px;
   right: 5px;
   background-size: contain;
+  float: left;
 }
 
 /*
@@ -726,6 +729,7 @@ a.fc-more:hover {
   background: #494D5A;
   color: #fff;
   font-family: 'Helvetica', sans-serif;
+  padding: 5px;
 }
 
 .fc-toolbar .fc-left {
@@ -743,7 +747,7 @@ a.fc-more:hover {
 /* the things within each left/right/center section */
 .fc .fc-toolbar > * > * { /* extra precedence to override button border margins */
 	float: left;
-	margin-left: .75em;
+	margin-left: 0px;
 }
 
 /* the first thing within each left/center/right section */
@@ -912,6 +916,9 @@ a.fc-more:hover {
 
 /* TimeGrid Structure
 --------------------------------------------------------------------------------------------------*/
+div.fc-time span {
+	display: none; /* don't display the full time text... */
+}
 
 .fc-time-grid-container, /* so scroll container's z-index is below all-day */
 .fc-time-grid { /* so slats/bg/content/etc positions get scoped within here */
