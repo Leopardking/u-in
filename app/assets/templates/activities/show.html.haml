@@ -263,7 +263,7 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
         %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
-      %form{"ng-submit"=>"submitForm()"}
+      %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
         .modal-body
           .wrap-content-rate
             .col-md-4
@@ -321,12 +321,12 @@
             .col-md-9
               %p.text-right Total
             .col-md-3
-              %p.text-left.total-price $190.00
+              %p.text-left.total-price {{totalPrice}}
             .col-md-9
               %button.btn.btn-default{"id" => "help-popup", "data-placement" => "top", "data-toggle" => "tooltip", :title => "This deposit is refundable as a credit to your account that can be used for future bookings. Please be sure you understand the merchant’s cancellation policy. u-IN? is not responsible for any charges between customer and merchant.", :type => "button"} ?
               %span.text-right Deposit Due
             .col-md-3
-              %p.text-left.deposit-due $9.50
+              %p.text-left.deposit-due {{depositDue}}
           .col-md-12
             %h5.description Deposit are due at time of booking. Full payment will be made at time of service with XXXXXXXX
           .modal-footer
@@ -361,7 +361,7 @@
                 %input{"ng-model" => "email", "name"=>"email", :required => "", :type => "email"}
               .col-md-4
                 %span MOBILE#:
-                %a{:href => 'http://ruby-lang.org'}>?
+                %a{:href => 'javascript:void(0)'}>?
                 %input{"ng-model" => "mobile", "name"=>"mobile"}
               %button.btn.btn-primary{:type => "button", "ng-click" => "changeToPayment()"} CONTINUE
 
