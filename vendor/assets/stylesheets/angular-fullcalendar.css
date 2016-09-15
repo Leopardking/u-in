@@ -201,6 +201,45 @@ NOTE: use percentage font sizes or else old IE chokes
 	vertical-align: middle;
 }
 
+/*buttons*/
+.fc-state-default.fc-corner-right{
+  border-radius: 0;
+}
+
+.fc-state-default.fc-corner-left{
+  border-radius: 0;
+}
+
+.fc-button{
+  background: #cccccc;
+  color: #000000;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  box-shadow: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.fc .fc-button-group > *{
+  margin: 0 0 0 4px;
+}
+
+span.fc-icon.fc-icon-right-single-arrow{
+  background: url('/assets/rightarrow.svg') no-repeat;
+  width: 35px;
+  height: 21px;
+  right: 5px;
+  background-size: contain;
+}
+span.fc-icon.fc-icon-left-single-arrow{
+  background: url('/assets/leftarrow.svg') no-repeat;
+  width: 35px;
+  height: 21px;
+  right: 5px;
+  background-size: contain;
+}
+
 /*
   button states
   borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
