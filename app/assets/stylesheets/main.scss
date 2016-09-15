@@ -58,11 +58,19 @@ ul {
 
 //overview activities
 #overview.tab-pane {
+  background: #fff;
   .col-md-9 {
     display: inline-block;
     @media (max-width: 480px) {
       padding: 0px;
     }
+  }
+  h1 {
+    font-size: 32px;
+    font-family: 'Helvetica', sans-serif;
+    font-weight: 600;
+    color: #7E7C7C;
+    margin: 20px 0px 20px 0px;
   }
 }
 a.tabs-mod {
@@ -73,7 +81,7 @@ a.tabs-mod {
 #reveiw.tab-pane {
   background: #fff;
   h3.text-center {
-    font-size: 30px;
+    font-size: 32px;
     font-family: 'Helvetica', sans-serif;
     font-weight: 600;
     color: #7E7C7C;
@@ -1005,11 +1013,29 @@ a.rate {
 //Book it
 #booking.tab-pane {
   background: #fff;
-  display: inline-block;
+  width: 100%;
+  padding-top: 10px;
   .wrapper-booking{
     max-width: 1170px;
     margin: 0 auto;
+    h3.text-center {
+      font-size: 32px;
+      font-family: 'Helvetica', sans-serif;
+      font-weight: 600;
+      color: #7E7C7C;
+      margin: 20px 0px 20px 0px;
+    }
   }
+}
+p.select-date {
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: 'Helvetica', sans-serif;
+  color: #656565;
+  padding-left: 10px;
 }
 .ng-invalid {
   color: red;
