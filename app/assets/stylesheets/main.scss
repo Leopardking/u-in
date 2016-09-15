@@ -753,12 +753,27 @@ a.rate {
             padding-left: 10px;
             margin-bottom: 2px;
           }
+          span {
+            font-size: 15px;
+            color: #000;
+            font-family: 'Helvetica', sans-serif;
+            font-weight: 600;
+            padding-left: 10px;
+            margin-bottom: 2px;
+          }
+          a {
+            margin-left: 10px;
+            color: #1A9BFC;
+          }
           input {
             width: 100%;
             padding: 7px;
             border-radius: 6px;
             border: 1px solid #000;
             margin-bottom: 15px;
+          }
+          .zip-code {
+            width: 40%;
           }
           .col-md-8{
             padding: 0px;
