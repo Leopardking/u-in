@@ -397,7 +397,7 @@
 
                 .wrap-policy
                   I have read and agree to the
-                  %a{:href => 'http://ruby-lang.org'}>cancellation
+                  %a{:href => 'javascript:void(0)'}>cancellation
                   policy for this activity
                   .agree-condition
                     %span Agree
@@ -407,5 +407,5 @@
               %div{"ng-if" => "checkoutForm.card.$invalid"}
                 Error: invalid card number!
           .modal-footer.footer-card
-            %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay $9.50 {{depositDue}}
+            %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
             %p Deposit
