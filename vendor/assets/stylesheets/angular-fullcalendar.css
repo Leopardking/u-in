@@ -759,6 +759,12 @@ a.fc-more:hover {
 
 .fc-toolbar h2 {
 	margin: 0;
+	@media (max-width: 480px) {
+		font-size: 18px;
+    vertical-align: middle;
+    display: table-cell;
+    padding-top: 6px;
+	}
 }
 
 /* button layering (for border precedence) */

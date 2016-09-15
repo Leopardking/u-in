@@ -299,34 +299,34 @@
       %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
         #container-modal{{"ng-hide" => "isHideAmount == true"}}
           #modalBody.modal-body
-            .col-md-12.wrap-person
-              .col-md-10
+            .col-md-12.col-xs-12.wrap-person
+              .col-md-10.col-xs-6
                 %small.text-center Per Person
-              .col-md-2
+              .col-md-2.col-xs-6.right-res
                 %small.text-center Available
 
-            .col-md-12.regular-price
-              .col-md-10
+            .col-md-12.col-xs-12.regular-price
+              .col-md-10.col-xs-8
                 %p Regular Price $ {{promotionhash.promotion.price}}
-              .col-md-2
+              .col-md-2.col-xs-4
                 %select#regularPrice{:name => "regularPrice", "ng-model" => "regularPrice", "ng-options" => "option for option in perDuration track by option", "ng-change"=> "updatePrice()"}
 
-            .col-md-12.discount-price
-              .col-md-10
+            .col-md-12.col-xs-12.discount-price
+              .col-md-10.col-xs-8
                 %p Discount Price $ {{promotionhash.promotion.discount_price}}
-              .col-md-2
+              .col-md-2.col-xs-4
                 %select#discountPrice{:name => "discountPrice", "ng-model" => "discountPrice", "ng-change"=> "updatePrice()", "ng-options" => "option for option in maximumBoking track by option"}
 
 
-          .col-md-12.wrap-total
-            .col-md-9
+          .col-md-12.col-xs-12.wrap-total
+            .col-md-9.col-xs-8
               %p.text-right Total
-            .col-md-3
+            .col-md-3.col-xs-4
               %p.text-left.total-price {{totalPrice}}
-            .col-md-9
+            .col-md-9.col-xs-8
               %button.btn.btn-default{"id" => "help-popup", "data-placement" => "top", "data-toggle" => "tooltip", :title => "This deposit is refundable as a credit to your account that can be used for future bookings. Please be sure you understand the merchant’s cancellation policy. u-IN? is not responsible for any charges between customer and merchant.", :type => "button"} ?
               %span.text-right Deposit Due
-            .col-md-3
+            .col-md-3.col-xs-4
               %p.text-left.deposit-due {{depositDue}}
           .col-md-12
             %h5.description Deposit are due at time of booking. Full payment will be made at time of service with XXXXXXXX
@@ -349,18 +349,18 @@
               %input{"ng-model" => "street", "name"=>"street", :required => "", :type => "text"}
               %p STREET 2:
               %input{"ng-model" => "street2", "name"=>"street2", :required => "", :type => "text"}
-              .col-md-8
+              .col-md-8.col-xs-12.col-sm-8
                 %p CITY:
                 %input{"ng-model" => "city", "name"=>"city", :required => "", :type => "text"}
-              .col-md-4
+              .col-md-4.col-xs-12.col-sm-4
                 %p STATE:
                 %select{"ng-model" => "state", "name"=>"state", "ng-options" => "item.code as item.name for item in regionArray"}
               %p ZIP CODE:
               %input{"ng-model" => "zipCode", "name"=>"zipCode", :class=> "zip-code", :required => "", :type => "text"}
-              .col-md-8
+              .col-md-8.col-xs-12.col-sm-8
                 %p EMAIL:
                 %input{"ng-model" => "email", "name"=>"email", :required => "", :type => "email"}
-              .col-md-4
+              .col-md-4.col-xs-12.col-sm-4
                 %span MOBILE#:
                 %a{:href => 'javascript:void(0)'}>?
                 %input{"ng-model" => "mobile", "name"=>"mobile"}

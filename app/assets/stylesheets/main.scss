@@ -610,8 +610,26 @@ a.rate {
         display: inline-block;
         border: none;
         padding-top: 0px;
+        @media (max-width: 480px) {
+          width: 100%;
+          padding: 10px;
+        }
         .wrap-person {
           margin: 10px 0px;
+          @media (max-width: 480px) {
+            padding: 0px;
+          }
+          .col-xs-6 {
+            @media (max-width: 480px) {
+              padding: 0px;
+            }
+          }
+          .col-xs-6.right-res {
+            @media (max-width: 480px) {
+              padding: 0px;
+              text-align: right;
+            }
+          }
           .text-center {
             color: #8B8B8B;
             font-size: 14px;
@@ -620,6 +638,20 @@ a.rate {
         }
         .regular-price {
           margin-bottom: 5px;
+          @media (max-width: 480px) {
+            padding: 0px;
+          }
+          .col-xs-8 {
+            @media (max-width: 480px) {
+              padding: 0px;
+            }
+          }
+          .col-xs-4 {
+            @media (max-width: 480px) {
+              padding: 0px;
+              text-align: right;
+            }
+          }
           p {
             font-size: 16px;
             font-family: 'Helvetica',sans-serif;
@@ -649,6 +681,20 @@ a.rate {
         }
         .discount-price {
           margin-bottom: 5px;
+          @media (max-width: 480px) {
+            padding: 0px;
+          }
+          .col-xs-8 {
+            @media (max-width: 480px) {
+              padding: 0px;
+            }
+          }
+          .col-xs-4 {
+            @media (max-width: 480px) {
+              padding: 0px;
+              text-align: right;
+            }
+          }
           p {
             font-size: 16px;
             font-family: 'Helvetica',sans-serif;
@@ -720,6 +766,10 @@ a.rate {
         font-family: 'Helvetica';
         letter-spacing: 0.5px;
         padding-top: 25px;
+        @media (max-width: 480px) {
+          display: inline-block;
+          max-width: 100%;
+        }
       }
       .modal-footer {
         display: inline-block;
@@ -754,6 +804,9 @@ a.rate {
           max-width: 75%;
           display: block;
           margin: 0 auto;
+          @media (max-width: 480px) {
+            max-width: 100%;
+          }
           p {
             font-size: 15px;
             color: #000;
@@ -783,12 +836,18 @@ a.rate {
           }
           .zip-code {
             width: 40%;
+            @media (max-width: 480px) {
+              width: 100%;
+            }
           }
           .col-md-8{
             padding: 0px;
           }
           .col-md-4 {
             padding: 0px 0px 0px 35px;
+            @media (max-width: 480px) {
+              padding: 0px;
+            }
             select {
               border: 1px solid #000;
               border-radius: 6px;
@@ -809,6 +868,9 @@ a.rate {
               background-position: calc(100% - 13px) calc(1em + 0px), calc(100% - 7px) calc(1em + 0px), 100% 0;
               background-size: 7px 10px, 7px 10px, 2.5em 2.5em;
               background-repeat: no-repeat;
+              @media (max-width: 480px) {
+                width: 100%;
+              }
             }
           }
           button {
@@ -827,13 +889,24 @@ a.rate {
       .wrap-type-card {
         display: inline-block;
         width: 100%;
+        .col-md-12 {
+          @media (max-width: 480px) {
+            padding: 0px;
+          }
+        }
         #change-type-card {
           max-width: 75%;
           display: block;
           margin: 0 auto;
+          @media (max-width: 480px) {
+            max-width: 100%;
+          }
           .type-card {
             display: inline-block;
             margin: 0px 20px;
+            @media (max-width: 480px) {
+              margin: 0px 5px;
+            }
             .wrap-img {
               display: inline-block;
               width: 60px;
@@ -860,6 +933,9 @@ a.rate {
             max-width: 72%;
             float: none;
             padding: 0px 5px;
+            @media (max-width: 480px) {
+              max-width: 100%;
+            }
             span {
               display: inline-block;
               width: 100%;
@@ -884,6 +960,9 @@ a.rate {
           .cvv-wrap {
             max-width: 70%;
             margin: 0 auto;
+            @media (max-width: 480px) {
+              max-width: 100%;
+            }
             .exp-card {
               display: inline-block;
               max-width: 90px;
@@ -945,6 +1024,11 @@ a.rate {
           line-height: 26px;
           letter-spacing: 0.5px;
           color: #ff6525;
+          @media (max-width: 480px) {
+            max-width: 100%;
+            padding: 0px;
+            font-size: 14px;
+          }
           a {
             color: #0099FF;
             padding: 0px 5px;
