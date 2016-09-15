@@ -38,6 +38,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
 
     $scope.count = 2
     
+    $scope.slides = [
+      '/assets/banner-img-1.jpg'
+      '/assets/banner-img-2.jpg'
+      '/assets/banner-img-3.jpg'
+    ]
+    
     $scope.nextPage = (next_page) ->
       next_page = $scope.count++
       if next_page != null

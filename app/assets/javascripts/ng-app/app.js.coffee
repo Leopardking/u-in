@@ -10,6 +10,7 @@ app = angular.module('uinApp', [
   'angular-moment'
   'angularPayments'
   'angular-stripe'
+  'angular-flexslider'
 ])
 
 #Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'

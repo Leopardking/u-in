@@ -4,16 +4,15 @@
       .container
         .row
           .col-md-12.col-lg-12
-    %ul#slider4.rslides{"data-slider-class-selector" => "rslides", "data-slider-refresh-on-watch" => "images", :slider => ""}
-      %li{"ng-repeat" => "image in promotionhash.images", "ng-if"=>"image.length>= 1", "ng-click"=> "test()"}
-        %img{:height => "42", :src => "{{image}}", :width => "42"}
-      %li{"ng-if"=>"image.length>= 0"}
-        =image_tag "banner-img-1.jpg"
-      %li{"ng-if"=>"image.length>= 0"}
-        =image_tag "banner-img-2.jpg"
-      %li{"ng-if"=>"image.length>= 0"}
-        =image_tag "banner-img-3.jpg"
-
+    %div{"ng-if"=>"promotionhash.images.length>= 1"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in promotionhash.images", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}"}
+    %div{"ng-if"=>"promotionhash.images.length == 0"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}"}
+          
 .nav-wrap-tabs
   .container
     %ul#myTab.nav.nav-tabs.nav-tab-custom

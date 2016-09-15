@@ -46,6 +46,12 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.city = res.promotion.city
       $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
+      # default slides on promotion show if null
+      $scope.slides = [
+        '/assets/banner-img-1.jpg'
+        '/assets/banner-img-2.jpg'
+        '/assets/banner-img-3.jpg'
+      ]
 
       # select box value on booking modal
       $scope.perDuration = $scope.booking_detail.bookings_per_duration_arr

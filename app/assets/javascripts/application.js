@@ -42,6 +42,7 @@
 //= require global
 //= require responsiveslides
 //= require bootstrap-select
+//= require jquery.flexslider
 //= require angular
 //= require angular-ui-router
 //= require angular-rails-templates
@@ -59,6 +60,7 @@
 //= require fullcalendar
 //= require angular-payments
 //= require angular-stripe
+//= require angular-flexslider
 
 window.onload = function() {
   url_href = window.location.href.split("/")[3].split("?")[0]

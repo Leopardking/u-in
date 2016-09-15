@@ -8,13 +8,9 @@
               are you in
               %span ?
 
-    %ul#slider4.rslides
+    %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
       %li
-        =image_tag "banner-img-1.jpg"
-      %li
-        =image_tag "banner-img-2.jpg"
-      %li
-        =image_tag "banner-img-3.jpg"
+        %img{"ng-src" => "{{s}}"}
 
     .button-bottom-header
       %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
