@@ -9,6 +9,7 @@
     = render 'layouts/js_setup'
     = csrf_meta_tags
     = tag :meta, name: "stripe-key", content: STRIPE_PUBLIC_KEY
+    = stylesheet_link_tag "calendars"
   %body
     = javascript_include_tag "promotions_layout"
     / Footer HTML code

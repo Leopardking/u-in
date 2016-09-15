@@ -1001,6 +1001,7 @@ a.rate {
   }
 }
 
+
 //Book it
 #booking.tab-pane {
   background: #fff;
@@ -1009,4 +1010,7 @@ a.rate {
     max-width: 1170px;
     margin: 0 auto;
   }
+}
+.ng-invalid {
+  color: red;
 }
