@@ -5,6 +5,7 @@
 
 body {
   background-color: $gray;
+  overflow-x: hidden;
 }
 
 .wrapper-main-container {
@@ -997,5 +998,15 @@ a.rate {
         text-transform: uppercase;
         margin-top: 5px;
     }
+  }
+}
+
+//Book it
+#booking.tab-pane {
+  background: #fff;
+  display: inline-block;
+  .wrapper-booking{
+    max-width: 1170px;
+    margin: 0 auto;
   }
 }
