@@ -108,8 +108,8 @@ html[xmlns] .flexslider .slides {
 .carousel li {
   margin-right: 5px;
 }
-.flex-direction-nav[style] {
-  display:block !important;opacity:1 !important
+.flex-direction-nav {
+  *height: 0px;
 }
 .flex-direction-nav a {
   text-decoration: none;
@@ -122,7 +122,7 @@ html[xmlns] .flexslider .slides {
   top: 50%;
   z-index: 10;
   overflow: hidden;
-  opacity: 0;
+  opacity: 1;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.8);
   -webkit-transition: all 0.3s ease-in-out;
@@ -146,10 +146,10 @@ left: 8px;
   content: '\f002';
 }
 .flex-direction-nav .flex-prev {
-  left: -50px;
+  left: 10px;
 }
 .flex-direction-nav .flex-next {
-  right: -50px;
+  right: 10px;
   text-align: right;
 }
 .flexslider:hover .flex-direction-nav .flex-prev {
