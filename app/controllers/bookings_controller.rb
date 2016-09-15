@@ -21,9 +21,10 @@ class BookingsController < ApplicationController
     #format params
     @format_booking_params = booking_params
     # if current_user.user_type == User::USER_TYPE[:merchant]
-    if current_user.user_type.eql? "client" || "merchant"
+    if current_user.user_type == User::USER_TYPE[:merchant] || current_user.user_type == User::USER_TYPE[:client]
       # check number booking of users has exceed avaiable booking
       # to set value in the popup
+      binding.pry
       @avaiable_booking = BookingService.calculate_avaiable_booking(params[:booking], @promotion)
       if @numbers_booked > (bookings_per_duration - totals_has_booked)
         @error_booking = true
