@@ -922,6 +922,9 @@ a.fc-more:hover {
 
 /* TimeGrid Structure
 --------------------------------------------------------------------------------------------------*/
+div.fc-time span {
+	display: none; /* don't display the full time text... */
+}
 
 .fc-time-grid-container, /* so scroll container's z-index is below all-day */
 .fc-time-grid { /* so slats/bg/content/etc positions get scoped within here */

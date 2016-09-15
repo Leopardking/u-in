@@ -157,10 +157,19 @@ class Promotion < ActiveRecord::Base
           booking_promotion_avaiable = [available_bookings, total_bookings].min - number_booking
         end
         if new_calendar == "true"
+          case event_status
+          when "regular_available"
+            title = "Book At Regular Price"
+          when "sold_out"
+            title = "Promotion Sold Out"
+          else
+            title = "#{self.discount_percent}% Off"
+          end
+
           scheduled_events.push({
             discount_percent: discount_percent,
             name: self.name,
-            title: "#{self.discount_percent}% Off",
+            title: title,
             start: start_time,
             end: end_time,
             id: self.id,

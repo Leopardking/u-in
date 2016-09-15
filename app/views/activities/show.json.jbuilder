@@ -25,6 +25,8 @@ json.images @activity.images.map { |v| v.image.url}
 json.image @activity.images.first.image.url(:medium) rescue 0
 if @activity.end_date.present?
   json.space PromotionService.new.show_space(@activity, @activity.start_date, @activity.end_date, @activity.id, nil)
+else
+  json.space "25+"
 end
 json.is_login user_signed_in? ? true : false
 json.user_id user_signed_in? ? current_user.id : false

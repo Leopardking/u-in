@@ -54,8 +54,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       ]
 
       # select box value on booking modal
-      $scope.perDuration = $scope.booking_detail.bookings_per_duration_arr
-      $scope.maximumBoking = $scope.booking_detail.maximum_bookings_arr
       $scope.regularPrice = []
       $scope.discountPrice = []
       $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
@@ -64,7 +62,15 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.updatePrice = ->
         $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
-
+        
+        if $scope.discountPrice[0] != 'undefined'
+          $scope.discountPrice == 0
+        if $scope.regularPrice[0] != 'undefined'
+          $scope.regularPrice == 0
+        if ($scope.discountPrice + $scope.regularPrice) > $scope.duration
+          $scope.validBooking = "wrong"
+        else
+          $scope.validBooking = "valid" 
 
       $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
       # Add maps
@@ -81,6 +87,16 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       check_day = moment(event.start._i).format("YYYY-M-d")
       today     = moment().format("YYYY-M-d")
       
+      $scope.duration  = $scope.booking_detail.bookings_per_duration
+      perDuration = $scope.duration - event.number_bookings_in_current_period
+      maximumBoking = $scope.duration - event.booking_promotion_avaiable
+      $scope.perDuration = Array.apply(null, length: perDuration).map((value, index) ->
+        index + 1
+      )
+      $scope.maximumBoking = Array.apply(null, length: maximumBoking).map((value, index) ->
+        index + 1
+      )
+      
       if check_day < today
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
@@ -89,6 +105,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       else if check_day = today
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
+        else if event.event_status == "sold_out"
+          alert 'This promotion is sold out, please try any other time'
         else
           $scope.end_date =  event.end._i
           date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
@@ -253,6 +271,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       #url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
       url: '/calendars/get_segmented_events?start_date='+start_date+'&end_date='+end_date+'&promotion_id='+id+'&new_calendar=true'
       cache: false
+
     $scope.eventSources = [$scope.eventSource]
 
     # submit reveiw
@@ -321,8 +340,5 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
 
     $scope.$on 'imageLoaded', ->
-      $('#slider4').responsiveSlides
-        auto: true
-        pager: false
-        nav: true
+      $('a.flex-next').text = ""
 ]
