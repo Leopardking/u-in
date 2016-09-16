@@ -135,11 +135,48 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'margin-bottom': '2px'
         'min-height': '70px'
         'background-color': ''
-      element.find('.fc-content').css
-        'background-color': '#006da0'
-        'color': '#FFFFFF'
-        'border-top-style': 'solid'
-        'border-color': '#99CC00'
+
+      switch event.event_status
+        when 'regular_available'         
+          $(element).find('.fc-title')[0].innerHTML = "REGULAR PRICE"
+          element.find('.fc-content').css
+            'background-color': '#3A4A5B'
+            'color': '#FFFFFF'
+            'border-top-style': 'solid'
+            'border-color': '#99CC00'
+          booking_tag = "
+            <div class='booking-wraper'>
+              <div class='booking-header'>
+              </div>
+              <div class='booking-space'>
+                <p>5 SPACES</p>
+                <p> $ "+$scope.promotionhash.promotion.price+"</p>
+              </div>
+            <div class='booking-button-regular'>
+              <p>I'm In! <br> Book it!</p>
+            </div>
+          </div>"
+          $(element).find('.booking-button').css
+            'background-color': '#3A4A5B !important'
+        else
+          element.find('.fc-content').css
+            'background-color': '#006da0'
+            'color': '#FFFFFF'
+            'border-top-style': 'solid'
+            'border-color': '#99CC00'
+          booking_tag = "
+            <div class='booking-wraper'>
+              <div class='booking-header'>
+              </div>
+              <div class='booking-space'>
+                <p>5 SPACES</p>
+                <p> $ "+$scope.promotionhash.promotion.price+"</p>
+              </div>
+            <div class='booking-button'>
+              <p>I'm In! <br> Book it!</p>
+            </div>
+          </div>"
+
       if event.blackout
         element.find('.fc-bg').css
           'background-color': '#a4a4a4 !important'
@@ -149,18 +186,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         element.find('.fc-bg').css
           'background-color': '#0099FF'
           'color': '#FFFFFF'
-      booking_tag = "
-        <div class='booking-wraper'>
-          <div class='booking-header'>
-          </div>
-          <div class='booking-space'>
-            <p>5 SPACES</p>
-            <p> $ "+$scope.promotionhash.promotion.price+"</p>
-          </div>
-        <div class='booking-button'>
-          <p>I'm In! <br> Book it!</p>
-        </div>
-      </div>"
 
       header = "
       <div class='fc-title-header'>
@@ -172,6 +197,16 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       element.find("div.fc-content").prepend(header)
       element.find("div.fc-bg").append(booking_tag)
       element.find(".fc-tollbar").addClass('mod-tollbar')
+      
+      switch event.event_status
+        when 'regular_available'         
+          $(element).find('.fc-title')[0].innerHTML = "REGULAR PRICE"
+        when 'sold_out'
+          element.find('.fc-bg').css
+            'background-color': '#a4a4a4 !important'
+          element.find('.fc-event').css
+            'cursor': 'not-allowed'
+
       if event.blackout
         # If the event is blackout event, Add the corresponding CSS
         $(element).addClass 'blackout_event'
