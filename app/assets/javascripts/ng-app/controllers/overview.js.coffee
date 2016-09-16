@@ -84,8 +84,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       return
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
-      check_day = moment(event.start._i).format("YYYY-M-d")
-      today     = moment().format("YYYY-M-d")
+      check_day = moment(event.start._i).format("YYYY-MM-DD")
+      today     = moment().format("YYYY-MM-DD")
       
       $scope.duration  = $scope.booking_detail.bookings_per_duration
       perDuration = $scope.duration - event.number_bookings_in_current_period
@@ -98,6 +98,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       )
       
       if check_day < today
+        debugger
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
         else
@@ -156,8 +157,32 @@ angular.module('uinApp').controller 'overviewsCtrl', [
               <p>I'm In! <br> Book it!</p>
             </div>
           </div>"
-          $(element).find('.booking-button').css
+          $(element).find('.booking-button-regular').css
             'background-color': '#3A4A5B !important'
+        when 'sold_out'
+          element.find('.fc-content').css
+            'background-color': '#31708f'
+            'color': '#FFFFFF'
+            'border-top-style': 'solid'
+            'border-color': '#999'
+            'cursor': 'not-allowed'
+          booking_details = '<div class=\'booking-event\'>' + event.booking_without_promotion + ' of ' + event.booking_without_promotion_total + '<br><span>' + I18n.t('booked') + '</span></div>'
+          element.append booking_details
+          $(element).find('.booking-event').css
+            'background-color': '#634141'
+            'text-align': 'center'
+            'bottom': '0'
+            'position': 'absolute'
+            'width': '100%'
+            'height': '30%'
+            'cursor': 'not-allowed'
+        when 'black_out'
+          element.find('.fc-content').css
+            'background-color': '#31708f'
+            'color': '#FFFFFF'
+            'border-top-style': 'solid'
+            'border-color': '#999'
+            'cursor': 'not-allowed'
         else
           element.find('.fc-content').css
             'background-color': '#006da0'
@@ -194,24 +219,24 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       toolbar = "
         <div class='mod-tollbar'></div>
       "
+
       element.find("div.fc-content").prepend(header)
       element.find("div.fc-bg").append(booking_tag)
       element.find(".fc-tollbar").addClass('mod-tollbar')
-      
-      switch event.event_status
-        when 'regular_available'         
-          $(element).find('.fc-title')[0].innerHTML = "REGULAR PRICE"
-        when 'sold_out'
-          element.find('.fc-bg').css
-            'background-color': '#a4a4a4 !important'
-          element.find('.fc-event').css
-            'cursor': 'not-allowed'
 
       if event.blackout
         # If the event is blackout event, Add the corresponding CSS
         $(element).addClass 'blackout_event'
-
+        element.find('.fc-content').css
+          'background-color': '#31708f'
+          'color': '#FFFFFF'
+          'border-top-style': 'solid'
+          'border-color': '#999'
+          'cursor': 'not-allowed'
+        element.find('.fc-bg').css
+          'display': 'none'
       return
+      
 
     # popup datepicker
     disabled = (data) ->
