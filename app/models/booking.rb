@@ -36,5 +36,6 @@ class Booking < ActiveRecord::Base
   MAXIMUM_BOOKING_FREE = 3
   FALSE = "false"
 
-
+  attr_accessor :regular_price
+  attr_accessor :discount_price
 end

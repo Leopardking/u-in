@@ -108,6 +108,7 @@ class BookingsController < ApplicationController
 
   # payment with client, from anguar 
   def payment_booking_client
+    session[:@info_booking] = params[:booking]
     @numbers_booked = session[:numbers_booked].to_i
     booking_params = session[:@info_booking]
     token = params[:stripe_token]
@@ -173,19 +174,39 @@ class BookingsController < ApplicationController
           end
         end
       end
+    elsif params[:billing_detail][:regular_price].present? ||  params[:billing_detail][:discount_price].present?
+      if params[:billing_detail][:regular_price].present?
+        @numbers_booked = booking_params[:regular_price]
+        booking_params[:check_discount] = false
+        Booking.transaction do
+          @numbers_booked.times.each do
+            @info_booking = current_user.bookings.create(booking_params)
+          end
+        end
+      end
+
+      if params[:billing_detail][:discount_price].present?
+        @numbers_booked = booking_params[:discount_price]
+        booking_params[:check_discount] = true
+        Booking.transaction do
+          @numbers_booked.times.each do
+            @info_booking = current_user.bookings.create(booking_params)
+          end
+        end
+      end
     else
       format_booking_params[:check_discount] = false
       Booking.transaction do
         @numbers_booked.times.each do
           @info_booking = current_user.bookings.create(format_booking_params)
         end
-      end
+      end  
     end
   end
 
   private
     def booking_params
-      params.require(:booking).permit(:book_date, :status, :charge_id, :first_name, :last_name, :email, :phone, :start_time, :end_time, :promotion_id, :check_discount, :promotion_price, :paid_price, :stripe_token, :promotion_booking)
+      params.require(:booking).permit(:book_date, :status, :charge_id, :first_name, :last_name, :email, :phone, :start_time, :end_time, :promotion_id, :check_discount, :promotion_price, :paid_price, :stripe_token, :promotion_booking, :regular_price, :discount_price)
     end
 
     def booking_service

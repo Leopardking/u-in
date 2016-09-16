@@ -376,15 +376,15 @@
             .col-md-12
               #change-type-card
                 .type-card
-                  %input{:name => "card_type", :type => "radio", :value => "visacard"}
+                  %input{:name => "card_type", :type => "radio", :value => "visacard", "ng-model"=>"cardType"}
                   .wrap-img
                     = image_tag "visa_card.jpg", class: "size-image-type-normal image-visa-card"
                 .type-card
-                  %input{:name => "card_type", :type => "radio", :value => "mastercard"}
+                  %input{:name => "card_type", :type => "radio", :value => "mastercard", "ng-model"=>"cardType"}
                   .wrap-img
                     = image_tag "master_card.jpg", class: "size-image-type-normal image-master-card"
                 .type-card
-                  %input{:name => "card_type", :type => "radio", :value => "AMExcards"}
+                  %input{:name => "card_type", :type => "radio", :value => "AMExcards", "ng-model"=>"cardType"}
                   .wrap-img-2
                     = image_tag "amex_card.png", class: "size-image-type-normal image-master-card"
 

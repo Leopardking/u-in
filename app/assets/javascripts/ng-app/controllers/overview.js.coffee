@@ -11,8 +11,8 @@ angular.module('uinApp').factory 'paymentService', [
   '$http'
   '$stateParams'
   ($http, $stateParams) ->
-    { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj) ->
-      $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj)
+    { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj, object) ->
+      $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj, booking: object)
     }
 ]
 
@@ -89,7 +89,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       
       $scope.duration  = $scope.booking_detail.bookings_per_duration
       perDuration = $scope.duration - event.number_bookings_in_current_period
-      maximumBoking = $scope.duration - event.booking_promotion_avaiable
+      maximumBoking = event.booking_promotion_avaiable
+      # for select box on show popup
       $scope.perDuration = Array.apply(null, length: perDuration).map((value, index) ->
         index + 1
       )
@@ -98,7 +99,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       )
       
       if check_day < today
-        debugger
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
         else
@@ -189,12 +189,13 @@ angular.module('uinApp').controller 'overviewsCtrl', [
             'color': '#FFFFFF'
             'border-top-style': 'solid'
             'border-color': '#99CC00'
+
           booking_tag = "
             <div class='booking-wraper'>
               <div class='booking-header'>
               </div>
               <div class='booking-space'>
-                <p>5 SPACES</p>
+                <p>"+ (event.booking_without_promotion_total - event.number_bookings_in_current_period)+" SPACES</p>
                 <p> $ "+$scope.promotionhash.promotion.price+"</p>
               </div>
             <div class='booking-button'>
@@ -363,7 +364,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         last_name: $scope.lastName
         email: $scope.email
         phone: $scope.mobile
-      bookingService.booking(check_status, numbers_booked, object).success (res, status) ->
+      # bookingService.booking(check_status, numbers_booked, object).success (res, status) ->
       return
 
     # for stripe integration
@@ -376,6 +377,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         obj_stripe_token    = result.id
         obj_numbers_booked  = ""
         amount              = ($scope.depositDue * 100)
+        console.log $scope.cardType
         obj =
           same_as_company_address: 0
           first_name: $scope.firstName
@@ -387,15 +389,33 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           zipcode: $scope.zipCode
           phone: $scope.mobile
           email: $scope.email
-          card_type: "visacard"
+          card_type: $scope.cardType
           name_card: ($scope.firstName + $scope.lastName)
           ccard_last4: $scope.number
           exp_month: $scope.expiry
           exp_year: $scope.expiry
           security_code: $scope.csv
           amount: $scope.depositDue
-        paymentService.chargeSripe(result.id, "", "", obj).success (res, status) ->
+          discount_price: $scope.discountPrice
+          regular_price: $scope.regularPrice
+        object =
+          book_date: moment().format()
+          start_time: moment().format()
+          end_time: $scope.end_date
+          promotion_id: $stateParams.activityId
+          check_discount: true
+          promotion_price: 0
+          paid_price: amount
+          first_name: $scope.firstName
+          last_name: $scope.lastName
+          email: $scope.email
+          phone: $scope.mobile
+          discount_price: $scope.discountPrice
+          regular_price: $scope.regularPrice
+        paymentService.chargeSripe(result.id, "", "", obj, object).success (res, status) ->
           $("#fullCalModal").modal('hide')
+          $scope.isHideAmount == false
+          $scope.isHideUser == true
       return
 
 
