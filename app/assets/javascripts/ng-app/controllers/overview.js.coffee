@@ -52,6 +52,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         '/assets/banner-img-2.jpg'
         '/assets/banner-img-3.jpg'
       ]
+      console.log gon.current_user
 
       # select box value on booking modal
       $scope.regularPrice = []

@@ -266,23 +266,29 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
         %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
-      %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
-        .modal-body
-          .wrap-content-rate
-            .col-md-4
-              / %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
-              .img-rating
-                %img{"ng-src" => "{{promotionhash.image}}", "on-error-src" => "http://google.com/favicon.ico"}
-            .col-md-8
-              %h3 {{promotionhash.promotion.name}}
-              %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+      %div{{"ng-if" => "promotionhash.is_login == false"}}
+        #modalBody.modal-body.wrap-type-card
           .col-md-12
-            .wrap-comment
-              %span
-                Comments:
-              %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
-        .modal-footer
-          %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
+            %p Please login, at 
+            %a{:href => "/auth/sign_in", :style => "color: #999"} Login
+      %div{{"ng-if" => "promotionhash.is_login == true"}}
+        %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
+          .modal-body
+            .wrap-content-rate
+              .col-md-4
+                / %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+                .img-rating
+                  %img{"ng-src" => "{{promotionhash.image}}", "on-error-src" => "http://google.com/favicon.ico"}
+              .col-md-8
+                %h3 {{promotionhash.promotion.name}}
+                %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+            .col-md-12
+              .wrap-comment
+                %span
+                  Comments:
+                %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
+          .modal-footer
+            %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
 
 
 #fullCalModal.modal.fade
@@ -298,119 +304,125 @@
             %span{"aria-hidden" => "true"} ×
             %span.sr-only close
         %h3.text-center {{promotionhash.promotion.name}}
-      %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
-        #container-modal{{"ng-hide" => "isHideAmount == true"}}
-          #modalBody.modal-body
-            .col-md-12.col-xs-12.wrap-person
-              .col-md-10.col-xs-6
-                %small.text-center Per Person
-              .col-md-2.col-xs-6.right-res
-                %small.text-center Available
+      %div{{"ng-if" => "promotionhash.is_login == true"}}
+        %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
+          #container-modal{{"ng-hide" => "isHideAmount == true"}}
+            #modalBody.modal-body
+              .col-md-12.col-xs-12.wrap-person
+                .col-md-10.col-xs-6
+                  %small.text-center Per Person
+                .col-md-2.col-xs-6.right-res
+                  %small.text-center Available
 
-            .col-md-12.col-xs-12.regular-price
-              .col-md-10.col-xs-8
-                %p Regular Price $ {{promotionhash.promotion.price}}
-              .col-md-2.col-xs-4
-                %select#regularPrice{:name => "regularPrice", "ng-model" => "regularPrice", "ng-options" => "option for option in perDuration track by option", "ng-change"=> "updatePrice()"}
+              .col-md-12.col-xs-12.regular-price
+                .col-md-10.col-xs-8
+                  %p Regular Price $ {{promotionhash.promotion.price}}
+                .col-md-2.col-xs-4
+                  %select#regularPrice{:name => "regularPrice", "ng-model" => "regularPrice", "ng-options" => "option for option in perDuration track by option", "ng-change"=> "updatePrice()"}
 
-            .col-md-12.col-xs-12.discount-price
-              .col-md-10.col-xs-8
-                %p Discount Price $ {{promotionhash.promotion.discount_price}}
-              .col-md-2.col-xs-4
-                %select#discountPrice{:name => "discountPrice", "ng-model" => "discountPrice", "ng-change"=> "updatePrice()", "ng-options" => "option for option in maximumBoking track by option"}
-
-
-          .col-md-12.col-xs-12.wrap-total
-            .col-md-9.col-xs-8
-              %p.text-right Total
-            .col-md-3.col-xs-4
-              %p.text-left.total-price {{totalPrice}}
-            .col-md-9.col-xs-8
-              %button.btn.btn-default{"id" => "help-popup", "data-placement" => "top", "data-toggle" => "tooltip", :title => "This deposit is refundable as a credit to your account that can be used for future bookings. Please be sure you understand the merchant’s cancellation policy. u-IN? is not responsible for any charges between customer and merchant.", :type => "button"} ?
-              %span.text-right Deposit Due
-            .col-md-3.col-xs-4
-              %p.text-left.deposit-due {{depositDue}}
-          .col-md-12
-            %div{{"ng-show" => "validBooking == 'wrong' "}}
-              %p.ng-invalid Your booking is more that space available
-            %h5.description Deposit are due at time of booking. Full payment will be made at time of service with XXXXXXXX
-          .modal-footer
-            %p {{date_completed}}
-            %button.btn.btn-primary{:type => "button", "ng-click" => "changeToUser()"}
-              = image_tag "Imgpsh_Fullsize.png"
-              Book it!
+              .col-md-12.col-xs-12.discount-price
+                .col-md-10.col-xs-8
+                  %p Discount Price $ {{promotionhash.promotion.discount_price}}
+                .col-md-2.col-xs-4
+                  %select#discountPrice{:name => "discountPrice", "ng-model" => "discountPrice", "ng-change"=> "updatePrice()", "ng-options" => "option for option in maximumBoking track by option"}
 
 
-      %div{{"ng-hide" => "isHideUser == true && isHideAmount == true"}}
-        #container-modal{{"ng-show" => "isHideAmount == true"}}
-          #modalBody.modal-body.form-booking
-            .wrap-form-booking
-              %p FIRST NAME:
-              %input{"ng-model" => "firstName", "name"=>"firstName", :required => "", :type => "text"}
-              %p LAST NAME:
-              %input{"ng-model" => "lastName", "name"=>"lastName", :required => "", :type => "text"}
-              %p STREET:
-              %input{"ng-model" => "street", "name"=>"street", :required => "", :type => "text"}
-              %p STREET 2:
-              %input{"ng-model" => "street2", "name"=>"street2", :required => "", :type => "text"}
-              .col-md-8.col-xs-12.col-sm-8
-                %p CITY:
-                %input{"ng-model" => "city", "name"=>"city", :required => "", :type => "text"}
-              .col-md-4.col-xs-12.col-sm-4
-                %p STATE:
-                %select{"ng-model" => "state", "name"=>"state", "ng-options" => "item.code as item.name for item in regionArray"}
-              %p ZIP CODE:
-              %input{"ng-model" => "zipCode", "name"=>"zipCode", :class=> "zip-code", :required => "", :type => "text"}
-              .col-md-8.col-xs-12.col-sm-8
-                %p EMAIL:
-                %input{"ng-model" => "email", "name"=>"email", :required => "", :type => "email"}
-              .col-md-4.col-xs-12.col-sm-4
-                %span MOBILE#:
-                %a{:href => 'javascript:void(0)'}>?
-                %input{"ng-model" => "mobile", "name"=>"mobile"}
-              %button.btn.btn-primary{:type => "button", "ng-click" => "changeToPayment()"} CONTINUE
-
-      #container-modal{{"ng-show" => "isHideUser == true "}}
-        %form{"stripe-form" => "stripeCallback"}
-          #modalBody.modal-body.wrap-type-card
+            .col-md-12.col-xs-12.wrap-total
+              .col-md-9.col-xs-8
+                %p.text-right Total
+              .col-md-3.col-xs-4
+                %p.text-left.total-price {{totalPrice}}
+              .col-md-9.col-xs-8
+                %button.btn.btn-default{"id" => "help-popup", "data-placement" => "top", "data-toggle" => "tooltip", :title => "This deposit is refundable as a credit to your account that can be used for future bookings. Please be sure you understand the merchant’s cancellation policy. u-IN? is not responsible for any charges between customer and merchant.", :type => "button"} ?
+                %span.text-right Deposit Due
+              .col-md-3.col-xs-4
+                %p.text-left.deposit-due {{depositDue}}
             .col-md-12
-              #change-type-card
-                .type-card
-                  %input{:name => "card_type", :type => "radio", :value => "visacard", "ng-model"=>"cardType"}
-                  .wrap-img
-                    = image_tag "visa_card.jpg", class: "size-image-type-normal image-visa-card"
-                .type-card
-                  %input{:name => "card_type", :type => "radio", :value => "mastercard", "ng-model"=>"cardType"}
-                  .wrap-img
-                    = image_tag "master_card.jpg", class: "size-image-type-normal image-master-card"
-                .type-card
-                  %input{:name => "card_type", :type => "radio", :value => "AMExcards", "ng-model"=>"cardType"}
-                  .wrap-img-2
-                    = image_tag "amex_card.png", class: "size-image-type-normal image-master-card"
+              %div{{"ng-show" => "validBooking == 'wrong' "}}
+                %p.ng-invalid Your booking is more that space available
+              %h5.description Deposit are due at time of booking. Full payment will be made at time of service with XXXXXXXX
+            .modal-footer
+              %p {{date_completed}}
+              %button.btn.btn-primary{:type => "button", "ng-click" => "changeToUser()"}
+                = image_tag "Imgpsh_Fullsize.png"
+                Book it!
 
-              .form-input
-                .card-number
-                  %span Card Number:
-                  %input{"ng-model" => "number", :placeholder => "Card Number", "payments-format"=>"card", "payments-validate"=>"card", "name"=>"card"}
-                .cvv-wrap
-                  .exp-card
-                    %span Exp: 00/00
-                    %input{"ng-model" => "expiry", :placeholder => "00/00", "payments-format"=>"expiry", "payments-validate"=>"expiry", "name"=>"expiry"}
-                  .cvv-card
-                    %span CVV:
-                    %input{"ng-model" => "cvc", :placeholder => "CVC", "payments-format"=>"cvc", "payments-validate"=>"cvc", "name"=>"cvc"}
 
-                .wrap-policy
-                  I have read and agree to the
-                  %a{:href => 'javascript:void(0)'}>cancellation
-                  policy for this activity
-                  .agree-condition
-                    %span Agree
-                    %input{:name => "checkbox1", :type => "checkbox", :id => "checkbox1"}
-                    %label{:for => "checkbox1"}
+        %div{{"ng-hide" => "isHideUser == true && isHideAmount == true"}}
+          #container-modal{{"ng-show" => "isHideAmount == true"}}
+            #modalBody.modal-body.form-booking
+              .wrap-form-booking
+                %p FIRST NAME:
+                %input{"ng-model" => "firstName", "name"=>"firstName", :required => "", :type => "text"}
+                %p LAST NAME:
+                %input{"ng-model" => "lastName", "name"=>"lastName", :required => "", :type => "text"}
+                %p STREET:
+                %input{"ng-model" => "street", "name"=>"street", :required => "", :type => "text"}
+                %p STREET 2:
+                %input{"ng-model" => "street2", "name"=>"street2", :required => "", :type => "text"}
+                .col-md-8.col-xs-12.col-sm-8
+                  %p CITY:
+                  %input{"ng-model" => "city", "name"=>"city", :required => "", :type => "text"}
+                .col-md-4.col-xs-12.col-sm-4
+                  %p STATE:
+                  %select{"ng-model" => "state", "name"=>"state", "ng-options" => "item.code as item.name for item in regionArray"}
+                %p ZIP CODE:
+                %input{"ng-model" => "zipCode", "name"=>"zipCode", :class=> "zip-code", :required => "", :type => "text"}
+                .col-md-8.col-xs-12.col-sm-8
+                  %p EMAIL:
+                  %input{"ng-model" => "email", "name"=>"email", :required => "", :type => "email"}
+                .col-md-4.col-xs-12.col-sm-4
+                  %span MOBILE#:
+                  %a{:href => 'javascript:void(0)'}>?
+                  %input{"ng-model" => "mobile", "name"=>"mobile"}
+                %button.btn.btn-primary{:type => "button", "ng-click" => "changeToPayment()"} CONTINUE
 
-              %div{"ng-if" => "checkoutForm.card.$invalid"}
-                Error: invalid card number!
-          .modal-footer.footer-card
-            %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
-            %p Deposit
+        #container-modal{{"ng-show" => "isHideUser == true "}}
+          %form{"stripe-form" => "stripeCallback"}
+            #modalBody.modal-body.wrap-type-card
+              .col-md-12
+                #change-type-card
+                  .type-card
+                    %input{:name => "card_type", :type => "radio", :value => "visacard", "ng-model"=>"cardType"}
+                    .wrap-img
+                      = image_tag "visa_card.jpg", class: "size-image-type-normal image-visa-card"
+                  .type-card
+                    %input{:name => "card_type", :type => "radio", :value => "mastercard", "ng-model"=>"cardType"}
+                    .wrap-img
+                      = image_tag "master_card.jpg", class: "size-image-type-normal image-master-card"
+                  .type-card
+                    %input{:name => "card_type", :type => "radio", :value => "AMExcards", "ng-model"=>"cardType"}
+                    .wrap-img-2
+                      = image_tag "amex_card.png", class: "size-image-type-normal image-master-card"
+
+                .form-input
+                  .card-number
+                    %span Card Number:
+                    %input{"ng-model" => "number", :placeholder => "Card Number", "payments-format"=>"card", "payments-validate"=>"card", "name"=>"card"}
+                  .cvv-wrap
+                    .exp-card
+                      %span Exp: 00/00
+                      %input{"ng-model" => "expiry", :placeholder => "00/00", "payments-format"=>"expiry", "payments-validate"=>"expiry", "name"=>"expiry"}
+                    .cvv-card
+                      %span CVV:
+                      %input{"ng-model" => "cvc", :placeholder => "CVC", "payments-format"=>"cvc", "payments-validate"=>"cvc", "name"=>"cvc"}
+
+                  .wrap-policy
+                    I have read and agree to the
+                    %a{:href => 'javascript:void(0)'}>cancellation
+                    policy for this activity
+                    .agree-condition
+                      %span Agree
+                      %input{:name => "checkbox1", :type => "checkbox", :id => "checkbox1"}
+                      %label{:for => "checkbox1"}
+
+                %div{"ng-if" => "checkoutForm.card.$invalid"}
+                  Error: invalid card number!
+            .modal-footer.footer-card
+              %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
+              %p Deposit
+      %div{{"ng-if" => "promotionhash.is_login == false"}}
+        #modalBody.modal-body.wrap-type-card
+          .col-md-12
+            %p Please login, at 
+            %a{:href => "/auth/sign_in", :style => "color: #999"} Login
