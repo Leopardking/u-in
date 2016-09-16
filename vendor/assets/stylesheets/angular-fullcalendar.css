@@ -179,7 +179,7 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc button::-moz-focus-inner { margin: 0; padding: 0; }
 
 .fc-state-default { /* non-theme */
-	border: 1px solid;
+	border: 2px solid;
 }
 
 .fc-state-default.fc-corner-left { /* non-theme */

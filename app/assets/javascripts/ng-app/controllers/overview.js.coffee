@@ -62,7 +62,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.updatePrice = ->
         $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
-        
+
         if $scope.discountPrice[0] != 'undefined'
           $scope.discountPrice == 0
         if $scope.regularPrice[0] != 'undefined'
@@ -70,7 +70,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         if ($scope.discountPrice + $scope.regularPrice) > $scope.duration
           $scope.validBooking = "wrong"
         else
-          $scope.validBooking = "valid" 
+          $scope.validBooking = "valid"
 
       $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
       # Add maps
@@ -84,9 +84,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       return
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
-      check_day = moment(event.start._i).format("YYYY-MM-DD h:mm:ss")
-      today     = moment().format("YYYY-MM-DD h:mm:ss")
-      
+      check_day = moment(event.start._i).format("YYYY-MM-DD")
+      today     = moment().format("YYYY-MM-DD")
       $scope.duration  = $scope.booking_detail.bookings_per_duration
       perDuration = $scope.duration - event.number_bookings_in_current_period
       maximumBoking = event.booking_promotion_avaiable
@@ -97,7 +96,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.maximumBoking = Array.apply(null, length: maximumBoking).map((value, index) ->
         index + 1
       )
-      
+
       if check_day < today
         if event.blackout == true
           alert 'You can\'t cancel this blackout'
@@ -138,7 +137,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         'background-color': ''
 
       switch event.event_status
-        when 'regular_available'         
+        when 'regular_available'
           $(element).find('.fc-title')[0].innerHTML = "REGULAR PRICE"
           element.find('.fc-content').css
             'background-color': '#3A4A5B'
@@ -237,7 +236,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         element.find('.fc-bg').css
           'display': 'none'
       return
-      
+
 
     # popup datepicker
     disabled = (data) ->

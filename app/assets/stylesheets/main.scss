@@ -337,7 +337,7 @@ a.rate {
   @media (max-width: 768px){
     padding: 0 20px;
   }
-  @media (max-width: 320px) {
+  @media (max-width: 480px) {
     padding: 0px;
   }
   li {
@@ -348,7 +348,7 @@ a.rate {
       border: solid 2px white;
       font-size: 20px;
       font-weight: 600;
-      @media (max-width: 320px) {
+      @media (max-width: 480px) {
         font-size: 15px;
       }
     }
