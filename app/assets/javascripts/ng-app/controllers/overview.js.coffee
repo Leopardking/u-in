@@ -84,8 +84,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       return
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
-      check_day = moment(event.start._i).format("YYYY-MM-DD")
-      today     = moment().format("YYYY-MM-DD")
+      check_day = moment(event.start._i).format("YYYY-MM-DD h:mm:ss")
+      today     = moment().format("YYYY-MM-DD h:mm:ss")
       
       $scope.duration  = $scope.booking_detail.bookings_per_duration
       perDuration = $scope.duration - event.number_bookings_in_current_period

@@ -1214,3 +1214,7 @@ th.fc-day-header.fc-widget-header {
 .booking-wraper {
 	text-align: center;
 }
+
+.fc-time-grid .fc-slats td {
+	height: 5.5em;
+}
