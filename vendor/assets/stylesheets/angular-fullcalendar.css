@@ -1169,6 +1169,7 @@ be a descendant of the grid when it is being dragged.
   background-color: #006da0;
   text-align: center;
   bottom: 0;
+  left: 0;
   position: absolute;
   height: 20%;
   padding: 5px 0px;
