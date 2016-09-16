@@ -1181,6 +1181,15 @@ be a descendant of the grid when it is being dragged.
 	font-size: 15px;
 }
 
+.booking-button-regular {
+	background-color: #3A4A5B;
+	text-align: center;
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	height: 30%;
+}
+
 .fc-view-container {
 	background-color: #ffffff;
 }
@@ -1195,4 +1204,12 @@ thead.fc-head {
 
 th.fc-day-header.fc-widget-header {
 	color: white;
+}
+
+.fc-title {
+	text-align: center;
+}
+
+.booking-wraper {
+	text-align: center;
 }
