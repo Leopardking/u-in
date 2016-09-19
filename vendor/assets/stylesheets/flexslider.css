@@ -224,14 +224,17 @@ left: 8px;
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+  text-align: -webkit-auto;
 }
 .flex-control-paging li a:hover {
   background: #fff;
+  text-align: -webkit-auto;
 }
 .flex-control-paging li a.flex-active {
   background: #9ACA27;
   cursor: default;
   border: 2px solid #fff;
+  text-size: -webkit-auto;
 }
 .flex-control-thumbs {
   margin: 5px 0 0;

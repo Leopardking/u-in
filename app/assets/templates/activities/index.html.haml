@@ -55,7 +55,7 @@
                           %span.btn-close-filter
                         %input.btn-save-continue{:type => "submit", :value => "Save & Continue"}
             .column-2
-              %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)", class: 'js-ui-select-override'}
+              %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)", class: 'js-ui-select-override', "ng-click" => "priceRange($event)"}
                 %ui-select-match{"placeholder" => "Price Range", "allow-clear" => "true"}
                   %span.js-has-placeholder{"ng-bind" => "$select.selected.name"}
                 }

@@ -38,7 +38,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
   '$compile'
   '$window'
   ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window) ->
+    # key stripe for test
     $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
+
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
       $scope.promotionhash = res
       $scope.reviews = res.reviews
@@ -46,13 +48,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.city = res.promotion.city
       $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
-      # default slides on promotion show if null
-      $scope.slides = [
-        '/assets/banner-img-1.jpg'
-        '/assets/banner-img-2.jpg'
-        '/assets/banner-img-3.jpg'
-      ]
-      console.log gon.current_user
+
+      # default slides on promotion show if unll      
+      $scope.slides = gon.default_slides
 
       # select box value on booking modal
       $scope.regularPrice = []
@@ -74,6 +72,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           $scope.validBooking = "valid" 
 
       $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
+      
       # Add maps
       # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
       # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs

@@ -143,24 +143,6 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
       return
     
     $scope.$on '$stateChangeSuccess', ->
-      # do something
-      $ ->
-        $('#slider4').responsiveSlides
-          auto: true
-          pager: false
-          nav: true
-          speed: 500
-          namespace: 'callbacks'
-          before: ->
-            $('.events').append '<li>before event fired.</li>'
-            return
-          after: ->
-            $('.events').append '<li>after event fired.</li>'
-            return
-        return
-      return
-
-    $scope.$on '$stateChangeSuccess', ->
       jQuery ($) ->
         $('.js-ui-select-override .ui-select-toggle').addClass 'show-highlight'
         $('.js-ui-select-override .ui-select-placeholder').addClass 'show-highlight'
