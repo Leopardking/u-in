@@ -38,10 +38,10 @@ app.config([
       url: '/'
       templateUrl: 'activities/index.html'
       controller: 'ActivitiesCtrl')
-    .state('activities',
-      url: '/activities'
-      templateUrl: 'activities/index.html'
-      controller: 'ActivitiesCtrl')
+    .state('myActivities',
+      url: '/my-activity'
+      templateUrl: 'myactivity/show.html'
+      controller: 'MyActivityCtrl')
     .state('overview',
       url: '/activities/:activityId'
       templateUrl: 'activities/show.html'

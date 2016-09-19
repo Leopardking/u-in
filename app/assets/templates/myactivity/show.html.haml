@@ -1,0 +1,145 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+    %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+      %li
+        %img{"ng-src" => "{{s}}"}
+
+.nav-wrap-tabs
+  .container
+    %ul#myTab.nav.nav-tabs.nav-tab-custom
+      %li
+        %a{"data-target" => "#searchActivity", "data-toggle" => "tab", "class" => "tabs-mod"} Search Activities
+      %li.active
+        %a{"data-target" => "#myActivity", "data-toggle" => "tab", "class" => "tabs-mod"} My Activies
+
+.tab-content
+  #searchActivity.tab-pane
+    .container
+      .row
+        .col-md-12.col-lg-12
+
+  #myActivity.tab-pane.active.pane-custom
+    .container  
+      .row
+        .col-md-12.col-lg-12
+          %h1.text-center {{promotionhash.promotion.name}}
+          .col-md-3.hidden-xs
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.black-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.blue-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+
+          .col-md-9
+            .row
+              .panel-box.panel-group.clearfix
+                .panel.panel-default
+                  .panel-heading
+                    %h4.panel-title
+                      Upcoming
+                  .panel-collapse.collapse.in
+                    .panel-body TEST
+
+              .panel-box.panel-group.clearfix
+                .panel.panel-default
+                  .panel-heading
+                    %h4.panel-title
+                      My Bucket List
+                  .panel-collapse.collapse.in
+                    .panel-body TEST
+
+              .panel-box.panel-group.clearfix
+                .panel.panel-default
+                  .panel-heading
+                    %h4.panel-title
+                      My Past Life
+                  .panel-collapse.collapse.in
+                    .panel-body Steamboat ATV Half Day
+                  .div-socmed
+                    %ul
+                      %li
+                        %i.fa.fa-book
+                      %li
+                        %i.fa.fa-facebook
+                      %li
+                        %i.fa.fa-instagram
+                      %li
+                        %i.fa.fa-twitter
+                      %li
+                        %i.fa.fa-linkedin
+                .panel-collapse.collapse.in
+                  .panel-body Skydive In Loveland 50% off
+                  .div-socmed
+                    %ul
+                      %li
+                        %i.fa.fa-book
+                      %li
+                        %i.fa.fa-facebook
+                      %li
+                        %i.fa.fa-instagram
+                      %li
+                        %i.fa.fa-twitter
+                      %li
+                        %i.fa.fa-linkedin
+
+                .panel-collapse.collapse.in
+                  .panel-body Steamboat ATV Half Day
+                  .div-socmed
+                    %ul
+                      %li
+                        %i.fa.fa-book
+                      %li
+                        %i.fa.fa-facebook
+                      %li
+                        %i.fa.fa-instagram
+                      %li
+                        %i.fa.fa-twitter
+                      %li
+                        %i.fa.fa-linkedin
