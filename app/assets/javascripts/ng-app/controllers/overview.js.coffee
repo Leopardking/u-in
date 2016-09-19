@@ -312,7 +312,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     # ui config ui calendar angular
     $scope.uiConfig = calendar:
       header:
-        left: 'details'
+        left: ''
         center: 'prev title next'
         right: ''
       defaultView: 'agendaWeek'
