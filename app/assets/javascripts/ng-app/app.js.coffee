@@ -11,6 +11,7 @@ app = angular.module('uinApp', [
   'angularPayments'
   'angular-stripe'
   'angular-flexslider'
+  'angular-loading-bar'
 ])
 
 #Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
@@ -29,7 +30,9 @@ app.config([
   '$urlRouterProvider'
   'AuthProvider'
   'stripeProvider'
-  ($stateProvider, $urlRouterProvider, AuthProvider, stripeProvider) ->
+  'cfpLoadingBarProvider'
+  ($stateProvider, $urlRouterProvider, AuthProvider, stripeProvider, cfpLoadingBarProvider) ->
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container'
     $stateProvider
     .state('home',
       url: '/'

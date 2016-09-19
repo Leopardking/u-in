@@ -61,3 +61,4 @@
 //= require angular-payments
 //= require angular-stripe
 //= require angular-flexslider
+//= require loading-bar

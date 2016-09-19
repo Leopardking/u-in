@@ -4,6 +4,7 @@ angular.module('uinApp').factory 'reviewService', [
   ($http, $stateParams) ->
     { sending: (obj) ->
       $http.post('/activities/'+ $stateParams.activityId + '/reviews', review: obj)
+      ignoreLoadingBar: true
     }
 ]
 
@@ -13,6 +14,7 @@ angular.module('uinApp').factory 'paymentService', [
   ($http, $stateParams) ->
     { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj, object) ->
       $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj, booking: object)
+      ignoreLoadingBar: true
     }
 ]
 
@@ -22,6 +24,7 @@ angular.module('uinApp').factory 'bookingService', [
   ($http, $stateParams) ->
     { booking: (check_status, numbers_booked, object) ->
       $http.post('/bookings/create_new_booking', check_status: status, numbers_booked: numbers_booked, booking: object)
+      ignoreLoadingBar: true
     }
 ]
 
@@ -309,7 +312,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     # ui config ui calendar angular
     $scope.uiConfig = calendar:
       header:
-        left: ''
+        left: 'details'
         center: 'prev title next'
         right: ''
       defaultView: 'agendaWeek'
