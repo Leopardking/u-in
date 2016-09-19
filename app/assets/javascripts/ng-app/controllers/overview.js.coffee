@@ -420,7 +420,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           $scope.isHideUser == true
       return
 
-
-    $scope.$on 'imageLoaded', ->
-      $('a.flex-next').text = ""
+    $scope.showCalendarTwo = ->
+      angular.element('.calendar-second').fullCalendar 'today'
+      return
 ]
