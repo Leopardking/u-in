@@ -302,7 +302,7 @@
             %span{"aria-hidden" => "true"} ×
             %span.sr-only close
         %h3.text-center {{promotionhash.promotion.name}}
-      %div{{"ng-if" => "promotionhash.is_login == true"}}
+      %div{{"ng-show" => "promotionhash.is_login == true"}}
         %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
           #container-modal{{"ng-hide" => "isHideAmount == true"}}
             #modalBody.modal-body
@@ -419,7 +419,7 @@
             .modal-footer.footer-card
               %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
               %p Deposit
-      %div{{"ng-if" => "promotionhash.is_login == false"}}
+      %div{{"ng-show" => "promotionhash.is_login == false"}}
         #modalBody.modal-body.wrap-type-card
           .col-md-12
             %p Please login, at 

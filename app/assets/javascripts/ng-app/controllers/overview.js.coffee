@@ -14,7 +14,6 @@ angular.module('uinApp').factory 'paymentService', [
   ($http, $stateParams) ->
     { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj, object) ->
       $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj, booking: object)
-      ignoreLoadingBar: true
     }
 ]
 
