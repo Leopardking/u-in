@@ -12,8 +12,8 @@ angular.module('uinApp').factory 'paymentService', [
   '$http'
   '$stateParams'
   ($http, $stateParams) ->
-    { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj, object) ->
-      $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj, booking: object)
+    { chargeSripe: (obj_stripe_token, obj_numbers_booked, obj_promotion_pay_id, obj, object, discount_price, regular_price) ->
+      $http.post('/bookings/payment_booking_client', stripe_token: obj_stripe_token, numbers_booked: obj_numbers_booked, promotion_pay_id: $stateParams.activityId, billing_detail: obj, booking: object, discount_price: discount_price, regular_price: regular_price)
     }
 ]
 
@@ -411,9 +411,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           last_name: $scope.lastName
           email: $scope.email
           phone: $scope.mobile
-          discount_price: $scope.discountPrice
-          regular_price: $scope.regularPrice
-        paymentService.chargeSripe(result.id, "", "", obj, object).success (res, status) ->
+        discount_price  = $scope.discountPrice
+        regular_price   = $scope.regularPrice
+        paymentService.chargeSripe(result.id, "", "", obj, object, discount_price, regular_price).success (res, status) ->
           $("#fullCalModal").modal('hide')
           $scope.isHideAmount == false
           $scope.isHideUser == true

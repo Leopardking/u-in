@@ -25,6 +25,9 @@ class ActivitiesController < ApplicationController
     @activity = Promotion.find(params[:id])
   end
 
+  def my_activity
+    @upcomings = current_user.bookings.last
+  end
 
   private
   def load_current_user

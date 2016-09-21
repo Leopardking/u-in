@@ -12,6 +12,7 @@ app = angular.module('uinApp', [
   'angular-stripe'
   'angular-flexslider'
   'angular-loading-bar'
+  'angularValidator'
 ])
 
 #Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
@@ -33,6 +34,7 @@ app.config([
   'cfpLoadingBarProvider'
   ($stateProvider, $urlRouterProvider, AuthProvider, stripeProvider, cfpLoadingBarProvider) ->
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container'
+    cfpLoadingBarProvider.latencyThreshold = 10
     $stateProvider
     .state('home',
       url: '/'

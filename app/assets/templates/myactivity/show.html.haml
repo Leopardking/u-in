@@ -23,10 +23,9 @@
         .col-md-12.col-lg-12
 
   #myActivity.tab-pane.active.pane-custom
-    .container  
+    .container.my-activity-container
       .row
         .col-md-12.col-lg-12
-          %h1.text-center {{promotionhash.promotion.name}}
           .col-md-3.hidden-xs
             .form-group
               %div.w3-card-12
@@ -85,7 +84,45 @@
                     %h4.panel-title
                       Upcoming
                   .panel-collapse.collapse.in
-                    .panel-body TEST
+                    .wrapper-table-my-activity
+                      .body-my-activity
+                        .left
+                          .left-picture
+                            %img{:src => "{{promotion.image}}", :width => "100%", "class"=> "activity-image", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                          .right-content-picture
+                            .col-md-12
+                              .row
+                                .title-upcoming
+                                  %p {{promotion.name}}
+                            .col-md-12
+                              .row
+                                .col-md-5
+                                  .blue-text
+                                    %p SAVE {{promotion.discount_percent}} %
+                                .col-md-7
+                                  .green-text
+                                    %p NOW ONLY ${{promotion.discount_price}}
+                        .right
+                          .box.blue-box
+                            .date-time
+                              %p {{start_time}}
+                            .space
+                              %p 1 Space Left
+                            .share
+                              .div-socmed-mini
+                                %ul
+                                  %li
+                                    %i.fa.fa-book
+                                  %li
+                                    %i.fa.fa-facebook
+                                  %li
+                                    %i.fa.fa-instagram
+                                  %li
+                                    %i.fa.fa-twitter
+                                  %li
+                                    %i.fa.fa-linkedin
+                                        
+
 
               .panel-box.panel-group.clearfix
                 .panel.panel-default

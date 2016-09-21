@@ -1,0 +1,118 @@
+.my-activity-container {
+  padding-top: 33px
+}
+
+.wrapper-table-my-activity {
+  .body-my-activity {
+    width: 100%;
+    float: left;
+
+    .left {
+      width: 70%;
+      float: left;
+      @media (max-width: 768px){
+        width: 100%;
+      }
+
+      .left-picture {
+        float:left;
+        width: 25%;
+        border: solid 1px #7d7d7c;
+        position: relative;
+        @media (max-width: 768px){
+          width: 100%;
+        }
+      }
+
+      .right-content-picture {
+        float: left;
+        width: 75%;
+        @media (max-width: 768px){
+          width: 100%;
+        }
+        p {
+          line-height: 97px;
+          @media(min-width: 769px) and (max-width:1199px){
+            line-height: 20px;
+          }
+          padding-left: 15px;
+          font-size: 15px;
+          font-weight: 300;
+          margin-bottom: 0;
+        }
+        .title-upcoming {
+          padding-left: 15px;
+          padding-bottom: 19px;
+          p {
+            font-weight: bold;
+          }
+        }
+        .blue-text {
+          color: #2ba9f6;
+          p {
+            font-weight: bold;
+          }
+        }
+        .green-text {
+          color: #a8d525;
+          p {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .right {
+      width: 30%;
+      float: left;
+      @media (max-width: 768px){
+        width: 100%;
+      }
+
+      .box {
+        width: 100%;
+        float: left;
+
+        p {
+          color: #2ba9f6;
+          text-align: center;
+          margin-bottom: 0px;
+        }
+        .space p{
+          color: #797979;
+          text-align: center;
+          margin-bottom: 0px;
+        }
+      }
+    }
+  }
+}
+
+.div-socmed-mini {
+  text-align: center;
+  @media (max-width: 768px) {
+    margin: 20px 0px;
+  }
+  li {
+    width: 25px;
+    height: 25px;
+    background: white;
+    display: inline-block;
+    border-radius: 50px;
+    border: solid 1px $darkgray;
+    color: $blue;
+    cursor: pointer;
+    margin-right: 5px;
+    &:last-child{
+      margin-right: 0;
+    }
+    &:hover {
+      background: $gray;
+    }
+    i {
+      font-size: 13px;
+      margin-top: 2px;
+      padding-top: 3px;
+    }
+  }
+}

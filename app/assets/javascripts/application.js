@@ -62,3 +62,4 @@
 //= require angular-stripe
 //= require angular-flexslider
 //= require loading-bar
+//= require angular-validator

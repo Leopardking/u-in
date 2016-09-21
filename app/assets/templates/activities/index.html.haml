@@ -7,18 +7,15 @@
             %h1
               are you in
               %span ?
-
     %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
       %li
         .wrap-img-slider
           %img{"ng-src" => "{{s}}"}
-
     .button-bottom-header
       %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
       .arrow-bottom-header
         %a.first.scroll-down{:href => "javascript:void(0)"}
           =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
-
 .container
   .row
     .col-md-12.col-lg-12
@@ -34,7 +31,6 @@
                   .input-search
                     .input-group
                       %input.form-control{:placeholder => "Search", :type => "text", "ng-model" => "searchText"}
-
                       %span.input-group-btn
                         %button.btn.btn-default{:type => "button"}
                           %span.btn-search-filter
@@ -49,7 +45,6 @@
                                   %span
                                     %input{:name => "check[]", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "myGenre.selected[genre.id]"}
                                     %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
-
                       .wrapper-close-save
                         %a{:href => "javascript:void(0)"}
                           %span.btn-close-filter
@@ -61,12 +56,9 @@
                 }
                 %ui-select-choices{:repeat => "item in (itemArray | filter: $select.search) track by item.range"}
                   %span{"ng-bind" => "item.name"}
-
-
           .right
             .column-1
               %input.form-control.show-highlight.js-filter-select.js-has-placeholder{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
-
             .column-2
               %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)", class: 'js-ui-select-override'}
                 %ui-select-match{"placeholder" => "State", "allow-clear" => "true"}
@@ -74,10 +66,8 @@
                 }
                 %ui-select-choices{:repeat => "region in (regionArray | filter: $select.search) track by region.code"}
                   %span{"ng-bind" => "region.name"}
-
             .column-3
               %input.form-control.show-highlight.js-filter-select.js-has-placeholder{:placeholder => "Zip Code", :type => "text", "ng-keydown" => "zipcode($event, zipcodeParams)", "ng-model" => "zipcodeParams"}
-
     .col-md-12.col-lg-12
       .wrapper-choose-distance
         .text-distance
@@ -88,7 +78,6 @@
           .value
             %span 0
           %span mi
-
     .col-md-12.col-lg-12
       .wrapper-table-activity
         .head-activity
@@ -143,7 +132,6 @@
                       %span
                         %input{:id => "check{{activity.id}}", :name => "check", :type => "checkbox", :value => "check1"}
                         %label{:for => "check{{activity.id}}"}
-
               .right-content-picture
                 %a{:href => "/#/activities/{{activity.id}}"}
                   %p.link-custome {{activity.name}}
@@ -154,6 +142,6 @@
                 %p $ {{activity.discount_price}}
               .count.green-box
                 %p 9
-      .arrow-down-loadmore
-        %a{:href => "javascript:void(0)"}
-          %span.social-icon.chevron-down{'ng-click' => "nextPage()"}
+    .arrow-down-loadmore
+      %a{:href => "javascript:void(0)"}
+        %span.social-icon.chevron-down{'ng-click' => "nextPage()"}

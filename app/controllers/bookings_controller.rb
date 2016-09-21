@@ -174,10 +174,18 @@ class BookingsController < ApplicationController
           end
         end
       end
-    elsif params[:billing_detail][:regular_price].present? ||  params[:billing_detail][:discount_price].present?
-      if params[:billing_detail][:regular_price].present?
-        @numbers_booked = booking_params[:regular_price]
-        booking_params[:check_discount] = false
+    elsif (params[:regular_price].present? || params[:discount_price].present? rescue false)
+      session[:@info_booking] = booking_params
+      
+      if params[:regular_price].present?
+        session[:numbers_booked] = params[:regular_price]
+        session[:promotion_booking] = params[:promotion_booking] || nil
+        @numbers_booked = params[:regular_price]
+        format_booking_params[:promotion_price] = params[:promotion_price].to_s
+        format_booking_params[:paid_price] = params[:billing_detail][:amount].to_s
+        format_booking_params[:check_discount] = false
+        format_booking_params[:promotion_price] = "90"
+
         Booking.transaction do
           @numbers_booked.times.each do
             @info_booking = current_user.bookings.create(booking_params)
@@ -187,7 +195,10 @@ class BookingsController < ApplicationController
 
       if params[:billing_detail][:discount_price].present?
         @numbers_booked = booking_params[:discount_price]
+        format_booking_params[:promotion_price] = params[:promotion_price].to_s
+        format_booking_params[:paid_price] = params[:billing_detail][:amount].to_s
         booking_params[:check_discount] = true
+
         Booking.transaction do
           @numbers_booked.times.each do
             @info_booking = current_user.bookings.create(booking_params)
@@ -206,7 +217,7 @@ class BookingsController < ApplicationController
 
   private
     def booking_params
-      params.require(:booking).permit(:book_date, :status, :charge_id, :first_name, :last_name, :email, :phone, :start_time, :end_time, :promotion_id, :check_discount, :promotion_price, :paid_price, :stripe_token, :promotion_booking, :regular_price, :discount_price)
+      params.require(:booking).permit(:book_date, :status, :charge_id, :first_name, :last_name, :email, :phone, :start_time, :end_time, :promotion_id, :check_discount, :promotion_price, :paid_price, :stripe_token, :promotion_booking)
     end
 
     def booking_service
