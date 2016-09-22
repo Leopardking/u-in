@@ -6,11 +6,22 @@ angular.module('uinApp').factory 'activitiesService', [
         criteria: obj, page: page, popular: statePopular)
     }
 ]
+
+angular.module('uinApp').factory 'bookmarkService', [
+  '$http'
+  ($http) ->
+    { post: (promotion_id) ->
+      $http.post('/activities/'+ promotion_id +'/bookmark')
+    }
+]
+
 angular.module('uinApp').controller 'ActivitiesCtrl', [
   '$scope'
   '$http'
   'activitiesService'
-  ($scope, $http, activitiesService) ->
+  'bookmarkService'
+  'Notification'
+  ($scope, $http, activitiesService, bookmarkService, Notification) ->
     if localStorage.getItem('search') == null
       localStorage.setItem("search", JSON.stringify({}))
     $scope.itemArray = [{range: "5..25", name: '$5-$25'}, {range: "25..50", name: '$25-$50'}, {range: "50..75", name: '$50-$75'}, {range: "75..100", name: '$75-$100'}, {range: "100..150", name: '$100-$150'}, {range: "150..250", name: '$150-$250'}, {range: "250", name: '$250 & up'}
@@ -228,4 +239,15 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
         $('html,body').animate { scrollTop: $('.second').offset().top }, 'slow'
         return
       return
+
+    $scope.bookmarkEvent = (id)->
+      promotion_id = id
+      $http.post('/activities/'+promotion_id+'/bookmark').success (data, status) ->
+        Notification.success('Activities Added To Your Bucket List')
+        return
+      $http.post('/activities/'+promotion_id+'/bookmark').error (data, status) ->
+        Notification.warning('You need singin before create Bucket List')
+        return
+      return
+
 ]

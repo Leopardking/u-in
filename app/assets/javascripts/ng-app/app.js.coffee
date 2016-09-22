@@ -13,6 +13,7 @@ app = angular.module('uinApp', [
   'angular-flexslider'
   'angular-loading-bar'
   'angularValidator'
+  'ui-notification'
 ])
 
 #Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'

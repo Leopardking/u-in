@@ -8,7 +8,7 @@
       %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in toScreen", :start => "slideshow.start($slider)"}
         %li
           %img{"ng-src" => "{{s}}"}
-    %div{"ng-if"=>"toScreen.length == 0"}   
+    %div{"ng-if"=>"toScreen == 0"}   
       %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
         %li
           %img{"ng-src" => "{{s}}"}
@@ -58,43 +58,45 @@
                       Upcoming
                   .panel-collapse.collapse.in
                     .wrapper-table-my-activity
-                      .body-my-activity
-                        .left
-                          .left-picture
-                            %img{:src => "{{promotion.image}}", :width => "100%", "class"=> "activity-image", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
-                          .right-content-picture
-                            .col-md-12
-                              .row
-                                .title-upcoming
-                                  %p {{promotion.name}}
-                            .col-md-12
-                              .row
-                                .col-md-5
-                                  .blue-text
-                                    %p SAVE {{promotion.discount_percent}} %
-                                .col-md-7
-                                  .green-text
-                                    %p NOW ONLY ${{promotion.discount_price}}
-                        .right
-                          .box.blue-box
-                            .date-time
-                              %p {{start_time}}
-                            .space
-                              %p 1 Space Left
-                            .share
-                              .div-socmed-mini
-                                %ul
-                                  %li
-                                    %i.fa.fa-book
-                                  %li
-                                    %i.fa.fa-facebook
-                                  %li
-                                    %i.fa.fa-instagram
-                                  %li
-                                    %i.fa.fa-twitter
-                                  %li
-                                    %i.fa.fa-linkedin
-                                        
+                      %div{"ng-repeat" => "event in booking"}
+                        .body-my-activity
+                          .left
+                            .left-picture
+                              %a{:href => "/#/activities/{{event.promotion.id}}"}
+                                %img{:src => "{{event.promotion.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                            .right-content-picture
+                              .col-md-12
+                                .row
+                                  .title-upcoming
+                                    %p {{event.promotion.name}}
+                              .col-md-12
+                                .row
+                                  .col-md-5
+                                    .blue-text
+                                      %p SAVE {{event.promotion.discount_percent}} %
+                                  .col-md-7
+                                    .green-text
+                                      %p NOW ONLY ${{event.promotion.discount_price}}
+                          .right
+                            .box.blue-box
+                              .date-time
+                                %p {{event.time}}
+                              .space
+                                %p 1 Space Left
+                              .share
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+                                          
 
 
               .panel-box.panel-group.clearfix
@@ -103,53 +105,70 @@
                     %h4.panel-title
                       My Bucket List
                   .panel-collapse.collapse.in
-                    .panel-body TEST
+                    .wrapper-table-my-activity
+                      %div{"ng-repeat" => "event in bookmark"}
+                        .body-my-activity
+                          .left
+                            .left-picture
+                              %a{:href => "/#/activities/{{event.promotion.id}}"}
+                                %img{:src => "{{event.promotion.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                              .radio
+                                .wrapper-checkbox
+                                  .checkbox-custom
+                                    %span
+                                      %input{:id => "check-{{event.promotion.id}}", :name => "check", :type => "checkbox", :value => "{{event.promotion.id}}"}
+                                      %label{:for => "check-{{event.promotion.id}}"}
+                            .right-content-picture
+                              .col-md-12
+                                .row
+                                  .title-upcoming
+                                    %p {{event.promotion.name}}
+                              .col-md-12
+                                .row
+                                  .col-md-5
+                                    .blue-text
+                                      %p SAVE {{event.promotion.discount_percent}} %
+                                  .col-md-7
+                                    .green-text
+                                      %p NOW ONLY ${{event.promotion.discount_price}}
+                          .right
+                            .box.blue-box
+                              .date-time
+                                %p {{event.time}}
+                              .space
+                                %p 1 Space Left
+                              .share
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
 
               .panel-box.panel-group.clearfix
                 .panel.panel-default
                   .panel-heading
                     %h4.panel-title
                       My Past Life
-                  .panel-collapse.collapse.in
-                    .panel-body Steamboat ATV Half Day
-                  .div-socmed
-                    %ul
-                      %li
-                        %i.fa.fa-book
-                      %li
-                        %i.fa.fa-facebook
-                      %li
-                        %i.fa.fa-instagram
-                      %li
-                        %i.fa.fa-twitter
-                      %li
-                        %i.fa.fa-linkedin
-                .panel-collapse.collapse.in
-                  .panel-body Skydive In Loveland 50% off
-                  .div-socmed
-                    %ul
-                      %li
-                        %i.fa.fa-book
-                      %li
-                        %i.fa.fa-facebook
-                      %li
-                        %i.fa.fa-instagram
-                      %li
-                        %i.fa.fa-twitter
-                      %li
-                        %i.fa.fa-linkedin
-
-                .panel-collapse.collapse.in
-                  .panel-body Steamboat ATV Half Day
-                  .div-socmed
-                    %ul
-                      %li
-                        %i.fa.fa-book
-                      %li
-                        %i.fa.fa-facebook
-                      %li
-                        %i.fa.fa-instagram
-                      %li
-                        %i.fa.fa-twitter
-                      %li
-                        %i.fa.fa-linkedin
+                  %div{"ng-repeat" => "event in pastLife"}
+                    .panel-collapse.collapse.in
+                      .panel-body 
+                        {{ event.promotion.name }}
+                    .div-socmed-mini
+                      %ul
+                        %li
+                          %i.fa.fa-book
+                        %li
+                          %i.fa.fa-facebook
+                        %li
+                          %i.fa.fa-instagram
+                        %li
+                          %i.fa.fa-twitter
+                        %li
+                          %i.fa.fa-linkedin

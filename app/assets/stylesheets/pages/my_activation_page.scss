@@ -3,10 +3,23 @@
 }
 
 .wrapper-table-my-activity {
+  .radio {
+    position: absolute;
+    bottom: -35px;
+    right: -21px;
+
+    @media (max-width: 768px) {
+      right: -16px;
+      bottom: -34px;
+    }
+  }
+
   .body-my-activity {
     width: 100%;
     float: left;
-
+    border: solid 1px #7d7d7c;
+    margin-bottom: 2px;
+    
     .left {
       width: 70%;
       float: left;
@@ -116,3 +129,36 @@
     }
   }
 }
+
+.wrapper-checkbox {
+    margin-bottom: 10px;
+  }
+
+  .wrapper-checkbox label {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding-left: 30px !important;
+    color: #bdc0cb;
+  }
+
+  .wrapper-checkbox label:before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+  }
+
+  .wrapper-checkbox input[type=checkbox] {
+    display: none;
+  }
+
+  .wrapper-checkbox .checkbox-custom label:before {
+    background: asset-url("checkbox_normal.png") left center no-repeat;
+  }
+
+  .wrapper-checkbox input[type=checkbox]:checked + label:before {
+    background: asset-url("Checkbox_selected.png") left center no-repeat;
+  }

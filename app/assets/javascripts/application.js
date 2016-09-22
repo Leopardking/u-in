@@ -63,3 +63,4 @@
 //= require angular-flexslider
 //= require loading-bar
 //= require angular-validator
+//= require angular-ui-notification.js

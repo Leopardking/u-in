@@ -127,6 +127,7 @@ BookingApp::Application.routes.draw do
       get "data_day"
       get "booked"
       resources :reviews
+      post "bookmark"
     end
     collection do
       post "book"

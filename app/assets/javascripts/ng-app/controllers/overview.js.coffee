@@ -38,7 +38,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
   'uiCalendarConfig'
   '$compile'
   '$window'
-  ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window) ->
+  'Notification'
+  ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window, Notification) ->
     # key stripe for test
     $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
 
@@ -424,6 +425,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           $("#fullCalModal").modal('hide')
           $scope.isHideAmount == false
           $scope.isHideUser == true
+          Notification.success('Congratulation You already book this Event')
       return
 
     $scope.showCalendarTwo = ->

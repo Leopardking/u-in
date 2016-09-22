@@ -130,8 +130,8 @@
                   .wrapper-checkbox
                     .checkbox-custom
                       %span
-                        %input{:id => "check{{activity.id}}", :name => "check", :type => "checkbox", :value => "check1"}
-                        %label{:for => "check{{activity.id}}"}
+                        %input{:id => "check-{{activity.id}}", :name => "check", :type => "checkbox", :value => "{{activity.id}}", "ng-model" => "bookmark", "ng-click"=> "bookmarkEvent(activity.id)"}
+                        %label{:for => "check-{{activity.id}}"}
               .right-content-picture
                 %a{:href => "/#/activities/{{activity.id}}"}
                   %p.link-custome {{activity.name}}

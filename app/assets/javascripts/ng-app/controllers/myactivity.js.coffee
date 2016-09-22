@@ -3,11 +3,11 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
   '$http'
   ($scope, $http) ->
     $http.get('/activities/my_activity.json').success (res) ->
-      $scope.upcoming 	= res
+      $scope.upcoming 	= res.upcoming
       $scope.booking 		= res.upcoming.booking
       $scope.promotion 	= res.upcoming.promotion
-      $scope.start_time = moment(res.upcoming.booking.start_time).format('MMMM DD, h:mm a')
-      $scope.toScreen		= res.upcoming.toScreen
-      $scope.myLastLife = res
+      $scope.toScreen		= res.toScreen
+      $scope.bookmark		= res.bookmark.booking
+      $scope.pastLife		= res.pastLife.booking
     $scope.slides = gon.default_slides
 ]

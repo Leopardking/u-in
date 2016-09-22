@@ -4,6 +4,7 @@ class ActivitiesController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :load_activities, only: [:show]
   before_filter :load_current_user
+  before_filter :find_promotion, only: [:show, :bookmark]
 
   def index
     if params[:popular].eql?("true")
@@ -22,12 +23,24 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @activity = Promotion.find(params[:id])
   end
 
   def my_activity
-    @upcomings = current_user.bookings.where('end_time < ?', 'Time.now.strftime("%Y-%m-%d %H:%M")').last
-    # @upcomings = current_user.bookings.where('end_time < ?', 'Time.now.strftime("%Y-%m-%d %H:%M")').limit(2)
+    bookings    = current_user.bookings
+    date_now    = Time.now.strftime("%Y-%m-%d %H:%M")
+    @upcomings  = bookings.where('book_date >= ?', date_now).distinct.last(5)
+    # need validate with past time
+    @bookmark   = current_user.bookmarks
+    @myPastLife = bookings.where('book_date <= ?', date_now).distinct.last(5)
+  end
+
+  def bookmark
+    @bookmark = @activity.bookmarks.build(user_id: current_user.id)
+    if @bookmark.save
+      render json: @bookmark, status: 200
+    else
+      render json: @bookmark, status: :unprocessable_entity
+    end
   end
 
   private
@@ -42,5 +55,9 @@ class ActivitiesController < ApplicationController
 
   def params_query
     params["criteria"].nil? ? {} : JSON.parse(params["criteria"])
+  end
+
+  def find_promotion
+    @activity = Promotion.find(params[:id])
   end
 end
