@@ -4,9 +4,14 @@
       .container
         .row
           .col-md-12.col-lg-12
-    %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
-      %li
-        %img{"ng-src" => "{{s}}"}
+    %div{"ng-if"=>"toScreen.length >= 1"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in toScreen", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}"}
+    %div{"ng-if"=>"toScreen.length == 0"}   
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}"}
 
 .nav-wrap-tabs
   .container
@@ -39,38 +44,6 @@
               %div.w3-card-12
                 %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
                 .w3-container.w3-center.text-wrap.black-box
-                  %p Image Title
-                %p.mar-top-15
-                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
-
-            .form-group
-              %div.w3-card-12
-                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
-                .w3-container.w3-center.text-wrap.blue-box
-                  %p Image Title
-                %p.mar-top-15
-                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
-
-            .form-group
-              %div.w3-card-12
-                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
-                .w3-container.w3-center.text-wrap.green-box
-                  %p Image Title
-                %p.mar-top-15
-                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
-
-            .form-group
-              %div.w3-card-12
-                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
-                .w3-container.w3-center.text-wrap.green-box
-                  %p Image Title
-                %p.mar-top-15
-                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
-
-            .form-group
-              %div.w3-card-12
-                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
-                .w3-container.w3-center.text-wrap.green-box
                   %p Image Title
                 %p.mar-top-15
                   Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet

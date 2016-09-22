@@ -26,7 +26,8 @@ class ActivitiesController < ApplicationController
   end
 
   def my_activity
-    @upcomings = current_user.bookings.last
+    @upcomings = current_user.bookings.where('end_time < ?', 'Time.now.strftime("%Y-%m-%d %H:%M")').last
+    # @upcomings = current_user.bookings.where('end_time < ?', 'Time.now.strftime("%Y-%m-%d %H:%M")').limit(2)
   end
 
   private

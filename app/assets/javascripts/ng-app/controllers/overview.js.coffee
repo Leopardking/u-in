@@ -4,7 +4,6 @@ angular.module('uinApp').factory 'reviewService', [
   ($http, $stateParams) ->
     { sending: (obj) ->
       $http.post('/activities/'+ $stateParams.activityId + '/reviews', review: obj)
-      ignoreLoadingBar: true
     }
 ]
 
@@ -338,11 +337,19 @@ angular.module('uinApp').controller 'overviewsCtrl', [
     $scope.eventSources = [$scope.eventSource]
 
     # submit reveiw
+    $scope.reviewParam = {}
     $scope.submitForm = ->
-      reviewService.sending($scope.reviewParam).success (res, status) ->
+      obj = 
+        content: $scope.reviewParam.content
+        rating: $scope.reviewParam.rating
+        user_id: gon.current_user.current_user_id
+      reviewService.sending(obj).success (res, status) ->
         $scope.reviews.push(res)
         $("#reviewModal").modal('hide')
         return
+      reviewService.sending(obj).error (res, status) ->
+        console.log res
+        console.log status
 
     # goTO page modal payment
     $scope.changeToUser =->
