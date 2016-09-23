@@ -167,6 +167,7 @@ div#review {
 
 a.rate {
   color: #15fb15;
+  cursor: pointer;
   &:focus {
     outline: none;
   }

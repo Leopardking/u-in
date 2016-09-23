@@ -1,3 +1,30 @@
+.nav-my-tab-custom {
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+  border-bottom: 0;
+  margin-top: 25px;
+  float: right;
+  @media (max-width: 768px){
+    padding: 0 20px;
+  }
+  @media (max-width: 480px) {
+    padding: 0px;
+  }
+  li {
+    a {
+      margin-right: 0;
+      padding: 15px;
+      border: solid 2px white;
+      font-size: 20px;
+      font-weight: 600;
+      @media (max-width: 480px) {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
 .my-activity-container {
   padding-top: 33px
 }
@@ -171,4 +198,19 @@ a.save-button {
 a.save-button.disable{
   color: #999;
   cursor: not-allowed;
+}
+.remove {
+  width: 25px;
+  height: 25px;
+  background: white;
+  display: inline-block;
+  border-radius: 50px;
+  border: solid 1px #797979;
+  color: #2ba9f6;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+a.link-remove {
+  color: red;
 }

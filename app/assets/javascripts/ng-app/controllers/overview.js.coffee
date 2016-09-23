@@ -96,9 +96,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.perDuration = Array.apply(null, length: perDuration).map((value, index) ->
         index + 1
       )
+      $scope.perDuration.splice(0, 0, 0);
       $scope.maximumBoking = Array.apply(null, length: maximumBoking).map((value, index) ->
         index + 1
       )
+      $scope.maximumBoking.splice(0, 0, 0);
       
       if check_day < today
         if event.blackout == true
@@ -345,13 +347,13 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         content: $scope.reviewParam.content
         rating: $scope.reviewParam.rating
         user_id: gon.current_user.current_user_id
-      reviewService.sending(obj).success (res, status) ->
+      reviewService.sending(obj).success((res, status) ->
         $scope.reviews.push(res)
         $("#reviewModal").modal('hide')
+        Notification.success('Your rate has been created')
         return
-      reviewService.sending(obj).error (res, status) ->
-        console.log res
-        console.log status
+      ).error (res, status) ->
+        Notification.warning('Something went wrong')
 
     # goTO page modal payment
     $scope.changeToUser =->

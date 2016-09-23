@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :load_activities, only: [:show]
   before_filter :load_current_user
-  before_filter :find_promotion, only: [:show, :bookmark]
+  before_filter :find_promotion, only: [:show, :bookmark, :remove_bookmark]
 
   def index
     if params[:popular].eql?("true")
@@ -37,6 +37,16 @@ class ActivitiesController < ApplicationController
   def bookmark
     @bookmark = @activity.bookmarks.build(user_id: current_user.id)
     if @bookmark.save
+      render json: @bookmark, status: 200
+    else
+      render json: @bookmark, status: :unprocessable_entity
+    end
+  end
+
+  def remove_bookmark
+    remove_bookmark = @activity.bookmarks.last.delete
+    @bookmark = current_user.bookmarks
+    if remove_bookmark.delete
       render json: @bookmark, status: 200
     else
       render json: @bookmark, status: :unprocessable_entity

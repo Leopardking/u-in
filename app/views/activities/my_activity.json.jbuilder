@@ -25,7 +25,7 @@ json.set! "bookmark" do
 	  json.user_id bookmark.user_id
 	  json.promotion_id bookmark.promotion_id
 	  json.start_time bookmark.promotion.start_time
-		json.time bookmark.promotion.start_date.strftime("%B %d, %H:%M%P")
+		json.time bookmark.promotion.start_date.strftime("%B %d, %Y")
 	  json.end_time bookmark.promotion.end_date
 		json.set! "promotion" do
 		  json.id bookmark.promotion.id
@@ -43,7 +43,7 @@ json.set! "pastLife" do
 	  json.user_id bookmark.user_id
 	  json.promotion_id bookmark.promotion_id
 	  json.start_time bookmark.promotion.start_time
-		json.time bookmark.promotion.start_date.strftime("%B %d, %H:%M%P")
+		json.time bookmark.promotion.start_date.strftime("%B %d, %Y")
 	  json.end_time bookmark.promotion.end_date
 		json.set! "promotion" do
 		  json.id bookmark.promotion.id

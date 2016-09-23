@@ -242,10 +242,12 @@ angular.module('uinApp').controller 'ActivitiesCtrl', [
 
     $scope.bookmarkEvent = (id)->
       promotion_id = id
-      $http.post('/activities/'+promotion_id+'/bookmark').success (data, status) ->
+      $http(
+        url: '/activities/'+promotion_id+'/bookmark'
+        method: 'POST').success((data, status, headers, config) ->
         Notification.success('Activities Added To Your Bucket List')
         return
-      $http.post('/activities/'+promotion_id+'/bookmark').error (data, status) ->
+      ).error (data, status, headers, config) ->
         Notification.warning('You need singin before create Bucket List')
         return
       return

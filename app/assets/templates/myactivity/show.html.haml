@@ -15,7 +15,7 @@
 
 .nav-wrap-tabs
   .container
-    %ul#myTab.nav.nav-tabs.nav-tab-custom
+    %ul#myTab.nav.nav-tabs.nav-my-tab-custom
       %li
         %a{"data-target" => "#searchActivity", "data-toggle" => "tab", "class" => "tabs-mod"} Search Activities
       %li.active
@@ -112,6 +112,9 @@
                             .left-picture
                               %a{:href => "/#/activities/{{event.promotion.id}}"}
                                 %img{:src => "{{event.promotion.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                              .remove
+                                %a{:href => "javascript:void(0)", :class => "link-remove", "ng-click" => "removeBookmark(event.promotion.id, $event, $index)"}
+                                  %i.fa.fa-times.fa-lg.fa-custome
                               .radio
                                 .wrapper-checkbox
                                   .checkbox-custom
@@ -167,7 +170,8 @@
                                 %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= event.promotion.review.rating", "read-only" => "true"}
                                 .wrap-comment
                                   %div{"ng-if"=>"event.promotion.review.id != undefined"}
-                                    %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check", "ng-model" => "event.promotion.review.content"}
+
+                                    %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check", "ng-model" => "event.promotion.review.content", :readonly => "yes"}
                                   %a{:href => "javascript:void(0)", class: "save-button"} Save
                                 .div-socmed-mini
                                   %ul
@@ -181,18 +185,22 @@
                                       %i.fa.fa-twitter
                                     %li
                                       %i.fa.fa-linkedin
+                                .remove
+                                  %a{:href => "#", :class => "link-remove"}
+                                    %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
                                 .right-content-picture
                                   = image_tag 'img-default.jpg'
                                   = image_tag 'img-default.jpg'
                                   = image_tag 'img-default.jpg'
                                   = image_tag 'img-default.jpg'
+                                  {{ event.time }}
 
                             %div{"ng-if" => "event.promotion.review.id == undefined"}
                               .col-md-8
                                 {{ event.promotion.name }}
                                 %div{"ng-if"=>"event.promotion.review.id == undefined"}
-                                  %a{:class => "rate", "ng-click" => "showModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"} Rate Now
+                                  %a{:class => "rate", "ng-click" => "showModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"} Rate This Activity!
                                 .wrap-comment
                                   %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check"}
                                   %a{:href => "javascript:void(0)", class: "save-button disable"} Save
@@ -215,7 +223,7 @@
                                   = image_tag 'img-default.jpg'
                                   = image_tag 'img-default.jpg'
                                   = image_tag 'img-default.jpg'
-
+                                  {{ event.time }}
 
 #reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
   .modal-dialog{:role => "document"}
@@ -239,6 +247,7 @@
               %span
                 Comments:
               %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
-          .modal-footer
-            %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
+              %input{:name => "hidden-field", "ng-value" => "{{id}}", :type => "hidden"}
+        .modal-footer
+          %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
 
