@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   has_many :categories
   has_many :history_v_moneys
   has_many :images
-  has_one :review
+  has_many :reviews
   has_many :bookmarks
   
   ##

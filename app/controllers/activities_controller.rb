@@ -26,12 +26,12 @@ class ActivitiesController < ApplicationController
   end
 
   def my_activity
-    bookings    = current_user.bookings
-    date_now    = Time.now.strftime("%Y-%m-%d %H:%M")
-    @upcomings  = bookings.where('book_date >= ?', date_now).distinct.last(5)
+    bookings      = current_user.bookings
+    date_now      = Time.now.strftime("%Y-%m-%d %H:%M")
+    @upcomings    = bookings.where('book_date >= ?', date_now).group(:promotion_id)
     # need validate with past time
-    @bookmark   = current_user.bookmarks
-    @myPastLife = bookings.where('book_date <= ?', date_now).distinct.last(5)
+    @bookmark     = current_user.bookmarks
+    @myPastLife   = bookings.where('book_date <= ?', date_now).group(:promotion_id)
   end
 
   def bookmark

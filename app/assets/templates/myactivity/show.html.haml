@@ -157,18 +157,88 @@
                     %h4.panel-title
                       My Past Life
                   %div{"ng-repeat" => "event in pastLife"}
-                    .panel-collapse.collapse.in
-                      .panel-body 
-                        {{ event.promotion.name }}
-                    .div-socmed-mini
-                      %ul
-                        %li
-                          %i.fa.fa-book
-                        %li
-                          %i.fa.fa-facebook
-                        %li
-                          %i.fa.fa-instagram
-                        %li
-                          %i.fa.fa-twitter
-                        %li
-                          %i.fa.fa-linkedin
+                    .wrapper-past-life
+                      .panel-collapse.collapse.in
+                        .panel-body
+                          .col-md-12
+                            %div{"ng-if" => "event.promotion.review.id != undefined"}
+                              .col-md-8
+                                {{ event.promotion.name }}
+                                %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= event.promotion.review.rating", "read-only" => "true"}
+                                .wrap-comment
+                                  %div{"ng-if"=>"event.promotion.review.id != undefined"}
+                                    %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check", "ng-model" => "event.promotion.review.content"}
+                                  %a{:href => "javascript:void(0)", class: "save-button"} Save
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+                              .col-md-4
+                                .right-content-picture
+                                  = image_tag 'img-default.jpg'
+                                  = image_tag 'img-default.jpg'
+                                  = image_tag 'img-default.jpg'
+                                  = image_tag 'img-default.jpg'
+
+                            %div{"ng-if" => "event.promotion.review.id == undefined"}
+                              .col-md-8
+                                {{ event.promotion.name }}
+                                %div{"ng-if"=>"event.promotion.review.id == undefined"}
+                                  %a{:class => "rate", "ng-click" => "showModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"} Rate Now
+                                .wrap-comment
+                                  %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check"}
+                                  %a{:href => "javascript:void(0)", class: "save-button disable"} Save
+
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+                              .col-md-4
+                                .right-content-picture
+                                  = image_tag 'img-default.jpg'
+                                  = image_tag 'img-default.jpg'
+                                  = image_tag 'img-default.jpg'
+                                  = image_tag 'img-default.jpg'
+
+
+#reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
+      %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
+        .modal-body
+          .wrap-content-rate
+            .col-md-4
+              / %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+              .img-rating
+                %img{"ng-src" => "{{image}}", "on-error-src" => "http://google.com/favicon.ico"}
+            .col-md-8
+              %h3 {{name}}
+              %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+          .col-md-12
+            .wrap-comment
+              %span
+                Comments:
+              %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
+          .modal-footer
+            %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
+

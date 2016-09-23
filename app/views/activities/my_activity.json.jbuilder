@@ -50,7 +50,14 @@ json.set! "pastLife" do
 		  json.name bookmark.promotion.name
 		  json.discount_percent bookmark.promotion.discount_percent
 		  json.discount_price bookmark.promotion.discount_price
-		  json.image bookmark.promotion.images.first.image.url(:medium) rescue json.image "0"
+		  json.set! "review" do
+		  	json.id bookmark.promotion.reviews.last.id rescue nil
+		  	json.promotion_id bookmark.promotion.reviews.last.promotion_id rescue nil
+		  	json.user_id bookmark.promotion.reviews.last.user_id rescue nil
+		  	json.content bookmark.promotion.reviews.last.content rescue nil
+		  	json.rating bookmark.promotion.reviews.last.rating rescue nil
+		  	json.image bookmark.promotion.images.first.image.url(:medium) rescue json.image "0"
+		  end
 		end
 	end
 end

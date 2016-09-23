@@ -162,3 +162,13 @@
   .wrapper-checkbox input[type=checkbox]:checked + label:before {
     background: asset-url("Checkbox_selected.png") left center no-repeat;
   }
+
+a.save-button {
+  color: #2ba9f6;
+  float: right;
+}
+
+a.save-button.disable{
+  color: #999;
+  cursor: not-allowed;
+}

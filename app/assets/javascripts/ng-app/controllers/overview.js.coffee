@@ -273,7 +273,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
 
     $scope.dateOptions =
       customClass: getDayClass
-      showWeeks: true
+      showWeeks: false
+      toggleWeeksText: null
       formatYear: 'yy'
       maxDate: new Date((String(new Date().getFullYear() + 10)))
       minDate: new Date
