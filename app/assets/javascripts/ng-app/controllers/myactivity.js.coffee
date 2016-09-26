@@ -3,7 +3,9 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
   '$http'
   '$window'
   'Notification'
-  ($scope, $http, $window, Notification) ->
+  'Upload'
+  '$timeout'
+  ($scope, $http, $window, Notification, Upload, $timeout) ->
     $http.get('/activities/my_activity.json').success (res) ->
       $scope.upcoming 	= res.upcoming
       $scope.booking 		= res.upcoming.booking
@@ -34,6 +36,26 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     $scope.hideToUpload = ->
     	$scope.isHide = false
 
+    $scope.picFile = ''
+    $scope.croppedDataUrl = ''
+
+    $scope.upload = (dataUrl) ->
+      Upload.upload(
+        url: '/images/upload_image_step3?&fromAngular=true'
+        data: image: image: Upload.dataUrltoBlob(dataUrl)).then ((response) ->
+        $timeout ->
+          $scope.result = response.data
+          return
+        return
+      ), ((response) ->
+        if response.status > 0
+          $scope.errorMsg = response.status + ': ' + response.data
+        return
+      ), (evt) ->
+        $scope.progress = parseInt(100.0 * evt.loaded / evt.total)
+        return
+      return
+
     $scope.removeBookmark = (id, event, index)->
 	    deleteBookmark = $window.confirm('Are you sure you want to remove this activity from your Bucket List')
 	    if deleteBookmark
@@ -56,5 +78,4 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
         $window.location.reload()
       	Notification.success('Thanks for rate this activity')
  				return
-
 ]

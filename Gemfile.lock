@@ -308,6 +308,9 @@ GEM
     rails-assets-angular-ui-select (0.19.4)
       rails-assets-angular (>= 1.2.18)
     rails-assets-moment (2.14.1)
+    rails-assets-ng-file-upload (12.2.11)
+      rails-assets-angular (> 1.2.0)
+    rails-assets-ngImgCrop (0.3.2)
     rails-erd (1.4.6)
       activerecord (>= 3.2)
       activesupport (>= 3.2)
@@ -486,6 +489,8 @@ DEPENDENCIES
   rails-assets-angular-stripe
   rails-assets-angular-ui-router
   rails-assets-angular-ui-select
+  rails-assets-ng-file-upload
+  rails-assets-ngImgCrop
   rails-erd (~> 1.4.6)
   rails_12factor
   rails_best_practices (~> 1.16)

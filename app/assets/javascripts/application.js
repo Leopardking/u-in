@@ -65,3 +65,5 @@
 //= require loading-bar
 //= require angular-validator
 //= require angular-ui-notification.js
+//= require ng-file-upload
+//= require ngImgCrop

@@ -312,13 +312,22 @@
                     %p.text-center-element
                       JPG or JPEG or PNG file that reprensents this activity
                     .row.form-horizontal
-                      #hidden_value_image
-                      #hidden_image_no
-                      %input{:type=>"hidden", :value=>"", :id=>:avatar_upload_id}
-                      = image_tag("default_image.png", alt: "Responsive image", id: "image_promotion_large", class: "crop-image-promotion")
+                      %form{:name => "myForm"}
+                        %div Crop Image and Upload
+                        %button{:accept => "image/*", "ng-model" => "picFile", "ngf-select" => ""}
+                          Select Picture
+                        .cropArea{"ng-model" => "picFile", "ngf-drop" => "", "ngf-pattern" => "image/*"}
+                          %img-crop{:image => "picFile  | ngfDataUrl", "ng-init" => "croppedDataUrl=''", "result-image" => "croppedDataUrl", "area-type" => "square", "aspect-ratio" => "1.9"}
+                        %div
+                          %img{"ng-src" => "{{croppedDataUrl}}"}/
+                        
+                        %span.progress{"ng-show" => "progress >= 0"}
+                          %div{"ng-bind" => "progress + '%'", :style => "width:{{progress}}%"}
+                        %span{"ng-show" => "result"} Upload Successful
+                        %span.err{"ng-show" => "errorMsg"} {{errorMsg}}
+
                   .col-xs-1.col-md-1.col-ms-1
               .modal-footer
                 %span#turnoff-upload-image.btn.btn-default{:type => "button", "ng-click" => "hideToUpload()"}
                   Close
-                %span#turnoff-upload-image.btn.btn-default{:type => "submit"}
-                  Save
+                %span#turnoff-upload-image.btn.btn-default{"ng-click" => "upload(croppedDataUrl)"} Save

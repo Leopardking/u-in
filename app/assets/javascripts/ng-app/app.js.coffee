@@ -14,6 +14,8 @@ app = angular.module('uinApp', [
   'angular-loading-bar'
   'angularValidator'
   'ui-notification'
+  'ngFileUpload'
+  'ngImgCrop'
 ])
 
 #Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'

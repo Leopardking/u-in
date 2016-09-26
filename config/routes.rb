@@ -77,6 +77,7 @@ BookingApp::Application.routes.draw do
     collection do
       post "upload_image"
       post "upload_image_step3"
+      post "upload_image_from_angular"
     end
   end
 
