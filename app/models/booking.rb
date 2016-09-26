@@ -4,6 +4,7 @@ class Booking < ActiveRecord::Base
   # Relationships
   belongs_to :user
   belongs_to :promotion
+  has_many :images, as: :imageable, dependent: :destroy
   # scope
   scope :total_booked_promotion, ->(promotion_id){
     where(promotion_id: promotion_id, check_discount: true)

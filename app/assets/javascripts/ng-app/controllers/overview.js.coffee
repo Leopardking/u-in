@@ -47,6 +47,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.promotionhash = res
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
+      $scope.billing_detail = res.booking_detail
       $scope.city = res.promotion.city
       $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
@@ -113,9 +114,12 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         else if event.event_status == "sold_out"
           alert 'This promotion is sold out, please try any other time'
         else
-          $scope.end_date =  event.end._i
+          $scope.end_date = moment(event.end).format('YYYY-MM-DD h:mm:ss +0700')
           date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
+          $scope.start_date = moment(event.start).format('YYYY-MM-DD h:mm:ss +0700')
+          $scope.book_date  = moment(event.start).format('YYYY-MM-DD')
           $scope.date_completed = date_completed
+
           $('#modalTitle').html event.title
           $('#modalBody').html event.description
           $('#fullCalModal').modal()
@@ -411,8 +415,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           discount_price: $scope.discountPrice
           regular_price: $scope.regularPrice
         object =
-          book_date: moment().format()
-          start_time: moment().format()
+          book_date: $scope.book_date
+          start_time: $scope.start_date
           end_time: $scope.end_date
           promotion_id: $stateParams.activityId
           check_discount: true

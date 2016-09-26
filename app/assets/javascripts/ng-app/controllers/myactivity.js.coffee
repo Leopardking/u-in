@@ -12,12 +12,27 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
       $scope.bookmark		= res.bookmark.booking
       $scope.pastLife		= res.pastLife.booking
     $scope.slides = gon.default_slides
+    $scope.default_image_upload = gon.default_image_upload 
+    $scope.camera = gon.camera
 
     $scope.showModal = (id, name, image) ->
     	$scope.id = id
     	$scope.name = name
     	$scope.image = image
     	return angular.element('#reviewModal').modal('show')
+
+    $scope.uploadModal = (id, name, image) ->
+    	$scope.id = id
+    	$scope.name = name
+    	$scope.image = image
+    	return angular.element('#uploadModal').modal('show')
+
+    $scope.isHide = false
+    $scope.changeToUpload = ->
+    	$scope.isHide = true
+
+    $scope.hideToUpload = ->
+    	$scope.isHide = false
 
     $scope.removeBookmark = (id, event, index)->
 	    deleteUser = $window.confirm('Are you sure you want to remove this activity from your Bucket List')

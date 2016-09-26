@@ -31,6 +31,32 @@ end
 json.is_login user_signed_in? ? true : false
 json.user_id user_signed_in? ? current_user.id : false
 
+if current_user.billing_detail.present?
+  json.billing_detail do
+    json.id current_user.billing_detail.id
+    json.card_type current_user.billing_detail.card_type
+    json.ccard_last4 current_user.billing_detail.ccard_last4
+    json.stripe_profile_token current_user.billing_detail.stripe_profile_token
+    json.first_name current_user.billing_detail.first_name
+    json.last_name current_user.billing_detail.last_name
+    json.street_address current_user.billing_detail.street_address
+    json.city current_user.billing_detail.city
+    json.zipcode current_user.billing_detail.zipcode
+    json.state current_user.billing_detail.state
+    json.always_use current_user.billing_detail.always_use
+    json.user_id current_user.billing_detail.user_id
+    json.customer_id current_user.billing_detail.customer_id
+    json.same_as_company_address current_user.billing_detail.same_as_company_address
+    json.street_address_2 current_user.billing_detail.street_address_2
+    json.email current_user.billing_detail.email
+    json.phone current_user.billing_detail.phone
+    json.name_card current_user.billing_detail.name_card
+    json.exp_month current_user.billing_detail.exp_month
+    json.exp_year current_user.billing_detail.exp_year
+    json.security_code current_user.billing_detail.security_code
+  end
+end
+
 json.reviews @activity.reviews do |review|
   json.review_id review.id
   json.user_id review.user_id

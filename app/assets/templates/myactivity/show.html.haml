@@ -190,10 +190,14 @@
                                     %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
                                 .right-content-picture
-                                  = image_tag 'img-default.jpg'
-                                  = image_tag 'img-default.jpg'
-                                  = image_tag 'img-default.jpg'
-                                  = image_tag 'img-default.jpg'
+                                  %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"}
+                                    = image_tag 'img-default.jpg'
+                                  %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"}
+                                    = image_tag 'img-default.jpg'
+                                  %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"}
+                                    = image_tag 'img-default.jpg'
+                                  %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"}
+                                    = image_tag 'img-default.jpg'
                                   {{ event.time }}
 
                             %div{"ng-if" => "event.promotion.review.id == undefined"}
@@ -251,3 +255,59 @@
         .modal-footer
           %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
 
+
+
+#uploadModal.modal.fade{"aria-labelledby" => "uploadModal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Upload Your Photos!
+      %div{{"ng-show" => "isHide == false"}}
+        .modal-body
+          .col-md-12
+            .wrap-comment
+              %img{"ng-src" => "{{default_image_upload}}"}
+          .col-md-12
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2", "ng-click" => "changeToUpload()"}
+                ADD
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2"}
+                ADD
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2"}
+                ADD
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2"}
+                ADD
+        .modal-footer
+          %button.btn.btn-primary.btn-submit{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} Close
+
+      %div{{"ng-show" => "isHide == true"}}
+        %form{"ng-submit"=>"goToUploadImage()", :name => "checkoutForm"}
+          .modal-dialog
+            .modal-content
+              .modal-body
+                .row
+                  .col-xs-1.col-md-1.col-ms-1
+                  .col-xs-10.col-md-10.col-ms-10
+                    %p.text-center-element
+                      JPG or JPEG or PNG file that reprensents this activity
+                    .row.form-horizontal
+                      #hidden_value_image
+                      #hidden_image_no
+                      %input{:type=>"hidden", :value=>"", :id=>:avatar_upload_id}
+                      = image_tag("default_image.png", alt: "Responsive image", id: "image_promotion_large", class: "crop-image-promotion")
+                  .col-xs-1.col-md-1.col-ms-1
+              .modal-footer
+                %span#turnoff-upload-image.btn.btn-default{:type => "button", "ng-click" => "hideToUpload()"}
+                  Close
+                %span#turnoff-upload-image.btn.btn-default{:type => "submit"}
+                  Save

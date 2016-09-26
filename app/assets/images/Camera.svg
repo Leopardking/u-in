@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="496 337 173 125">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #5b5656;
+        stroke-width: 2px;
+        opacity: 0.675;
+      }
+
+      .cls-2, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #908d8d;
+      }
+
+      .cls-2 {
+        stroke-width: 5px;
+      }
+
+      .cls-3 {
+        fill: #908d8d;
+        stroke-width: 1px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="rectangle-1" class="cls-1" transform="translate(496 337)">
+    <rect class="cls-4" width="173" height="125" rx="9"/>
+    <rect class="cls-5" x="1" y="1" width="171" height="123" rx="8"/>
+  </g>
+  <path id="path-9" class="cls-2" d="M8059.986,6699.974s-.164,38.353,0,46.68-.784,11.449,5.236,11.661,81.63.107,88.985,0,9.755.8,9.742-6.459.17-47.6,0-51.881-2.256-6.835-6.347-6.918-9.724,0-9.724,0-5.576-13.629-9.6-16.146-49.464-3.472-53.406,0-8.578,16.146-8.578,16.146-7-.11-12.221,0S8059.986,6699.974,8059.986,6699.974Z" transform="translate(-7529 -6317)"/>
+  <g id="ellipse-11" class="cls-2" transform="translate(553 378)">
+    <circle class="cls-4" cx="29.5" cy="29.5" r="29.5"/>
+    <circle class="cls-5" cx="29.5" cy="29.5" r="27"/>
+  </g>
+  <path id="path-10" class="cls-2" d="M8095.557,6722.777c-.455,16.731,17.21,18.4,17.21,18.4" transform="translate(-7529 -6317)"/>
+  <path id="path-12" class="cls-3" d="M8059.881,6681.174c2.918,0,9.753-.082,12.231,0s2.386,5.963,0,6.011-9.5.039-12.231,0S8056.963,6681.172,8059.881,6681.174Z" transform="translate(-7529 -6317)"/>
+  <path id="ellipse-12" class="cls-3" d="M5,.5A4.5,4.5,0,1,1,.5,5,4.5,4.5,0,0,1,5,.5Z" transform="translate(617 383)"/>
+</svg>

@@ -104,6 +104,8 @@ class ApplicationController < ActionController::Base
   def set_current_user
     gon.current_user = current_user.nil? ? {current_user_id: nil} : { current_user_id: current_user.id }
     gon.default_slides = [ActionController::Base.helpers.image_url("banner-img-1.jpg"), ActionController::Base.helpers.image_url("banner-img-2.jpg"),ActionController::Base.helpers.image_url("banner-img-3.jpg")]
+    gon.default_image_upload = ActionController::Base.helpers.image_url("default_image.png")
+    gon.camera = ActionController::Base.helpers.image_url("Camera.svg")
   end
 
   protected

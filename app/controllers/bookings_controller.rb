@@ -176,7 +176,7 @@ class BookingsController < ApplicationController
       end
     elsif (params[:regular_price].present? || params[:discount_price].present? rescue false)
       session[:@info_booking] = booking_params
-      
+
       if params[:regular_price].present?
         session[:numbers_booked] = params[:regular_price]
         session[:promotion_booking] = params[:promotion_booking] || nil
