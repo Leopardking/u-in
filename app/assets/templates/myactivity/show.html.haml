@@ -185,9 +185,12 @@
                                       %i.fa.fa-twitter
                                     %li
                                       %i.fa.fa-linkedin
-                                .remove
-                                  %a{:href => "#", :class => "link-remove"}
-                                    %i.fa.fa-times.fa-lg.fa-custome
+                                
+                                  / %a{:href => "javascript:void(0)", :class => "link-remove", "ng-click" => "removePastLife(event.promotion.id, $event, $index)"}
+                                  /   %i.fa.fa-times.fa-lg.fa-custome
+                                  %button{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
+                                    .remove
+                                      %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
                                 .right-content-picture
                                   %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"}
@@ -221,6 +224,10 @@
                                       %i.fa.fa-twitter
                                     %li
                                       %i.fa.fa-linkedin
+                                .remove
+                                  %button{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
+                                    .remove
+                                      %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
                                 .right-content-picture
                                   = image_tag 'img-default.jpg'

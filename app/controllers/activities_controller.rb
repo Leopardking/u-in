@@ -4,7 +4,7 @@ class ActivitiesController < ApplicationController
   skip_before_action :authenticate_user!
   skip_before_action :load_activities, only: [:show]
   before_filter :load_current_user
-  before_filter :find_promotion, only: [:show, :bookmark, :remove_bookmark]
+  before_filter :find_promotion, only: [:show, :bookmark, :remove_bookmark, :remove_past_life]
 
   def index
     if params[:popular].eql?("true")
@@ -31,7 +31,7 @@ class ActivitiesController < ApplicationController
     @upcomings    = bookings.where('book_date > ?', date_now).group(:promotion_id)
     # need validate with past time
     @bookmark     = current_user.bookmarks
-    @myPastLife   = bookings.where('book_date <= ?', date_now).group(:promotion_id)
+    @myPastLife   = bookings.where('book_date <= ? AND listing_show= ?', date_now, true).group(:promotion_id)
   end
 
   def bookmark
@@ -51,6 +51,15 @@ class ActivitiesController < ApplicationController
     else
       render json: @bookmark, status: :unprocessable_entity
     end
+  end
+
+  def remove_past_life
+    promotion_id    = params[:id]
+    bookings        = current_user.bookings.where("promotion_id LIKE ?", promotion_id).update_all(listing_show: false)
+    date_now        = Time.now.strftime("%Y-%m-%d %H:%M")
+    @myPastLife     = current_user.bookings.where('book_date <= ? AND listing_show= ?', date_now, true).group(:promotion_id)
+    
+    render json: @myPastLife, status: 200
   end
 
   private

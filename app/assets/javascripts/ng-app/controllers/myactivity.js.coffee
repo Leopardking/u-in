@@ -35,11 +35,15 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     	$scope.isHide = false
 
     $scope.removeBookmark = (id, event, index)->
-	    deleteUser = $window.confirm('Are you sure you want to remove this activity from your Bucket List')
-	    if deleteUser
+	    deleteBookmark = $window.confirm('Are you sure you want to remove this activity from your Bucket List')
+	    if deleteBookmark
 	    	$http.get('/activities/'+ id + '/remove_bookmark').success (res) ->
 					$window.location.reload()
 	    return
+
+    $scope.removePastLife = (id, event, index)->
+    	$http.get('/activities/'+ id + '/remove_past_life').success (res) ->
+    		$window.location.reload()
 
     $scope.reviewParam = {}
     $scope.submitForm = ->

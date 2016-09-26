@@ -114,9 +114,9 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         else if event.event_status == "sold_out"
           alert 'This promotion is sold out, please try any other time'
         else
-          $scope.end_date = moment(event.end).format('YYYY-MM-DD h:mm:ss +0700')
+          $scope.end_date = moment(event.end).format('YYYY-MM-DD h:mm:ss Z')
           date_completed = moment(event.start).format('h:mm a on dddd, D MMMM YYYY')
-          $scope.start_date = moment(event.start).format('YYYY-MM-DD h:mm:ss +0700')
+          $scope.start_date = moment(event.start).format('YYYY-MM-DD h:mm:ss Z')
           $scope.book_date  = moment(event.start).format('YYYY-MM-DD')
           $scope.date_completed = date_completed
 

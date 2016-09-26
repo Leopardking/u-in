@@ -129,6 +129,7 @@ BookingApp::Application.routes.draw do
       resources :reviews
       post "bookmark"
       get "remove_bookmark"
+      get "remove_past_life"
     end
     collection do
       post "book"
