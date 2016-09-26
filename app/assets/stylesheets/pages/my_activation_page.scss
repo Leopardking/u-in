@@ -29,6 +29,10 @@
   padding-top: 33px
 }
 
+.panel-no-border {
+  border: transparent !important;
+}
+
 .wrapper-table-my-activity {
   .radio {
     position: absolute;
@@ -45,7 +49,7 @@
     width: 100%;
     float: left;
     border: solid 1px #7d7d7c;
-    margin-bottom: 2px;
+    margin-bottom: 15px;
     
     .left {
       width: 70%;
@@ -71,7 +75,7 @@
           width: 100%;
         }
         p {
-          line-height: 97px;
+          // line-height: 97px;
           @media(min-width: 769px) and (max-width:1199px){
             line-height: 20px;
           }
@@ -191,8 +195,12 @@
   }
 
 a.save-button {
-  color: #2ba9f6;
-  float: right;
+  color: grey;
+  display: block;
+  width: 100%;
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 a.save-button.disable{
@@ -209,6 +217,9 @@ a.save-button.disable{
   color: #2ba9f6;
   cursor: pointer;
   margin-right: 5px;
+  position: absolute;
+  z-index: 9;
+  bottom: -13px;
 }
 
 a.link-remove {
@@ -256,4 +267,36 @@ a.link-remove {
   margin: 8px 0;
   border-radius: 0;
   outline: none !important;
+}
+
+.button-custom {
+  position: absolute;
+  left: -32px;
+  bottom: -14px;
+  width: 0;
+  height: 0;
+  padding: 0;
+  i {
+    color: red;
+  }
+}
+
+.button-custom-bookmark {
+  position: absolute;
+  left: -3px;
+  bottom: 9px;
+  padding: 0;
+  i {
+    color: red;
+  }
+}
+.right-content-picture {
+  a {
+    float: left;
+    width: 50%;
+    padding-right:3px;
+    img {
+      width: 100%;
+    }
+  }
 }

@@ -51,7 +51,7 @@
 
           .col-md-9
             .row
-              .panel-box.panel-group.clearfix
+              .panel-box.panel-no-border.panel-group.clearfix
                 .panel.panel-default
                   .panel-heading
                     %h4.panel-title
@@ -99,7 +99,7 @@
                                           
 
 
-              .panel-box.panel-group.clearfix
+              .panel-box.panel-no-border.panel-group.clearfix
                 .panel.panel-default
                   .panel-heading
                     %h4.panel-title
@@ -113,8 +113,9 @@
                               %a{:href => "/#/activities/{{event.promotion.id}}"}
                                 %img{:src => "{{event.promotion.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
                               .remove
-                                %a{:href => "javascript:void(0)", :class => "link-remove", "ng-click" => "removeBookmark(event.promotion.id, $event, $index)"}
-                                  %i.fa.fa-times.fa-lg.fa-custome
+                                %button.button-custom-bookmark{"ng-really-message" => "Are you sure you want to remove this activity from your Bucket List", "ng-really-click" => "removeBookmark(event.promotion.id, $event, $index)"}
+                                  .remove
+                                    %i.fa.fa-times.fa-lg.fa-custome
                               .radio
                                 .wrapper-checkbox
                                   .checkbox-custom
@@ -154,7 +155,7 @@
                                     %li
                                       %i.fa.fa-linkedin
 
-              .panel-box.panel-group.clearfix
+              .panel-box.panel-no-border.panel-group.clearfix
                 .panel.panel-default
                   .panel-heading
                     %h4.panel-title
@@ -166,8 +167,11 @@
                           .col-md-12
                             %div{"ng-if" => "event.promotion.review.id != undefined"}
                               .col-md-8
-                                {{ event.promotion.name }}
-                                %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= event.promotion.review.rating", "read-only" => "true"}
+                                .row
+                                  .col-sm-6
+                                    {{ event.promotion.name }}
+                                  .col-sm-6.text-right
+                                    %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= event.promotion.review.rating", "read-only" => "true"}
                                 .wrap-comment
                                   %div{"ng-if"=>"event.promotion.review.id != undefined"}
 
@@ -185,10 +189,8 @@
                                       %i.fa.fa-twitter
                                     %li
                                       %i.fa.fa-linkedin
-                                
-                                  / %a{:href => "javascript:void(0)", :class => "link-remove", "ng-click" => "removePastLife(event.promotion.id, $event, $index)"}
-                                  /   %i.fa.fa-times.fa-lg.fa-custome
-                                  %button{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
+
+                                  %button.button-custom{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
                                     .remove
                                       %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
@@ -205,9 +207,12 @@
 
                             %div{"ng-if" => "event.promotion.review.id == undefined"}
                               .col-md-8
-                                {{ event.promotion.name }}
-                                %div{"ng-if"=>"event.promotion.review.id == undefined"}
-                                  %a{:class => "rate", "ng-click" => "showModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"} Rate This Activity!
+                                .row
+                                  .col-sm-6
+                                    {{ event.promotion.name }}
+                                  .col-sm-6.text-right
+                                    %div{"ng-if"=>"event.promotion.review.id == undefined"}
+                                      %a{:class => "rate", "ng-click" => "showModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"} Rate This Activity!
                                 .wrap-comment
                                   %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check"}
                                   %a{:href => "javascript:void(0)", class: "save-button disable"} Save
@@ -224,10 +229,9 @@
                                       %i.fa.fa-twitter
                                     %li
                                       %i.fa.fa-linkedin
-                                .remove
-                                  %button{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
-                                    .remove
-                                      %i.fa.fa-times.fa-lg.fa-custome
+                                %button.button-custom{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
+                                  .remove
+                                    %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
                                 .right-content-picture
                                   = image_tag 'img-default.jpg'
