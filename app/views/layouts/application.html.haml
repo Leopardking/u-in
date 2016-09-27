@@ -20,7 +20,8 @@
       #error_crud_here
       = yield
     .overlay-act.hide
-  = render "layouts/footer"
+  - unless controller_name == "registrations" || controller_name == "sessions"
+    = render "layouts/footer"
 
 %script
   var key=  "#{ENV['FACEBOOK_APP_ID']}"
