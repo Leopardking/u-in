@@ -235,10 +235,15 @@
                                     %i.fa.fa-times.fa-lg.fa-custome
                               .col-md-4
                                 .right-content-picture
-                                  = image_tag 'img-default.jpg'
-                                  = image_tag 'img-default.jpg'
-                                  = image_tag 'img-default.jpg'
-                                  = image_tag 'img-default.jpg'
+                                  %div
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[0].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[0].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[1].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[1].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[2].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[2].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[3].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[3].image}}"}}
                                   {{ event.time }}
 
 #reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
@@ -318,7 +323,7 @@
                         %button{:accept => "image/*", "ng-model" => "picFile", "ngf-select" => ""}
                           Select Picture
                         .cropArea{"ng-model" => "picFile", "ngf-drop" => "", "ngf-pattern" => "image/*"}
-                          %img-crop{:image => "picFile  | ngfDataUrl", "ng-init" => "croppedDataUrl=''", "result-image" => "croppedDataUrl"}
+                          %img-crop{:image => "picFile  | ngfDataUrl", "ng-init" => "croppedDataUrl=''", "result-image" => "croppedDataUrl", "area-type"=>"square"}
                         %div
                           %img{"ng-src" => "{{croppedDataUrl}}"}/
 
