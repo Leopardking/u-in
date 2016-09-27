@@ -47,7 +47,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       $scope.promotionhash = res
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
-      $scope.billing_detail = res.booking_detail
+      $scope.billing_detail = res.billing_detail
       $scope.city = res.promotion.city
       $scope.adress = res.promotion.street_address_1
       $scope.$broadcast("imageLoaded")
@@ -58,11 +58,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       # select box value on booking modal
       $scope.regularPrice = []
       $scope.discountPrice = []
-      $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
+      $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.discount_price * $scope.discountPrice)
       $scope.depositDue = $scope.totalPrice * 5 / 100
 
       $scope.updatePrice = ->
-        $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.price * $scope.discountPrice)
+        $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.discount_price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
         
         if $scope.discountPrice[0] != 'undefined'
@@ -90,6 +90,21 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       check_day = moment(event.start._i).format("YYYY-MM-DD h:mm:ss")
       today     = moment().format("YYYY-MM-DD h:mm:ss")
       
+      if $scope.billing_detail != undefined
+        $scope.firstName = $scope.billing_detail.first_name
+        $scope.lastName = $scope.billing_detail.last_name
+        $scope.street = $scope.billing_detail.street_address
+        $scope.street2 = $scope.billing_detail.street_address_2
+        $scope.city = $scope.billing_detail.city
+        $scope.state = $scope.billing_detail.state
+        $scope.zipCode = $scope.billing_detail.zipcode
+        $scope.mobile = $scope.billing_detail.phone
+        $scope.email = $scope.billing_detail.email
+        $scope.cardType = $scope.billing_detail.card_type
+        $scope.number = $scope.billing_detail.number
+        $scope.expiry           = $scope.billing_detail.exp_month.toString() + "/" + $scope.billing_detail.exp_year.toString()
+        $scope.cvc = $scope.billing_detail.security_code
+
       $scope.duration  = $scope.booking_detail.bookings_per_duration
       perDuration = $scope.duration - event.number_bookings_in_current_period
       maximumBoking = event.booking_promotion_avaiable
@@ -394,6 +409,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         obj_stripe_token    = result.id
         obj_numbers_booked  = ""
         amount              = ($scope.depositDue * 100)
+        exp_month           = $scope.expiry.substring(0,2)
+        exp_year            = $scope.expiry.substring(3,7)
         obj =
           same_as_company_address: 0
           first_name: $scope.firstName
@@ -408,8 +425,8 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           card_type: $scope.cardType
           name_card: ($scope.firstName + $scope.lastName)
           ccard_last4: $scope.number
-          exp_month: $scope.expiry
-          exp_year: $scope.expiry
+          exp_month: exp_month
+          exp_year: exp_year
           security_code: $scope.csv
           amount: $scope.depositDue
           discount_price: $scope.discountPrice
