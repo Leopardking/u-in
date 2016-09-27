@@ -53,6 +53,9 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     $scope.hideToUpload = ->
     	$scope.isHide = false
 
+    $scope.reloadContent = ->
+    	$window.location.reload()
+
     $scope.picFile = ''
     $scope.croppedDataUrl = ''
 

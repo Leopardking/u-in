@@ -306,7 +306,7 @@
                 ADD
         .modal-footer
           %button.btn.btn-primary.btn-submit{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-            %span{"aria-hidden" => "true"} Close
+            %span{"aria-hidden" => "true", "ng-click" => "reloadContent()"} Close
 
       %div{{"ng-show" => "isHide == true"}}
         %form{"ng-submit"=>"goToUploadImage()", :name => "checkoutForm"}
