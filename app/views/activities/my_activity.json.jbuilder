@@ -56,13 +56,7 @@ json.set! "pastLife" do
 		  	json.user_id booking.promotion.reviews.last.user_id rescue nil
 		  	json.content booking.promotion.reviews.last.content rescue nil
 		  	json.rating booking.promotion.reviews.last.rating rescue nil
-	  		if booking.promotion.reviews.last.images.empty?
-	  			json.images "0"
-	  		else
-	  			json.images booking.promotion.reviews.last.images do |image|
-	  				json.image image.image.url(:medium)
-	  			end
-	  		end
+
 		  end
 		end
 	end
