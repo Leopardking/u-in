@@ -39,25 +39,20 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     $scope.picFile = ''
     $scope.croppedDataUrl = ''
 
-    $scope.uploadFiles = (files, errFiles) ->
-      $scope.files = files
-      $scope.errFiles = errFiles
-      angular.forEach files, (file) ->
-        file.upload = Upload.upload(
-          url: '/images/upload_image_from_angular?&fromAngular=true'
-          data: image: {image: file, review_id: $scope.review_id})
-        file.upload.then ((response) ->
-          $timeout ->
-            file.result = response.data
-            return
+    $scope.uploadFiles = (dataUrl, name) ->
+      Upload.upload(
+        url: '/images/upload_image_from_angular?&fromAngular=true'
+        data: image: {image: dataUrl, review_id: $scope.review_id}).then ((response) ->
+        $timeout ->
+          $scope.result = response.data
           return
-        ), ((response) ->
-          if response.status > 0
-            $scope.errorMsg = response.status + ': ' + response.data
-          return
-        ), (evt) ->
-          file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total))
-          return
+        return
+      ), ((response) ->
+        if response.status > 0
+          $scope.errorMsg = response.status + ': ' + response.data
+        return
+      ), (evt) ->
+        $scope.progress = parseInt(100.0 * evt.loaded / evt.total)
         return
       return
 
