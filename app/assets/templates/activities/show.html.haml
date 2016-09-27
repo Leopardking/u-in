@@ -7,11 +7,11 @@
     %div{"ng-if"=>"promotionhash.images.length>= 1"}
       %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in promotionhash.images", :start => "slideshow.start($slider)"}
         %li
-          %img{"ng-src" => "{{s}}"}
+          %img{"ng-src" => "{{s}}", "err-src"=>"https://dummyimage.com/1265x600/000/fff&text=image+not+found"}
     %div{"ng-if"=>"promotionhash.images.length == 0"}
       %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
         %li
-          %img{"ng-src" => "{{s}}"}
+          %img{"ng-src" => "{{s}}", "err-src"=>"https://dummyimage.com/1265x600/000/fff&text=image+not+found"}
 
 .nav-wrap-tabs
   .container
