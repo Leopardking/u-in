@@ -136,6 +136,7 @@ BookingApp::Application.routes.draw do
       post "book"
       get "genre"
       get "my_activity"
+      get "load_image"
     end
   end
   resources :my_activities,only: [:destroy, :index] do

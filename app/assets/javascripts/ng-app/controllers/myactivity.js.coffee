@@ -1,3 +1,12 @@
+angular.module('uinApp').factory 'loadimageService', [
+  '$http'
+  ($http) ->
+    { get: (review_id) ->
+      $http.get('/activities/load_image', params:
+        review_id: review_id)
+    }
+]
+
 angular.module('uinApp').controller 'MyActivityCtrl', [
   '$scope'
   '$http'
@@ -5,7 +14,9 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
   'Notification'
   'Upload'
   '$timeout'
-  ($scope, $http, $window, Notification, Upload, $timeout) ->
+  'loadimageService'
+  '$q'
+  ($scope, $http, $window, Notification, Upload, $timeout, loadimageService, $q) ->
     $http.get('/activities/my_activity.json').success (res) ->
       $scope.upcoming 	= res.upcoming
       $scope.booking 		= res.upcoming.booking
@@ -18,6 +29,7 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     $scope.camera = gon.camera
 
     $scope.showModal = (id, name, image) ->
+    	debugger
     	$scope.id = id
     	$scope.name = name
     	$scope.image = image
@@ -27,7 +39,12 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     	$scope.review_id = id
     	$scope.name = name
     	$scope.image = image
+    	$scope.images_modal = []
     	return angular.element('#uploadModal').modal('show')
+			#loadimageService.get($scope.review_id).success (res, status) ->
+			#	$scope.images_modal = res
+			#	console.log res
+	    #	return angular.element('#uploadModal').modal('show')
 
     $scope.isHide = false
     $scope.changeToUpload = ->

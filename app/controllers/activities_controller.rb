@@ -62,6 +62,10 @@ class ActivitiesController < ApplicationController
     render json: @myPastLife, status: 200
   end
 
+  def load_image
+    @images = Review.find(params[:review_id]).images
+  end
+
   private
   def load_current_user
     if user_signed_in?

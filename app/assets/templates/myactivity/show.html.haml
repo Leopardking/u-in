@@ -206,6 +206,7 @@
                                       %img{{"ng-src" => "{{event.promotion.review.images[3].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[3].image}}"}}
                                   {{ event.time }}
 
+                            / when user no have review booking
                             %div{"ng-if" => "event.promotion.review.id == undefined"}
                               .col-md-8
                                 .row
@@ -288,7 +289,7 @@
               %img{"ng-src" => "{{default_image_upload}}"}
           .col-md-12
             .col-md-4
-              %img{"ng-src" => "{{camera}}"}
+              %img{"ng-src" => "{{images_modal[0] == undefined && camera || images_modal[0] }}"}
               %span.btn.green-button{"data-default" => "false", "data-image" => "image-2", "ng-click" => "changeToUpload()"}
                 ADD
             .col-md-4
