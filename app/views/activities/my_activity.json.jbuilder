@@ -38,25 +38,27 @@ json.set! "bookmark" do
 end
 
 json.set! "pastLife" do
-  json.booking @myPastLife do |bookmark|
-	  json.id bookmark.id
-	  json.user_id bookmark.user_id
-	  json.promotion_id bookmark.promotion_id
-	  json.start_time bookmark.promotion.start_time
-		json.time bookmark.promotion.start_date.strftime("%B %d, %Y")
-	  json.end_time bookmark.promotion.end_date
+  json.booking @myPastLife do |booking|
+	  json.id booking.id
+	  json.user_id booking.user_id
+	  json.promotion_id booking.promotion_id
+	  json.start_time booking.promotion.start_time
+		json.time booking.promotion.start_date.strftime("%B %d, %Y")
+	  json.end_time booking.promotion.end_date
 		json.set! "promotion" do
-		  json.id bookmark.promotion.id
-		  json.name bookmark.promotion.name
-		  json.discount_percent bookmark.promotion.discount_percent
-		  json.discount_price bookmark.promotion.discount_price
+		  json.id booking.promotion.id
+		  json.name booking.promotion.name
+		  json.discount_percent booking.promotion.discount_percent
+		  json.discount_price booking.promotion.discount_price
 		  json.set! "review" do
-		  	json.id bookmark.promotion.reviews.last.id rescue nil
-		  	json.promotion_id bookmark.promotion.reviews.last.promotion_id rescue nil
-		  	json.user_id bookmark.promotion.reviews.last.user_id rescue nil
-		  	json.content bookmark.promotion.reviews.last.content rescue nil
-		  	json.rating bookmark.promotion.reviews.last.rating rescue nil
-		  	json.image bookmark.promotion.images.first.image.url(:medium) rescue json.image "0"
+		  	json.id booking.promotion.reviews.last.id rescue nil
+		  	json.promotion_id booking.promotion.reviews.last.promotion_id rescue nil
+		  	json.user_id booking.promotion.reviews.last.user_id rescue nil
+		  	json.content booking.promotion.reviews.last.content rescue nil
+		  	json.rating booking.promotion.reviews.last.rating rescue nil
+		  	json.images booking.promotion.reviews.last.images do |image|
+		  		json.image image.image.url(:medium)
+		  	end
 		  end
 		end
 	end

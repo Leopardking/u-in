@@ -24,7 +24,7 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     	return angular.element('#reviewModal').modal('show')
 
     $scope.uploadModal = (id, name, image) ->
-    	$scope.id = id
+    	$scope.review_id = id
     	$scope.name = name
     	$scope.image = image
     	return angular.element('#uploadModal').modal('show')
@@ -39,22 +39,29 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     $scope.picFile = ''
     $scope.croppedDataUrl = ''
 
-    $scope.upload = (dataUrl) ->
-      Upload.upload(
-        url: '/images/upload_image_step3?&fromAngular=true'
-        data: image: image: Upload.dataUrltoBlob(dataUrl)).then ((response) ->
-        $timeout ->
-          $scope.result = response.data
+    $scope.uploadFiles = (files, errFiles) ->
+      $scope.files = files
+      $scope.errFiles = errFiles
+      angular.forEach files, (file) ->
+        file.upload = Upload.upload(
+          url: '/images/upload_image_from_angular?&fromAngular=true'
+          data: image: {image: file, review_id: $scope.review_id})
+        file.upload.then ((response) ->
+          $timeout ->
+            file.result = response.data
+            return
+          return
+        ), ((response) ->
+          if response.status > 0
+            $scope.errorMsg = response.status + ': ' + response.data
+          return
+        ), (evt) ->
+          file.progress = Math.min(100, parseInt(100.0 * evt.loaded / evt.total))
           return
         return
-      ), ((response) ->
-        if response.status > 0
-          $scope.errorMsg = response.status + ': ' + response.data
-        return
-      ), (evt) ->
-        $scope.progress = parseInt(100.0 * evt.loaded / evt.total)
-        return
       return
+
+    return
 
     $scope.removeBookmark = (id, event, index)->
 	    deleteBookmark = $window.confirm('Are you sure you want to remove this activity from your Bucket List')

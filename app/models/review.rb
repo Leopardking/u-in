@@ -4,6 +4,7 @@ class Review < ActiveRecord::Base
 	validates :content, presence: true
 	after_create :create_ratyrate
 	ratyrate_rateable "rating"
+	has_many :images, as: :imageable, dependent: :destroy
 
 	# for more doc you can see: https://github.com/wazery/ratyrate/blob/master/lib/ratyrate/model.rb#L5
 	def create_ratyrate
