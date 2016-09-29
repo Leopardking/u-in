@@ -18,8 +18,6 @@ app = angular.module('uinApp', [
   'ngImgCrop'
 ])
 
-#Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
-
 app.service 'sessionService', [ '$window', ($window)->
 
   factory =

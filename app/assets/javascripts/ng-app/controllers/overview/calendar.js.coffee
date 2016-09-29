@@ -22,38 +22,6 @@ angular.module('uinApp').controller 'calendarController', [
   ($scope, $sce, $http, $stateParams, reviewService, paymentService, sessionService, uiCalendarConfig, $compile, $window, Notification) ->
     # key stripe for test
     $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
-
-    $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
-      $scope.promo = res
-      $scope.reviews = res.reviews
-      $scope.booking_detail = res.booking_detail
-      $scope.billing_detail = res.billing_detail
-      $scope.city = res.promotion.city
-      $scope.adress = res.promotion.street_address_1
-
-      # default slides on promotion show if unll      
-      $scope.slides = gon.default_slides
-
-      # select box value on booking modal
-      $scope.regularPrice = []
-      $scope.discountPrice = []
-      $scope.totalPrice = ($scope.promo.promotion.price * $scope.regularPrice) + ($scope.promo.promotion.discount_price * $scope.discountPrice)
-      $scope.depositDue = $scope.totalPrice * 5 / 100
-
-      $scope.updatePrice = ->
-        $scope.totalPrice = ($scope.promo.promotion.price * $scope.regularPrice) + ($scope.promo.promotion.discount_price * $scope.discountPrice)
-        $scope.depositDue = $scope.totalPrice * 5 / 100
-        
-        if $scope.discountPrice[0] != 'undefined'
-          $scope.discountPrice == 0
-        if $scope.regularPrice[0] != 'undefined'
-          $scope.regularPrice == 0
-        if ($scope.discountPrice + $scope.regularPrice) > $scope.duration
-          $scope.validBooking = "wrong"
-        else
-          $scope.validBooking = "valid" 
-
-
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       check_day = moment(event.start._i).format("YYYY-MM-DD h:mm:ss")
       today     = moment().format("YYYY-MM-DD h:mm:ss")
