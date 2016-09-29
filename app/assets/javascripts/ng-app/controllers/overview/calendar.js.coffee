@@ -1,12 +1,3 @@
-angular.module('uinApp').factory 'reviewService', [
-  '$http'
-  '$stateParams'
-  ($http, $stateParams) ->
-    { sending: (obj) ->
-      $http.post('/activities/'+ $stateParams.activityId + '/reviews', review: obj)
-    }
-]
-
 angular.module('uinApp').factory 'paymentService', [
   '$http'
   '$stateParams'
@@ -16,41 +7,29 @@ angular.module('uinApp').factory 'paymentService', [
     }
 ]
 
-angular.module('uinApp').factory 'bookingService', [
-  '$http'
-  '$stateParams'
-  ($http, $stateParams) ->
-    { booking: (check_status, numbers_booked, object) ->
-      $http.post('/bookings/create_new_booking', check_status: status, numbers_booked: numbers_booked, booking: object)
-      ignoreLoadingBar: true
-    }
-]
-
-angular.module('uinApp').controller 'overviewsCtrl', [
+angular.module('uinApp').controller 'calendarController', [
   '$scope'
   '$sce'
   '$http'
   '$stateParams'
   'reviewService'
   'paymentService'
-  'bookingService'
   'sessionService'
   'uiCalendarConfig'
   '$compile'
   '$window'
   'Notification'
-  ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window, Notification) ->
+  ($scope, $sce, $http, $stateParams, reviewService, paymentService, sessionService, uiCalendarConfig, $compile, $window, Notification) ->
     # key stripe for test
     $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
 
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
-      $scope.promotionhash = res
+      $scope.promo = res
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
       $scope.billing_detail = res.billing_detail
       $scope.city = res.promotion.city
       $scope.adress = res.promotion.street_address_1
-      $scope.$broadcast("imageLoaded")
 
       # default slides on promotion show if unll      
       $scope.slides = gon.default_slides
@@ -58,11 +37,11 @@ angular.module('uinApp').controller 'overviewsCtrl', [
       # select box value on booking modal
       $scope.regularPrice = []
       $scope.discountPrice = []
-      $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.discount_price * $scope.discountPrice)
+      $scope.totalPrice = ($scope.promo.promotion.price * $scope.regularPrice) + ($scope.promo.promotion.discount_price * $scope.discountPrice)
       $scope.depositDue = $scope.totalPrice * 5 / 100
 
       $scope.updatePrice = ->
-        $scope.totalPrice = ($scope.promotionhash.promotion.price * $scope.regularPrice) + ($scope.promotionhash.promotion.discount_price * $scope.discountPrice)
+        $scope.totalPrice = ($scope.promo.promotion.price * $scope.regularPrice) + ($scope.promo.promotion.discount_price * $scope.discountPrice)
         $scope.depositDue = $scope.totalPrice * 5 / 100
         
         if $scope.discountPrice[0] != 'undefined'
@@ -74,17 +53,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         else
           $scope.validBooking = "valid" 
 
-      $scope.regionArray = [{code: "AK", name: "AK"},{code: "AL", name: "AL"},{code: "AR", name: "AR"},{code: "AZ", name: "AZ"},{code: "CA", name: "CA"},{code: "CO", name: "CO"},{code: "CT", name: "CT"},{code: "DE", name: "DE"},{code: "FL", name: "FL"},{code: "GA", name: "GA"},{code: "HI", name: "HI"},{code: "IA", name: "IA"},{code: "ID", name: "ID"},{code: "IL", name: "IL"},{code: "IN", name: "IN"},{code: "KS", name: "KS"},{code: "KY", name: "KY"},{code: "LA", name: "LA"},{code: "MA", name: "MA"},{code: "MD", name: "MD"},{code: "ME", name: "ME"},{code: "MI", name: "MI"},{code: "MN", name: "MN"},{code: "MO", name: "MO"},{code: "MS", name: "MS"},{code: "MT", name: "MT"},{code: "NC", name: "NC"},{code: "ND", name: "ND"},{code: "NE", name: "NE"},{code: "NH", name: "NH"},{code: "NJ", name: "NJ"},{code: "NM", name: "NM"},{code: "NV", name: "NV"},{code: "NY", name: "NY"},{code: "OH", name: "OH"},{code: "OK", name: "OK"},{code: "OR", name: "OR"},{code: "PA", name: "PA"},{code: "RI", name: "RI"},{code: "SC", name: "SC"},{code: "SD", name: "SD"},{code: "TN", name: "TN"},{code: "TX", name: "TX"},{code: "UT", name: "UT"},{code: "VA", name: "VA"},{code: "VT", name: "VT"},{code: "WA", name: "WA"},{code: "WI", name: "WI"},{code: "WV", name: "WV"},{code: "WY", name: "WY"}]
-
-      # Add maps
-      # FIX issue SCE docs on https://docs.angularjs.org/api/ng/service/$sce
-      # http://stackoverflow.com/questions/21292114/external-resource-not-being-loaded-by-angularjs
-      $scope.trustSrc = (src) ->
-        $sce.trustAsResourceUrl src
-
-      $scope.maps =
-        src: 'https://www.google.com/maps/embed/v1/place?q='+$scope.city+' '+$scope.adress+'&key=AIzaSyAsBv0-tdD2vFyxBONB_wWZGr8A0SSs1Us'
-      return
 
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       check_day = moment(event.start._i).format("YYYY-MM-DD h:mm:ss")
@@ -174,7 +142,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
               </div>
               <div class='booking-space'>
                 <p>5 SPACES</p>
-                <p> $ "+$scope.promotionhash.promotion.price+"</p>
+                <p> $ "+$scope.promo.promotion.price+"</p>
               </div>
             <div class='booking-button-regular'>
               <p>I'm In! <br> Book it!</p>
@@ -219,7 +187,7 @@ angular.module('uinApp').controller 'overviewsCtrl', [
               </div>
               <div class='booking-space'>
                 <p>"+ (event.booking_without_promotion_total - event.number_bookings_in_current_period)+" SPACES</p>
-                <p> $ "+$scope.promotionhash.promotion.price+"</p>
+                <p> $ "+$scope.promo.promotion.price+"</p>
               </div>
             <div class='booking-button'>
               <p>I'm In! <br> Book it!</p>
@@ -396,7 +364,6 @@ angular.module('uinApp').controller 'overviewsCtrl', [
         last_name: $scope.lastName
         email: $scope.email
         phone: $scope.mobile
-      # bookingService.booking(check_status, numbers_booked, object).success (res, status) ->
       return
 
     # for stripe integration
@@ -450,9 +417,5 @@ angular.module('uinApp').controller 'overviewsCtrl', [
           $scope.isHideAmount == false
           $scope.isHideUser == true
           Notification.success('Congratulation You already book this Event')
-      return
-
-    $scope.showCalendarTwo = ->
-      angular.element('.calendar-second').fullCalendar 'today'
       return
 ]

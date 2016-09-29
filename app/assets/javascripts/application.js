@@ -44,8 +44,8 @@
 //= require bootstrap-select
 //= require jquery.flexslider
 //= require angular
-//= require angular-ui-router
 //= require angular-rails-templates
+//= require angular-ui-router
 //= require angular-ui-select
 //= require ng-app/app
 //= require_tree ./ng-app/controllers

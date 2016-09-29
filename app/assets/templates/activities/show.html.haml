@@ -4,11 +4,11 @@
       .container
         .row
           .col-md-12.col-lg-12
-    %div{"ng-if"=>"promotionhash.images.length>= 1"}
-      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in promotionhash.images", :start => "slideshow.start($slider)"}
+    %div{"ng-if"=>"promo.images.length>= 1"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in promo.images", :start => "slideshow.start($slider)"}
         %li
           %img{"ng-src" => "{{s}}", "err-src"=>"https://dummyimage.com/1265x600/000/fff&text=image+not+found"}
-    %div{"ng-if"=>"promotionhash.images.length == 0"}
+    %div{"ng-if"=>"promo.images.length == 0"}
       %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
         %li
           %img{"ng-src" => "{{s}}", "err-src"=>"https://dummyimage.com/1265x600/000/fff&text=image+not+found"}
@@ -29,7 +29,7 @@
     .container
       .row
         .col-md-12.col-lg-12
-          %h1.text-center {{promotionhash.promotion.name}}
+          %h1.text-center {{promo.promotion.name}}
           .col-md-3.hidden-xs
             .form-group
               %div.w3-card-12
@@ -107,19 +107,19 @@
                       .ratings.rate-center
                         Spaces
                     .bottom-info-review
-                      {{promotionhash.space}}
+                      {{promo.space}}
                   .col-md-2.pad-left-5.pad-right-5
                     .top-info-review
                       .ratings.rate-center
                         Discount
                     .bottom-info-review
-                      {{promotionhash.promotion.discount_percent}}%
+                      {{promo.promotion.discount_percent}}%
                   .col-md-2.pad-left-5.pad-right-0
                     .top-info-review
                       .ratings.rate-center
                         Price From
                     .bottom-info-review
-                      ${{promotionhash.promotion.discount_price}}
+                      ${{promo.promotion.discount_price}}
 
             .panel-box.panel-group.clearfix
               .panel.panel-default
@@ -129,7 +129,7 @@
                       %i.fa.fa-minus-circle
                       Description
                 #desc.panel-collapse.collapse.in
-                  .panel-body {{promotionhash.promotion.description}}
+                  .panel-body {{promo.promotion.description}}
 
             .panel-box.panel-group
               .panel.panel-default
@@ -168,7 +168,7 @@
                   .panel-body
                     .row.row-eq-height
                       .col-sm-6
-                        {{promotionhash.promotion.bring_item}}
+                        {{promo.promotion.bring_item}}
                       .col-sm-6
                         .div-deals
                           %p
@@ -194,10 +194,10 @@
                 #location.panel-collapse.collapse.in
                   .panel-body
                     .col-md-4
-                      %p {{promotionhash.promotion.street_address_1}}
-                      %p {{promotionhash.promotion.street_address_2}}
-                      %p {{promotionhash.promotion.city}}
-                      %p {{promotionhash.promotion.state}}
+                      %p {{promo.promotion.street_address_1}}
+                      %p {{promo.promotion.street_address_2}}
+                      %p {{promo.promotion.city}}
+                      %p {{promo.promotion.state}}
                     .col-md-8
                       %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", "ng-src" => "{{trustSrc(maps.src)}}", :type => "text/html", :width => "100%"}
 
@@ -208,7 +208,7 @@
                     %a{"data-toggle" => "collapse", :href => "!#book"}
                       %i.fa.fa-minus-circle
                       I'm In! Book It!
-                #book.panel-collapse.collapse.in
+                #book.panel-collapse.collapse.in{"ng-controller"=> "calendarController"}
                   .panel-body
                     .col-md-12.nopadding
                       %p.input-group
@@ -219,12 +219,11 @@
                       %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview"}
 
 
-
   #reveiw.tab-pane
     .container
       .row
-        .col-md-12.col-lg-12
-          %h3.text-center {{promotionhash.promotion.name}}
+        .col-md-12.col-lg-12{"ng-controller"=>"reviewController"}
+          %h3.text-center {{promo.promotion.name}}
           %h3.text-center {{name}}
           %div{"ng-if"=>"reviews == 0"}
             %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
@@ -249,7 +248,7 @@
     .container
       .row
         .col-md-12.col-lg-12
-          %h3.text-center {{promotionhash.promotion.name}}
+          %h3.text-center {{promo.promotion.name}}
           %p.input-group
             %span.input-group-btn
               %p.select-date SELECT DATE
@@ -264,21 +263,21 @@
         %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
           %span{"aria-hidden" => "true"} ×
         %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
-      %div{{"ng-if" => "promotionhash.is_login == false"}}
+      %div{{"ng-if" => "promo.is_login == false"}}
         #modalBody.modal-body.wrap-type-card
           .col-md-12
             %p Please login, at 
             %a{:href => "/auth/sign_in", :style => "color: #999"} Login
-      %div{{"ng-if" => "promotionhash.is_login == true"}}
+      %div{{"ng-if" => "promo.is_login == true"}}
         %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
           .modal-body
             .wrap-content-rate
               .col-md-4
-                / %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+                / %img{:height => "42", :src => "{{promo.image}}", :width => "42"}
                 .img-rating
-                  %img{"ng-src" => "{{promotionhash.image}}", "on-error-src" => "http://google.com/favicon.ico"}
+                  %img{"ng-src" => "{{promo.image}}", "on-error-src" => "http://google.com/favicon.ico"}
               .col-md-8
-                %h3 {{promotionhash.promotion.name}}
+                %h3 {{promo.promotion.name}}
                 %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
             .col-md-12
               .wrap-comment
@@ -301,8 +300,8 @@
           %button.close{"data-dismiss" => "modal", :type => "button"}
             %span{"aria-hidden" => "true"} ×
             %span.sr-only close
-        %h3.text-center {{promotionhash.promotion.name}}
-      %div{{"ng-show" => "promotionhash.is_login == true"}}
+        %h3.text-center {{promo.promotion.name}}
+      %div{{"ng-show" => "promo.is_login == true"}}
         %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
           #container-modal{{"ng-hide" => "isHideAmount == true"}}
             #modalBody.modal-body
@@ -314,13 +313,13 @@
 
               .col-md-12.col-xs-12.regular-price
                 .col-md-10.col-xs-8
-                  %p Regular Price $ {{promotionhash.promotion.price}}
+                  %p Regular Price $ {{promo.promotion.price}}
                 .col-md-2.col-xs-4
                   %select#regularPrice{:name => "regularPrice", "ng-model" => "regularPrice", "ng-options" => "option for option in perDuration track by option", "ng-change"=> "updatePrice()"}
 
               .col-md-12.col-xs-12.discount-price
                 .col-md-10.col-xs-8
-                  %p Discount Price $ {{promotionhash.promotion.discount_price}}
+                  %p Discount Price $ {{promo.promotion.discount_price}}
                 .col-md-2.col-xs-4
                   %select#discountPrice{:name => "discountPrice", "ng-model" => "discountPrice", "ng-change"=> "updatePrice()", "ng-options" => "option for option in maximumBoking track by option"}
 
@@ -419,7 +418,7 @@
             .modal-footer.footer-card
               %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
               %p Deposit
-      %div{{"ng-show" => "promotionhash.is_login == false"}}
+      %div{{"ng-show" => "promo.is_login == false"}}
         #modalBody.modal-body.wrap-type-card
           .col-md-12
             %p Please login, at 

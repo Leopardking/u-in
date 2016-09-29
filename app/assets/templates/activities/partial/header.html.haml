@@ -1,0 +1,18 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+            %h1
+              are you in
+              %span ?
+    %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+      %li
+        .wrap-img-slider
+          %img{"ng-src" => "{{s}}"}
+    .button-bottom-header
+      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
+      .arrow-bottom-header
+        %a.first.scroll-down{:href => "javascript:void(0)"}
+          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
