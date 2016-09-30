@@ -50,6 +50,7 @@
 //= require ng-app/app
 //= require_tree ./ng-app/controllers
 //= require_tree ./ng-app/directives
+//= require_tree ./ng-app/services
 //= require_tree ../templates
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
@@ -67,3 +68,4 @@
 //= require angular-ui-notification.js
 //= require ng-file-upload
 //= require ngImgCrop
+//= require angular-resource

@@ -1,4 +1,5 @@
 app = angular.module('uinApp', [
+  'ngResource'
   'ui.router'
   'templates'
   'ui.select'
@@ -40,15 +41,15 @@ app.config([
     .state('home',
       url: '/'
       templateUrl: 'activities/index.html'
-      controller: 'ActivitiesCtrl')
+      controller: 'ActivitiesController')
     .state('myActivities',
       url: '/my-activity'
       templateUrl: 'myactivity/show.html'
-      controller: 'MyActivityCtrl')
+      controller: 'MyActivityController')
     .state('overview',
       url: '/activities/:activityId'
       templateUrl: 'activities/show.html'
-      controller: 'overviewsCtrl')
+      controller: 'overviewsController')
     # default fall back route
     $urlRouterProvider.otherwise '/'
     # enable HTML5 Mode for SEO

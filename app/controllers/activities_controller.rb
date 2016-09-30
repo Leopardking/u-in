@@ -64,6 +64,9 @@ class ActivitiesController < ApplicationController
 
   def load_image
     @images = Review.find(params[:review_id]).images
+    respond_to do |format|
+       format.json
+    end    
   end
 
   private

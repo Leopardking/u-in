@@ -17,7 +17,7 @@ angular.module('uinApp').factory 'bookingService', [
     }
 ]
 
-angular.module('uinApp').controller 'overviewsCtrl', [
+angular.module('uinApp').controller 'overviewsController', [
   '$scope'
   '$sce'
   '$http'

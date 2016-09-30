@@ -1,22 +1,4 @@
-angular.module('uinApp').factory 'loadimageService', [
-  '$http'
-  ($http) ->
-    { get: (review_id) ->
-      $http.get('/activities/load_image', params:
-        review_id: review_id)
-    }
-]
-
-angular.module('uinApp').controller 'MyActivityCtrl', [
-  '$scope'
-  '$http'
-  '$window'
-  'Notification'
-  'Upload'
-  '$timeout'
-  'loadimageService'
-  '$q'
-  ($scope, $http, $window, Notification, Upload, $timeout, loadimageService, $q) ->
+angular.module('uinApp').controller 'MyActivityController', ($scope, $http, $window, Notification, Upload, $timeout, loadImageService, $q) ->
     $http.get('/activities/my_activity.json').success (res) ->
       $scope.upcoming 	= res.upcoming
       $scope.booking 		= res.upcoming.booking
@@ -29,18 +11,21 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
     $scope.camera = gon.camera
 
     $scope.showModal = (id, name, image) ->
-    	debugger
     	$scope.id = id
     	$scope.name = name
     	$scope.image = image
     	return angular.element('#reviewModal').modal('show')
 
     $scope.uploadModal = (id, name, image) ->
-    	$scope.review_id = id
-    	$scope.name = name
-    	$scope.image = image
-    	$scope.images_modal = []
-    	return angular.element('#uploadModal').modal('show')
+      $scope.review_id = id
+      $scope.name = name
+      $scope.image = image
+      loadImageService.getResponse($scope.review_id).then (rest) ->
+        $scope.images_modal = rest
+        console.log $scope.images_modal = rest
+
+      #return angular.element('#uploadModal').modal('show')
+      #$scope.images_modal = loadImageService.get($scope.review_id)
 			#loadimageService.get($scope.review_id).success (res, status) ->
 			#	$scope.images_modal = res
 			#	console.log res
@@ -100,4 +85,3 @@ angular.module('uinApp').controller 'MyActivityCtrl', [
         $window.location.reload()
       	Notification.success('Thanks for rate this activity')
  				return
-]

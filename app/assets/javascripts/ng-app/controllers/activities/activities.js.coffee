@@ -15,7 +15,7 @@ angular.module('uinApp').factory 'bookmarkService', [
     }
 ]
 
-angular.module('uinApp').controller 'ActivitiesCtrl', [
+angular.module('uinApp').controller 'ActivitiesController', [
   '$scope'
   '$http'
   'activitiesService'
