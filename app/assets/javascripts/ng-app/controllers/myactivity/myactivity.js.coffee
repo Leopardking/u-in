@@ -23,7 +23,7 @@ angular.module('uinApp').controller 'MyActivityController', ($scope, $http, $win
       loadImageService.getResponse($scope.review_id).then (rest) ->
         $scope.images_modal = rest
         console.log $scope.images_modal = rest
-
+        return angular.element('#uploadModal').modal('show')
       #return angular.element('#uploadModal').modal('show')
       #$scope.images_modal = loadImageService.get($scope.review_id)
 			#loadimageService.get($scope.review_id).success (res, status) ->

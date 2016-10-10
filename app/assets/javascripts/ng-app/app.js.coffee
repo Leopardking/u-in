@@ -40,15 +40,15 @@ app.config([
     $stateProvider
     .state('home',
       url: '/'
-      templateUrl: 'activities/index.html'
+      templateUrl: 'ng-app/templates/activities/index.html'
       controller: 'ActivitiesController')
     .state('myActivities',
       url: '/my-activity'
-      templateUrl: 'myactivity/show.html'
+      templateUrl: 'ng-app/templates/myactivity/show.html'
       controller: 'MyActivityController')
     .state('overview',
       url: '/activities/:activityId'
-      templateUrl: 'activities/show.html'
+      templateUrl: 'ng-app/templates/activities/show.html'
       controller: 'overviewsController')
     # default fall back route
     $urlRouterProvider.otherwise '/'

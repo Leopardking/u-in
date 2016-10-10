@@ -51,7 +51,7 @@
 //= require_tree ./ng-app/controllers
 //= require_tree ./ng-app/directives
 //= require_tree ./ng-app/services
-//= require_tree ../templates
+//= require_tree ./ng-app/templates
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
 //= require ng-rails-csrf
