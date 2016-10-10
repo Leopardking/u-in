@@ -35,9 +35,9 @@ class ActivitiesController < ApplicationController
   end
 
   def bookmark
-    @bookmark = @activity.bookmarks.build(user_id: current_user.id)
-    if @bookmark.save
-      render json: @bookmark, status: 200
+    if current_user.present?
+      @bookmark = @activity.bookmarks.build(user_id: current_user.id)
+      render json: @bookmark, status: 200 if @bookmark.save
     else
       render json: @bookmark, status: :unprocessable_entity
     end
