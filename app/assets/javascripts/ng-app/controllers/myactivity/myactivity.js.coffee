@@ -1,4 +1,13 @@
-angular.module('uinApp').controller 'MyActivityController', ($scope, $http, $window, Notification, Upload, $timeout, loadImageService, $q) ->
+angular.module('uinApp').controller 'MyActivityController', [
+  '$scope'
+  '$http'
+  '$window'
+  'Notification'
+  'Upload'
+  '$timeout'
+  'loadImageService'
+  '$q'
+  ($scope, $http, $window, Notification, Upload, $timeout, loadImageService, $q) ->
     $http.get('/activities/my_activity.json').success (res) ->
       $scope.upcoming 	= res.upcoming
       $scope.booking 		= res.upcoming.booking
@@ -85,3 +94,4 @@ angular.module('uinApp').controller 'MyActivityController', ($scope, $http, $win
         $window.location.reload()
       	Notification.success('Thanks for rate this activity')
  				return
+]
