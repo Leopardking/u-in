@@ -194,10 +194,10 @@ class BookingsController < ApplicationController
       end
 
       if params[:billing_detail][:discount_price].present?
-        @numbers_booked = booking_params[:discount_price]
+        @numbers_booked = params[:billing_detail][:discount_price]
         format_booking_params[:promotion_price] = params[:promotion_price].to_s
         format_booking_params[:paid_price] = params[:billing_detail][:amount].to_s
-        booking_params[:check_discount] = true
+        format_booking_params[:check_discount] = true
 
         Booking.transaction do
           @numbers_booked.times.each do

@@ -7,16 +7,6 @@ angular.module('uinApp').factory 'paymentService', [
     }
 ]
 
-angular.module('uinApp').factory 'bookingService', [
-  '$http'
-  '$stateParams'
-  ($http, $stateParams) ->
-    { booking: (check_status, numbers_booked, object) ->
-      $http.post('/bookings/create_new_booking', check_status: status, numbers_booked: numbers_booked, booking: object)
-      ignoreLoadingBar: true
-    }
-]
-
 angular.module('uinApp').controller 'overviewsController', [
   '$scope'
   '$sce'
@@ -417,7 +407,7 @@ angular.module('uinApp').controller 'overviewsController', [
           ccard_last4: $scope.number
           exp_month: exp_month
           exp_year: exp_year
-          security_code: $scope.csv
+          security_code: $scope.cvc
           amount: $scope.depositDue
           discount_price: $scope.discountPrice
           regular_price: $scope.regularPrice
@@ -435,6 +425,8 @@ angular.module('uinApp').controller 'overviewsController', [
           phone: $scope.mobile
         discount_price  = $scope.discountPrice
         regular_price   = $scope.regularPrice
+        if $scope.billing_detail == undefined
+          bookingService.createBillingDetail(obj, object)
         paymentService.chargeSripe(result.id, "", "", obj, object, discount_price, regular_price).success (res, status) ->
           $("#fullCalModal").modal('hide')
           $scope.isHideAmount == false

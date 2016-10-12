@@ -134,6 +134,7 @@ BookingApp::Application.routes.draw do
     end
     collection do
       post "book"
+      get "build_information_user"
       get "genre"
       get "my_activity"
       get "load_image"
