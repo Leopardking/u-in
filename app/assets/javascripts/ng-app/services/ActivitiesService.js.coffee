@@ -1,4 +1,4 @@
-angular.module('uinApp').factory 'activitiesServiceTEST', ($q, $http) ->
+angular.module('uinApp').factory 'activitiesService', ($q, $http) ->
   obj = {}
   obj.fetch = (obj, page, statePopular) ->
     temp = {}
