@@ -11,7 +11,7 @@ angular.module('uinApp').factory 'loadImageService', [
         defer.resolve data
         return
       ).error (result, status, header, config) ->
-        deferred.reject result
+        defer.reject result
         return
       defer.promise
     obj
