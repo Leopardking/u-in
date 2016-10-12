@@ -31,7 +31,7 @@ end
 json.is_login user_signed_in? ? true : false
 json.user_id user_signed_in? ? current_user.id : false
 
-if current_user.billing_detail.present?
+if (current_user.billing_detail.present? rescue false)
   json.billing_detail do
     json.id current_user.billing_detail.id
     json.card_type current_user.billing_detail.card_type

@@ -148,6 +148,7 @@ angular.module('uinApp').controller 'overviewsController', [
             'color': '#FFFFFF'
             'border-top-style': 'solid'
             'border-color': '#99CC00'
+          debugger
           booking_tag = "
             <div class='booking-wraper'>
               <div class='booking-header'>
