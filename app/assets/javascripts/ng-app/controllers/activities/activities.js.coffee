@@ -1,4 +1,8 @@
-angular.module('uinApp').controller 'ActivitiesController', ($scope, activitiesService, Notification) ->
+angular.module('uinApp').controller 'ActivitiesController', [
+  '$scope'
+  'activitiesService'
+  'Notification'
+  ($scope, activitiesService, Notification) ->
     if localStorage.getItem('search') == null
       localStorage.setItem("search", JSON.stringify({}))
     $scope.itemArray = [{range: "5..25", name: '$5-$25'}, {range: "25..50", name: '$25-$50'}, {range: "50..75", name: '$50-$75'}, {range: "75..100", name: '$75-$100'}, {range: "100..150", name: '$100-$150'}, {range: "150..250", name: '$150-$250'}, {range: "250", name: '$250 & up'}
@@ -223,3 +227,5 @@ angular.module('uinApp').controller 'ActivitiesController', ($scope, activitiesS
         Notification.success 'Activities Added To Your Bucket List'
       ), (res, status) ->
         Notification.warning 'You need singin before create Bucket List'
+
+]
