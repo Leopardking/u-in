@@ -16,11 +16,11 @@
               %span.nav-icon.dollar
               %span.dollar-text Operators Login
 
-        %ul.nav.navbar-nav.navbar-right{"ng-controller"=> "HeaderCtrl", "ng-click"=> "toggleCustom()"}
+        %ul.nav.navbar-nav.navbar-right{"ng-controller"=> "HeaderCtrl", "ng-click"=> "toggleCustom()", "ng-model"=> "show"}
           %li
             %a.dropdown-toggle-humberger{:href => "javascript:void(0)"}
               %span.nav-icon.menu-hamburger
-            %ul.dropdown-humberger
+            %ul#nav-hubmerger.dropdown-humberger
               .fix-menu-height
                 - if user_signed_in?
                   - if current_user.admin?
