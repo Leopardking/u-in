@@ -20,12 +20,14 @@ angular.module('uinApp').controller 'overviewsController', [
   '$compile'
   '$window'
   'Notification'
-  ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window, Notification) ->
+  '$rootScope'
+  ($scope, $sce, $http, $stateParams, reviewService, paymentService, bookingService, sessionService, uiCalendarConfig, $compile, $window, Notification, $rootScope) ->
     # key stripe for test
     $window.Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
 
     $http.get('activities/'+$stateParams.activityId + '.json').success (res) ->
       $scope.promo = res
+      $rootScope.$broadcast 'calendarTwo'
       $scope.reviews = res.reviews
       $scope.booking_detail = res.booking_detail
       $scope.billing_detail = res.billing_detail
@@ -436,7 +438,9 @@ angular.module('uinApp').controller 'overviewsController', [
           Notification.success('Congratulation You already book this Event')
       return
 
-    $scope.showCalendarTwo = ->
-      angular.element('.calendar-second').fullCalendar 'today'
-      return
+    $scope.$on 'calendarTwo', (event, data) ->
+      $('a#id-of-tab').on 'shown.bs.tab', (e) ->
+        $('#calendar-second').fullCalendar 'today'
+        return
+
 ]
