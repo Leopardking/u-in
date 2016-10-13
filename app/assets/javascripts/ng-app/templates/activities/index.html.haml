@@ -134,7 +134,7 @@
                         %label{:for => "check-{{activity.id}}"}
               .right-content-picture
                 %a{:href => "/#/activities/{{activity.id}}"}
-                  %p.link-custome {{activity.name}}
+                  %p.link-custome {{activity.name | limitTo:50}}
             .right
               .count.blue-box
                 %p {{activity.discount_percent}} %
