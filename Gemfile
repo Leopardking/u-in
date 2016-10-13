@@ -91,7 +91,7 @@ gem 'omniauth-instagram', '~>1.0.2'
 
 # Paperclip
 gem 'paperclip', '~>4.1.1'
-
+gem 'aws-sdk', '< 2.0'
 # Bootstrap3 DateTime Picker
 gem 'momentjs-rails', '~> 2.5.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.0.0'

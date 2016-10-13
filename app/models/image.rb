@@ -39,12 +39,17 @@ class Image < ActiveRecord::Base
   end
 
   def get_dimensions
-    tempfile = File.new "#{Rails.root}/public/#{image.url}"
-
-    unless tempfile.nil?
-      geometry = Paperclip::Geometry.from_file(tempfile)
+    if Rails.env.production?
+      geometry = Paperclip::Geometry.from_file(self.image.url)
       [geometry.width.to_i, geometry.height.to_i]
-    end
+    else
+      tempfile = File.new "#{Rails.root}/public/#{image.url}"
+
+      unless tempfile.nil?
+        geometry = Paperclip::Geometry.from_file(tempfile)
+        [geometry.width.to_i, geometry.height.to_i]
+      end
+    end 
   end
 
   def ratio
