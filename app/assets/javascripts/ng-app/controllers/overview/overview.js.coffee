@@ -69,7 +69,7 @@ angular.module('uinApp').controller 'overviewsController', [
     $scope.modalOnEventClick = (event, date, jsEvent, view) ->
       check_day = moment(event.start._i).format("YYYY-MM-DD h:mm:ss")
       today     = moment().format("YYYY-MM-DD h:mm:ss")
-      
+
       if $scope.billing_detail != undefined
         $scope.firstName = $scope.billing_detail.first_name
         $scope.lastName = $scope.billing_detail.last_name
@@ -139,7 +139,7 @@ angular.module('uinApp').controller 'overviewsController', [
         'margin-bottom': '2px'
         'min-height': '70px'
         'background-color': ''
-
+      
       switch event.event_status
         when 'regular_available'         
           $(element).find('.fc-title')[0].innerHTML = "REGULAR PRICE"
@@ -163,6 +163,7 @@ angular.module('uinApp').controller 'overviewsController', [
           </div>"
           $(element).find('.booking-button-regular').css
             'background-color': '#3A4A5B !important'
+
         when 'sold_out'
           element.find('.fc-content').css
             'background-color': '#31708f'
@@ -200,7 +201,7 @@ angular.module('uinApp').controller 'overviewsController', [
               </div>
               <div class='booking-space'>
                 <p>"+ (event.booking_without_promotion_total - event.number_bookings_in_current_period)+" SPACES</p>
-                <p> $ "+$scope.promo.promotion.price+"</p>
+                <p> $ "+$scope.promo.promotion.discount_price+"</p>
               </div>
             <div class='booking-button'>
               <p>I'm In! <br> Book it!</p>
@@ -330,14 +331,14 @@ angular.module('uinApp').controller 'overviewsController', [
 
     # parsing ui-calender json
     id = $stateParams.activityId
-    start_date = moment($scope.dt).format("YYYY-M-d")
+    start_date = moment($scope.dt).format("YYYY-M-D")
     end_date = moment(start_date).endOf('month').format()
 
     $scope.eventSource =
       #url: '/calendars/get_events?end_date='+end_date+'&id='+id+'&promotion_id='+id+'&start_date='+start_date
       url: '/calendars/get_segmented_events?start_date='+start_date+'&end_date='+end_date+'&promotion_id='+id+'&new_calendar=true'
       cache: false
-
+    
     $scope.eventSources = [$scope.eventSource]
 
     # submit reveiw
