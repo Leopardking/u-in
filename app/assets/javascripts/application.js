@@ -44,14 +44,13 @@
 //= require bootstrap-select
 //= require jquery.flexslider
 //= require angular
-//= require angular-rails-templates
 //= require angular-ui-router
+//= require angular-rails-templates
 //= require angular-ui-select
 //= require ng-app/app
 //= require_tree ./ng-app/controllers
 //= require_tree ./ng-app/directives
-//= require_tree ./ng-app/services
-//= require_tree ./ng-app/templates
+//= require_tree ../templates
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
 //= require ng-rails-csrf
@@ -68,4 +67,3 @@
 //= require angular-ui-notification.js
 //= require ng-file-upload
 //= require ngImgCrop
-//= require angular-resource

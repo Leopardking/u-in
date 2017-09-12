@@ -21,14 +21,17 @@ module BookingApp
     # config.i18n.default_locale = :de
 
     I18n.enforce_available_locales = false
-    config.assets.precompile += %w( promotions_layout.css promotions_layout.js scheduling_promotion.js )
-    config.assets.precompile += %w( *.png *.jpeg *.jpg *.gif )
+    # config.assets.precompile += %w( promotions_layout.css promotions_layout.js scheduling_promotion.js angular-fullcalendar )
+    # config.assets.precompile += %w( *.png *.jpeg *.jpg *.gif *.eot *.woff2 *.woff *.ttf *.svg )
     # config.autoload_paths += Dir["#{config.root}/lib/**/*"]
     # config.autoload_paths << Rails.root.join('lib')
     config.autoload_paths += Dir[File.join(Rails.root, "lib", "ext", "*.rb")].each {|l| require l }
     # add app/assets/fonts to the asset path
     # config.assets.enabled = true
-    # config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    # config.assets.paths << Rails.root.join("vendor", "assets", "fonts")
+    # config.assets.paths << Rails.root.join("vendor", "assets", "images")
+    # config.assets.paths << Rails.root.join("vendor", "assets", "javascripts")
+    # config.assets.paths << Rails.root.join("vendor", "assets", "stylesheets")
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     #  Devise JSON
     config.to_prepare do

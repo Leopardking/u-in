@@ -103,12 +103,10 @@ module Publish
   end
 
   def clone_attachment old_attachment, new_attachment
-    if Rails.env.development?
-      url = get_attachment_folder old_attachment.image.path
-      new_url = get_attachment_folder new_attachment.image.path
-      FileUtils.mkdir_p(new_url) unless File.exists?(new_url)
-      FileUtils.copy_entry url, new_url
-    end
+    url = get_attachment_folder old_attachment.image.path
+    new_url = get_attachment_folder new_attachment.image.path
+    FileUtils.mkdir_p(new_url) unless File.exists?(new_url)
+    FileUtils.copy_entry url, new_url
   end
 
   ##########

@@ -23,3 +23,7 @@
 
 #Ignore public/system folder
 /public/system
+
+# Production/Staging server key
+
+/keys/*.pem

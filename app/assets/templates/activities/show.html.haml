@@ -1,0 +1,426 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+    %div{"ng-if"=>"promotionhash.images.length>= 1"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in promotionhash.images", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}", "err-src"=>"https://dummyimage.com/1265x600/000/fff&text=image+not+found"}
+    %div{"ng-if"=>"promotionhash.images.length == 0"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}", "err-src"=>"https://dummyimage.com/1265x600/000/fff&text=image+not+found"}
+
+.nav-wrap-tabs
+  .container
+    %ul#myTab.nav.nav-tabs.nav-tab-custom
+      %li.active
+        %a{"data-target" => "#overview", "data-toggle" => "tab", "class" => "tabs-mod"} Overview
+      %li
+        %a{"data-target" => "#reveiw", "data-toggle" => "tab", "class" => "tabs-mod"} Reviews
+      %li
+        %a{"data-target" => "#booking", "data-toggle" => "tab", "class" => "tabs-mod", "ng-click" => "showCalendarTwo()"} Book It
+
+
+.tab-content
+  #overview.tab-pane.active.pane-custom
+    .container
+      .row
+        .col-md-12.col-lg-12
+          %h1.text-center {{promotionhash.promotion.name}}
+          .col-md-3.hidden-xs
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.black-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.blue-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+
+          .col-md-9
+            .row
+              .col-md-12
+                .wrap-header-info
+                  .col-md-4.pad-right-5.pad-left-0
+                    .top-info-review
+                      .ratings.w-40
+                        Ratings
+                      .star-rate.w-60
+                        %i.fa.fa-heart
+                        %i.fa.fa-heart
+                        %i.fa.fa-heart
+                        %i.fa.fa-heart-o
+                        %i.fa.fa-heart-o
+                    .bottom-info-review
+                      3.0
+                  .col-md-2.pad-left-5.pad-right-5
+                    .top-info-review
+                      .ratings.rate-center
+                        Reviews
+                    .bottom-info-review
+                      {{reviews.length}}
+                  .col-md-2.pad-left-5.pad-right-5
+                    .top-info-review
+                      .ratings.rate-center
+                        Spaces
+                    .bottom-info-review
+                      {{promotionhash.space}}
+                  .col-md-2.pad-left-5.pad-right-5
+                    .top-info-review
+                      .ratings.rate-center
+                        Discount
+                    .bottom-info-review
+                      {{promotionhash.promotion.discount_percent}}%
+                  .col-md-2.pad-left-5.pad-right-0
+                    .top-info-review
+                      .ratings.rate-center
+                        Price From
+                    .bottom-info-review
+                      ${{promotionhash.promotion.discount_price}}
+
+            .panel-box.panel-group.clearfix
+              .panel.panel-default
+                .panel-heading
+                  %h4.panel-title
+                    %a{"data-toggle" => "collapse", :href => "!#desc"}
+                      %i.fa.fa-minus-circle
+                      Description
+                #desc.panel-collapse.collapse.in
+                  .panel-body {{promotionhash.promotion.description}}
+
+            .panel-box.panel-group
+              .panel.panel-default
+                .panel-heading
+                  %h4.panel-title
+                    %a{"data-toggle" => "collapse", :href => "!#share"}
+                      %i.fa.fa-minus-circle
+                      Share & Book Together
+                #share.panel-collapse.collapse.in
+                  .panel-body
+                    .row.row-eq-height
+                      .col-sm-6
+                        Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah buku contoh huruf. Ia tidak hanya bertahan selama 5 abad, tapi juga telah beralih ke penataan huruf elektronik, tanpa ada perubahan apapun. Ia mulai dipopulerkan pada tahun 1960 dengan diluncurkannya lembaran-lembaran Letraset yang menggunakan kalimat-kalimat dari Lorem Ipsum, dan seiring munculnya perangkat lunak Desktop Publishing seperti Aldus PageMaker juga memiliki versi Lorem Ipsum.
+                      .col-sm-6
+                        .div-socmed
+                          %ul
+                            %li
+                              %i.fa.fa-book
+                            %li
+                              %i.fa.fa-facebook
+                            %li
+                              %i.fa.fa-instagram
+                            %li
+                              %i.fa.fa-twitter
+                            %li
+                              %i.fa.fa-linkedin
+
+            .panel-box.panel-group
+              .panel.panel-default
+                .panel-heading
+                  %h4.panel-title
+                    %a{"data-toggle" => "collapse", :href => "!#bring"}
+                      %i.fa.fa-minus-circle
+                      What To Bring
+                #bring.panel-collapse.collapse.in
+                  .panel-body
+                    .row.row-eq-height
+                      .col-sm-6
+                        {{promotionhash.promotion.bring_item}}
+                      .col-sm-6
+                        .div-deals
+                          %p
+                            %b
+                              Lorem ipsum set
+                            %br
+                            %b
+                              Lorem ipsum set
+                            %br
+                            %b
+                              Lorem ipsum
+                            %br
+                          %a.btn-deals-green
+                            Click for Great Deals
+
+            .panel-box.panel-group
+              .panel.panel-default
+                .panel-heading
+                  %h4.panel-title
+                    %a{"data-toggle" => "collapse", :href => "!#location"}
+                      %i.fa.fa-minus-circle
+                      Location
+                #location.panel-collapse.collapse.in
+                  .panel-body
+                    .col-md-4
+                      %p {{promotionhash.promotion.street_address_1}}
+                      %p {{promotionhash.promotion.street_address_2}}
+                      %p {{promotionhash.promotion.city}}
+                      %p {{promotionhash.promotion.state}}
+                    .col-md-8
+                      %iframe{:allowfullscreen => "", :frameborder => "0", :height => "450", "ng-src" => "{{trustSrc(maps.src)}}", :type => "text/html", :width => "100%"}
+
+            .panel-box.panel-group
+              .panel.panel-default
+                .panel-heading
+                  %h4.panel-title
+                    %a{"data-toggle" => "collapse", :href => "!#book"}
+                      %i.fa.fa-minus-circle
+                      I'm In! Book It!
+                #book.panel-collapse.collapse.in
+                  .panel-body
+                    .col-md-12.nopadding
+                      %p.input-group
+                        %span.input-group-btn
+                          %p.select-date SELECT DATE
+                          %button.btn.btn-default{"ng-click" => "openDate()", :type => "button", "alt-input-formats" => "altInputFormats", "close-text" => "Close", "datepicker-options" => "dateOptions", "is-open" => "popup1.opened", "ng-model" => "dt", "ng-required" => "true", :type => "text", "uib-datepicker-popup" => "", "datepicker-options" => "dateOptions"}
+                            %i.glyphicon.glyphicon-calendar
+                      %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview"}
+
+
+
+  #reveiw.tab-pane
+    .container
+      .row
+        .col-md-12.col-lg-12
+          %h3.text-center {{promotionhash.promotion.name}}
+          %h3.text-center {{name}}
+          %div{"ng-if"=>"reviews == 0"}
+            %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
+          .col-md-12.outer-review
+            #review{"ng-repeat" => "review in reviews"}
+              .rating-review
+                .col-md-3.col-xs-3.rate-stars
+                  %ng-rate-it{"ng-model" => "review.rating", "resetable"=> "false", "read-only" => "true"}
+                  %span
+                .col-md-6.col-xs-6
+                  %p {{review.user.user_name}}
+                .col-md-3.rate-now.col-xs-3
+                  %a{:class => "rate", :href => "#", "data-target" => "#reviewModal", "data-toggle" => "modal", :onclick => "return false"} Rate Now
+              .review-content
+                .col-md-12
+                  %p.review-text
+                    {{review.content}}
+                  %a{:class => "read-more", :href => "javascript:void(0)"}
+                    Read More
+
+  #booking.tab-pane
+    .container
+      .row
+        .col-md-12.col-lg-12
+          %h3.text-center {{promotionhash.promotion.name}}
+          %p.input-group
+            %span.input-group-btn
+              %p.select-date SELECT DATE
+              %button.btn.btn-default{"ng-click" => "openDate()", :type => "button", "alt-input-formats" => "altInputFormats", "close-text" => "Close", "datepicker-options" => "dateOptions", "is-open" => "popup1.opened", "ng-model" => "dt", "ng-required" => "true", :type => "text", "uib-datepicker-popup" => "", "datepicker-options" => "dateOptions"}
+                %i.glyphicon.glyphicon-calendar
+          %div{"ng-model" => "eventSources", "ui-calendar" => "uiConfig.calendar", "calendar" =>"myCalendar", "class"=>"span8 calendar-overview calendar-second"}
+
+#reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
+      %div{{"ng-if" => "promotionhash.is_login == false"}}
+        #modalBody.modal-body.wrap-type-card
+          .col-md-12
+            %p Please login, at 
+            %a{:href => "/auth/sign_in", :style => "color: #999"} Login
+      %div{{"ng-if" => "promotionhash.is_login == true"}}
+        %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
+          .modal-body
+            .wrap-content-rate
+              .col-md-4
+                / %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+                .img-rating
+                  %img{"ng-src" => "{{promotionhash.image}}", "on-error-src" => "http://google.com/favicon.ico"}
+              .col-md-8
+                %h3 {{promotionhash.promotion.name}}
+                %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+            .col-md-12
+              .wrap-comment
+                %span
+                  Comments:
+                %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
+          .modal-footer
+            %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
+
+
+#fullCalModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .outer-logo
+        .modal-logo
+          = image_tag "uINlogo_white.png"
+          %span one thumb booking
+      .modal-header
+        .circle-close
+          %button.close{"data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true"} ×
+            %span.sr-only close
+        %h3.text-center {{promotionhash.promotion.name}}
+      %div{{"ng-show" => "promotionhash.is_login == true"}}
+        %div{{"ng-hide" => "isHideUser == true && isHideAmount == false"}}
+          #container-modal{{"ng-hide" => "isHideAmount == true"}}
+            #modalBody.modal-body
+              .col-md-12.col-xs-12.wrap-person
+                .col-md-10.col-xs-6
+                  %small.text-center Per Person
+                .col-md-2.col-xs-6.right-res
+                  %small.text-center Available
+
+              .col-md-12.col-xs-12.regular-price
+                .col-md-10.col-xs-8
+                  %p Regular Price $ {{promotionhash.promotion.price}}
+                .col-md-2.col-xs-4
+                  %select#regularPrice{:name => "regularPrice", "ng-model" => "regularPrice", "ng-options" => "option for option in perDuration track by option", "ng-change"=> "updatePrice()"}
+
+              .col-md-12.col-xs-12.discount-price
+                .col-md-10.col-xs-8
+                  %p Discount Price $ {{promotionhash.promotion.discount_price}}
+                .col-md-2.col-xs-4
+                  %select#discountPrice{:name => "discountPrice", "ng-model" => "discountPrice", "ng-change"=> "updatePrice()", "ng-options" => "option for option in maximumBoking track by option"}
+
+
+            .col-md-12.col-xs-12.wrap-total
+              .col-md-9.col-xs-8
+                %p.text-right Total
+              .col-md-3.col-xs-4
+                %p.text-left.total-price {{totalPrice}}
+              .col-md-9.col-xs-8
+                %button.btn.btn-default{"id" => "help-popup", "data-placement" => "top", "data-toggle" => "tooltip", :title => "This deposit is refundable as a credit to your account that can be used for future bookings. Please be sure you understand the merchant’s cancellation policy. u-IN? is not responsible for any charges between customer and merchant.", :type => "button"} ?
+                %span.text-right Deposit Due
+              .col-md-3.col-xs-4
+                %p.text-left.deposit-due {{depositDue}}
+            .col-md-12
+              %div{{"ng-show" => "validBooking == 'wrong' "}}
+                %p.ng-invalid Your booking is more that space available
+              %h5.description Deposit are due at time of booking. Full payment will be made at time of service with XXXXXXXX
+            .modal-footer
+              %p {{date_completed}}
+              %button.btn.btn-primary{:type => "button", "ng-click" => "changeToUser()"}
+                = image_tag "Imgpsh_Fullsize.png"
+                Book it!
+
+
+        %div{{"ng-hide" => "isHideUser == true && isHideAmount == true"}}
+          #container-modal{{"ng-show" => "isHideAmount == true"}}
+            #modalBody.modal-body.form-booking
+              .wrap-form-booking
+                %p FIRST NAME:
+                %input{"ng-model" => "firstName", "name"=>"firstName", :required => "", :type => "text"}
+                %p LAST NAME:
+                %input{"ng-model" => "lastName", "name"=>"lastName", :required => "", :type => "text"}
+                %p STREET:
+                %input{"ng-model" => "street", "name"=>"street", :required => "", :type => "text"}
+                %p STREET 2:
+                %input{"ng-model" => "street2", "name"=>"street2", :required => "", :type => "text"}
+                .col-md-8.col-xs-12.col-sm-8
+                  %p CITY:
+                  %input{"ng-model" => "city", "name"=>"city", :required => "", :type => "text"}
+                .col-md-4.col-xs-12.col-sm-4
+                  %p STATE:
+                  %select{"ng-model" => "state", "name"=>"state", "ng-options" => "item.code as item.name for item in regionArray"}
+                %p ZIP CODE:
+                %input{"ng-model" => "zipCode", "name"=>"zipCode", :class=> "zip-code", :required => "", :type => "text"}
+                .col-md-8.col-xs-12.col-sm-8
+                  %p EMAIL:
+                  %input{"ng-model" => "email", "name"=>"email", :required => "", :type => "email"}
+                .col-md-4.col-xs-12.col-sm-4
+                  %span MOBILE#:
+                  %a{:href => 'javascript:void(0)'}>?
+                  %input{"ng-model" => "mobile", "name"=>"mobile"}
+                %button.btn.btn-primary{:type => "button", "ng-click" => "changeToPayment()"} CONTINUE
+
+        #container-modal{{"ng-show" => "isHideUser == true "}}
+          %form{"stripe-form" => "stripeCallback"}
+            #modalBody.modal-body.wrap-type-card
+              .col-md-12
+                #change-type-card
+                  .type-card
+                    %input{:name => "card_type", :type => "radio", :value => "visacard", "ng-model"=>"cardType"}
+                    .wrap-img
+                      = image_tag "visa_card.jpg", class: "size-image-type-normal image-visa-card"
+                  .type-card
+                    %input{:name => "card_type", :type => "radio", :value => "mastercard", "ng-model"=>"cardType"}
+                    .wrap-img
+                      = image_tag "master_card.jpg", class: "size-image-type-normal image-master-card"
+                  .type-card
+                    %input{:name => "card_type", :type => "radio", :value => "AMExcards", "ng-model"=>"cardType"}
+                    .wrap-img-2
+                      = image_tag "amex_card.png", class: "size-image-type-normal image-master-card"
+
+                .form-input
+                  .card-number
+                    %span Card Number:
+                    %input{"ng-model" => "number", :placeholder => "Card Number", "payments-format"=>"card", "payments-validate"=>"card", "name"=>"card"}
+                  .cvv-wrap
+                    .exp-card
+                      %span Exp: 00/00
+                      %input{"ng-model" => "expiry", :placeholder => "00/00", "payments-format"=>"expiry", "payments-validate"=>"expiry", "name"=>"expiry"}
+                    .cvv-card
+                      %span CVV:
+                      %input{"ng-model" => "cvc", :placeholder => "CVC", "payments-format"=>"cvc", "payments-validate"=>"cvc", "name"=>"cvc"}
+
+                  .wrap-policy
+                    I have read and agree to the
+                    %a{:href => 'javascript:void(0)'}>cancellation
+                    policy for this activity
+                    .agree-condition
+                      %span Agree
+                      %input{:name => "checkbox1", :type => "checkbox", :id => "checkbox1"}
+                      %label{:for => "checkbox1"}
+
+                %div{"ng-if" => "checkoutForm.card.$invalid"}
+                  Error: invalid card number!
+            .modal-footer.footer-card
+              %button.btn.btn-primary{:type => "submit", "ng-click" => "paymentModal()"} Pay {{depositDue}}
+              %p Deposit
+      %div{{"ng-show" => "promotionhash.is_login == false"}}
+        #modalBody.modal-body.wrap-type-card
+          .col-md-12
+            %p Please login, at 
+            %a{:href => "/auth/sign_in", :style => "color: #999"} Login

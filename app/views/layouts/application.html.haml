@@ -15,8 +15,7 @@
 
   %body{"ng-app" => "uinApp"}
     - if need_header?
-      - unless controller_name == "registrations" || controller_name == "sessions"
-        = render "layouts/header"
+      = render "layouts/header"
     .wrapper-main-container
       #error_crud_here
       = yield

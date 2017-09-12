@@ -19,7 +19,7 @@ set :forward_agent, true
 set :app_path, -> { "#{deploy_to}/#{current_path}" }
 set :delayed_job_pid_file, -> { "#{app_path}/tmp/pids/delayed_job.pid" }
 set :project_name, 'u-in'
-set :identity_file, '/home/nus/.ssh/davidgithub/id_rsa'
+set :identity_file, './keys/uin_staging_2017.pem'
 
 # For system-wide RVM install.
 #   set :rvm_path, '/usr/local/rvm/bin/rvm'
@@ -42,7 +42,7 @@ task :environment do
 
   # For those using RVM, use this to load an RVM version@gemset.
   # invoke :'rvm:use[ruby-1.9.3-p125@default]'
-  invoke :'rvm:use[ruby-2.1.1]'
+  invoke :'rvm:use[ruby-2.1.2]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -118,4 +118,3 @@ end
 #  - http://nadarei.co/mina/tasks
 #  - http://nadarei.co/mina/settings
 #  - http://nadarei.co/mina/helpers
-

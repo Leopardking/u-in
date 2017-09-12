@@ -1,8 +1,8 @@
 # Application and server settings
 set :application, "u-in"
 set :user,        "ubuntu"
-set :host,        "54.67.33.54"
-set :domain,      '54.67.33.54'
+set :host,        "54.215.241.125"
+set :domain,      '54.215.241.125'
 
 # Git
 set :scm,         :git

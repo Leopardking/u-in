@@ -139,13 +139,8 @@ class Promotion < ActiveRecord::Base
       segments.each do |start_t, end_t|
         start_time = Time.zone.local(date.year, date.month, date.day, start_t.hour, start_t.min, start_t.sec)
         end_time = Time.zone.local(date.year, date.month, date.day, end_t.hour, end_t.min, end_t.sec)
-        
-        if new_calendar == "true"
-          # not sure but need params options
-          options = {:view_all_day=>true}
-        end
 
-        event_statistic = PromotionService.get_event_statistics_at_date(promotion, bookings, start_time, options)
+        event_statistic = PromotionService.get_event_statistics_at_date(promotion, bookings, start_time)
         event_status = event_statistic[:event_status]
         available_bookings = self.booking_detail.maximum_bookings - event_statistic[:number_promotion_booked_at_this_period] + event_statistic[:number_promotion_booked_at_this_moment]
         available_books_at_this_moment = [self.booking_detail.bookings_per_duration - event_statistic[:number_booked_at_this_moment] + event_statistic[:number_regular_booked_at_this_moment], booking_without_promotion_total].min

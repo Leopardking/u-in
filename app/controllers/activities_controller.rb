@@ -35,9 +35,9 @@ class ActivitiesController < ApplicationController
   end
 
   def bookmark
-    if current_user.present?
-      @bookmark = @activity.bookmarks.build(user_id: current_user.id)
-      render json: @bookmark, status: 200 if @bookmark.save
+    @bookmark = @activity.bookmarks.build(user_id: current_user.id)
+    if @bookmark.save
+      render json: @bookmark, status: 200
     else
       render json: @bookmark, status: :unprocessable_entity
     end
@@ -57,25 +57,13 @@ class ActivitiesController < ApplicationController
     promotion_id    = params[:id]
     bookings        = current_user.bookings.where("promotion_id LIKE ?", promotion_id).update_all(listing_show: false)
     date_now        = Time.now.strftime("%Y-%m-%d %H:%M")
-    @myPastLife     = current_user.bookings.where('book_date <= ? AND listing_show = ?', date_now, true).group(:promotion_id)
+    @myPastLife     = current_user.bookings.where('book_date <= ? AND listing_show= ?', date_now, true).group(:promotion_id)
     
     render json: @myPastLife, status: 200
   end
 
-  def build_information_user
-    @info = current_user.create_billing_detail(params_info)
-    if @info.save
-      render json: @info, status: 200
-    else
-      render json: [], status: :unprocessable_entity
-    end
-  end
-
   def load_image
     @images = Review.find(params[:review_id]).images
-    respond_to do |format|
-       format.json
-    end    
   end
 
   private
@@ -94,12 +82,5 @@ class ActivitiesController < ApplicationController
 
   def find_promotion
     @activity = Promotion.find(params[:id])
-  end
-
-  def params_info
-    # get last 4 number cc
-    params[:ccard_last4] = params[:ccard_last4].split(//).last(4).join
-   
-    params.permit(:card_type, :ccard_last4, :stripe_profile_token, :first_name, :last_name, :street_address, :city, :zipcode, :state, :always_use, :user_id, :customer_id, :same_as_company_address, :street_address_2, :email, :phone, :name_card, :exp_month, :exp_year, :security_code)
   end
 end

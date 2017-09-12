@@ -1,0 +1,341 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+    %div{"ng-if"=>"toScreen.length >= 1"}
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in toScreen", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}"}
+    %div{"ng-if"=>"toScreen == 0"}   
+      %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+        %li
+          %img{"ng-src" => "{{s}}"}
+
+.nav-wrap-tabs
+  .container
+    %ul#myTab.nav.nav-tabs.nav-my-tab-custom
+      %li
+        %a{"data-target" => "#searchActivity", "data-toggle" => "tab", "class" => "tabs-mod"} Search Activities
+      %li.active
+        %a{"data-target" => "#myActivity", "data-toggle" => "tab", "class" => "tabs-mod"} My Activies
+
+.tab-content
+  #searchActivity.tab-pane
+    .container
+      .row
+        .col-md-12.col-lg-12
+
+  #myActivity.tab-pane.active.pane-custom
+    .container.my-activity-container
+      .row
+        .col-md-12.col-lg-12
+          .col-md-3.hidden-xs
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.green-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+            .form-group
+              %div.w3-card-12
+                %img{:alt => "Norway", :src => "http://dummyimage.com/140x140/000/fff.png&text=test", :style => "width:100%"}/
+                .w3-container.w3-center.text-wrap.black-box
+                  %p Image Title
+                %p.mar-top-15
+                  Lorem ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet ipsum dolar set amet
+
+
+          .col-md-9
+            .row
+              .panel-box.panel-no-border.panel-group.clearfix
+                .panel.panel-default
+                  .panel-heading
+                    %h4.panel-title
+                      Upcoming
+                  .panel-collapse.collapse.in
+                    .wrapper-table-my-activity
+                      %div{"ng-repeat" => "event in booking"}
+                        .body-my-activity
+                          .left
+                            .left-picture
+                              %a{:href => "/#/activities/{{event.promotion.id}}"}
+                                %img{:src => "{{event.promotion.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                            .right-content-picture
+                              .col-md-12
+                                .row
+                                  .title-upcoming
+                                    %p {{event.promotion.name}}
+                              .col-md-12
+                                .row
+                                  .col-md-5
+                                    .blue-text
+                                      %p SAVE {{event.promotion.discount_percent}} %
+                                  .col-md-7
+                                    .green-text
+                                      %p NOW ONLY ${{event.promotion.discount_price}}
+                          .right
+                            .box.blue-box
+                              .date-time
+                                %p {{event.time}}
+                              .space
+                                %p 1 Space Left
+                              .share
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+                                          
+
+
+              .panel-box.panel-no-border.panel-group.clearfix
+                .panel.panel-default
+                  .panel-heading
+                    %h4.panel-title
+                      My Bucket List
+                  .panel-collapse.collapse.in
+                    .wrapper-table-my-activity
+                      %div{"ng-repeat" => "event in bookmark"}
+                        .body-my-activity
+                          .left
+                            .left-picture
+                              %a{:href => "/#/activities/{{event.promotion.id}}"}
+                                %img{:src => "{{event.promotion.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                              .remove
+                                %button.button-custom-bookmark{"ng-really-message" => "Are you sure you want to remove this activity from your Bucket List", "ng-really-click" => "removeBookmark(event.promotion.id, $event, $index)"}
+                                  .remove
+                                    %i.fa.fa-times.fa-lg.fa-custome
+                              .radio
+                                .wrapper-checkbox
+                                  .checkbox-custom
+                                    %span
+                                      %input{:id => "check-{{event.promotion.id}}", :name => "check", :type => "checkbox", :value => "{{event.promotion.id}}"}
+                                      %label{:for => "check-{{event.promotion.id}}"}
+                            .right-content-picture
+                              .col-md-12
+                                .row
+                                  .title-upcoming
+                                    %p {{event.promotion.name}}
+                              .col-md-12
+                                .row
+                                  .col-md-5
+                                    .blue-text
+                                      %p SAVE {{event.promotion.discount_percent}} %
+                                  .col-md-7
+                                    .green-text
+                                      %p NOW ONLY ${{event.promotion.discount_price}}
+                          .right
+                            .box.blue-box
+                              .date-time
+                                %p {{event.time}}
+                              .space
+                                %p 1 Space Left
+                              .share
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+
+              .panel-box.panel-no-border.panel-group.clearfix
+                .panel.panel-default
+                  .panel-heading
+                    %h4.panel-title
+                      My Past Life
+                  %div{"ng-repeat" => "event in pastLife"}
+                    .wrapper-past-life
+                      .panel-collapse.collapse.in
+                        .panel-body
+                          .col-md-12
+                            %div{"ng-if" => "event.promotion.review.id != undefined"}
+                              .col-md-8
+                                .row
+                                  .col-sm-6
+                                    {{ event.promotion.name }}
+                                  .col-sm-6.text-right
+                                    %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= event.promotion.review.rating", "read-only" => "true"}
+                                .wrap-comment
+                                  %div{"ng-if"=>"event.promotion.review.id != undefined"}
+
+                                    %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check", "ng-model" => "event.promotion.review.content", :readonly => "yes"}
+                                  %a{:href => "javascript:void(0)", class: "save-button"} Save
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+
+                                  %button.button-custom{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
+                                    .remove
+                                      %i.fa.fa-times.fa-lg.fa-custome
+                              .col-md-4
+                                .right-content-picture
+                                  %div
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[0].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[0].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[1].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[1].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[2].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[2].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[3].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[3].image}}"}}
+                                  {{ event.time }}
+
+                            / when user no have review booking
+                            %div{"ng-if" => "event.promotion.review.id == undefined"}
+                              .col-md-8
+                                .row
+                                  .col-sm-6
+                                    {{ event.promotion.name }}
+                                  .col-sm-6.text-right
+                                    %div{"ng-if"=>"event.promotion.review.id == undefined"}
+                                      %a{:class => "rate", "ng-click" => "showModal(event.promotion.id, event.promotion.name, event.promotion.review.image )"} Rate This Activity!
+                                .wrap-comment
+                                  %textarea{placeholder: "Enter your experience and share!" ,:cols => "50", :rows => "4", :name => "check"}
+                                  %a{:href => "javascript:void(0)", class: "save-button disable"} Save
+
+                                .div-socmed-mini
+                                  %ul
+                                    %li
+                                      %i.fa.fa-book
+                                    %li
+                                      %i.fa.fa-facebook
+                                    %li
+                                      %i.fa.fa-instagram
+                                    %li
+                                      %i.fa.fa-twitter
+                                    %li
+                                      %i.fa.fa-linkedin
+                                %button.button-custom{"ng-really-message" => "Are you sure you want to delete this activity?", "ng-really-click" => "removePastLife(event.promotion.id, $event, $index)"}
+                                  .remove
+                                    %i.fa.fa-times.fa-lg.fa-custome
+                              .col-md-4
+                                .right-content-picture
+                                  %div
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[0].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[0].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[1].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[1].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[2].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[2].image}}"}}
+                                    %a{:class => "rate", "ng-click" => "uploadModal(event.promotion.review.id, event.promotion.name, event.promotion.review.image )"}
+                                      %img{{"ng-src" => "{{event.promotion.review.images[3].image == undefined && 'assets/Camera.svg' || event.promotion.review.images[3].image}}"}}
+                                  {{ event.time }}
+
+#reviewModal.modal.fade{"aria-labelledby" => "reviewModal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title THANKS FOR RATING YOUR EXPEIENCE!!!
+      %form{"ng-submit"=>"submitForm()", :name => "checkoutForm"}
+        .modal-body
+          .wrap-content-rate
+            .col-md-4
+              / %img{:height => "42", :src => "{{promotionhash.image}}", :width => "42"}
+              .img-rating
+                %img{"ng-src" => "{{image}}", "on-error-src" => "http://google.com/favicon.ico"}
+            .col-md-8
+              %h3 {{name}}
+              %ng-rate-it{"ng-model" => "reviewParam.rating", "resetable"=> "false", "ng-init"=> "reviewParam.rating= 2.5"}
+          .col-md-12
+            .wrap-comment
+              %span
+                Comments:
+              %textarea{ :cols => "50", :rows => "4", :name => "check", "ng-model" => "reviewParam.content"}
+              %input{:name => "hidden-field", "ng-value" => "{{id}}", :type => "hidden"}
+        .modal-footer
+          %button.btn.btn-primary.btn-submit{:type => "submit"} SUBMIT
+
+
+
+#uploadModal.modal.fade{"aria-labelledby" => "uploadModal", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title Upload Your Photos!
+      %div{{"ng-show" => "isHide == false"}}
+        .modal-body
+          .col-md-12
+            .wrap-comment
+              %img{"ng-src" => "{{default_image_upload}}"}
+          .col-md-12
+            .col-md-4
+              %img{"ng-src" => "{{images_modal[0] == undefined && camera || images_modal[0] }}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2", "ng-click" => "changeToUpload()"}
+                ADD
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2"}
+                ADD
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2"}
+                ADD
+            .col-md-4
+              %img{"ng-src" => "{{camera}}"}
+              %span.btn.green-button{"data-default" => "false", "data-image" => "image-2"}
+                ADD
+        .modal-footer
+          %button.btn.btn-primary.btn-submit{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+            %span{"aria-hidden" => "true", "ng-click" => "reloadContent()"} Close
+
+      %div{{"ng-show" => "isHide == true"}}
+        %form{"ng-submit"=>"goToUploadImage()", :name => "checkoutForm"}
+          .modal-dialog
+            .modal-content
+              .modal-body
+                .row
+                  .col-xs-1.col-md-1.col-ms-1
+                  .col-xs-10.col-md-10.col-ms-10
+                    %p.text-center-element
+                      JPG or JPEG or PNG file that reprensents this activity {{ review_id}}
+                    .row.form-horizontal
+                      %form{:name => "myForm"}
+                        %div Crop Image and Upload
+                        %button{:accept => "image/*", "ng-model" => "picFile", "ngf-select" => ""}
+                          Select Picture
+                        .cropArea{"ng-model" => "picFile", "ngf-drop" => "", "ngf-pattern" => "image/*"}
+                          %img-crop{:image => "picFile  | ngfDataUrl", "ng-init" => "croppedDataUrl=''", "result-image" => "croppedDataUrl", "area-type"=>"square"}
+                        %div
+                          %img{"ng-src" => "{{croppedDataUrl}}"}/
+
+                        %span.progress{"ng-show" => "progress >= 0"}
+                          %div{"ng-bind" => "progress + '%'", :style => "width:{{progress}}%"}
+                        %span{"ng-show" => "result"} Upload Successful
+                        %span.err{"ng-show" => "errorMsg"} {{errorMsg}}
+
+
+                  .col-xs-1.col-md-1.col-ms-1
+              .modal-footer
+                %span#turnoff-upload-image.btn.btn-default{:type => "button", "ng-click" => "hideToUpload()"}
+                  Close
+                %span#turnoff-upload-image.btn.btn-default{"ng-click" => "uploadFiles(croppedDataUrl)"} Save

@@ -1,5 +1,4 @@
 app = angular.module('uinApp', [
-  'ngResource'
   'ui.router'
   'templates'
   'ui.select'
@@ -18,6 +17,8 @@ app = angular.module('uinApp', [
   'ngFileUpload'
   'ngImgCrop'
 ])
+
+#Stripe.setPublishableKey 'pk_test_GV5ggkXJsOFMFLqyIR3gCScj'
 
 app.service 'sessionService', [ '$window', ($window)->
 
@@ -40,16 +41,16 @@ app.config([
     $stateProvider
     .state('home',
       url: '/'
-      templateUrl: 'ng-app/templates/activities/index.html'
-      controller: 'ActivitiesController')
+      templateUrl: 'activities/index.html'
+      controller: 'ActivitiesCtrl')
     .state('myActivities',
       url: '/my-activity'
-      templateUrl: 'ng-app/templates/myactivity/show.html'
-      controller: 'MyActivityController')
+      templateUrl: 'myactivity/show.html'
+      controller: 'MyActivityCtrl')
     .state('overview',
       url: '/activities/:activityId'
-      templateUrl: 'ng-app/templates/activities/show.html'
-      controller: 'overviewsController')
+      templateUrl: 'activities/show.html'
+      controller: 'overviewsCtrl')
     # default fall back route
     $urlRouterProvider.otherwise '/'
     # enable HTML5 Mode for SEO

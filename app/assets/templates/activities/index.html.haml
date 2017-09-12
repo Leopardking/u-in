@@ -1,0 +1,147 @@
+.wrapper-header
+  %header
+    .title-header
+      .container
+        .row
+          .col-md-12.col-lg-12
+            %h1
+              are you in
+              %span ?
+    %flex-slider{:after => "slideshow.after()", :animation => "slide", :before => "slideshow.before()", :end => "slideshow.end()", :slide => "s in slides", :start => "slideshow.start($slider)"}
+      %li
+        .wrap-img-slider
+          %img{"ng-src" => "{{s}}"}
+    .button-bottom-header
+      %a.btn-activity{:href => "javascript:void(0)"} Find An Activity
+      .arrow-bottom-header
+        %a.first.scroll-down{:href => "javascript:void(0)"}
+          =image_tag "Slider_Arrowdown_LG.png", id: "arrow"
+.container
+  .row
+    .col-md-12.col-lg-12
+      .wrapper-activity.second
+        .wrapper-select-activity
+          .left
+            .column-1
+              .dropdown.genre-dropdown
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle.show-highlight.dropdown-button-action.js-filter-select.js-has-placeholder{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  Genre
+                  %span.caret
+                %ul.dropdown-menu.search-filter-container{"aria-labelledby" => "dropdownMenu1"}
+                  .input-search
+                    .input-group
+                      %input.form-control{:placeholder => "Search", :type => "text", "ng-model" => "searchText"}
+                      %span.input-group-btn
+                        %button.btn.btn-default{:type => "button"}
+                          %span.btn-search-filter
+                  %form{"ng-submit"=>"submit()"}
+                    %ul.radio-years
+                      .scrollbar#custom-scroll-vertical
+                        %span{"ng-repeat" => "genre in genres | filter: searchText track by genre.id"}
+                          %li
+                            .checkbox
+                              .wrapper-checkbox
+                                .checkbox-custom
+                                  %span
+                                    %input{:name => "check[]", :type => "checkbox", :value => "{{genre.id}}", :id => "check-years-{{genre.id}}", "ng-model" => "myGenre.selected[genre.id]"}
+                                    %label{:for => "check-years-{{genre.id}}"} {{genre.name}}
+                      .wrapper-close-save
+                        %a{:href => "javascript:void(0)"}
+                          %span.btn-close-filter
+                        %input.btn-save-continue{:type => "submit", :value => "Save & Continue"}
+            .column-2
+              %ui-select{"ng-model" => "selected.value", "theme" => "bootstrap", "on-select" => "price(selected.value)", class: 'js-ui-select-override'}
+                %ui-select-match{"placeholder" => "Price Range", "allow-clear" => "true"}
+                  %span.js-has-placeholder{"ng-bind" => "$select.selected.name"}
+                }
+                %ui-select-choices{:repeat => "item in (itemArray | filter: $select.search) track by item.range"}
+                  %span{"ng-bind" => "item.name"}
+          .right
+            .column-1
+              %input.form-control.show-highlight.js-filter-select.js-has-placeholder{:placeholder => "City", :type => "text", "ng-keydown" => "city($event, cityParams)", "ng-model" => "cityParams"}
+            .column-2
+              %ui-select{"ng-model" => "selected.region", "theme" => "bootstrap", "on-select" => "region(selected.region)", class: 'js-ui-select-override'}
+                %ui-select-match{"placeholder" => "State", "allow-clear" => "true"}
+                  %span{"ng-bind" => "$select.selected.name"}
+                }
+                %ui-select-choices{:repeat => "region in (regionArray | filter: $select.search) track by region.code"}
+                  %span{"ng-bind" => "region.name"}
+            .column-3
+              %input.form-control.show-highlight.js-filter-select.js-has-placeholder{:placeholder => "Zip Code", :type => "text", "ng-keydown" => "zipcode($event, zipcodeParams)", "ng-model" => "zipcodeParams"}
+    .col-md-12.col-lg-12
+      .wrapper-choose-distance
+        .text-distance
+          Choose Your Distance
+        .sliding
+          %input{:max => "100", :min => "0", :step => "1", :type => "range", :value => "0"}
+        .text-range
+          .value
+            %span 0
+          %span mi
+    .col-md-12.col-lg-12
+      .wrapper-table-activity
+        .head-activity
+          .left
+            .column
+              .my-location
+                %h4.hidden-xs My Location
+                %i.fa.fa-map-marker.visible-xs.fa-2x{"aria-hidden" => "true"}
+            .column
+              .share
+                %h4.hidden-xs
+                  Share
+                  %br
+                  Activities
+                %i.fa.fa-share-alt.visible-xs.fa-2x{"aria-hidden" => "true"}
+            .column
+              .bookmark
+                %h4.hidden-xs
+                  Bookmark
+                  %br
+                  Activities
+                %i.fa.fa-bookmark.visible-xs.fa-2x{"aria-hidden" => "true"}
+            .column
+              .most-popular{"ng-click" => "mostPopular(statePopular)"}
+                %h4.hidden-xs Most Popular
+                %i.fa.fa-star.visible-xs.fa-2x{"aria-hidden" => "true"}
+          .right
+            .column
+              .off
+                %h4.hidden-xs % Off
+                %i.fa.fa-percent.visible-xs.fa-2x{"aria-hidden" => "true"}
+            .column
+              .prices
+                %h4.hidden-xs
+                  Prices
+                  %br
+                  From
+                %i.fa.fa-tag.visible-xs.fa-2x{"aria-hidden" => "true"}
+            .column
+              .spaces
+                %h4.hidden-xs Spaces
+                %i.fa.fa-users.visible-xs.fa-2x{"aria-hidden" => "true"}
+        %span{"ng-repeat" => "activity in activities"}
+          .body-activity
+            .left
+              .left-picture
+                %a{:href => "/#/activities/{{activity.id}}"}
+                  %img{:src => "{{activity.image}}", :width => "100%", "onError"=>"this.onerror=null;this.src='/assets/img-default.jpg'"}
+                .radio
+                  .wrapper-checkbox
+                    .checkbox-custom
+                      %span
+                        %input{:id => "check-{{activity.id}}", :name => "check", :type => "checkbox", :value => "{{activity.id}}", "ng-model" => "bookmark", "ng-click"=> "bookmarkEvent(activity.id)"}
+                        %label{:for => "check-{{activity.id}}"}
+              .right-content-picture
+                %a{:href => "/#/activities/{{activity.id}}"}
+                  %p.link-custome {{activity.name}}
+            .right
+              .count.blue-box
+                %p {{activity.discount_percent}} %
+              .count.black-box
+                %p $ {{activity.discount_price}}
+              .count.green-box
+                %p 9
+    .arrow-down-loadmore
+      %a{:href => "javascript:void(0)"}
+        %span.social-icon.chevron-down{'ng-click' => "nextPage()"}
